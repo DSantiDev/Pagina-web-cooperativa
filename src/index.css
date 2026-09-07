@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import 'tailwindcss';
+@import './styles/productos.css';
+@import './styles/quienes-somos.css';
+@import './styles/confianza.css';
+@import './styles/asociate.css';
+@import './styles/beneficios.css';
+
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #f5f6fa; }
+* { box-sizing: border-box; }

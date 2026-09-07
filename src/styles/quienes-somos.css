@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  --coovitel-blue: #1a1aaf;
+  --coovitel-navy: #0e0e5f;
+  --coovitel-dark: #090950;
+  --coovitel-gold: #f5a623;
+  --coovitel-gold-dark: #e09510;
+  --coovitel-light: #f0f2f8;
+}
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

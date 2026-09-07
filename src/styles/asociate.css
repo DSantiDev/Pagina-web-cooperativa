@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Poppins', sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --coo-blue: #1B14B8;
+  --coo-blue-deep: #120E8A;
+  --coo-navy: #0D0A2E;
+  --coo-yellow: #F5A623;
+  --coo-yellow-dark: #E09510;
+  --coo-light: #F5F6FA;
+  --coo-gray: #6B7280;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: var(--coo-blue); border-radius: 3px; }
+
+/* Wave divider */
+.wave-bottom {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+/* Accordion transition */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.accordion-content.open {
+  max-height: 600px;
+}
+
+/* Custom select/input focus */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--coo-blue) !important;
+  box-shadow: 0 0 0 3px rgba(27, 20, 184, 0.12);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
