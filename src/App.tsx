@@ -4,19 +4,21 @@ import Confianza from './pages/Confianza'
 import Home from './pages/Home'
 import Productos from './pages/Productos'
 import QuienesSomos from './pages/QuienesSomos'
+import SiteLayout from './components/SiteLayout'
 
 const pages = {
-  '/': Home,
-  '/asociate': Asociate,
-  '/beneficios': Beneficios,
-  '/confianza': Confianza,
-  '/productos': Productos,
-  '/quienes-somos': QuienesSomos,
+  '/': { component: Home, name: 'home' },
+  '/asociate': { component: Asociate, name: 'asociate' },
+  '/beneficios': { component: Beneficios, name: 'beneficios' },
+  '/confianza': { component: Confianza, name: 'confianza' },
+  '/productos': { component: Productos, name: 'productos' },
+  '/quienes-somos': { component: QuienesSomos, name: 'quienes-somos' },
 } as const
 
 export default function App() {
   const currentPath = window.location.pathname.replace(/\/+$/, '') || '/'
-  const Page = pages[currentPath as keyof typeof pages] ?? Productos
+  const selected = pages[currentPath as keyof typeof pages] ?? pages['/']
+  const Page = selected.component
 
-  return <Page />
+  return <SiteLayout page={selected.name}><Page /></SiteLayout>
 }

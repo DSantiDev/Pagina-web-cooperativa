@@ -1,11 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 @import 'tailwindcss';
-@import './styles/productos.css';
-@import './styles/quienes-somos.css';
-@import './styles/confianza.css';
-@import './styles/asociate.css';
-@import './styles/beneficios.css';
 
+:root { --coovitel-blue: #1a1aaf; --coovitel-navy: #0e0e5f; --coovitel-dark: #090950; --coovitel-gold: #f5a623; --coovitel-light: #f0f2f8; }
+* { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { margin: 0; background: #f5f6fa; }
-* { box-sizing: border-box; }
+
+.site-header { position: fixed; top: 0; inset-inline: 0; z-index: 1000; transition: background .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.site-header.is-solid { background: rgba(255,255,255,.97); border-bottom: 1px solid #e6e8f2; box-shadow: 0 2px 12px rgba(10,21,84,.08); }
+.site-header.is-transparent { background: transparent; border-bottom: 1px solid transparent; }
+.site-header__inner { max-width: 1280px; min-height: 70px; margin: auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.site-brand { display: inline-flex; align-items: center; text-decoration: none; }.site-brand img { width: 150px; height: auto; transition: filter .25s ease; }.is-transparent .site-brand img { filter: brightness(0) invert(1); }
+.site-nav { display: flex; align-items: center; justify-content: flex-end; gap: 5px; }
+.site-nav a, .site-nav-mobile a { padding: 9px 10px; color: #27304a; font: 600 13px Poppins,sans-serif; text-decoration: none; white-space: nowrap; }
+.site-nav a:hover, .site-nav-mobile a:hover { color: #1b2a8f; }
+.is-transparent .site-nav a { color: rgba(255,255,255,.88); }.is-transparent .site-nav a:hover { color: white; }
+.site-nav__virtual { border-radius: 99px; background: #1b2a8f; color: white !important; padding-inline: 14px !important; }
+.is-transparent .site-nav__virtual { background: transparent; border: 1px solid rgba(255,255,255,.55); }.site-nav__associate { border-radius: 99px; background: #e8a020; color: #0a1554 !important; padding-inline: 16px !important; }
+.site-menu-button { display: none; border: 0; background: transparent; color: #1b2a8f; font-size: 25px; cursor: pointer; }
+.site-nav-mobile { display: none; padding: 8px 24px 16px; border-top: 1px solid #eef0f5; }
+.site-nav-mobile a { display: block; }
+.site-content { padding-top: 70px; }.page--home .site-content { padding-top: 0; }
+/* Solo se muestra el marco global; los exports originales conservan únicamente su body. */
+.site-content header, .site-content footer, .page--home .site-content nav.fixed { display: none !important; }
+
+.site-footer { background: #080f40; color: rgba(255,255,255,.65); padding: 38px 24px 20px; font: 400 14px Poppins,sans-serif; }
+.site-footer__inner { max-width: 1280px; margin: auto; display: flex; justify-content: space-between; gap: 28px; align-items: flex-start; }
+.site-footer__brand { margin: 0 0 6px; color: white; font-size: 20px; font-weight: 900; }
+.site-footer p { margin: 0; }.site-footer nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px 18px; }.site-footer a { color: rgba(255,255,255,.65); text-decoration: none; }.site-footer a:hover { color: #e8a020; }
+.site-footer__copy { max-width: 1280px; margin: 28px auto 0 !important; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.1); font-size: 12px; }
+.accordion-content { max-height: 0; overflow: hidden; transition: max-height .35s ease; }.accordion-content.open { max-height: 600px; }
+input:focus, select:focus, textarea:focus { outline: none; }
+@media (max-width: 1050px) { .site-nav { display: none; }.site-menu-button { display: block; }.site-nav-mobile { display: block; } }
+@media (max-width: 640px) { .site-header__inner { min-height: 62px; padding: 0 16px; }.site-content { padding-top: 62px; }.site-footer__inner { flex-direction: column; }.site-footer nav { justify-content: flex-start; } }
