@@ -1,0 +1,27 @@
+type InstitutionPage = 'estamentos' | 'normatividad' | 'estrategica'
+
+const directors = [
+  { title: 'Consejo de Administración', groups: [{ label: 'Principales', names: ['Nancy Leonor López Murillo', 'José Raúl Londoño Restrepo', 'Gloria Martina Henríquez Rodgers', 'Leonor Ortiz Montenegro', 'Esperanza Chaux Mayorga'] }, { label: 'Suplentes', names: ['Ángela María Sánchez Peñaloza', 'Jaime Hernández Bohórquez', 'Hugo León Monsalve Hernández'] }] },
+  { title: 'Junta de Vigilancia', groups: [{ label: 'Principales', names: ['Alfredo Wilches Cabrera', 'Guillermo Pulido Castro', 'Luis Hernando Duarte'] }, { label: 'Suplentes', names: ['Miriam Santamaría de Camacho', 'Janeth Mendoza Herrera', 'Maritza Isabel Baene Ferez'] }] },
+  { title: 'Comité de Apelaciones', groups: [{ label: 'Principales', names: ['Hugo Enrique Barrios Cusguen', 'Jairo Antonio Pulgarín Millán', 'Alberto Ocoro Noviteño'] }, { label: 'Suplente', names: ['Martha Cecilia Castañeda Galeano'] }] },
+]
+
+const requirements = ['Ser asociado hábil, mayor de edad y contar con una antigüedad mínima de tres años.', 'Acreditar educación cooperativa con una intensidad no inferior a cien horas.', 'Poseer conocimientos en áreas financieras y administrativas.', 'No haber recibido sanciones disciplinarias en los últimos dos años.', 'Tener sus obligaciones con la Cooperativa al día durante los doce meses anteriores a la postulación.']
+
+const documentGroups = [
+  { title: 'Estatuto y Asamblea', docs: ['Estatuto COOVITEL', 'Decisiones Asamblea General 2026'] },
+  { title: 'Acuerdos y políticas', docs: ['Código de buen gobierno', 'Política de seguridad de la información', 'Tratamiento de datos personales', 'Política de cobranza'] },
+  { title: 'Informes y calificaciones', docs: ['Informes de gestión', 'Balance social', 'Calificaciones de fortaleza institucional'] },
+]
+
+function Hero({ eyebrow, title, text }: { eyebrow: string; title: string; text: string }) {
+  return <section className="institutional-hero"><div><p>{eyebrow}</p><h1>{title}</h1><span>{text}</span></div></section>
+}
+
+export default function Institucional({ type }: { type: InstitutionPage }) {
+  if (type === 'estamentos') return <div className="institutional-page"><Hero eyebrow="COOVITEL · PARTICIPACIÓN DEMOCRÁTICA" title="Estamentos Directivos" text="Conoce a quienes representan a los asociados y orientan las decisiones de la Cooperativa." /><main className="institutional-content"><section className="institutional-intro"><h2>Delegados COOVITEL</h2><p>Por participación democrática, los asociados eligen a sus delegados, quienes representan y aprueban anualmente las decisiones de cada Asamblea General.</p><p>El periodo vigente corresponde a 2024, 2025 y 2026.</p></section><section><h2 className="institutional-heading">Requisitos para ser delegado</h2><div className="institutional-list">{requirements.map((requirement, index) => <div key={requirement}><b>{String(index + 1).padStart(2, '0')}</b><p>{requirement}</p></div>)}</div></section><section className="institutional-directors">{directors.map((body) => <article key={body.title}><h2>{body.title}</h2>{body.groups.map((group) => <div key={group.label}><h3>{group.label}</h3><ul>{group.names.map((name) => <li key={name}>{name}</li>)}</ul></div>)}</article>)}</section><p className="institutional-note">La información se administra directamente en esta nueva plataforma institucional.</p></main></div>
+
+  if (type === 'normatividad') return <div className="institutional-page"><Hero eyebrow="COOVITEL · TRANSPARENCIA" title="Normatividad" text="Documentos institucionales para la consulta de asociados y público en general." /><main className="institutional-content"><section className="institutional-intro"><h2>Documentos oficiales</h2><p>Consulta la normatividad interna y externa, estatutos, acuerdos, políticas, informes de gestión y calificaciones institucionales de COOVITEL.</p></section><section className="institutional-document-grid">{documentGroups.map((group) => <article key={group.title}><h2>{group.title}</h2><ul>{group.docs.map((label) => <li key={label}><div className="institutional-document"><span>Documento</span>{label}</div></li>)}</ul></article>)}</section><p className="institutional-note">Los documentos serán cargados y administrados directamente en esta nueva plataforma.</p></main></div>
+
+  return <div className="institutional-page"><Hero eyebrow="COOVITEL · GESTIÓN Y RESULTADOS" title="Información Estratégica" text="Accede a la información institucional y a los tableros de gestión de COOVITEL." /><main className="institutional-content"><section className="institutional-intro"><h2>Información para la toma de decisiones</h2><p>COOVITEL administra aquí su información estratégica y de gestión. Consulta los resultados, informes y documentos institucionales vigentes desde esta nueva plataforma.</p></section><section className="institutional-cards"><article><span>01</span><h2>Tableros estratégicos</h2><p>Espacio destinado a los indicadores institucionales y resultados de gestión.</p></article><article><span>02</span><h2>Informes de gestión</h2><p>Consulta los informes de gestión y balances sociales publicados por COOVITEL.</p><a className="institutional-action" href="/normatividad">Consultar informes →</a></article><article><span>03</span><h2>Normatividad</h2><p>Encuentra estatutos, acuerdos, políticas y calificaciones de la Cooperativa.</p><a className="institutional-action" href="/normatividad">Ver normatividad →</a></article></section></main></div>
+}

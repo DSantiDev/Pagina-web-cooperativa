@@ -1,14 +1,5 @@
 import { useState } from "react";
 
-const NAV_ITEMS = [
-  { label: "Inicio", href: "#" },
-  { label: "Productos", href: "#" },
-  { label: "Quiénes Somos", href: "#" },
-  { label: "Confianza", href: "#" },
-  { label: "Beneficios", href: "#", active: true },
-  { label: "Contacto", href: "#" },
-];
-
 type Tab = "sociales" | "financieros" | "redvital" | "exequial" | "educacion";
 
 const TABS: { id: Tab; label: string; shortLabel: string; group: string }[] = [
@@ -183,96 +174,6 @@ const EDUCATION_PROGRAMS = [
     badge: "Online",
   },
 ];
-
-function CoovitelLogo() {
-  return (
-    <div className="flex items-center gap-2">
-      <div className="w-9 h-9 flex items-center justify-center">
-        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-          <polygon points="18,2 34,10 34,26 18,34 2,26 2,10" fill="#173C6E" />
-          <polygon points="18,8 28,13.5 28,22.5 18,28 8,22.5 8,13.5" fill="white" opacity="0.3" />
-          <polygon points="18,13 23,15.5 23,20.5 18,23 13,20.5 13,15.5" fill="white" />
-        </svg>
-      </div>
-      <div>
-        <div className="font-bold text-[#173C6E] text-lg leading-none tracking-wide">COOVITEL</div>
-        <div className="text-[9px] text-gray-500 leading-none">Cooperativa Empresarial de Ahorro y Crédito</div>
-      </div>
-    </div>
-  );
-}
-
-function Header({ mobileOpen, setMobileOpen }: { mobileOpen: boolean; setMobileOpen: (v: boolean) => void }) {
-  return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <CoovitelLogo />
-        <nav className="hidden lg:flex items-center gap-6">
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className={`text-sm font-medium transition-colors ${
-                item.active
-                  ? "text-[#173C6E] border-b-2 border-[#EBC302] pb-0.5"
-                  : "text-gray-600 hover:text-[#173C6E]"
-              }`}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-        <div className="hidden lg:flex items-center gap-3">
-          <a
-            href="#"
-            className="text-sm font-semibold text-[#173C6E] border border-[#173C6E] rounded-full px-4 py-1.5 hover:bg-[#173C6E] hover:text-white transition-colors"
-          >
-            Oficina Virtual
-          </a>
-          <a
-            href="#"
-            className="text-sm font-semibold bg-[#EBC302] text-white rounded-full px-4 py-1.5 hover:bg-[#EBC302] transition-colors"
-          >
-            Asóciate
-          </a>
-        </div>
-        <button
-          className="lg:hidden p-2 rounded-md text-gray-600"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {mobileOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
-      </div>
-      {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100 px-4 py-4 flex flex-col gap-3">
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className={`text-sm font-medium py-1 ${item.active ? "text-[#173C6E]" : "text-gray-600"}`}
-            >
-              {item.label}
-            </a>
-          ))}
-          <div className="flex gap-3 pt-2">
-            <a href="#" className="text-xs font-semibold text-[#173C6E] border border-[#173C6E] rounded-full px-3 py-1.5">
-              Oficina Virtual
-            </a>
-            <a href="#" className="text-xs font-semibold bg-[#EBC302] text-white rounded-full px-3 py-1.5">
-              Asóciate
-            </a>
-          </div>
-        </div>
-      )}
-    </header>
-  );
-}
 
 function HeroBanner({ activeTab }: { activeTab: Tab }) {
   const tab = TABS.find((t) => t.id === activeTab)!;
@@ -488,20 +389,20 @@ function RedVital() {
             className="w-full h-80 object-cover rounded-2xl shadow-xl"
           />
           <div className="absolute -top-4 -right-4 bg-white border border-gray-100 rounded-xl p-4 shadow-lg">
-            <div className="text-[#173C6E] font-bold text-2xl">500+</div>
-            <div className="text-xs text-gray-500">Médicos aliados</div>
+            <div className="text-[#173C6E] font-bold text-2xl">700+</div>
+            <div className="text-xs text-gray-500">Convenios</div>
           </div>
         </div>
         <div className="order-1 md:order-2">
           <span className="text-[#173C6E] text-xs font-bold uppercase tracking-widest">Asistencias · RedVital</span>
           <h2 className="text-3xl md:text-4xl font-bold text-[#173C6E] mt-2 mb-4 leading-tight">
-            Tu salud, nuestra<br />prioridad
+            Experiencias<br />Red Vital
           </h2>
           <p className="text-gray-600 leading-relaxed mb-4">
-            RedVital es nuestro programa de asistencia médica integral que garantiza acceso a salud de calidad para ti y tu familia. Con cobertura nacional y atención permanente, siempre tendrás respaldo médico.
+            Accede a más de 700 convenios con descuentos en restaurantes, viajes, moda, salud y mucho más.
           </p>
           <p className="text-gray-600 leading-relaxed mb-6">
-            Todos los beneficios de RedVital se gestionan y solicitan directamente desde la <span className="font-semibold text-[#173C6E]">App RedVital</span> — tu portal de salud disponible en tu celular las 24 horas del día.
+            Consulta los descuentos del mes y las experiencias disponibles para asociados y su grupo familiar.
           </p>
           <ul className="space-y-3">
             {["Cobertura para asociado y grupo familiar", "Atención de urgencias 24/7", "Red nacional de más de 200 instituciones", "Sin períodos de carencia", "Todos los servicios desde la app"].map((item) => (
@@ -752,7 +653,7 @@ function PlanExequial() {
               <div>
                 <h4 className="font-bold text-[#173C6E] text-sm mb-1">Línea de atención 24/7</h4>
                 <p className="text-gray-600 text-sm">En el momento que lo necesites, nuestro equipo está disponible para orientarte y activar el servicio.</p>
-                <a href="tel:018000" className="mt-2 inline-block text-[#173C6E] font-bold text-base">01 8000 XXX XXX</a>
+                <a href="tel:018000967474" className="mt-2 inline-block text-[#173C6E] font-bold text-base">01 8000 967474</a>
               </div>
             </div>
           </div>
@@ -839,7 +740,7 @@ function EducacionCooperativa() {
                   <div className="text-white text-sm font-medium truncate">{ev.evento}</div>
                   <div className="text-white/50 text-xs">{ev.modo}</div>
                 </div>
-                <a href="#" className="text-[#173C6E] text-xs font-semibold shrink-0 hover:underline">
+                <a href="/" className="text-[#173C6E] text-xs font-semibold shrink-0 hover:underline">
                   Inscribirse →
                 </a>
               </div>
@@ -851,64 +752,12 @@ function EducacionCooperativa() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="bg-[#131739] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-4 gap-8 mb-10">
-          <div className="md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-[#EBC302] rounded-lg flex items-center justify-center text-white font-bold text-sm">CV</div>
-              <span className="font-bold text-lg tracking-wide">COOVITEL</span>
-            </div>
-            <p className="text-white/50 text-sm leading-relaxed">
-              Cooperativa Empresarial de Ahorro y Crédito. 64 años construyendo bienestar financiero con solidaridad y transparencia en Colombia.
-            </p>
-          </div>
-          <div>
-            <h4 className="font-bold text-sm mb-4 text-white/90">Productos</h4>
-            <ul className="space-y-2 text-white/50 text-sm">
-              {["Crédito Propósito", "Ahorro Propósito", "CDAT", "Crédito Educativo"].map((item) => (
-                <li key={item}><a href="#" className="hover:text-[#173C6E] transition-colors">{item}</a></li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold text-sm mb-4 text-white/90">Institucional</h4>
-            <ul className="space-y-2 text-white/50 text-sm">
-              {["Quiénes Somos", "Plan de Beneficios", "Asistencias Gratis", "Educación Cooperativa"].map((item) => (
-                <li key={item}><a href="#" className="hover:text-[#173C6E] transition-colors">{item}</a></li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold text-sm mb-4 text-white/90">Beneficios</h4>
-            <ul className="space-y-2 text-white/50 text-sm">
-              {["Beneficios Sociales", "Beneficios Financieros", "RedVital", "Plan Exequial"].map((item) => (
-                <li key={item}><a href="#" className="hover:text-[#173C6E] transition-colors">{item}</a></li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-white/30 text-xs">© 2026 COOVITEL. Todos los derechos reservados. Vigilada Supersolidaria.</p>
-          <div className="flex gap-4 text-white/30 text-xs">
-            <a href="#" className="hover:text-white/60 transition-colors">Política de privacidad</a>
-            <a href="#" className="hover:text-white/60 transition-colors">Términos y condiciones</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 export default function Beneficios() {
   const [activeTab, setActiveTab] = useState<Tab>("sociales");
-  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <div className="min-h-full bg-white flex flex-col">
-      <Header mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
+      
       <HeroBanner activeTab={activeTab} />
       <TabNav activeTab={activeTab} setActiveTab={setActiveTab} />
 
@@ -920,7 +769,7 @@ export default function Beneficios() {
         {activeTab === "educacion" && <EducacionCooperativa />}
       </main>
 
-      <Footer />
+      
     </div>
   );
 }

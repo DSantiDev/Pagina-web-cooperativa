@@ -38,7 +38,7 @@ export function CoviPayButton() {
   return <a className="covipay-button" href="https://coovitel.zolev.co/CentralPagos/Index" target="_blank" rel="noreferrer" aria-label="Ir a CoviPay"><img src="/images/coovipay-lateralderecho.png" alt="CoviPay" /></a>
 }
 
-const names: Record<string, string> = { productos: 'Productos', 'quienes-somos': 'Quiénes Somos', confianza: 'Confianza', beneficios: 'Beneficios', asociate: 'Asóciate', contacto: 'Contacto' }
+const names: Record<string, string> = { productos: 'Productos', 'quienes-somos': 'Quiénes Somos', confianza: 'Confianza', beneficios: 'Beneficios', asociate: 'Asóciate', contacto: 'Contacto', 'estamentos-directivos': 'Estamentos Directivos', normatividad: 'Normatividad', 'informacion-estrategica': 'Información Estratégica', '404': 'Página no encontrada' }
 export function Breadcrumb({ page }: { page: string }) {
   if (page === 'home') return null
   return <nav className="site-breadcrumb" aria-label="Ruta de navegación"><a href="/">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">{names[page] ?? page}</span></nav>

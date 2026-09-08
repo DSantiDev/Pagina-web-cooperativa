@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Section = "porque" | "transparencia" | "seguridad" | "faq";
 type TransSub = "informes" | "solicitudes" | "obituarios";
@@ -86,11 +86,21 @@ const OBITUARIOS = [
 
 export default function Confianza() {
   const directSection = new URLSearchParams(window.location.search).get("section");
-  const [activeSection, setActiveSection] = useState<Section>(directSection === "solicitudes" ? "transparencia" : "porque");
+  const [activeSection, setActiveSection] = useState<Section>(directSection === "solicitudes" || directSection === "certificaciones" ? "transparencia" : "porque");
   const [transSub, setTransSub] = useState<TransSub>(directSection === "solicitudes" ? "solicitudes" : "informes");
   const [segSub, setSegSub] = useState<SegSub>("fraude");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [selectedRating, setSelectedRating] = useState<string | null>(directSection === "certificaciones" ? "fortaleza" : null);
+
+  const openRatings = (rating: string) => {
+    setSelectedRating(rating);
+    window.setTimeout(() => document.getElementById("calificaciones")?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
+  };
+
+  useEffect(() => {
+    if (directSection === "certificaciones") openRatings("fortaleza");
+  }, [directSection]);
 
   return (
     <div className="min-h-full bg-[#f7f0ff] font-[Inter,sans-serif]">
@@ -114,7 +124,7 @@ export default function Confianza() {
               {NAV_ITEMS.map((item) => (
                 <a
                   key={item}
-                  href="#"
+                  href="/"
                   className={`text-sm font-medium transition-colors ${
                     item === "Confianza"
                       ? "text-[#173C6E] font-bold border-b-2 border-[#EBC302] pb-1"
@@ -156,7 +166,7 @@ export default function Confianza() {
         {mobileMenuOpen && (
           <div className="lg:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-3">
             {NAV_ITEMS.map((item) => (
-              <a key={item} href="#" className="block text-sm font-medium text-gray-700 hover:text-[#173C6E]">
+              <a key={item} href="/" className="block text-sm font-medium text-gray-700 hover:text-[#173C6E]">
                 {item}
               </a>
             ))}
@@ -329,7 +339,7 @@ export default function Confianza() {
 
         {/* ─ Transparencia ─ */}
         {activeSection === "transparencia" && (
-          <div className="space-y-8">
+          <div className="flex flex-col gap-8">
             <div>
               <p className="text-[#EBC302] font-bold text-sm uppercase tracking-widest mb-2">TRANSPARENCIA</p>
               <h2 className="font-[Montserrat,sans-serif] font-black text-3xl md:text-4xl text-[#173C6E] mb-4">
@@ -339,6 +349,59 @@ export default function Confianza() {
                 La transparencia es un valor fundamental de COOVITEL. Aquí encontrarás nuestros informes, documentos legales
                 y la información institucional que te corresponde como asociado.
               </p>
+            </div>
+
+            <section className="order-last mt-8 pt-12 border-t border-[#C9DCFF] rounded-3xl p-6 md:p-9 bg-[#131739] relative overflow-hidden">
+              <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: "linear-gradient(135deg, transparent 0%, #27548F 100%)" }} />
+              <div className="relative">
+                <div className="text-center mb-7">
+                  <p className="text-[#EBC302] font-bold text-xs uppercase tracking-[0.2em] mb-2">SOLIDEZ Y CALIDAD</p>
+                  <h3 className="font-[Montserrat,sans-serif] font-black text-2xl md:text-3xl text-white">Calificaciones y certificaciones</h3>
+                  <p className="text-[#CFE0FF] text-sm mt-2">Respaldo institucional, solidez financiera y compromiso con la calidad.</p>
+                </div>
+                <div className="grid md:grid-cols-3 gap-4">
+                  {[
+                    { id: "fortaleza", mark: "A+", sub: "VALUE & RISK", title: "Fortaleza Institucional", text: "Calificación otorgada por Value & Risk Rating que acredita la solidez de COOVITEL.", button: "Calificación 2026" },
+                    { id: "deuda", mark: "A", sub: "VrR2 · VALUE & RISK", title: "Deuda de Largo y Corto Plazo", text: "Calificación de solidez en gestión de deuda emitida por Value & Risk Rating.", button: "Calificación 2026" },
+                    { id: "iso", mark: "ISO\n9001", sub: "CERTIFICADO · 2015", title: "Bureau Veritas", text: "Sistema de Gestión de Calidad certificado bajo la norma internacional ISO 9001:2015.", button: "Certificación 2026" },
+                  ].map((item) => <article key={item.title} className="rounded-2xl p-6 border border-[#81A1DB]/40 bg-[#173C6E]/60 text-center flex flex-col items-center">
+                    <div className="w-24 h-24 rounded-full border-2 border-[#81A1DB] bg-[#27548F] flex flex-col justify-center items-center text-[#F7F0FF] mb-5 whitespace-pre-line">
+                      <strong className="font-black text-2xl leading-none">{item.mark}</strong><span className="text-[9px] font-bold mt-1">{item.sub}</span>
+                    </div>
+                    <h4 className="font-[Montserrat,sans-serif] font-bold text-white">{item.title}</h4>
+                    <p className="text-[#CFE0FF] text-sm leading-relaxed mt-3 min-h-14">{item.text}</p>
+                    <button type="button" onClick={() => openRatings(item.id)} className="mt-5 px-4 py-2 rounded-full border border-[#EBC302]/60 text-[#EBC302] text-xs font-bold hover:bg-[#EBC302] hover:text-[#131739] transition-colors">{item.button}</button>
+                  </article>)}
+                </div>
+              </div>
+            </section>
+
+            {selectedRating && <section id="calificaciones" className="order-last scroll-mt-28 rounded-3xl bg-white border border-[#C9DCFF] p-6 md:p-8">
+              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-7"><div><p className="text-[#EBC302] font-bold text-xs tracking-[0.18em]">DETALLE INSTITUCIONAL</p><h3 className="font-[Montserrat,sans-serif] font-black text-2xl text-[#173C6E] mt-1">{selectedRating === "fortaleza" ? "Fortaleza Institucional" : selectedRating === "deuda" ? "Deuda de Largo y Corto Plazo" : "Sistema de Gestión de Calidad"}</h3></div><button type="button" onClick={() => setSelectedRating(null)} className="text-[#173C6E] text-sm font-semibold hover:text-[#EBC302]">Cerrar detalle</button></div>
+              {selectedRating === "fortaleza" && <article className="rounded-2xl bg-[#F7F0FF] border border-[#C9DCFF] p-5"><span className="text-[#EBC302] text-xs font-bold">VALUE & RISK RATING</span><h4 className="text-[#173C6E] font-bold text-lg mt-2">Calificación A+</h4><dl className="mt-4 grid sm:grid-cols-3 gap-4 text-sm"><div><dt className="text-[#81A1DB]">Calificación</dt><dd className="text-[#1A2842] font-semibold">A+ · Fortaleza Institucional</dd></div><div><dt className="text-[#81A1DB]">Entidad calificadora</dt><dd className="text-[#1A2842] font-semibold">Value & Risk Rating</dd></div><div><dt className="text-[#81A1DB]">Vigencia publicada</dt><dd className="text-[#1A2842] font-semibold">2026</dd></div></dl></article>}
+              {selectedRating === "deuda" && <article className="rounded-2xl bg-[#F7F0FF] border border-[#C9DCFF] p-5"><span className="text-[#EBC302] text-xs font-bold">VALUE & RISK RATING</span><h4 className="text-[#173C6E] font-bold text-lg mt-2">Calificación A / VrR2</h4><dl className="mt-4 grid sm:grid-cols-3 gap-4 text-sm"><div><dt className="text-[#81A1DB]">Calificación</dt><dd className="text-[#1A2842] font-semibold">A / VrR2</dd></div><div><dt className="text-[#81A1DB]">Alcance</dt><dd className="text-[#1A2842] font-semibold">Gestión de deuda de largo y corto plazo</dd></div><div><dt className="text-[#81A1DB]">Vigencia publicada</dt><dd className="text-[#1A2842] font-semibold">2026</dd></div></dl></article>}
+              {selectedRating === "iso" && <article className="rounded-2xl bg-[#F7F0FF] border border-[#C9DCFF] p-5"><span className="text-[#EBC302] text-xs font-bold">BUREAU VERITAS</span><h4 className="text-[#173C6E] font-bold text-lg mt-2">Certificación ISO 9001:2015</h4><dl className="mt-4 grid sm:grid-cols-3 gap-4 text-sm"><div><dt className="text-[#81A1DB]">Norma</dt><dd className="text-[#1A2842] font-semibold">ISO 9001:2015</dd></div><div><dt className="text-[#81A1DB]">Certificadora</dt><dd className="text-[#1A2842] font-semibold">Bureau Veritas</dd></div><div><dt className="text-[#81A1DB]">Vigencia publicada</dt><dd className="text-[#1A2842] font-semibold">2026</dd></div></dl></article>}
+            </section>}
+
+            <div className="grid md:grid-cols-3 gap-4">
+              <a href="/estamentos-directivos" className="bg-white rounded-2xl p-5 border border-gray-100 hover:border-[#173C6E]/40 hover:shadow-md transition-all group">
+                <span className="text-xs font-bold tracking-widest text-[#EBC302]">INSTITUCIONAL</span>
+                <h3 className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] mt-2">Estamentos Directivos</h3>
+                <p className="text-gray-500 text-sm mt-2">Conoce a los representantes y órganos de gobierno de la Cooperativa.</p>
+                <span className="inline-block mt-4 text-[#173C6E] text-sm font-semibold group-hover:text-[#EBC302]">Consultar →</span>
+              </a>
+              <a href="/normatividad" className="bg-white rounded-2xl p-5 border border-gray-100 hover:border-[#173C6E]/40 hover:shadow-md transition-all group">
+                <span className="text-xs font-bold tracking-widest text-[#EBC302]">TRANSPARENCIA</span>
+                <h3 className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] mt-2">Normatividad</h3>
+                <p className="text-gray-500 text-sm mt-2">Estatutos, políticas, acuerdos, informes y calificaciones institucionales.</p>
+                <span className="inline-block mt-4 text-[#173C6E] text-sm font-semibold group-hover:text-[#EBC302]">Consultar →</span>
+              </a>
+              <a href="/informacion-estrategica" className="bg-white rounded-2xl p-5 border border-gray-100 hover:border-[#173C6E]/40 hover:shadow-md transition-all group">
+                <span className="text-xs font-bold tracking-widest text-[#EBC302]">GESTIÓN</span>
+                <h3 className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] mt-2">Información Estratégica</h3>
+                <p className="text-gray-500 text-sm mt-2">Información y resultados para conocer la gestión de COOVITEL.</p>
+                <span className="inline-block mt-4 text-[#173C6E] text-sm font-semibold group-hover:text-[#EBC302]">Consultar →</span>
+              </a>
             </div>
 
             {/* Sub tabs */}
@@ -504,10 +567,10 @@ export default function Confianza() {
                 <h3 className="font-[Montserrat,sans-serif] font-bold text-xl text-[#173C6E]">Tipos de fraude más comunes</h3>
                 <div className="grid sm:grid-cols-2 gap-5">
                   {[
-                    { icon: "📧", title: "Phishing", desc: "Correos falsos que imitan a COOVITEL para robar tus datos. Verifica siempre el dominio @coovitel.com.co antes de hacer clic en cualquier enlace." },
+                    { icon: "📧", title: "Phishing", desc: "Correos falsos que imitan a COOVITEL para robar tus datos. Verifica siempre el dominio @coovitel.coop antes de hacer clic en cualquier enlace." },
                     { icon: "📱", title: "Smishing", desc: "Mensajes de texto fraudulentos que solicitan datos personales o te redirigen a sitios falsos. COOVITEL no te enviará links de pago por SMS." },
                     { icon: "📞", title: "Vishing", desc: "Llamadas telefónicas donde fingimos ser COOVITEL para obtener tus claves. Cuelga y llama directamente a nuestra línea oficial." },
-                    { icon: "🖥️", title: "Sitios falsos", desc: "Páginas web que copian nuestra apariencia. Asegúrate de que la URL comience con https://www.coovitel.com.co antes de ingresar datos." },
+                    { icon: "🖥️", title: "Sitios falsos", desc: "Páginas web que copian nuestra apariencia. Asegúrate de que la URL sea https://coovitel.coop antes de ingresar datos." },
                   ].map((item) => (
                     <div key={item.title} className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow">
                       <div className="text-3xl mb-3">{item.icon}</div>
@@ -539,7 +602,7 @@ export default function Confianza() {
                   {[
                     { n: "01", title: "Usa contraseñas fuertes", desc: "Combina mayúsculas, números y símbolos. No uses la misma clave para todo." },
                     { n: "02", title: "Actualiza regularmente", desc: "Cambia tu contraseña de Oficina Virtual cada 3 meses." },
-                    { n: "03", title: "Verifica el sitio web", desc: "Asegúrate de estar en www.coovitel.com.co con candado de seguridad HTTPS." },
+                    { n: "03", title: "Verifica el sitio web", desc: "Asegúrate de estar en coovitel.coop con candado de seguridad HTTPS." },
                     { n: "04", title: "No uses redes públicas", desc: "Evita acceder a tu cuenta desde WiFi de cafés, aeropuertos o centros comerciales." },
                     { n: "05", title: "Activa las notificaciones", desc: "Recibe alertas de cada transacción en tiempo real por correo y SMS." },
                     { n: "06", title: "Cierra sesión siempre", desc: "Al terminar de usar la Oficina Virtual, cierra sesión correctamente." },
@@ -581,8 +644,8 @@ export default function Confianza() {
                     {[
                       { title: "Finalidad del tratamiento", desc: "Gestión de servicios cooperativos, contacto, cobranza y análisis estadístico interno." },
                       { title: "Tus derechos ARCO", desc: "Tienes derecho a Acceder, Rectificar, Cancelar u Oponerte al tratamiento de tus datos." },
-                      { title: "Responsable del tratamiento", desc: "COOVITEL, NIT 860.015.495-3. Carrera 13 #26-45, Bogotá D.C." },
-                      { title: "Canal de atención", desc: "protecciondatos@coovitel.com.co · Línea 601 741 5000" },
+                      { title: "Responsable del tratamiento", desc: "COOVITEL, Calle 67 # 9 - 34, Bogotá D.C." },
+                      { title: "Canal de atención", desc: "Consulta los canales vigentes en coovitel.coop/contacto" },
                     ].map((item) => (
                       <div key={item.title} className="bg-white rounded-xl p-4 border border-gray-100">
                         <div className="font-semibold text-[#173C6E] text-sm mb-1">{item.title}</div>
@@ -800,7 +863,7 @@ export default function Confianza() {
               <h5 className="text-white font-bold text-sm mb-4 font-[Montserrat,sans-serif]">Productos</h5>
               <ul className="space-y-2 text-white/50 text-sm">
                 {["Crédito Propósito", "Ahorro Propósito", "CDAT", "Libranza"].map((p) => (
-                  <li key={p}><a href="#" className="hover:text-[#EBC302] transition-colors">{p}</a></li>
+                  <li key={p}><a href="/" className="hover:text-[#EBC302] transition-colors">{p}</a></li>
                 ))}
               </ul>
             </div>
@@ -808,7 +871,7 @@ export default function Confianza() {
               <h5 className="text-white font-bold text-sm mb-4 font-[Montserrat,sans-serif]">Institucional</h5>
               <ul className="space-y-2 text-white/50 text-sm">
                 {["Quiénes Somos", "Confianza", "Beneficios", "Trabaja con nosotros"].map((p) => (
-                  <li key={p}><a href="#" className="hover:text-[#EBC302] transition-colors">{p}</a></li>
+                  <li key={p}><a href="/" className="hover:text-[#EBC302] transition-colors">{p}</a></li>
                 ))}
               </ul>
             </div>
@@ -816,7 +879,7 @@ export default function Confianza() {
               <h5 className="text-white font-bold text-sm mb-4 font-[Montserrat,sans-serif]">Contacto</h5>
               <ul className="space-y-2 text-white/50 text-sm">
                 <li>📞 601 741 5000</li>
-                <li>✉️ info@coovitel.com.co</li>
+                <li>✉️ info@coovitel.coop</li>
                 <li>📍 Bogotá, Colombia</li>
               </ul>
             </div>

@@ -1,17 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /* ─── Data ─────────────────────────────────────────────────── */
-const NAV_LINKS = ["Inicio", "Productos", "Quiénes Somos", "Confianza", "Beneficios", "Contacto"];
-
 const CREDITO_PRODUCTS = [
   {
     id: "educacion",
     icon: "🎓",
     title: "Educación",
-    tagline: "Invierte en tu futuro",
-    desc: "Pregrado, postgrado, técnico y educación continua.",
-    detail: "Financia tus estudios o los de tu familia con tasas preferenciales. Cubre matrícula, libros, transporte y gastos de sostenimiento en instituciones nacionales e internacionales.",
-    features: ["Hasta 48 meses plazo", "Tasa desde 1.2% M.V.", "Sin codeudor hasta $30M", "Desembolso en 24 horas"],
+    tagline: "Haz realidad tu sueño de estudiar",
+    desc: "Atiende necesidades de educación formal y no formal.",
+    detail: "Esta línea de crédito atiende tus necesidades de educación formal y no formal, para ti y tu grupo familiar.",
+    features: ["Educación formal", "Educación no formal", "Para ti y tu grupo familiar", "Simula tus cuotas"],
     color: "#27548F",
     bg: "#CFE0FF",
   },
@@ -19,10 +17,10 @@ const CREDITO_PRODUCTS = [
     id: "recreacion",
     icon: "✈️",
     title: "Recreación",
-    tagline: "Vive sin límites",
-    desc: "Viajes y gastos totales de tus destinos favoritos.",
-    detail: "Viaja nacional o internacionalmente con financiación total de tiquetes, hospedaje, tours y gastos de viaje. Ideal para vacaciones en familia o escapadas de descanso.",
-    features: ["Hasta 36 meses plazo", "Tasa desde 1.3% M.V.", "Cubre tiquetes y hospedaje", "Aprobación en línea"],
+    tagline: "Haz realidad el viaje de tus sueños",
+    desc: "Planea y disfruta vacaciones en familia con tarifas preferenciales.",
+    detail: "La línea de crédito de recreación te permite planear y disfrutar las vacaciones que siempre has querido hacer en familia, con tarifas preferenciales.",
+    features: ["Vacaciones en familia", "Tarifas preferenciales", "Planea tu viaje", "Simula tus cuotas"],
     color: "#1B65A6",
     bg: "#CFE0FF",
   },
@@ -30,10 +28,10 @@ const CREDITO_PRODUCTS = [
     id: "fidelizacion",
     icon: "⭐",
     title: "Fidelización",
-    tagline: "Más antigüedad, mejor tasa",
-    desc: "Tasas y plazos que mejoran con tu antigüedad.",
-    detail: "Cuanto más tiempo llevas con nosotros, mejores condiciones obtienes. Tu lealtad se convierte en beneficios reales: menos tasa, más plazo y mayor monto aprobado.",
-    features: ["Tasa mejora cada año", "Hasta 60 meses plazo", "Monto hasta $80M", "Sin trámites adicionales"],
+    tagline: "Tu fidelidad cuenta",
+    desc: "Montos y tasas preferenciales según tu antigüedad como asociado.",
+    detail: "Línea de crédito que te permite adquirir montos y tasas preferenciales de acuerdo con tu antigüedad como asociado.",
+    features: ["Según antigüedad", "Tasas preferenciales", "Montos preferenciales", "Simula tus cuotas"],
     color: "#EBC302",
     bg: "#F7F0FF",
   },
@@ -63,10 +61,10 @@ const CREDITO_PRODUCTS = [
     id: "credisalud",
     icon: "🏥",
     title: "CrediSalud",
-    tagline: "Tu salud primero",
-    desc: "Médico, dental, óptico y cirugías estéticas.",
-    detail: "Atiende tus necesidades de salud sin preocuparte por el costo. Cubre procedimientos médicos, odontológicos, ópticos y estéticos en clínicas y consultorios aliados.",
-    features: ["Hasta 36 meses plazo", "Tasa desde 1.2% M.V.", "Clínicas aliadas", "Aprobación express"],
+    tagline: "Tu salud es importante para nosotros",
+    desc: "Procedimientos médicos, quirúrgicos, medicina prepagada y salud estética.",
+    detail: "Te permite atender procedimientos médicos, quirúrgicos, medicina prepagada y, en general, todo lo relacionado con la salud estética.",
+    features: ["Procedimientos médicos", "Procedimientos quirúrgicos", "Medicina prepagada", "Simula tus cuotas"],
     color: "#A90072",
     bg: "#F7F0FF",
   },
@@ -74,10 +72,10 @@ const CREDITO_PRODUCTS = [
     id: "vivienda",
     icon: "🏠",
     title: "Vivienda",
-    tagline: "El hogar que mereces",
-    desc: "Adquiere, construye o mejora tu hogar.",
-    detail: "Cumple el sueño de tener casa propia o mejora tu vivienda actual. Financia compra, construcción, remodelación o ampliación con las mejores condiciones del mercado cooperativo.",
-    features: ["Hasta 120 meses plazo", "Tasa desde 0.9% M.V.", "Monto hasta $200M", "Compra y remodelación"],
+    tagline: "Haz realidad tu sueño de tener casa propia",
+    desc: "Adquiere o remodela vivienda nueva o usada.",
+    detail: "Línea de crédito que facilita adquirir o remodelar tu vivienda nueva o usada, de manera fácil y a una excelente tasa.",
+    features: ["Vivienda nueva", "Vivienda usada", "Adquisición", "Remodelación"],
     color: "#EBC302",
     bg: "#F7F0FF",
   },
@@ -96,10 +94,10 @@ const CREDITO_PRODUCTS = [
     id: "cupo-rotativo",
     icon: "🔄",
     title: "Cupo Rotativo",
-    tagline: "Siempre disponible",
-    desc: "Cupo personal reutilizable siempre disponible.",
-    detail: "Un cupo de crédito preaprobado que se renueva a medida que pagas. Disponible 24/7 desde tu app o sucursal virtual, sin trámites adicionales cada vez que lo usas.",
-    features: ["Cupo desde $2M", "Reutilizable automático", "Disponible 24/7", "Sin trámite adicional"],
+    tagline: "Renovamos el crédito a tu medida",
+    desc: "Cupo de crédito personal con pago mensual renovable.",
+    detail: "Cupo de crédito personal con pago mensual, donde tu cupo se va renovando a medida que vas abonando a tu obligación.",
+    features: ["Pago mensual", "Cupo renovable", "Abonos a la obligación", "Crédito personal"],
     color: "#1B65A6",
     bg: "#CFE0FF",
   },
@@ -107,10 +105,10 @@ const CREDITO_PRODUCTS = [
     id: "compra-cartera",
     icon: "💳",
     title: "Compra de Cartera",
-    tagline: "Unifica y ahorra",
-    desc: "Unifica tus deudas con mejor tasa y plazo.",
-    detail: "Consolida todas tus deudas en un solo crédito con menor tasa y una sola cuota mensual. Reduce tu carga financiera y simplifica tu vida.",
-    features: ["Tasa siempre menor", "Una sola cuota", "Todas las entidades", "Ahorro garantizado"],
+    tagline: "¿Qué esperas para unificar tus deudas?",
+    desc: "Consolida obligaciones a una tasa competitiva y amplios plazos.",
+    detail: "Línea de crédito que te permite consolidar todas tus obligaciones a una tasa competitiva y amplios plazos.",
+    features: ["Consolidación de obligaciones", "Tasa competitiva", "Amplios plazos", "Simula tus cuotas"],
     color: "#1B65A6",
     bg: "#CFE0FF",
   },
@@ -121,10 +119,10 @@ const AHORRO_PRODUCTS = [
     id: "ahorro-vista",
     icon: "💰",
     title: "Ahorro a la Vista",
-    tagline: "Flexible y disponible",
-    desc: "Tu dinero disponible cuando lo necesites.",
-    detail: "Cuenta de ahorro cooperativo con rentabilidad superior al promedio bancario. Depósitos y retiros libres, sin saldo mínimo y con abono mensual de rendimientos.",
-    features: ["Tasa E.A. hasta 4.2%", "Depósitos libres", "Sin saldo mínimo", "Abono mensual"],
+    tagline: "Oportunidad y confianza en tiempo real",
+    desc: "Dispón de tu dinero nacional e internacionalmente, las 24 horas.",
+    detail: "Dispones de tu dinero a nivel nacional e internacional las 24 horas del día, los siete días de la semana, utilizando como medio transaccional tu tarjeta débito Visa.",
+    features: ["Tarjeta débito Visa", "Red Servibanca", "Seguro de depósitos FOGACOOP", "Consulta por Sucursal Virtual"],
     color: "#1B65A6",
     bg: "#CFE0FF",
   },
@@ -132,39 +130,36 @@ const AHORRO_PRODUCTS = [
     id: "cdat",
     icon: "📈",
     title: "CDAT",
-    tagline: "Máxima rentabilidad",
-    desc: "Certificado de Ahorro a Término con la mejor tasa.",
-    detail: "Invierte a plazos fijos de 90, 180 o 360 días y obtén la mejor rentabilidad del mercado cooperativo. Ideal para quienes quieren hacer crecer sus ahorros de forma segura.",
-    features: ["Tasa E.A. hasta 11.5%", "Plazos 90, 180 y 360 días", "Monto desde $1M", "Renovación automática"],
+    tagline: "Ahorro a término",
+    desc: "Consulta las condiciones vigentes para tu Certificado de Depósito a Término.",
+    detail: "El CDAT es una alternativa de ahorro a término de COOVITEL. Consulta con un asesor las condiciones, tasas y plazos vigentes antes de constituirlo.",
+    features: ["Ahorro a término", "Condiciones vigentes", "Consulta con un asesor", "COOVITEL"],
     color: "#EBC302",
     bg: "#F7F0FF",
   },
   {
-    id: "coovinomina",
+    id: "coviahorro",
     icon: "🏦",
-    title: "Coovinómina",
-    tagline: "Ahorra desde tu nómina",
-    desc: "Descuento automático de nómina para ahorrar sin esfuerzo.",
-    detail: "Programa de ahorro por descuento directo de nómina. Cada mes se descuenta automáticamente el monto que elijas, sin que tengas que recordarlo. Tu empresa aliada hace el resto.",
-    features: ["Descuento nómina", "Monto desde $50.000", "Sin comisiones", "Retiro con aviso previo"],
+    title: "Cooviahorro",
+    tagline: "Ahorra para hacer tus sueños realidad",
+    desc: "Ahorro programado con apertura desde $1.000 y plazo desde 6 meses.",
+    detail: "Te permite ahorrar el monto que necesites para cumplir objetivos como viajes, compras o pago de impuestos, con plazos flexibles desde 6 meses en adelante.",
+    features: ["Apertura desde $1.000", "Plazo desde 6 meses", "Seguro de depósitos FOGACOOP", "Pago por nómina u oficina"],
     color: "#27548F",
     bg: "#CFE0FF",
   },
   {
-    id: "ahorro-proposito",
+    id: "coovitemp",
     icon: "🎯",
-    title: "Ahorro Propósito",
-    tagline: "Ahorra con una meta",
-    desc: "Programa de ahorro orientado a un objetivo específico.",
-    detail: "Define tu meta (vacaciones, educación, vivienda) y crea un plan de ahorro mensual. COOVITEL te ayuda a mantener el rumbo con recordatorios y seguimiento de tu progreso.",
-    features: ["Meta personalizada", "Rentabilidad progresiva", "Seguro de vida incluido", "App de seguimiento"],
+    title: "Coovitemp",
+    tagline: "Ahorro COOVITEL",
+    desc: "Producto de ahorro disponible en el portafolio vigente de COOVITEL.",
+    detail: "Consulta con COOVITEL las condiciones, características y requisitos vigentes de Coovitemp antes de abrir tu producto de ahorro.",
+    features: ["Producto de ahorro", "Consulta condiciones vigentes", "Atención COOVITEL", "Sucursal Virtual"],
     color: "#A90072",
     bg: "#F7F0FF",
   },
 ];
-
-const FOOTER_PRODUCTS = ["Crédito Propósito", "Ahorro Propósito", "CDAT", "Cupo Rotativo", "CrediSalud", "Coovinómina"];
-const FOOTER_INSTITUCIONAL = ["Quiénes Somos", "Plan de Beneficios", "Asistencias Gratis", "Sucursal Virtual", "Formación", "Contacto"];
 
 type Product = typeof CREDITO_PRODUCTS[number];
 type AhorroProduct = typeof AHORRO_PRODUCTS[number];
@@ -291,9 +286,9 @@ const AHORRO_SIMULATOR_CONFIG: Record<string, {
       { label: "360 días", dias: 360, tasa: 0.115 },
     ],
   },
-  coovinomina: {
+  cooviahorro: {
     tipo: "nomina",
-    montoMin: 50000,
+    montoMin: 1000,
     montoMax: 5000000,
     montoDefault: 200000,
     plazos: [
@@ -303,7 +298,7 @@ const AHORRO_SIMULATOR_CONFIG: Record<string, {
       { label: "36 meses", dias: 1095, tasa: 0.045 },
     ],
   },
-  "ahorro-proposito": {
+  coovitemp: {
     tipo: "meta",
     montoMin: 100000,
     montoMax: 20000000,
@@ -318,72 +313,7 @@ const AHORRO_SIMULATOR_CONFIG: Record<string, {
 };
 
 /* ─── Header ────────────────────────────────────────────────── */
-function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-9 h-9 rounded-lg flex items-center justify-center font-black text-sm" style={{ background: "linear-gradient(135deg, #173C6E 0%, #27548F 100%)" }}>
-              <span style={{ color: "#EBC302" }}>CV</span>
-            </div>
-            <div>
-              <p className="font-black text-lg leading-none" style={{ color: "#173C6E" }}>COOVITEL</p>
-              <p className="text-[9px] leading-none" style={{ color: "#1A2842" }}>Cooperativa Empresarial de Ahorro y Crédito</p>
-            </div>
-          </div>
-
-          <nav className="hidden lg:flex items-center gap-1">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link}
-                href="#"
-                className="px-3 py-2 text-sm rounded-md transition-colors hover:text-amber-500"
-                style={{ color: link === "Productos" ? "#173C6E" : "#1A2842", fontWeight: link === "Productos" ? "600" : "500" }}
-              >
-                {link}
-              </a>
-            ))}
-          </nav>
-
-          <div className="hidden lg:flex items-center gap-2">
-            <button className="px-4 py-2 text-sm font-semibold rounded-full border-2 transition-colors hover:bg-navy/5" style={{ borderColor: "#173C6E", color: "#173C6E" }}>
-              Oficina Virtual
-            </button>
-            <button className="px-4 py-2 text-sm font-bold rounded-full transition-colors hover:opacity-90" style={{ background: "#EBC302", color: "#131739" }}>
-              Asóciate
-            </button>
-          </div>
-
-          <button className="lg:hidden p-2" onClick={() => setMenuOpen(!menuOpen)} style={{ color: "#173C6E" }}>
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {menuOpen
-                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      {menuOpen && (
-        <div className="lg:hidden bg-white border-t px-4 py-4 flex flex-col gap-2">
-          {NAV_LINKS.map((link) => (
-            <a key={link} href="#" className="py-2 text-sm font-medium" style={{ color: "#1A2842" }}>{link}</a>
-          ))}
-          <div className="flex gap-2 pt-2">
-            <button className="flex-1 py-2 text-sm font-semibold rounded-full border-2" style={{ borderColor: "#173C6E", color: "#173C6E" }}>Oficina Virtual</button>
-            <button className="flex-1 py-2 text-sm font-bold rounded-full" style={{ background: "#EBC302", color: "#131739" }}>Asóciate</button>
-          </div>
-        </div>
-      )}
-    </header>
-  );
-}
-
-/* ─── Page Hero ─────────────────────────────────────────────── */
-function PageHero({ activeTab }: { activeTab: "credito" | "ahorro" }) {
+function PageHero() {
   return (
     <section className="relative overflow-hidden py-14 lg:py-20" style={{ background: "linear-gradient(135deg, #131739 0%, #173C6E 50%, #27548F 100%)" }}>
       <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full opacity-10" style={{ background: "#EBC302" }} />
@@ -454,8 +384,8 @@ function ProductCard({ product, selected, onSelect }: { product: Product; select
 }
 
 /* ─── Product Detail Panel ──────────────────────────────────── */
-function ProductDetail({ product }: { product: Product }) {
-  const [showConditions, setShowConditions] = useState(false);
+function ProductDetail({ product, showConditionsInitially = false }: { product: Product; showConditionsInitially?: boolean }) {
+  const [showConditions, setShowConditions] = useState(showConditionsInitially);
   const [plazo, setPlazo] = useState("24");
   const [monto, setMonto] = useState(10000000);
 
@@ -617,8 +547,8 @@ function AhorroCard({ product, selected, onSelect }: { product: typeof AHORRO_PR
 }
 
 /* ─── Ahorro Detail Panel ───────────────────────────────────── */
-function AhorroDetail({ product }: { product: AhorroProduct }) {
-  const [showSimulator, setShowSimulator] = useState(false);
+function AhorroDetail({ product, showSimulatorInitially = false }: { product: AhorroProduct; showSimulatorInitially?: boolean }) {
+  const [showSimulator, setShowSimulator] = useState(showSimulatorInitially);
   const cfg = AHORRO_SIMULATOR_CONFIG[product.id];
   const [monto, setMonto] = useState(cfg?.montoDefault ?? 1000000);
   const [plazoIdx, setPlazoIdx] = useState(0);
@@ -781,78 +711,30 @@ function AhorroDetail({ product }: { product: AhorroProduct }) {
 }
 
 /* ─── Footer ─────────────────────────────────────────────────── */
-function Footer() {
-  return (
-    <footer style={{ background: "#131739" }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-lg flex items-center justify-center font-black text-sm" style={{ background: "#EBC302", color: "#131739" }}>CV</div>
-              <span className="text-white font-black text-lg">COOVITEL</span>
-            </div>
-            <p className="text-sm leading-relaxed mb-6 max-w-xs" style={{ color: "#81A1DB" }}>
-              Cooperativa Empresarial de Ahorro y Crédito. 64 años construyendo bienestar financiero con solidaridad y transparencia en Colombia.
-            </p>
-            <div className="flex gap-2">
-              {["FB", "IG", "YT", "TW"].map((s) => (
-                <button key={s} className="w-9 h-9 rounded-lg text-xs font-bold" style={{ background: "rgba(255,255,255,0.08)", color: "#81A1DB" }}>{s}</button>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h4 className="text-white font-bold mb-4 text-sm">Productos</h4>
-            <ul className="space-y-2.5">
-              {FOOTER_PRODUCTS.map((item) => (
-                <li key={item}><a href="#" className="text-sm hover:text-white transition-colors" style={{ color: "#81A1DB" }}>{item}</a></li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-bold mb-4 text-sm">Institucional</h4>
-            <ul className="space-y-2.5">
-              {FOOTER_INSTITUCIONAL.map((item) => (
-                <li key={item}><a href="#" className="text-sm hover:text-white transition-colors" style={{ color: "#81A1DB" }}>{item}</a></li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        <div className="border-t mb-6" style={{ borderColor: "rgba(255,255,255,0.08)" }} />
-
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs" style={{ color: "#1A2842" }}>
-            © 2026 COOVITEL — Cooperativa Empresarial de Ahorro y Crédito · Vigilada por Supersolidaria
-          </p>
-          <div className="flex gap-4">
-            {["Confecoop", "Ascoop", "Fogacoop", "Supersolidaria"].map((org) => (
-              <a key={org} href="#" className="text-xs hover:text-white transition-colors" style={{ color: "#1A2842" }}>{org}</a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-/* ─── App ────────────────────────────────────────────────────── */
 export default function Productos() {
-  const [activeTab, setActiveTab] = useState<"credito" | "ahorro">("credito");
-  const [selectedCredito, setSelectedCredito] = useState<string | null>(null);
-  const [selectedAhorro, setSelectedAhorro] = useState<string | null>(null);
+  const requestedProduct = new URLSearchParams(window.location.search).get("producto");
+  const initialCredit = CREDITO_PRODUCTS.some((product) => product.id === requestedProduct) ? requestedProduct : null;
+  const initialAhorro = AHORRO_PRODUCTS.some((product) => product.id === requestedProduct) ? requestedProduct : null;
+  const [activeTab, setActiveTab] = useState<"credito" | "ahorro">(initialAhorro ? "ahorro" : "credito");
+  const [selectedCredito, setSelectedCredito] = useState<string | null>(initialCredit);
+  const [selectedAhorro, setSelectedAhorro] = useState<string | null>(initialAhorro);
 
   const selectedCreditoProduct = CREDITO_PRODUCTS.find((p) => p.id === selectedCredito);
   const selectedAhorroProduct = AHORRO_PRODUCTS.find((p) => p.id === selectedAhorro);
+
+  useEffect(() => {
+    if (!requestedProduct) return;
+    const timer = window.setTimeout(() => document.getElementById("producto-seleccionado")?.scrollIntoView({ behavior: "smooth", block: "start" }), 150);
+    return () => window.clearTimeout(timer);
+  }, [requestedProduct]);
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50" style={{ fontFamily: "'Poppins', sans-serif" }}>
       {/* Accent bar */}
       <div className="h-1 w-full" style={{ background: "linear-gradient(90deg, #EBC302 0%, #173C6E 100%)" }} />
 
-      <Header />
-      <PageHero activeTab={activeTab} />
+      
+      <PageHero />
 
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10">
 
@@ -895,7 +777,7 @@ export default function Productos() {
 
             {/* Detail panel (shown when a card is selected) */}
             {selectedCreditoProduct && (
-              <ProductDetail product={selectedCreditoProduct} />
+              <div id="producto-seleccionado"><ProductDetail product={selectedCreditoProduct} showConditionsInitially={requestedProduct === selectedCreditoProduct.id} /></div>
             )}
 
             {/* Cards grid */}
@@ -930,7 +812,7 @@ export default function Productos() {
             </div>
 
             {selectedAhorroProduct && (
-              <AhorroDetail product={selectedAhorroProduct} />
+              <div id="producto-seleccionado"><AhorroDetail product={selectedAhorroProduct} showSimulatorInitially={requestedProduct === selectedAhorroProduct.id} /></div>
             )}
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -1011,7 +893,7 @@ export default function Productos() {
         </div>
       </main>
 
-      <Footer />
+      
     </div>
   );
 }

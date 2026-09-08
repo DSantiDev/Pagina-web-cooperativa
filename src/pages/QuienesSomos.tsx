@@ -45,65 +45,6 @@ const menu: MenuGroup[] = [
   },
 ];
 
-function NavBar() {
-  const navLinks = ["Inicio", "Productos", "Quiénes Somos", "Confianza", "Beneficios", "Contacto"];
-  return (
-    <header style={{ background: "#F7F0FF", borderBottom: "1px solid #C9DCFF" }}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
-        <div className="flex items-center gap-2">
-          <div
-            className="w-9 h-9 rounded-lg flex items-center justify-center text-white font-bold text-sm"
-            style={{ background: "var(--coovitel-gold)" }}
-          >
-            CV
-          </div>
-          <div>
-            <div className="font-bold text-lg leading-tight" style={{ color: "var(--coovitel-navy)", fontFamily: "Poppins, sans-serif" }}>
-              COOVITEL
-            </div>
-            <div className="text-[9px] leading-tight" style={{ color: "#1A2842" }}>
-              Cooperativa Empresarial de Ahorro y Crédito
-            </div>
-          </div>
-        </div>
-        <nav className="hidden md:flex items-center gap-7">
-          {navLinks.map((link) => (
-            <a
-              key={link}
-              href="#"
-              className="text-sm font-medium transition-colors"
-              style={{
-                color: link === "Quiénes Somos" ? "var(--coovitel-blue)" : "#1A2842",
-                fontFamily: "Poppins, sans-serif",
-                borderBottom: link === "Quiénes Somos" ? "2px solid var(--coovitel-gold)" : "none",
-                paddingBottom: link === "Quiénes Somos" ? "2px" : "0",
-              }}
-            >
-              {link}
-            </a>
-          ))}
-        </nav>
-        <div className="flex items-center gap-3">
-          <a
-            href="#"
-            className="hidden md:inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold border-2 transition-colors"
-            style={{ borderColor: "var(--coovitel-navy)", color: "var(--coovitel-navy)", fontFamily: "Poppins, sans-serif" }}
-          >
-            Oficina Virtual
-          </a>
-          <a
-            href="#"
-            className="hidden md:inline-flex items-center px-5 py-2 rounded-full text-sm font-bold text-white transition-colors"
-            style={{ background: "var(--coovitel-gold)", color: "#131739", fontFamily: "Poppins, sans-serif" }}
-          >
-            Asóciate
-          </a>
-        </div>
-      </div>
-    </header>
-  );
-}
-
 function HeroSection() {
   return (
     <div
@@ -176,12 +117,18 @@ function HeroSection() {
 
 function HistoriaContent() {
   const milestones = [
-    { year: "1960", text: "Fundación de COOVITEL por un grupo de trabajadores del sector de telecomunicaciones con el propósito de generar bienestar colectivo." },
-    { year: "1975", text: "Expansión a nuevas ciudades del país, llegando a Medellín, Cali y Barranquilla con nuevas oficinas de atención." },
-    { year: "1990", text: "Obtención de la certificación de calidad y ampliación del portafolio de servicios de ahorro y crédito." },
-    { year: "2005", text: "Lanzamiento de la plataforma digital y oficina virtual, marcando el inicio de la transformación tecnológica." },
-    { year: "2015", text: "Certificación ISO 9001:2015 por Bureau Veritas. Reconocimiento A+ de Value & Risk." },
-    { year: "2024", text: "Con 17.000+ asociados activos y presencia en 9 ciudades, COOVITEL se consolida como una de las cooperativas financieras más importantes de Colombia." },
+    { year: "1962", text: "Se fundó la Cooperativa de Vivienda de los Trabajadores Telecom LTDA por 51 asociados con un capital de $15.000." },
+    { year: "1970–1988", text: "Cooperativa Especializada de Vivienda de los Trabajadores de la Empresa Nacional de Telecomunicaciones." },
+    { year: "1989–2004", text: "Cooperativa Integral de Construcción y Vivienda de los trabajadores de Telecom–COOVITEL." },
+    { year: "2004–2013", text: "Cooperativa Multiactiva Empresarial Coovitel." },
+    { year: "2013", text: "Autorización para ejercer la actividad financiera." },
+    { year: "2014", text: "Transformación corporativa, evolución de la marca y cambio de estructura a primer piso." },
+    { year: "2019", text: "Certificación de Calidad con Bureau Veritas y calificación A– en Fortaleza Institucional." },
+    { year: "2019–2020", text: "Salvamentos a cooperativas: Copinke y Coopservicios." },
+    { year: "2022", text: "Fortalecimiento de canales y tecnología." },
+    { year: "2023", text: "Mejoramiento de la calificación de fortaleza institucional y de deuda, e incorporación de Coolever." },
+    { year: "2024", text: "Inversión en papeles comerciales con un subyacente de cartera de autos." },
+    { year: "2025", text: "Incorporación de Cooperativa Compartir y transformación digital. Se mantienen las calificaciones de fortaleza y deuda." },
   ];
   return (
     <div>
@@ -189,7 +136,7 @@ function HistoriaContent() {
         <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "var(--coovitel-gold)" }}>HISTORIA DE COOVITEL</span>
       </div>
       <h2 className="text-3xl font-bold mb-4" style={{ color: "var(--coovitel-navy)", fontFamily: "Poppins, sans-serif" }}>
-        64 años construyendo <span style={{ color: "var(--coovitel-blue)" }}>confianza</span>
+        62 años construyendo <span style={{ color: "var(--coovitel-blue)" }}>confianza</span>
       </h2>
       <p className="text-gray-600 mb-10 leading-relaxed max-w-2xl">
         COOVITEL nació con la misión de ofrecer soluciones financieras solidarias a trabajadores colombianos. A lo largo de seis décadas hemos crecido junto a nuestros asociados, adaptándonos a los cambios del entorno y manteniéndonos fieles a los principios cooperativos.
@@ -251,7 +198,7 @@ function MisionVisionContent() {
           </div>
           <h3 className="text-xl font-bold text-white mb-3" style={{ fontFamily: "Poppins, sans-serif" }}>Misión</h3>
           <p className="text-white/80 text-sm leading-relaxed">
-            Generar bienestar financiero y social a nuestros asociados, sus familias y comunidades, a través de productos y servicios cooperativos de calidad, fundamentados en la solidaridad, la transparencia y la innovación continua, contribuyendo al desarrollo sostenible de Colombia.
+            Somos una Cooperativa de ahorro y crédito que brinda acompañamiento cercano y oportunidades de inclusión a nuestros asociados y sus familias, a través de soluciones financieras y sociales accesibles, eficientes y de calidad, promoviendo el ahorro, el crédito responsable y el progreso social para mejorar su calidad de vida.
           </p>
         </div>
         <div
@@ -266,7 +213,7 @@ function MisionVisionContent() {
           </div>
           <h3 className="text-xl font-bold mb-3" style={{ color: "var(--coovitel-dark)", fontFamily: "Poppins, sans-serif" }}>Visión</h3>
           <p className="text-sm leading-relaxed" style={{ color: "rgba(9,9,80,0.8)" }}>
-            Para 2030, ser la cooperativa financiera más reconocida de Colombia por su impacto social, solidez patrimonial e innovación digital, con presencia nacional y referente latinoamericano en el modelo cooperativo de ahorro y crédito.
+            Coovitel será reconocida en 2030 como una Cooperativa sólida, competitiva y cercana, que promueve la cultura del ahorro y la inclusión financiera mediante soluciones financieras y sociales accesibles y rentables, ofreciendo experiencias ágiles y confiables, soportadas en la innovación tecnológica, la gestión del conocimiento y prácticas sostenibles que generen valor.
           </p>
         </div>
       </div>
@@ -637,7 +584,7 @@ function TrabajaContent() {
               <label className={labelClass}>Ciudad de residencia *</label>
               <select name="ciudad" value={form.ciudad} onChange={handleChange} required className={inputClass}>
                 <option value="">Selecciona tu ciudad</option>
-                {["Bogotá", "Medellín", "Cali", "Barranquilla", "Bucaramanga", "Cartagena", "Pereira", "Manizales", "Otra"].map(c => (
+                {["Bogotá", "Tunja", "Barranquilla", "Cúcuta", "Cali", "Bucaramanga", "Medellín", "Manizales", "Ibagué", "Otra"].map(c => (
                   <option key={c} value={c}>{c}</option>
                 ))}
               </select>
@@ -793,80 +740,13 @@ function Sidebar({ active, setActive }: { active: Section; setActive: (s: Sectio
   );
 }
 
-function Footer() {
-  return (
-    <footer style={{ background: "var(--coovitel-dark)", color: "#F7F0FF" }} className="mt-20">
-      <div className="max-w-7xl mx-auto px-6 py-14">
-        <div className="grid md:grid-cols-4 gap-10">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div
-                className="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm"
-                style={{ background: "var(--coovitel-gold)", color: "var(--coovitel-dark)" }}
-              >
-                CV
-              </div>
-              <span className="font-bold text-xl" style={{ fontFamily: "Poppins, sans-serif" }}>COOVITEL</span>
-            </div>
-            <p className="text-white/50 text-xs leading-relaxed mb-4">
-              Cooperativa Empresarial de Ahorro y Crédito. 64 años construyendo bienestar financiero con solidaridad y transparencia en Colombia.
-            </p>
-            <div className="flex gap-3">
-              {["f", "in", "🐦", "📷"].map((s, i) => (
-                <a key={i} href="#" className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold transition-colors hover:opacity-80" style={{ background: "rgba(255,255,255,0.1)" }}>{s}</a>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h4 className="font-bold text-sm mb-4" style={{ fontFamily: "Poppins, sans-serif" }}>Productos</h4>
-            <ul className="space-y-2">
-              {["Crédito Propósito", "Ahorro Propósito", "CDAT", "Aportes Sociales"].map(p => (
-                <li key={p}><a href="#" className="text-white/50 text-xs hover:text-white transition-colors">{p}</a></li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold text-sm mb-4" style={{ fontFamily: "Poppins, sans-serif" }}>Institucional</h4>
-            <ul className="space-y-2">
-              {["Quiénes Somos", "Plan de Beneficios", "Asistencias Gratis", "Trabaja con Nosotros"].map(p => (
-                <li key={p}><a href="#" className="text-white/50 text-xs hover:text-white transition-colors">{p}</a></li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold text-sm mb-4" style={{ fontFamily: "Poppins, sans-serif" }}>Contacto</h4>
-            <ul className="space-y-3">
-              <li className="text-white/50 text-xs">📞 01 800 00 26683</li>
-              <li className="text-white/50 text-xs">✉️ info@coovitel.coop</li>
-              <li className="text-white/50 text-xs">📍 Bogotá, Colombia</li>
-              <li>
-                <a href="#" className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full mt-1" style={{ background: "var(--coovitel-gold)", color: "var(--coovitel-dark)", fontFamily: "Poppins, sans-serif" }}>
-                  Oficina Virtual →
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="border-t mt-10 pt-6 border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-white/30 text-xs">© 2024 COOVITEL. Todos los derechos reservados. Vigilada por Supersolidaria.</p>
-          <div className="flex gap-5">
-            {["Política de Privacidad", "Términos y Condiciones", "SAGRILAFT"].map(l => (
-              <a key={l} href="#" className="text-white/30 text-xs hover:text-white/60 transition-colors">{l}</a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 export default function QuienesSomos() {
   const routeSection = new URLSearchParams(window.location.search).get("section");
   const [active, setActive] = useState<Section>(routeSection === "estatutos" ? "estatutos" : "historia");
 
   return (
     <div className="min-h-full flex flex-col" style={{ background: "var(--coovitel-light)" }}>
-      <NavBar />
+      
       <HeroSection />
 
       <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-12">
@@ -880,7 +760,7 @@ export default function QuienesSomos() {
         </div>
       </main>
 
-      <Footer />
+      
     </div>
   );
 }

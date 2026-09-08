@@ -10,77 +10,75 @@ type Tab = 'quienes' | 'pasos' | 'faq' | 'formulario'
 
 /* ─── Data ───────────────────────────────────────────────── */
 const eligibilityCriteria = [
-  { icon: '🇨🇴', title: 'Personas naturales', desc: 'Colombianos o extranjeros residentes en el territorio nacional.' },
-  { icon: '🏢', title: 'Empleados de empresas aliadas', desc: 'Trabajadores vinculados a las más de 200 empresas aliadas de COOVITEL.' },
-  { icon: '👨‍👩‍👧', title: 'Familiares de asociados', desc: 'Cónyuge, compañero(a) permanente e hijos de asociados activos.' },
-  { icon: '📅', title: 'Mayores de 18 años', desc: 'Con plena capacidad jurídica para suscribir contratos.' },
-  { icon: '💰', title: 'Capacidad de ahorro', desc: 'Con disposición y capacidad de realizar aportes mensuales regulares.' },
-  { icon: '🤝', title: 'Voluntad cooperativa', desc: 'Con compromiso de participar y contribuir al crecimiento colectivo.' },
+  { icon: '🏢', title: 'Empleados', desc: 'Personas vinculadas a empresas con código de descuento por nómina o libranza con COOVITEL, con contrato a término indefinido o nombramiento oficial.' },
+  { icon: '💼', title: 'Independientes', desc: 'Personas que generan ingresos por una actividad sin dependencia laboral.' },
+  { icon: '👴', title: 'Pensionados', desc: 'Pensionados de entidades como Caprecom, ISS, Fomprecom, CAR, FOPEP y otras a nivel nacional.' },
+  { icon: '👨‍👩‍👧', title: 'Familiares de asociados', desc: 'Familiares que acrediten el parentesco con los documentos legales correspondientes.' },
+  { icon: '📝', title: 'Formulario de ingreso', desc: 'Diligencia el formulario de ingreso y entrega la documentación requerida.' },
+  { icon: '💰', title: 'Aportes mensuales', desc: 'Realiza los aportes mensuales conforme a la tabla de aportes vigente.' },
 ]
 
 const affiliationCosts = [
-  { concept: 'Cuota de afiliación', amount: '$50.000', note: 'Pago único al momento de vincularse', highlight: false },
-  { concept: 'Aporte mínimo de capital', amount: '$100.000', note: 'Capital inicial reembolsable al retiro', highlight: false },
-  { concept: 'Total para afiliarse', amount: '$150.000', note: 'Inversión inicial total', highlight: true },
+  { concept: 'Cuota de afiliación', amount: '$40.000', note: 'Pago único indicado en el proceso de afiliación', highlight: false },
+  { concept: 'Aportes mensuales', amount: 'Según tabla', note: 'Se realizan conforme a la tabla de aportes vigente', highlight: false },
+  { concept: 'Familiares asociados', amount: 'Sin cuota', note: 'No pagan cuota de afiliación', highlight: true },
 ]
 
 const monthlyContributions = [
-  { type: 'Aporte ordinario mínimo', amount: '$20.000 / mes', desc: 'Obligatorio para mantener calidad de asociado' },
-  { type: 'Aporte voluntario adicional', amount: 'Libre', desc: 'Incrementa tu capital y acceso a mayores créditos' },
-  { type: 'Ahorro contractual (opcional)', amount: 'Desde $30.000 / mes', desc: 'Producto de ahorro programado con rendimientos' },
+  { type: 'Aporte mensual', amount: 'Según tabla de aportes', desc: 'Aplica para empleados, independientes y pensionados.' },
+  { type: 'Autorización de descuento', amount: 'Cuando aplica', desc: 'Requerida para afiliados por nómina o libranza.' },
+  { type: 'Familiares asociados', amount: 'Exentos de cuota', desc: 'Deben acreditar el parentesco y diligenciar el formato de afiliación.' },
 ]
 
 const steps = [
   {
     n: '01', title: 'Contáctanos',
-    desc: 'Comunícate con nosotros por teléfono, correo, o visita una de nuestras 9 sedes en Colombia. También puedes iniciar el proceso en línea.',
+    desc: 'Visita la sede más cercana o comunícate con COOVITEL para iniciar tu solicitud de afiliación.',
     icon: '📞',
   },
   {
     n: '02', title: 'Recibe asesoría',
-    desc: 'Un asesor COOVITEL te explicará los beneficios, condiciones y resolverá todas tus dudas de manera personalizada y sin compromiso.',
+    desc: 'Recibe orientación sobre el tipo de afiliación y los requisitos que aplican a tu caso.',
     icon: '💬',
   },
   {
     n: '03', title: 'Entrega documentos',
-    desc: 'Presenta los documentos requeridos (ver lista más abajo). El proceso de verificación tarda máximo 3 días hábiles.',
+    desc: 'Diligencia el formulario de ingreso y adjunta la fotocopia de tu documento de identidad.',
     icon: '📄',
   },
   {
-    n: '04', title: 'Firma el contrato',
-    desc: 'Firma el contrato de asociación y el formulario de vinculación. Disponible de forma digital o presencial en nuestras oficinas.',
+    n: '04', title: 'Autoriza el descuento',
+    desc: 'Si eres empleado vinculado por nómina o libranza, firma la autorización de descuento correspondiente.',
     icon: '✍️',
   },
   {
     n: '05', title: 'Realiza tu aporte inicial',
-    desc: 'Cancela la cuota de afiliación ($50.000) y el aporte mínimo de capital ($100.000) mediante PSE, transferencia o en oficina.',
+    desc: 'Cancela la cuota de afiliación de $40.000 y realiza tus aportes mensuales según la tabla vigente.',
     icon: '💳',
   },
   {
     n: '06', title: '¡Bienvenido(a)!',
-    desc: 'Activa tu cuenta, descarga la app y accede a todos los beneficios: créditos, ahorro, seguros y mucho más desde el primer día.',
+    desc: 'Al completar la documentación, podrás disfrutar las soluciones financieras y sociales de tu cooperativa.',
     icon: '🎉',
   },
 ]
 
 const documents = [
-  'Documento de identidad vigente (cédula de ciudadanía o pasaporte)',
-  'Último desprendible de nómina o certificado de ingresos del mes en curso',
-  'Factura de servicios públicos del último mes (prueba de domicilio)',
-  'Fotografía 3×4 fondo blanco reciente',
-  'Formulario de vinculación diligenciado (se entrega en oficina o descarga en línea)',
-  'Extractos bancarios de los últimos 3 meses (si es independiente)',
-  'RUT vigente para trabajadores independientes o empresarios',
+  'Formulario de ingreso diligenciado',
+  'Fotocopia del documento de identidad',
+  'Autorización de descuento para afiliados por nómina o libranza',
+  'Tabla de aportes aplicable a tu afiliación',
+  'Registro civil de nacimiento, matrimonio, declaración extrajuicio u otro documento legal para acreditar parentesco, cuando aplique',
 ]
 
 const faqs = [
   {
     q: '¿Cuánto tiempo tarda el proceso de afiliación?',
-    a: 'El proceso completo dura entre 3 y 5 días hábiles desde la entrega completa de documentos. Una vez aprobado, recibirás confirmación por correo electrónico y podrás acceder de inmediato a todos los servicios.',
+    a: 'El tiempo de trámite depende de la validación de la documentación. Acércate a una sede o comunícate con COOVITEL para conocer el estado de tu solicitud.',
   },
   {
     q: '¿Puedo afiliarme si no trabajo en una empresa aliada a COOVITEL?',
-    a: 'Sí. Aunque inicialmente COOVITEL atendía exclusivamente a empleados de empresas aliadas, hoy también recibimos personas naturales independientes, familiares de asociados y trabajadores del sector privado en general que cumplan los requisitos mínimos.',
+    a: 'Sí. COOVITEL contempla afiliación para independientes, pensionados y familiares de asociados, cumpliendo los requisitos definidos para cada modalidad.',
   },
   {
     q: '¿Qué sucede con mis aportes si decido retirarme?',
@@ -88,15 +86,15 @@ const faqs = [
   },
   {
     q: '¿Puedo solicitar crédito inmediatamente después de afiliarme?',
-    a: 'Sí, desde el primer día de asociado puedes aplicar a los productos de crédito COOVITEL. El monto y condiciones dependerán de tu capacidad de pago, historial crediticio y antigüedad acumulada como asociado.',
+    a: 'Las condiciones de crédito se evalúan de acuerdo con el producto solicitado y las políticas vigentes de COOVITEL. Un asesor puede orientarte sobre tu caso.',
   },
   {
     q: '¿Existe algún costo mensual además del aporte?',
-    a: 'No. El único compromiso mensual es el aporte ordinario mínimo de $20.000. No cobramos cuotas de administración ni mantenimiento. Todos los beneficios adicionales (seguros, asistencias) están incluidos sin costo extra.',
+    a: 'Debes realizar aportes mensuales según la tabla de aportes vigente. La cuota de afiliación publicada es de $40.000; los familiares asociados no pagan esa cuota.',
   },
   {
     q: '¿Dónde puedo asociarme presencialmente?',
-    a: 'Contamos con oficinas en 9 ciudades: Bogotá, Medellín, Cali, Barranquilla, Bucaramanga, Pereira, Manizales, Cartagena e Ibagué. También puedes completar el proceso completamente en línea a través de nuestra Oficina Virtual.',
+    a: 'COOVITEL publica atención en Bogotá, Tunja, Barranquilla, Cúcuta, Cali, Bucaramanga, Medellín, Manizales e Ibagué. Consulta dirección y horario antes de visitar la sede.',
   },
   {
     q: '¿Es seguro el dinero que aporto a COOVITEL?',
@@ -136,73 +134,6 @@ function WaveDivider({ flip = false }: { flip?: boolean }) {
 }
 
 /* ─── Navbar ──────────────────────────────────────────────── */
-function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const navLinks = ['Inicio', 'Productos', 'Quiénes Somos', 'Confianza', 'Beneficios', 'Contacto']
-
-  return (
-    <nav
-      className="w-full flex items-center justify-between px-6 md:px-12 py-4 fixed top-0 left-0 z-50"
-      style={{ background: NAVY, borderBottom: '1px solid rgba(255,255,255,0.08)' }}
-    >
-      {/* Logo */}
-      <div className="flex items-center gap-2.5">
-        <div className="w-9 h-9 rounded-lg flex items-center justify-center font-extrabold text-sm" style={{ background: YELLOW, color: NAVY }}>
-          CV
-        </div>
-        <div>
-          <span className="font-extrabold text-white text-lg leading-none tracking-wide">COOVITEL</span>
-          <p className="text-white/40 text-[8px] leading-none uppercase tracking-widest">Cooperativa Empresarial</p>
-        </div>
-      </div>
-
-      {/* Desktop links */}
-      <ul className="hidden lg:flex items-center gap-6">
-        {navLinks.map(l => (
-          <li key={l}>
-            <a href="#" className="text-white/80 hover:text-white text-sm font-medium transition-colors">{l}</a>
-          </li>
-        ))}
-      </ul>
-
-      {/* CTAs */}
-      <div className="hidden lg:flex items-center gap-3">
-        <a href="#" className="text-white/90 text-sm font-semibold border border-white/30 px-5 py-2 rounded-full hover:border-white transition-colors">
-          Oficina Virtual
-        </a>
-        <a href="#" className="text-sm font-bold px-6 py-2 rounded-full transition-opacity hover:opacity-90" style={{ background: YELLOW, color: NAVY }}>
-          Asóciate
-        </a>
-      </div>
-
-      {/* Mobile hamburger */}
-      <button className="lg:hidden text-white" onClick={() => setMenuOpen(!menuOpen)}>
-        <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-          {menuOpen
-            ? <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            : <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />}
-        </svg>
-      </button>
-
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div className="absolute top-full left-0 w-full py-4 px-6 lg:hidden" style={{ background: NAVY }}>
-          {navLinks.map(l => (
-            <a key={l} href="#" className="block py-2.5 text-white/80 text-sm font-medium border-b border-white/10">
-              {l}
-            </a>
-          ))}
-          <div className="flex flex-col gap-2 mt-4">
-            <a href="#" className="text-center text-white text-sm font-semibold border border-white/30 px-5 py-2.5 rounded-full">Oficina Virtual</a>
-            <a href="#" className="text-center text-sm font-bold px-6 py-2.5 rounded-full" style={{ background: YELLOW, color: NAVY }}>Asóciate</a>
-          </div>
-        </div>
-      )}
-    </nav>
-  )
-}
-
-/* ─── Hero ────────────────────────────────────────────────── */
 function HeroSection() {
   return (
     <section className="relative pt-24 pb-0 overflow-hidden" style={{ background: `linear-gradient(135deg, #131739 0%, ${BLUE} 60%, #27548F 100%)` }}>
@@ -593,10 +524,10 @@ function FAQSection() {
           <h3 className="text-2xl font-extrabold text-white mb-2">Habla con un asesor COOVITEL</h3>
           <p className="text-white/60 text-sm mb-6">Atención personalizada de lunes a viernes de 8am a 6pm</p>
           <div className="flex flex-wrap justify-center gap-3">
-            <a href="tel:+576014000000" className="font-bold px-7 py-3 rounded-full text-sm" style={{ background: YELLOW, color: NAVY }}>
+            <a href="tel:+576015666601" className="font-bold px-7 py-3 rounded-full text-sm" style={{ background: YELLOW, color: NAVY }}>
               📞 Llamar ahora
             </a>
-            <a href="https://wa.me/573000000000" className="font-semibold px-7 py-3 rounded-full text-sm text-white border border-white/30 hover:border-white transition-colors">
+            <a href="https://api.whatsapp.com/send/?phone=573160189853&text&type=phone_number&app_absent=0" target="_blank" rel="noreferrer" className="font-semibold px-7 py-3 rounded-full text-sm text-white border border-white/30 hover:border-white transition-colors">
               💬 WhatsApp
             </a>
           </div>
@@ -614,7 +545,7 @@ function FormularioSection() {
     email: '', telefono: '', ciudad: '', empresa: '', comoNosConociste: '', acepta: false,
   })
 
-  const ciudades = ['Bogotá', 'Medellín', 'Cali', 'Barranquilla', 'Bucaramanga', 'Pereira', 'Manizales', 'Cartagena', 'Ibagué', 'Otra']
+  const ciudades = ['Bogotá', 'Tunja', 'Barranquilla', 'Cúcuta', 'Cali', 'Bucaramanga', 'Medellín', 'Manizales', 'Ibagué', 'Otra']
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -825,9 +756,9 @@ function FormularioSection() {
               </div>
               <span className="text-xs text-gray-500 leading-relaxed">
                 Autorizo a COOVITEL el tratamiento de mis datos personales de acuerdo con la{' '}
-                <a href="#" className="font-semibold underline" style={{ color: BLUE }}>Política de Privacidad</a>{' '}
+                <a href="https://coovitel.coop/wp-content/uploads/2025/07/COV-TEC-DOC-005-Politica-para-tratamiento-de-datos-personales-V2.pdf" target="_blank" rel="noreferrer" className="font-semibold underline" style={{ color: BLUE }}>Política de Privacidad</a>{' '}
                 y el{' '}
-                <a href="#" className="font-semibold underline" style={{ color: BLUE }}>Aviso de Privacidad</a>.
+                <a href="https://coovitel.coop/normatividad/" target="_blank" rel="noreferrer" className="font-semibold underline" style={{ color: BLUE }}>Aviso de Privacidad</a>.
               </span>
             </label>
 
@@ -842,8 +773,8 @@ function FormularioSection() {
 
             <p className="text-center text-xs text-gray-400 mt-4">
               ¿Prefieres atención directa?{' '}
-              <a href="tel:+576014000000" className="font-semibold" style={{ color: BLUE }}>Llámanos</a> o{' '}
-              <a href="#" className="font-semibold" style={{ color: BLUE }}>escríbenos</a>
+              <a href="tel:+576015666601" className="font-semibold" style={{ color: BLUE }}>Llámanos</a> o{' '}
+              <a href="https://api.whatsapp.com/send/?phone=573160189853&text&type=phone_number&app_absent=0" target="_blank" rel="noreferrer" className="font-semibold" style={{ color: BLUE }}>escríbenos por WhatsApp</a>
             </p>
           </form>
         </div>
@@ -853,62 +784,6 @@ function FormularioSection() {
 }
 
 /* ─── Footer ─────────────────────────────────────────────── */
-function Footer() {
-  return (
-    <footer className="py-12 px-6 md:px-12" style={{ background: NAVY }}>
-      <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-10 pb-10 border-b border-white/10">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-9 h-9 rounded-lg flex items-center justify-center font-extrabold text-sm" style={{ background: YELLOW, color: NAVY }}>
-                CV
-              </div>
-              <span className="font-extrabold text-white text-lg">COOVITEL</span>
-            </div>
-            <p className="text-white/45 text-sm leading-relaxed max-w-xs">
-              Cooperativa Empresarial de Ahorro y Crédito. 64 años construyendo bienestar financiero con solidaridad y transparencia en Colombia.
-            </p>
-            <div className="flex items-center gap-3 mt-5">
-              {['Facebook', 'Instagram', 'LinkedIn'].map(s => (
-                <a key={s} href="#" className="w-8 h-8 rounded-full flex items-center justify-center text-white/50 hover:text-white transition-colors border border-white/15 text-xs">
-                  {s[0]}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Productos */}
-          <div>
-            <p className="font-bold text-white text-sm mb-4">Productos</p>
-            {['Crédito Propósito', 'Ahorro Propósito', 'CDAT', 'Seguro de Vida', 'Plan de Beneficios'].map(l => (
-              <a key={l} href="#" className="block text-white/45 text-sm py-1.5 hover:text-white/80 transition-colors">{l}</a>
-            ))}
-          </div>
-
-          {/* Institucional */}
-          <div>
-            <p className="font-bold text-white text-sm mb-4">Institucional</p>
-            {['Quiénes Somos', 'Asóciate', 'Confianza', 'Contacto', 'Oficina Virtual'].map(l => (
-              <a key={l} href="#" className="block text-white/45 text-sm py-1.5 hover:text-white/80 transition-colors">{l}</a>
-            ))}
-          </div>
-        </div>
-
-        <div className="pt-7 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-white/30 text-xs">© 2024 COOVITEL. Todos los derechos reservados.</p>
-          <div className="flex items-center gap-5">
-            <span className="text-xs font-semibold text-white/30">✓ ISO 9001:2015 Bureau Veritas</span>
-            <span className="text-xs font-semibold text-white/30">A+ Value & Risk</span>
-            <span className="text-xs text-white/30">Vigilada por Supersolidaria</span>
-          </div>
-        </div>
-      </div>
-    </footer>
-  )
-}
-
-/* ─── App ────────────────────────────────────────────────── */
 export default function Asociate() {
   const [activeTab, setActiveTab] = useState<Tab>('quienes')
 
@@ -923,7 +798,7 @@ export default function Asociate() {
 
   return (
     <div className="min-h-full flex flex-col" style={{ fontFamily: 'Poppins, sans-serif' }}>
-      <Navbar />
+      
       <main className="flex-1 pt-[72px]">
         <HeroSection />
         <TabNav active={activeTab} setActive={handleTabChange} />
@@ -932,7 +807,7 @@ export default function Asociate() {
         {activeTab === 'faq' && <FAQSection />}
         {activeTab === 'formulario' && <FormularioSection />}
       </main>
-      <Footer />
+      
     </div>
   )
 }
