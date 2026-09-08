@@ -2,11 +2,11 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-navy: #12187a;
-  --color-navy-dark: #0d1260;
-  --color-navy-footer: #0b0e3d;
-  --color-amber: #f5a200;
-  --color-amber-hover: #e09200;
+  --color-navy: #173C6E;
+  --color-navy-dark: #131739;
+  --color-navy-footer: #131739;
+  --color-amber: #EBC302;
+  --color-amber-hover: #EBC302;
   --font-sans: 'Poppins', sans-serif;
 }
 

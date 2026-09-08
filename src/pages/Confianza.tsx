@@ -85,26 +85,27 @@ const OBITUARIOS = [
 ];
 
 export default function Confianza() {
-  const [activeSection, setActiveSection] = useState<Section>("porque");
-  const [transSub, setTransSub] = useState<TransSub>("informes");
+  const directSection = new URLSearchParams(window.location.search).get("section");
+  const [activeSection, setActiveSection] = useState<Section>(directSection === "solicitudes" ? "transparencia" : "porque");
+  const [transSub, setTransSub] = useState<TransSub>(directSection === "solicitudes" ? "solicitudes" : "informes");
   const [segSub, setSegSub] = useState<SegSub>("fraude");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-full bg-[#F0F2F7] font-[Inter,sans-serif]">
+    <div className="min-h-full bg-[#f7f0ff] font-[Inter,sans-serif]">
       {/* ── HEADER ── */}
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <div className="flex items-center gap-2 flex-shrink-0">
-              <div className="w-9 h-9 bg-[#F5A623] rounded-lg flex items-center justify-center">
+              <div className="w-9 h-9 bg-[#EBC302] rounded-lg flex items-center justify-center">
                 <span className="text-white font-black text-sm font-[Montserrat,sans-serif]">CV</span>
               </div>
               <div>
-                <div className="text-[#1B2A7B] font-black text-lg font-[Montserrat,sans-serif] leading-none tracking-wide">COOVITEL</div>
-                <div className="text-[#1B2A7B]/50 text-[9px] leading-none">Cooperativa Empresarial de Ahorro y Crédito</div>
+                <div className="text-[#173C6E] font-black text-lg font-[Montserrat,sans-serif] leading-none tracking-wide">COOVITEL</div>
+                <div className="text-[#173C6E]/50 text-[9px] leading-none">Cooperativa Empresarial de Ahorro y Crédito</div>
               </div>
             </div>
 
@@ -116,8 +117,8 @@ export default function Confianza() {
                   href="#"
                   className={`text-sm font-medium transition-colors ${
                     item === "Confianza"
-                      ? "text-[#1B2A7B] font-bold border-b-2 border-[#F5A623] pb-1"
-                      : "text-gray-600 hover:text-[#1B2A7B]"
+                      ? "text-[#173C6E] font-bold border-b-2 border-[#EBC302] pb-1"
+                      : "text-gray-600 hover:text-[#173C6E]"
                   }`}
                 >
                   {item}
@@ -127,17 +128,17 @@ export default function Confianza() {
 
             {/* CTA Buttons */}
             <div className="hidden lg:flex items-center gap-3">
-              <button className="border-2 border-[#1B2A7B] text-[#1B2A7B] text-sm font-semibold px-4 py-2 rounded-full hover:bg-[#1B2A7B] hover:text-white transition-colors">
+              <button className="border-2 border-[#173C6E] text-[#173C6E] text-sm font-semibold px-4 py-2 rounded-full hover:bg-[#173C6E] hover:text-white transition-colors">
                 Oficina Virtual
               </button>
-              <button className="bg-[#F5A623] text-white text-sm font-bold px-5 py-2 rounded-full hover:bg-[#D4891A] transition-colors">
+              <button className="bg-[#EBC302] text-white text-sm font-bold px-5 py-2 rounded-full hover:bg-[#EBC302] transition-colors">
                 Asóciate
               </button>
             </div>
 
             {/* Mobile menu toggle */}
             <button
-              className="lg:hidden p-2 text-[#1B2A7B]"
+              className="lg:hidden p-2 text-[#173C6E]"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -155,33 +156,33 @@ export default function Confianza() {
         {mobileMenuOpen && (
           <div className="lg:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-3">
             {NAV_ITEMS.map((item) => (
-              <a key={item} href="#" className="block text-sm font-medium text-gray-700 hover:text-[#1B2A7B]">
+              <a key={item} href="#" className="block text-sm font-medium text-gray-700 hover:text-[#173C6E]">
                 {item}
               </a>
             ))}
             <div className="pt-3 flex flex-col gap-2">
-              <button className="border-2 border-[#1B2A7B] text-[#1B2A7B] text-sm font-semibold px-4 py-2 rounded-full">Oficina Virtual</button>
-              <button className="bg-[#F5A623] text-white text-sm font-bold px-4 py-2 rounded-full">Asóciate</button>
+              <button className="border-2 border-[#173C6E] text-[#173C6E] text-sm font-semibold px-4 py-2 rounded-full">Oficina Virtual</button>
+              <button className="bg-[#EBC302] text-white text-sm font-bold px-4 py-2 rounded-full">Asóciate</button>
             </div>
           </div>
         )}
       </header>
 
       {/* ── HERO BANNER ── */}
-      <section className="bg-[#1B2A7B] relative overflow-hidden">
+      <section className="bg-[#173C6E] relative overflow-hidden">
         {/* decorative circles */}
-        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#F5A623]/10 pointer-events-none" />
+        <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-[#EBC302]/10 pointer-events-none" />
         <div className="absolute bottom-0 left-1/4 w-48 h-48 rounded-full bg-white/5 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-0">
           <div className="flex flex-col lg:flex-row lg:items-end gap-8">
             <div className="flex-1">
-              <div className="inline-flex items-center gap-2 bg-[#F5A623]/20 border border-[#F5A623]/40 text-[#F5A623] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-5">
+              <div className="inline-flex items-center gap-2 bg-[#EBC302]/20 border border-[#EBC302]/40 text-[#EBC302] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-5">
                 <span>◆</span> COOPERATIVA · CONFIANZA Y TRANSPARENCIA
               </div>
               <h1 className="font-[Montserrat,sans-serif] font-black text-4xl md:text-5xl xl:text-6xl text-white leading-tight mb-4">
                 Tu bienestar<br />
-                <span className="text-[#F5A623]">es nuestra prioridad</span>
+                <span className="text-[#EBC302]">es nuestra prioridad</span>
               </h1>
               <p className="text-white/70 text-base md:text-lg max-w-xl leading-relaxed mb-8">
                 En COOVITEL construimos relaciones basadas en la transparencia, la seguridad y el respeto.
@@ -190,15 +191,15 @@ export default function Confianza() {
             </div>
             <div className="hidden lg:flex items-end gap-6 pb-2">
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 text-center border border-white/10">
-                <div className="font-[Montserrat,sans-serif] font-black text-3xl text-[#F5A623]">64+</div>
+                <div className="font-[Montserrat,sans-serif] font-black text-3xl text-[#EBC302]">64+</div>
                 <div className="text-white/60 text-xs mt-1">Años de confianza</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 text-center border border-white/10">
-                <div className="font-[Montserrat,sans-serif] font-black text-3xl text-[#F5A623]">A+</div>
+                <div className="font-[Montserrat,sans-serif] font-black text-3xl text-[#EBC302]">A+</div>
                 <div className="text-white/60 text-xs mt-1">Value & Risk</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 text-center border border-white/10">
-                <div className="font-[Montserrat,sans-serif] font-black text-3xl text-[#F5A623]">ISO</div>
+                <div className="font-[Montserrat,sans-serif] font-black text-3xl text-[#EBC302]">ISO</div>
                 <div className="text-white/60 text-xs mt-1">9001:2015</div>
               </div>
             </div>
@@ -212,10 +213,10 @@ export default function Confianza() {
                 <select
                   value={activeSection}
                   onChange={(e) => setActiveSection(e.target.value as Section)}
-                  className="w-full appearance-none bg-white/15 border border-white/30 text-white font-semibold text-sm rounded-xl px-4 py-3 pr-10 focus:outline-none focus:border-[#F5A623] cursor-pointer"
+                  className="w-full appearance-none bg-white/15 border border-white/30 text-white font-semibold text-sm rounded-xl px-4 py-3 pr-10 focus:outline-none focus:border-[#EBC302] cursor-pointer"
                 >
                   {SUBMENU.map((item) => (
-                    <option key={item.id} value={item.id} className="text-[#1B2A7B] bg-white">
+                    <option key={item.id} value={item.id} className="text-[#173C6E] bg-white">
                       {item.label}
                     </option>
                   ))}
@@ -236,7 +237,7 @@ export default function Confianza() {
                   onClick={() => setActiveSection(item.id)}
                   className={`flex-shrink-0 px-5 py-3 text-sm font-semibold rounded-t-xl transition-all whitespace-nowrap ${
                     activeSection === item.id
-                      ? "bg-[#F0F2F7] text-[#1B2A7B] shadow-sm"
+                      ? "bg-[#f7f0ff] text-[#173C6E] shadow-sm"
                       : "text-white/70 hover:text-white hover:bg-white/10"
                   }`}
                 >
@@ -257,8 +258,8 @@ export default function Confianza() {
             {/* Intro */}
             <div className="grid lg:grid-cols-2 gap-10 items-center">
               <div>
-                <p className="text-[#F5A623] font-bold text-sm uppercase tracking-widest mb-3">¿POR QUÉ CONFIAR EN COOVITEL?</p>
-                <h2 className="font-[Montserrat,sans-serif] font-black text-3xl md:text-4xl text-[#1B2A7B] leading-tight mb-5">
+                <p className="text-[#EBC302] font-bold text-sm uppercase tracking-widest mb-3">¿POR QUÉ CONFIAR EN COOVITEL?</p>
+                <h2 className="font-[Montserrat,sans-serif] font-black text-3xl md:text-4xl text-[#173C6E] leading-tight mb-5">
                   64 años construyendo confianza cooperativa
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-4">
@@ -276,7 +277,7 @@ export default function Confianza() {
                   alt="Equipo COOVITEL atendiendo a asociados"
                   className="rounded-2xl w-full object-cover h-72 shadow-xl"
                 />
-                <div className="absolute -bottom-4 -left-4 bg-[#F5A623] rounded-2xl px-6 py-4 shadow-lg">
+                <div className="absolute -bottom-4 -left-4 bg-[#EBC302] rounded-2xl px-6 py-4 shadow-lg">
                   <div className="font-[Montserrat,sans-serif] font-black text-2xl text-white">17.000+</div>
                   <div className="text-white/80 text-xs">Asociados activos</div>
                 </div>
@@ -285,7 +286,7 @@ export default function Confianza() {
 
             {/* Pilares */}
             <div>
-              <h3 className="font-[Montserrat,sans-serif] font-bold text-2xl text-[#1B2A7B] mb-6 text-center">
+              <h3 className="font-[Montserrat,sans-serif] font-bold text-2xl text-[#173C6E] mb-6 text-center">
                 Los pilares de nuestra confianza
               </h3>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -299,7 +300,7 @@ export default function Confianza() {
                 ].map((item) => (
                   <div key={item.title} className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow group">
                     <div className="text-3xl mb-4">{item.icon}</div>
-                    <h4 className="font-[Montserrat,sans-serif] font-bold text-[#1B2A7B] text-lg mb-2 group-hover:text-[#F5A623] transition-colors">
+                    <h4 className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] text-lg mb-2 group-hover:text-[#EBC302] transition-colors">
                       {item.title}
                     </h4>
                     <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
@@ -309,7 +310,7 @@ export default function Confianza() {
             </div>
 
             {/* Afiliaciones */}
-            <div className="bg-[#1B2A7B] rounded-3xl p-8 md:p-12">
+            <div className="bg-[#173C6E] rounded-3xl p-8 md:p-12">
               <h3 className="font-[Montserrat,sans-serif] font-bold text-2xl text-white mb-2 text-center">
                 Avalados por las principales organizaciones cooperativas
               </h3>
@@ -317,7 +318,7 @@ export default function Confianza() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {["Confecoop", "Ascoop", "Fogacoop", "Supersolidaria"].map((org) => (
                   <div key={org} className="bg-white/10 border border-white/10 rounded-xl px-4 py-5 flex items-center gap-3 hover:bg-white/15 transition-colors">
-                    <div className="w-2 h-2 rounded-full bg-[#F5A623] flex-shrink-0" />
+                    <div className="w-2 h-2 rounded-full bg-[#EBC302] flex-shrink-0" />
                     <span className="text-white font-semibold text-sm">{org}</span>
                   </div>
                 ))}
@@ -330,8 +331,8 @@ export default function Confianza() {
         {activeSection === "transparencia" && (
           <div className="space-y-8">
             <div>
-              <p className="text-[#F5A623] font-bold text-sm uppercase tracking-widest mb-2">TRANSPARENCIA</p>
-              <h2 className="font-[Montserrat,sans-serif] font-black text-3xl md:text-4xl text-[#1B2A7B] mb-4">
+              <p className="text-[#EBC302] font-bold text-sm uppercase tracking-widest mb-2">TRANSPARENCIA</p>
+              <h2 className="font-[Montserrat,sans-serif] font-black text-3xl md:text-4xl text-[#173C6E] mb-4">
                 Información abierta para todos
               </h2>
               <p className="text-gray-500 max-w-2xl">
@@ -348,8 +349,8 @@ export default function Confianza() {
                   onClick={() => setTransSub(tab.id)}
                   className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
                     transSub === tab.id
-                      ? "bg-[#1B2A7B] text-white shadow-md"
-                      : "bg-white text-gray-600 border border-gray-200 hover:border-[#1B2A7B] hover:text-[#1B2A7B]"
+                      ? "bg-[#173C6E] text-white shadow-md"
+                      : "bg-white text-gray-600 border border-gray-200 hover:border-[#173C6E] hover:text-[#173C6E]"
                   }`}
                 >
                   {tab.label}
@@ -361,14 +362,14 @@ export default function Confianza() {
             {transSub === "informes" && (
               <div>
                 <div className="flex items-center justify-between mb-5">
-                  <h3 className="font-[Montserrat,sans-serif] font-bold text-xl text-[#1B2A7B]">Informes de Gestión</h3>
+                  <h3 className="font-[Montserrat,sans-serif] font-bold text-xl text-[#173C6E]">Informes de Gestión</h3>
                   <span className="text-xs text-gray-400">{INFORMES.length} documentos disponibles</span>
                 </div>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {INFORMES.map((doc) => (
                     <div
                       key={doc.title}
-                      className="bg-white rounded-2xl p-5 border border-gray-100 hover:border-[#1B2A7B]/30 hover:shadow-md transition-all group cursor-pointer"
+                      className="bg-white rounded-2xl p-5 border border-gray-100 hover:border-[#173C6E]/30 hover:shadow-md transition-all group cursor-pointer"
                     >
                       <div className="flex items-start gap-4">
                         <div className="w-12 h-12 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0">
@@ -377,11 +378,11 @@ export default function Confianza() {
                           </svg>
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="font-semibold text-[#1B2A7B] text-sm leading-snug group-hover:text-[#F5A623] transition-colors">{doc.title}</div>
+                          <div className="font-semibold text-[#173C6E] text-sm leading-snug group-hover:text-[#EBC302] transition-colors">{doc.title}</div>
                           <div className="text-gray-400 text-xs mt-1">{doc.type} · {doc.size}</div>
                         </div>
                       </div>
-                      <button className="mt-4 w-full flex items-center justify-center gap-2 border border-[#1B2A7B]/20 rounded-lg py-2 text-[#1B2A7B] text-xs font-semibold hover:bg-[#1B2A7B] hover:text-white transition-colors">
+                      <button className="mt-4 w-full flex items-center justify-center gap-2 border border-[#173C6E]/20 rounded-lg py-2 text-[#173C6E] text-xs font-semibold hover:bg-[#173C6E] hover:text-white transition-colors">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                         </svg>
@@ -396,19 +397,19 @@ export default function Confianza() {
             {/* Solicitudes y Certificaciones */}
             {transSub === "solicitudes" && (
               <div>
-                <h3 className="font-[Montserrat,sans-serif] font-bold text-xl text-[#1B2A7B] mb-5">Solicitudes y Certificaciones</h3>
+                <h3 className="font-[Montserrat,sans-serif] font-bold text-xl text-[#173C6E] mb-5">Solicitudes y Certificaciones</h3>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                   {CERTIFICACIONES.map((cert) => (
                     <div
                       key={cert.title}
-                      className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#F5A623]/50 hover:shadow-md transition-all group cursor-pointer"
+                      className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#EBC302]/50 hover:shadow-md transition-all group cursor-pointer"
                     >
                       <div className="text-4xl mb-4">{cert.icon}</div>
-                      <h4 className="font-[Montserrat,sans-serif] font-bold text-[#1B2A7B] mb-2 group-hover:text-[#F5A623] transition-colors">
+                      <h4 className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] mb-2 group-hover:text-[#EBC302] transition-colors">
                         {cert.title}
                       </h4>
                       <p className="text-gray-500 text-sm leading-relaxed mb-4">{cert.desc}</p>
-                      <button className="text-[#1B2A7B] text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">
+                      <button className="text-[#173C6E] text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">
                         Solicitar <span>→</span>
                       </button>
                     </div>
@@ -418,7 +419,7 @@ export default function Confianza() {
                   <div className="flex items-start gap-4">
                     <div className="text-2xl">ℹ️</div>
                     <div>
-                      <div className="font-semibold text-[#1B2A7B] mb-1">¿Cómo solicitar un certificado?</div>
+                      <div className="font-semibold text-[#173C6E] mb-1">¿Cómo solicitar un certificado?</div>
                       <p className="text-gray-600 text-sm">
                         Puedes solicitar tus certificados en línea a través de la Oficina Virtual, en cualquiera de nuestras
                         oficinas presentando tu documento de identidad, o llamando a nuestra línea de atención.
@@ -433,7 +434,7 @@ export default function Confianza() {
             {/* Obituarios */}
             {transSub === "obituarios" && (
               <div>
-                <h3 className="font-[Montserrat,sans-serif] font-bold text-xl text-[#1B2A7B] mb-2">Obituarios</h3>
+                <h3 className="font-[Montserrat,sans-serif] font-bold text-xl text-[#173C6E] mb-2">Obituarios</h3>
                 <p className="text-gray-500 text-sm mb-6">COOVITEL rinde homenaje a los asociados que han partido. Nuestras condolencias a sus familias.</p>
                 <div className="space-y-4">
                   {OBITUARIOS.map((obit) => (
@@ -442,8 +443,8 @@ export default function Confianza() {
                         🕊️
                       </div>
                       <div>
-                        <h4 className="font-[Montserrat,sans-serif] font-bold text-[#1B2A7B] text-lg">{obit.nombre}</h4>
-                        <p className="text-[#F5A623] font-semibold text-sm">{obit.empresa}</p>
+                        <h4 className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] text-lg">{obit.nombre}</h4>
+                        <p className="text-[#EBC302] font-semibold text-sm">{obit.empresa}</p>
                         <p className="text-gray-400 text-xs mt-1 mb-2">Falleció el {obit.fecha}</p>
                         <p className="text-gray-600 text-sm italic">{obit.mensaje}</p>
                       </div>
@@ -459,8 +460,8 @@ export default function Confianza() {
         {activeSection === "seguridad" && (
           <div className="space-y-8">
             <div>
-              <p className="text-[#F5A623] font-bold text-sm uppercase tracking-widest mb-2">SEGURIDAD</p>
-              <h2 className="font-[Montserrat,sans-serif] font-black text-3xl md:text-4xl text-[#1B2A7B] mb-4">
+              <p className="text-[#EBC302] font-bold text-sm uppercase tracking-widest mb-2">SEGURIDAD</p>
+              <h2 className="font-[Montserrat,sans-serif] font-black text-3xl md:text-4xl text-[#173C6E] mb-4">
                 Tu seguridad es lo más importante
               </h2>
               <p className="text-gray-500 max-w-2xl">
@@ -476,8 +477,8 @@ export default function Confianza() {
                   onClick={() => setSegSub(tab.id)}
                   className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
                     segSub === tab.id
-                      ? "bg-[#1B2A7B] text-white shadow-md"
-                      : "bg-white text-gray-600 border border-gray-200 hover:border-[#1B2A7B] hover:text-[#1B2A7B]"
+                      ? "bg-[#173C6E] text-white shadow-md"
+                      : "bg-white text-gray-600 border border-gray-200 hover:border-[#173C6E] hover:text-[#173C6E]"
                   }`}
                 >
                   {tab.label}
@@ -500,7 +501,7 @@ export default function Confianza() {
                     </div>
                   </div>
                 </div>
-                <h3 className="font-[Montserrat,sans-serif] font-bold text-xl text-[#1B2A7B]">Tipos de fraude más comunes</h3>
+                <h3 className="font-[Montserrat,sans-serif] font-bold text-xl text-[#173C6E]">Tipos de fraude más comunes</h3>
                 <div className="grid sm:grid-cols-2 gap-5">
                   {[
                     { icon: "📧", title: "Phishing", desc: "Correos falsos que imitan a COOVITEL para robar tus datos. Verifica siempre el dominio @coovitel.com.co antes de hacer clic en cualquier enlace." },
@@ -510,18 +511,18 @@ export default function Confianza() {
                   ].map((item) => (
                     <div key={item.title} className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow">
                       <div className="text-3xl mb-3">{item.icon}</div>
-                      <h4 className="font-[Montserrat,sans-serif] font-bold text-[#1B2A7B] text-lg mb-2">{item.title}</h4>
+                      <h4 className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] text-lg mb-2">{item.title}</h4>
                       <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
                     </div>
                   ))}
                 </div>
-                <div className="bg-[#1B2A7B] rounded-3xl p-8 flex flex-col sm:flex-row items-center gap-6">
+                <div className="bg-[#173C6E] rounded-3xl p-8 flex flex-col sm:flex-row items-center gap-6">
                   <div className="text-5xl">🚨</div>
                   <div className="flex-1 text-center sm:text-left">
                     <h4 className="font-[Montserrat,sans-serif] font-bold text-white text-xl mb-2">¿Fuiste víctima de fraude?</h4>
                     <p className="text-white/70 text-sm">Repórtalo inmediatamente. Entre más rápido actúes, más posibilidades tenemos de recuperar tus recursos.</p>
                   </div>
-                  <button className="bg-[#F5A623] text-white font-bold px-6 py-3 rounded-full hover:bg-[#D4891A] transition-colors flex-shrink-0">
+                  <button onClick={() => { window.location.href = "/contacto" }} className="bg-[#EBC302] text-white font-bold px-6 py-3 rounded-full hover:bg-[#EBC302] transition-colors flex-shrink-0">
                     Reportar ahora
                   </button>
                 </div>
@@ -531,7 +532,7 @@ export default function Confianza() {
             {/* Recomendaciones de seguridad */}
             {segSub === "recomendaciones" && (
               <div className="space-y-6">
-                <h3 className="font-[Montserrat,sans-serif] font-bold text-xl text-[#1B2A7B]">
+                <h3 className="font-[Montserrat,sans-serif] font-bold text-xl text-[#173C6E]">
                   10 recomendaciones para estar seguro
                 </h3>
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -548,9 +549,9 @@ export default function Confianza() {
                     { n: "10", title: "Mantén datos actualizados", desc: "Teléfono y correo actualizados garantizan que recibas alertas oportunas." },
                   ].map((item) => (
                     <div key={item.n} className="bg-white rounded-2xl p-5 border border-gray-100 flex gap-4 items-start hover:shadow-md transition-shadow">
-                      <div className="font-[Montserrat,sans-serif] font-black text-2xl text-[#F5A623]/30 leading-none flex-shrink-0 w-10">{item.n}</div>
+                      <div className="font-[Montserrat,sans-serif] font-black text-2xl text-[#EBC302]/30 leading-none flex-shrink-0 w-10">{item.n}</div>
                       <div>
-                        <div className="font-[Montserrat,sans-serif] font-bold text-[#1B2A7B] mb-1">{item.title}</div>
+                        <div className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] mb-1">{item.title}</div>
                         <p className="text-gray-500 text-sm">{item.desc}</p>
                       </div>
                     </div>
@@ -564,7 +565,7 @@ export default function Confianza() {
               <div className="space-y-6">
                 <div className="grid lg:grid-cols-2 gap-8">
                   <div>
-                    <h3 className="font-[Montserrat,sans-serif] font-bold text-xl text-[#1B2A7B] mb-4">
+                    <h3 className="font-[Montserrat,sans-serif] font-bold text-xl text-[#173C6E] mb-4">
                       Protección de Datos Personales
                     </h3>
                     <p className="text-gray-600 text-sm leading-relaxed mb-4">
@@ -584,14 +585,14 @@ export default function Confianza() {
                       { title: "Canal de atención", desc: "protecciondatos@coovitel.com.co · Línea 601 741 5000" },
                     ].map((item) => (
                       <div key={item.title} className="bg-white rounded-xl p-4 border border-gray-100">
-                        <div className="font-semibold text-[#1B2A7B] text-sm mb-1">{item.title}</div>
+                        <div className="font-semibold text-[#173C6E] text-sm mb-1">{item.title}</div>
                         <p className="text-gray-500 text-sm">{item.desc}</p>
                       </div>
                     ))}
                   </div>
                 </div>
                 <div className="bg-white rounded-2xl p-6 border border-gray-100">
-                  <h4 className="font-[Montserrat,sans-serif] font-bold text-[#1B2A7B] mb-4">Medidas técnicas implementadas</h4>
+                  <h4 className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] mb-4">Medidas técnicas implementadas</h4>
                   <div className="grid sm:grid-cols-3 gap-4">
                     {[
                       { icon: "🔒", label: "Cifrado SSL/TLS en todos los canales digitales" },
@@ -629,7 +630,7 @@ export default function Confianza() {
 
                 <div className="grid lg:grid-cols-2 gap-6">
                   <div className="bg-white rounded-2xl p-6 border border-gray-100">
-                    <h4 className="font-[Montserrat,sans-serif] font-bold text-[#1B2A7B] text-lg mb-4">¿Cómo nos verificamos?</h4>
+                    <h4 className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] text-lg mb-4">¿Cómo nos verificamos?</h4>
                     <ul className="space-y-3">
                       {[
                         "Verificación biométrica para trámites presenciales de alto valor",
@@ -639,7 +640,7 @@ export default function Confianza() {
                         "Validación en listas restrictivas (CIFIN, Transunion) en cada solicitud",
                       ].map((item) => (
                         <li key={item} className="flex items-start gap-3 text-gray-600 text-sm">
-                          <div className="w-5 h-5 rounded-full bg-[#1B2A7B] flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <div className="w-5 h-5 rounded-full bg-[#173C6E] flex items-center justify-center flex-shrink-0 mt-0.5">
                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                             </svg>
@@ -650,7 +651,7 @@ export default function Confianza() {
                     </ul>
                   </div>
                   <div className="bg-white rounded-2xl p-6 border border-gray-100">
-                    <h4 className="font-[Montserrat,sans-serif] font-bold text-[#1B2A7B] text-lg mb-4">Señales de alerta</h4>
+                    <h4 className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] text-lg mb-4">Señales de alerta</h4>
                     <ul className="space-y-3">
                       {[
                         "Recibes documentos de crédito que no solicitaste",
@@ -670,7 +671,7 @@ export default function Confianza() {
                   </div>
                 </div>
 
-                <div className="bg-[#1B2A7B] rounded-3xl p-8 text-center">
+                <div className="bg-[#173C6E] rounded-3xl p-8 text-center">
                   <h4 className="font-[Montserrat,sans-serif] font-bold text-white text-2xl mb-3">
                     ¿Sospechas de suplantación?
                   </h4>
@@ -679,10 +680,10 @@ export default function Confianza() {
                     las 24 horas para atender tu caso.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                    <button className="bg-[#F5A623] text-white font-bold px-8 py-3 rounded-full hover:bg-[#D4891A] transition-colors">
+                    <button className="bg-[#EBC302] text-white font-bold px-8 py-3 rounded-full hover:bg-[#EBC302] transition-colors">
                       Bloquear cuenta
                     </button>
-                    <button className="border-2 border-white text-white font-semibold px-8 py-3 rounded-full hover:bg-white hover:text-[#1B2A7B] transition-colors">
+                    <button className="border-2 border-white text-white font-semibold px-8 py-3 rounded-full hover:bg-white hover:text-[#173C6E] transition-colors">
                       601 741 5000
                     </button>
                   </div>
@@ -697,21 +698,21 @@ export default function Confianza() {
           <div className="space-y-8">
             <div className="grid lg:grid-cols-3 gap-10">
               <div className="lg:col-span-1">
-                <p className="text-[#F5A623] font-bold text-sm uppercase tracking-widest mb-3">PREGUNTAS FRECUENTES</p>
-                <h2 className="font-[Montserrat,sans-serif] font-black text-3xl text-[#1B2A7B] leading-tight mb-4">
+                <p className="text-[#EBC302] font-bold text-sm uppercase tracking-widest mb-3">PREGUNTAS FRECUENTES</p>
+                <h2 className="font-[Montserrat,sans-serif] font-black text-3xl text-[#173C6E] leading-tight mb-4">
                   Derechos y Deberes del Asociado
                 </h2>
                 <p className="text-gray-500 text-sm leading-relaxed mb-6">
                   Como asociado de COOVITEL tienes derechos garantizados y deberes que contribuyen al bienestar colectivo.
                   Aquí respondemos las preguntas más comunes.
                 </p>
-                <div className="bg-[#1B2A7B] rounded-2xl p-6 text-white">
+                <div className="bg-[#173C6E] rounded-2xl p-6 text-white">
                   <div className="text-3xl mb-3">💬</div>
                   <h4 className="font-[Montserrat,sans-serif] font-bold text-lg mb-2">¿No encuentras tu respuesta?</h4>
                   <p className="text-white/70 text-sm mb-4">Nuestros asesores están listos para ayudarte en cualquier momento.</p>
-                  <button className="bg-[#F5A623] text-white font-bold px-5 py-2.5 rounded-full text-sm hover:bg-[#D4891A] transition-colors w-full">
+                  <a href="https://api.whatsapp.com/send/?phone=573160189853&text&type=phone_number&app_absent=0" target="_blank" rel="noreferrer" className="block text-center bg-[#EBC302] text-white font-bold px-5 py-2.5 rounded-full text-sm hover:bg-[#EBC302] transition-colors w-full">
                     Hablar con un asesor
-                  </button>
+                  </a>
                 </div>
               </div>
 
@@ -720,18 +721,18 @@ export default function Confianza() {
                   <div
                     key={i}
                     className={`bg-white rounded-2xl border transition-all overflow-hidden ${
-                      openFaq === i ? "border-[#1B2A7B]/30 shadow-md" : "border-gray-100 hover:border-gray-200"
+                      openFaq === i ? "border-[#173C6E]/30 shadow-md" : "border-gray-100 hover:border-gray-200"
                     }`}
                   >
                     <button
                       className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
                       onClick={() => setOpenFaq(openFaq === i ? null : i)}
                     >
-                      <span className="font-[Montserrat,sans-serif] font-bold text-[#1B2A7B] text-sm leading-snug">
+                      <span className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] text-sm leading-snug">
                         {item.q}
                       </span>
                       <div className={`w-7 h-7 rounded-full flex-shrink-0 flex items-center justify-center transition-all ${
-                        openFaq === i ? "bg-[#F5A623]" : "bg-gray-100"
+                        openFaq === i ? "bg-[#EBC302]" : "bg-gray-100"
                       }`}>
                         <svg
                           className={`w-4 h-4 transition-transform ${openFaq === i ? "rotate-180 text-white" : "text-gray-500"}`}
@@ -754,7 +755,7 @@ export default function Confianza() {
             </div>
 
             {/* Estatutos banner */}
-            <div className="bg-gradient-to-r from-[#1B2A7B] to-[#2438A0] rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
+            <div className="bg-gradient-to-r from-[#173C6E] to-[#27548F] rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
               <div className="flex-1 text-center md:text-left">
                 <h3 className="font-[Montserrat,sans-serif] font-black text-white text-2xl md:text-3xl mb-3">
                   Conoce el Estatuto Cooperativo
@@ -765,15 +766,15 @@ export default function Confianza() {
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
-                <button className="bg-[#F5A623] text-white font-bold px-7 py-3 rounded-full hover:bg-[#D4891A] transition-colors flex items-center gap-2">
+                <button className="bg-[#EBC302] text-white font-bold px-7 py-3 rounded-full hover:bg-[#EBC302] transition-colors flex items-center gap-2">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
                   Descargar Estatuto
                 </button>
-                <button className="border-2 border-white text-white font-semibold px-7 py-3 rounded-full hover:bg-white hover:text-[#1B2A7B] transition-colors">
+                <a href="/quienes-somos?section=estatutos" className="border-2 border-white text-white font-semibold px-7 py-3 rounded-full hover:bg-white hover:text-[#173C6E] transition-colors">
                   Ver Reglamentos
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -781,12 +782,12 @@ export default function Confianza() {
       </main>
 
       {/* ── FOOTER ── */}
-      <footer className="bg-[#111C5A] mt-16">
+      <footer className="bg-[#131739] mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-[#F5A623] rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-[#EBC302] rounded-lg flex items-center justify-center">
                   <span className="text-white font-black text-xs font-[Montserrat,sans-serif]">CV</span>
                 </div>
                 <span className="text-white font-black text-lg font-[Montserrat,sans-serif]">COOVITEL</span>
@@ -799,7 +800,7 @@ export default function Confianza() {
               <h5 className="text-white font-bold text-sm mb-4 font-[Montserrat,sans-serif]">Productos</h5>
               <ul className="space-y-2 text-white/50 text-sm">
                 {["Crédito Propósito", "Ahorro Propósito", "CDAT", "Libranza"].map((p) => (
-                  <li key={p}><a href="#" className="hover:text-[#F5A623] transition-colors">{p}</a></li>
+                  <li key={p}><a href="#" className="hover:text-[#EBC302] transition-colors">{p}</a></li>
                 ))}
               </ul>
             </div>
@@ -807,7 +808,7 @@ export default function Confianza() {
               <h5 className="text-white font-bold text-sm mb-4 font-[Montserrat,sans-serif]">Institucional</h5>
               <ul className="space-y-2 text-white/50 text-sm">
                 {["Quiénes Somos", "Confianza", "Beneficios", "Trabaja con nosotros"].map((p) => (
-                  <li key={p}><a href="#" className="hover:text-[#F5A623] transition-colors">{p}</a></li>
+                  <li key={p}><a href="#" className="hover:text-[#EBC302] transition-colors">{p}</a></li>
                 ))}
               </ul>
             </div>

@@ -1,6 +1,7 @@
 import Asociate from './pages/Asociate'
 import Beneficios from './pages/Beneficios'
 import Confianza from './pages/Confianza'
+import Contacto from './pages/Contacto'
 import Home from './pages/Home'
 import Productos from './pages/Productos'
 import QuienesSomos from './pages/QuienesSomos'
@@ -11,6 +12,7 @@ const pages = {
   '/asociate': { component: Asociate, name: 'asociate' },
   '/beneficios': { component: Beneficios, name: 'beneficios' },
   '/confianza': { component: Confianza, name: 'confianza' },
+  '/contacto': { component: Contacto, name: 'contacto' },
   '/productos': { component: Productos, name: 'productos' },
   '/quienes-somos': { component: QuienesSomos, name: 'quienes-somos' },
 } as const

@@ -16,12 +16,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 :root {
-  --coovitel-blue: #1a1aaf;
-  --coovitel-navy: #0e0e5f;
-  --coovitel-dark: #090950;
-  --coovitel-gold: #f5a623;
-  --coovitel-gold-dark: #e09510;
-  --coovitel-light: #f0f2f8;
+  --coovitel-blue: #173C6E;
+  --coovitel-navy: #131739;
+  --coovitel-dark: #131739;
+  --coovitel-gold: #EBC302;
+  --coovitel-gold-dark: #EBC302;
+  --coovitel-light: #F7F0FF;
 }
 
 .scrollbar-hide::-webkit-scrollbar { display: none; }

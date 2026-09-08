@@ -16,18 +16,18 @@ body,
 }
 
 @theme {
-  --color-navy: #1B2A7B;
-  --color-navy-dark: #111C5A;
-  --color-navy-light: #2438A0;
-  --color-gold: #F5A623;
-  --color-gold-dark: #D4891A;
-  --color-gray-bg: #F0F2F7;
+  --color-navy: #173C6E;
+  --color-navy-dark: #131739;
+  --color-navy-light: #27548F;
+  --color-gold: #EBC302;
+  --color-gold-dark: #EBC302;
+  --color-gray-bg: #F7F0FF;
   --font-display: 'Montserrat', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #F0F2F7;
-  color: #1a1a2e;
+  background-color: #F7F0FF;
+  color: #1A2842;
 }

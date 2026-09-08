@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
 /* ─── Brand colours ─────────────────────────────────────── */
-const BLUE = '#1B14B8'
-const NAVY = '#0D0A2E'
-const YELLOW = '#F5A623'
+const BLUE = '#173C6E'
+const NAVY = '#131739'
+const YELLOW = '#EBC302'
 
 /* ─── Types ──────────────────────────────────────────────── */
 type Tab = 'quienes' | 'pasos' | 'faq' | 'formulario'
@@ -205,20 +205,13 @@ function Navbar() {
 /* ─── Hero ────────────────────────────────────────────────── */
 function HeroSection() {
   return (
-    <section className="relative pt-24 pb-0 overflow-hidden" style={{ background: `linear-gradient(135deg, #0D0A2E 0%, ${BLUE} 60%, #2820D4 100%)` }}>
+    <section className="relative pt-24 pb-0 overflow-hidden" style={{ background: `linear-gradient(135deg, #131739 0%, ${BLUE} 60%, #27548F 100%)` }}>
       {/* Decorative circles */}
       <div className="absolute top-10 right-8 w-64 h-64 rounded-full opacity-10" style={{ background: YELLOW }} />
-      <div className="absolute bottom-12 left-4 w-44 h-44 rounded-full opacity-8" style={{ background: '#4A3EE8' }} />
-      <div className="absolute top-20 right-1/3 w-20 h-20 rounded-full opacity-20" style={{ background: '#7B70F0' }} />
+      <div className="absolute bottom-12 left-4 w-44 h-44 rounded-full opacity-8" style={{ background: '#27548F' }} />
+      <div className="absolute top-20 right-1/3 w-20 h-20 rounded-full opacity-20" style={{ background: '#81A1DB' }} />
 
       <div className="relative max-w-6xl mx-auto px-6 md:px-12 pt-8 pb-20">
-        {/* Breadcrumb */}
-        <nav className="flex items-center gap-1.5 text-white/50 text-sm mb-8">
-          <a href="#" className="hover:text-white/80 transition-colors">Inicio</a>
-          <span className="text-white/30">›</span>
-          <span className="text-white/90 font-medium">Asóciate</span>
-        </nav>
-
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <div className="mb-5">
@@ -281,7 +274,7 @@ function TabNav({ active, setActive }: { active: Tab; setActive: (t: Tab) => voi
   ]
 
   return (
-    <div className="sticky top-[72px] z-40 shadow-sm" style={{ background: 'white', borderBottom: '1px solid #E8E9F4' }}>
+    <div className="sticky top-[72px] z-40 shadow-sm" style={{ background: 'white', borderBottom: '1px solid #CFE0FF' }}>
       <div className="max-w-6xl mx-auto px-4 md:px-12">
 
         {/* ── Mobile: 2×2 grid ── */}
@@ -294,9 +287,9 @@ function TabNav({ active, setActive }: { active: Tab; setActive: (t: Tab) => voi
                 onClick={() => setActive(t.id)}
                 className="flex items-center gap-2.5 px-4 py-3 rounded-xl font-semibold text-sm transition-all text-left"
                 style={{
-                  background: isActive ? BLUE : '#F5F6FA',
-                  color: isActive ? 'white' : '#6B7280',
-                  border: `1.5px solid ${isActive ? BLUE : '#E8E9F4'}`,
+                  background: isActive ? BLUE : '#F7F0FF',
+                  color: isActive ? 'white' : '#1A2842',
+                  border: `1.5px solid ${isActive ? BLUE : '#CFE0FF'}`,
                 }}
               >
                 <span className="text-xl leading-none flex-shrink-0">{t.icon}</span>
@@ -316,7 +309,7 @@ function TabNav({ active, setActive }: { active: Tab; setActive: (t: Tab) => voi
                 onClick={() => setActive(t.id)}
                 className="flex items-center gap-2 px-6 py-4 text-sm font-semibold whitespace-nowrap transition-all border-b-2"
                 style={{
-                  color: isActive ? BLUE : '#6B7280',
+                  color: isActive ? BLUE : '#1A2842',
                   borderBottomColor: isActive ? BLUE : 'transparent',
                   background: 'transparent',
                 }}
@@ -354,7 +347,7 @@ function QuienesPuedenSection() {
             <div
               key={title}
               className="rounded-2xl p-6 group hover:shadow-lg transition-all border"
-              style={{ borderColor: '#E8E9F4', background: '#FAFBFF' }}
+              style={{ borderColor: '#CFE0FF', background: '#F7F0FF' }}
             >
               <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4" style={{ background: `${BLUE}15` }}>
                 {icon}
@@ -367,7 +360,7 @@ function QuienesPuedenSection() {
       </section>
 
       {/* Costos de afiliación */}
-      <section className="py-16" style={{ background: '#F5F6FA' }}>
+      <section className="py-16" style={{ background: '#F7F0FF' }}>
         <div className="max-w-6xl mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -393,13 +386,13 @@ function QuienesPuedenSection() {
                   className="flex items-center justify-between p-5 rounded-2xl"
                   style={{
                     background: highlight ? BLUE : 'white',
-                    border: highlight ? 'none' : '1.5px solid #E8E9F4',
+                    border: highlight ? 'none' : '1.5px solid #CFE0FF',
                     boxShadow: highlight ? '0 8px 32px rgba(27,20,184,0.25)' : undefined,
                   }}
                 >
                   <div>
                     <p className="font-semibold text-sm" style={{ color: highlight ? 'white' : NAVY }}>{concept}</p>
-                    <p className="text-xs mt-0.5" style={{ color: highlight ? 'rgba(255,255,255,0.65)' : '#9CA3AF' }}>{note}</p>
+                    <p className="text-xs mt-0.5" style={{ color: highlight ? 'rgba(255,255,255,0.65)' : '#81A1DB' }}>{note}</p>
                   </div>
                   <span className="text-xl font-extrabold" style={{ color: highlight ? YELLOW : BLUE }}>{amount}</span>
                 </div>
@@ -428,8 +421,8 @@ function QuienesPuedenSection() {
                 key={type}
                 className="rounded-2xl p-7 relative overflow-hidden"
                 style={{
-                  background: i === 0 ? BLUE : '#F5F6FA',
-                  border: i === 0 ? 'none' : '1.5px solid #E8E9F4',
+                  background: i === 0 ? BLUE : '#F7F0FF',
+                  border: i === 0 ? 'none' : '1.5px solid #CFE0FF',
                 }}
               >
                 {i === 0 && (
@@ -443,7 +436,7 @@ function QuienesPuedenSection() {
                 </span>
                 <p className="font-bold text-sm mb-1" style={{ color: i === 0 ? 'white' : NAVY }}>{type}</p>
                 <p className="text-2xl font-extrabold mb-3" style={{ color: i === 0 ? YELLOW : BLUE }}>{amount}</p>
-                <p className="text-xs leading-relaxed" style={{ color: i === 0 ? 'rgba(255,255,255,0.65)' : '#6B7280' }}>{desc}</p>
+                <p className="text-xs leading-relaxed" style={{ color: i === 0 ? 'rgba(255,255,255,0.65)' : '#1A2842' }}>{desc}</p>
               </div>
             ))}
           </div>
@@ -559,7 +552,7 @@ function FAQSection() {
             <div
               key={i}
               className="rounded-2xl overflow-hidden transition-all"
-              style={{ border: `1.5px solid ${open === i ? BLUE + '40' : '#E8E9F4'}`, background: open === i ? `${BLUE}05` : 'white' }}
+              style={{ border: `1.5px solid ${open === i ? BLUE + '40' : '#CFE0FF'}`, background: open === i ? `${BLUE}05` : 'white' }}
             >
               <button
                 className="w-full flex items-center justify-between px-6 py-5 text-left gap-4"
@@ -571,12 +564,12 @@ function FAQSection() {
                 <div
                   className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-transform"
                   style={{
-                    background: open === i ? BLUE : '#F5F6FA',
+                    background: open === i ? BLUE : '#F7F0FF',
                     transform: open === i ? 'rotate(45deg)' : 'none',
                   }}
                 >
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M6 1v10M1 6h10" stroke={open === i ? 'white' : '#6B7280'} strokeWidth="1.8" strokeLinecap="round" />
+                    <path d="M6 1v10M1 6h10" stroke={open === i ? 'white' : '#1A2842'} strokeWidth="1.8" strokeLinecap="round" />
                   </svg>
                 </div>
               </button>
@@ -595,7 +588,7 @@ function FAQSection() {
           style={{ background: `linear-gradient(135deg, ${NAVY} 0%, ${BLUE} 100%)` }}
         >
           <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full opacity-10" style={{ background: YELLOW }} />
-          <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full opacity-10" style={{ background: '#7B70F0' }} />
+          <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full opacity-10" style={{ background: '#81A1DB' }} />
           <p className="text-white/60 text-sm mb-1">¿Tienes más preguntas?</p>
           <h3 className="text-2xl font-extrabold text-white mb-2">Habla con un asesor COOVITEL</h3>
           <p className="text-white/60 text-sm mb-6">Atención personalizada de lunes a viernes de 8am a 6pm</p>
@@ -675,9 +668,9 @@ function FormularioSection() {
       </section>
 
       {/* Form */}
-      <section className="py-16" style={{ background: '#F5F6FA' }}>
+      <section className="py-16" style={{ background: '#F7F0FF' }}>
         <div className="max-w-2xl mx-auto px-6">
-          <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-8 md:p-10 shadow-sm" style={{ border: '1.5px solid #E8E9F4' }}>
+          <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-8 md:p-10 shadow-sm" style={{ border: '1.5px solid #CFE0FF' }}>
             <h3 className="font-extrabold text-lg mb-6" style={{ color: NAVY }}>Datos personales</h3>
 
             {/* Tipo y número doc */}
@@ -821,7 +814,7 @@ function FormularioSection() {
                 />
                 <div
                   className="w-5 h-5 rounded flex items-center justify-center border-2 transition-all"
-                  style={{ borderColor: form.acepta ? BLUE : '#D1D5DB', background: form.acepta ? BLUE : 'white' }}
+                  style={{ borderColor: form.acepta ? BLUE : '#C9DCFF', background: form.acepta ? BLUE : 'white' }}
                 >
                   {form.acepta && (
                     <svg width="10" height="10" viewBox="0 0 10 10" fill="none">

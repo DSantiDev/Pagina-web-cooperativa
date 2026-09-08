@@ -136,7 +136,7 @@ function StatCard({ value, suffix, label, active, delay }: {
         transitionDelay: `${delay}ms`,
       }}
     >
-      <p className="font-black mb-1" style={{ fontSize: 'clamp(2rem,4vw,3rem)', color: '#1B2A8F', lineHeight: 1.1 }}>
+      <p className="font-black mb-1" style={{ fontSize: 'clamp(2rem,4vw,3rem)', color: '#173C6E', lineHeight: 1.1 }}>
         {value >= 1000 ? count.toLocaleString('es-CO') : count}{suffix}
       </p>
       <p className="text-sm text-gray-500 font-medium leading-tight">{label}</p>
@@ -151,7 +151,7 @@ function ProductCard({ name, icon, desc, delay, visible, showLearnMore = true }:
     <div
       className="group relative overflow-hidden bg-white rounded-2xl p-5 cursor-default"
       style={{
-        border: '1.5px solid #EDE8FF',
+        border: '1.5px solid #CFE0FF',
         boxShadow: '0 2px 12px rgba(27,42,143,0.06)',
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0) scale(1)' : 'translateY(36px) scale(0.94)',
@@ -161,13 +161,13 @@ function ProductCard({ name, icon, desc, delay, visible, showLearnMore = true }:
       onMouseEnter={e => {
         const el = e.currentTarget
         el.style.boxShadow = '0 12px 36px rgba(27,42,143,0.14)'
-        el.style.borderColor = '#C8B8FF'
+        el.style.borderColor = '#C9DCFF'
         el.style.transform = 'translateY(-4px) scale(1)'
       }}
       onMouseLeave={e => {
         const el = e.currentTarget
         el.style.boxShadow = '0 2px 12px rgba(27,42,143,0.06)'
-        el.style.borderColor = '#EDE8FF'
+        el.style.borderColor = '#CFE0FF'
         el.style.transform = 'translateY(0) scale(1)'
       }}
     >
@@ -177,14 +177,14 @@ function ProductCard({ name, icon, desc, delay, visible, showLearnMore = true }:
       />
       <div className="relative">
         <div className="w-11 h-11 rounded-xl flex items-center justify-center text-xl mb-4"
-          style={{ backgroundColor: '#EDE8FF', transition: 'background-color 0.3s, transform 0.3s' }}
+          style={{ backgroundColor: '#CFE0FF', transition: 'background-color 0.3s, transform 0.3s' }}
         >
           {icon}
         </div>
-        <h3 className="font-bold text-sm mb-2 leading-snug" style={{ color: '#0A1554' }}>{name}</h3>
+        <h3 className="font-bold text-sm mb-2 leading-snug" style={{ color: '#131739' }}>{name}</h3>
         <p className="text-xs text-gray-400 leading-relaxed">{desc}</p>
         {showLearnMore && (
-          <p className="mt-4 text-xs font-bold" style={{ color: '#E8A020' }}>Conocer más →</p>
+          <p className="mt-4 text-xs font-bold" style={{ color: '#EBC302' }}>Conocer más →</p>
         )}
       </div>
     </div>
@@ -197,7 +197,7 @@ const socialLinks = [
   {
     label: 'WhatsApp',
     href: 'https://wa.me/573160189853?text=',
-    color: '#25D366',
+    color: '#1B65A6',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -207,7 +207,7 @@ const socialLinks = [
   {
     label: 'LinkedIn',
     href: 'https://co.linkedin.com/company/cooviteloficial',
-    color: '#0A66C2',
+    color: '#1B65A6',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -217,7 +217,7 @@ const socialLinks = [
   {
     label: 'Instagram',
     href: 'https://www.instagram.com/coovitel_oficial/?hl=es',
-    color: '#E1306C',
+    color: '#A90072',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
@@ -227,7 +227,7 @@ const socialLinks = [
   {
     label: 'Facebook',
     href: 'https://www.facebook.com/coovitelcol/?locale=es_LA',
-    color: '#1877F2',
+    color: '#1B65A6',
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -261,7 +261,7 @@ function SocialDock() {
           width: 52,
           height: 52,
           borderRadius: '50%',
-          background: open ? '#1B2A8F' : 'rgba(10,21,84,0.55)',
+          background: open ? '#173C6E' : 'rgba(10,21,84,0.55)',
           backdropFilter: 'blur(10px)',
           border: 'none',
           cursor: 'default',
@@ -411,7 +411,7 @@ function HeroBannerCarousel() {
                   width: i === current ? 18 : 6,
                   height: 6,
                   borderRadius: 3,
-                  backgroundColor: i === current ? '#E8A020' : 'rgba(255,255,255,0.4)',
+                  backgroundColor: i === current ? '#EBC302' : 'rgba(255,255,255,0.4)',
                   border: 'none',
                   cursor: 'pointer',
                   padding: 0,
@@ -426,20 +426,20 @@ function HeroBannerCarousel() {
         <div
           className="absolute -top-6 -left-8 bg-white rounded-2xl px-5 py-3.5 shadow-2xl"
           style={{
-            border: '1px solid #EDE8FF',
+            border: '1px solid #CFE0FF',
             opacity: fading ? 0 : 1,
             transition: 'opacity 0.32s ease',
           }}
         >
           <p className="text-xs text-gray-400 font-medium">{s.topLeft.label}</p>
-          <p className="font-black text-2xl" style={{ color: '#1B2A8F' }}>{s.topLeft.value}</p>
+          <p className="font-black text-2xl" style={{ color: '#173C6E' }}>{s.topLeft.value}</p>
         </div>
 
         {/* Floating card: bottom-right */}
         <div
           className="absolute -bottom-6 -right-8 rounded-2xl px-5 py-3.5 shadow-2xl"
           style={{
-            backgroundColor: '#E8A020',
+            backgroundColor: '#EBC302',
             opacity: fading ? 0 : 1,
             transition: 'opacity 0.32s ease',
           }}
@@ -450,14 +450,14 @@ function HeroBannerCarousel() {
 
         {/* ISO pill — fixed across slides */}
         <div className="absolute top-1/2 -right-12 -translate-y-1/2 bg-white rounded-xl px-4 py-2.5 shadow-xl"
-          style={{ border: '1px solid #EDE8FF' }}>
-          <p className="text-xs font-bold" style={{ color: '#1B2A8F' }}>{s.midRight.top}</p>
+          style={{ border: '1px solid #CFE0FF' }}>
+          <p className="text-xs font-bold" style={{ color: '#173C6E' }}>{s.midRight.top}</p>
           <p className="text-[10px] text-gray-400">{s.midRight.bottom}</p>
         </div>
 
         {/* Value & Risk pill */}
         <div className="absolute top-8 -right-14 rounded-xl px-3 py-1.5 shadow-lg"
-          style={{ backgroundColor: '#0A1554' }}>
+          style={{ backgroundColor: '#131739' }}>
           <p className="text-xs font-bold text-white">{s.topRight}</p>
         </div>
       </div>
@@ -508,7 +508,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="min-h-screen antialiased" style={{ fontFamily: "'Poppins', sans-serif", backgroundColor: '#F7F7FB' }}>
+    <div className="min-h-screen antialiased" style={{ fontFamily: "'Poppins', sans-serif", backgroundColor: '#f7f0ff' }}>
 
       {/* Scroll progress bar */}
       <div id="scroll-bar" style={{ width: `${scrollPct}%` }} />
@@ -521,8 +521,8 @@ export default function Home() {
           <div className="flex items-center">
             <a href="/" aria-label="COOVITEL - Inicio" className="flex items-center gap-2 no-underline">
               <span className="w-9 h-9 rounded-lg flex items-center justify-center font-black text-xs tracking-wider"
-                style={{ backgroundColor: '#E8A020', color: '#0A1554' }}>CV</span>
-              <span className="font-black text-xl tracking-tight" style={{ color: scrolled ? '#1B2A8F' : '#fff' }}>COOVITEL</span>
+                style={{ backgroundColor: '#EBC302', color: '#131739' }}>CV</span>
+              <span className="font-black text-xl tracking-tight" style={{ color: scrolled ? '#173C6E' : '#F7F0FF' }}>COOVITEL</span>
             </a>
           </div>
 
@@ -532,14 +532,14 @@ export default function Home() {
                 <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer"
                   className={`text-sm font-semibold transition-all duration-200 px-3 py-1 rounded-full border ${
                     scrolled
-                      ? 'text-[#1B2A8F] border-[#1B2A8F]/40 hover:border-[#1B2A8F] hover:bg-[#1B2A8F]/5'
+                      ? 'text-[#173C6E] border-[#173C6E]/40 hover:border-[#173C6E] hover:bg-[#173C6E]/5'
                       : 'text-white border-white/40 hover:border-white hover:bg-white/10'
                   }`}>
                   {l.label}
                 </a>
               ) : (
                 <a key={l.href} href={l.href}
-                  className={`text-sm font-medium transition-all duration-200 hover:text-[#E8A020] ${
+                  className={`text-sm font-medium transition-all duration-200 hover:text-[#EBC302] ${
                     scrolled ? 'text-gray-600' : 'text-white/80'
                   }`}>
                   {l.label}
@@ -548,7 +548,7 @@ export default function Home() {
             ))}
             <a href="#contacto"
               className="px-5 py-2 rounded-full text-sm font-bold text-white transition-all duration-200 hover:scale-105 hover:shadow-lg"
-              style={{ backgroundColor: '#E8A020' }}>
+              style={{ backgroundColor: '#EBC302' }}>
               Asóciate
             </a>
           </div>
@@ -556,7 +556,7 @@ export default function Home() {
           <button className="md:hidden p-2 flex flex-col gap-1.5" onClick={() => setMobileOpen(!mobileOpen)}>
             {[0,1,2].map(i => (
               <span key={i} className="block w-5 h-0.5 rounded transition-colors"
-                style={{ backgroundColor: scrolled ? '#0A1554' : 'white' }} />
+                style={{ backgroundColor: scrolled ? '#131739' : 'white' }} />
             ))}
           </button>
         </div>
@@ -566,13 +566,13 @@ export default function Home() {
             {navLinks.map(l => (
               <a key={l.href} href={l.href} onClick={() => setMobileOpen(false)}
                 {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                className={`block text-sm font-medium py-1 ${l.external ? 'text-[#1B2A8F] font-semibold' : 'text-gray-700 hover:text-[#1B2A8F]'}`}>
+                className={`block text-sm font-medium py-1 ${l.external ? 'text-[#173C6E] font-semibold' : 'text-gray-700 hover:text-[#173C6E]'}`}>
                 {l.label}
               </a>
             ))}
             <a href="#contacto" onClick={() => setMobileOpen(false)}
               className="block w-full text-center py-3 rounded-full text-sm font-bold text-white"
-              style={{ backgroundColor: '#1B2A8F' }}>
+              style={{ backgroundColor: '#173C6E' }}>
               Asóciate
             </a>
           </div>
@@ -625,7 +625,7 @@ export default function Home() {
           </svg>
           {/* Gold accent top-left */}
           <div className="absolute top-24 left-12 w-24 h-24 rounded-full opacity-20"
-            style={{ background: 'radial-gradient(circle, #E8A020 0%, transparent 70%)' }} />
+            style={{ background: 'radial-gradient(circle, #EBC302 0%, transparent 70%)' }} />
         </div>
 
         {/* Content */}
@@ -634,7 +634,7 @@ export default function Home() {
           {/* Left: Copy */}
           <div>
             <div className="hero-enter hero-enter-1 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8"
-              style={{ backgroundColor: 'rgba(232,160,32,0.15)', color: '#E8A020', border: '1px solid rgba(232,160,32,0.3)' }}>
+              style={{ backgroundColor: 'rgba(232,160,32,0.15)', color: '#EBC302', border: '1px solid rgba(232,160,32,0.3)' }}>
               ✦ Cooperativa · 64 años de confianza
             </div>
 
@@ -642,10 +642,10 @@ export default function Home() {
               style={{ fontSize: 'clamp(2.6rem,5.5vw,4rem)' }}>
               Más de una razón<br />para ser{' '}
               <span className="relative inline-block">
-                <span style={{ color: '#E8A020' }}>nuestro asociado</span>
+                <span style={{ color: '#EBC302' }}>nuestro asociado</span>
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 380 10" fill="none" style={{ height: '8px' }}>
                   <path className="underline-path" d="M3 6 C70 1, 150 9, 230 5 C290 2, 340 8, 377 4"
-                    stroke="#E8A020" strokeWidth="3" strokeLinecap="round" fill="none" />
+                    stroke="#EBC302" strokeWidth="3" strokeLinecap="round" fill="none" />
                 </svg>
               </span>
             </h1>
@@ -655,12 +655,12 @@ export default function Home() {
             </p>
 
             <div className="hero-enter hero-enter-4 flex flex-wrap gap-4 mb-14">
-              <a href="#productos"
+              <a href="/productos"
                 className="px-7 py-3.5 rounded-full font-bold text-sm transition-all duration-200 hover:scale-105 hover:shadow-xl"
-                style={{ backgroundColor: '#E8A020', color: '#0A1554' }}>
+                style={{ backgroundColor: '#EBC302', color: '#131739' }}>
                 Conoce nuestros productos
               </a>
-              <a href="#contacto"
+              <a href="/asociate"
                 className="px-7 py-3.5 rounded-full font-bold text-sm text-white transition-all duration-200 hover:bg-white/10"
                 style={{ border: '1.5px solid rgba(255,255,255,0.25)' }}>
                 Asóciate hoy →
@@ -691,7 +691,7 @@ export default function Home() {
         {/* Section transition wave */}
         <div className="absolute bottom-0 inset-x-0 leading-none">
           <svg viewBox="0 0 1440 90" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0 90 L0 45 Q180 0 360 35 Q540 70 720 40 Q900 10 1080 45 Q1260 80 1440 50 L1440 90 Z" fill="#F7F7FB" />
+            <path d="M0 90 L0 45 Q180 0 360 35 Q540 70 720 40 Q900 10 1080 45 Q1260 80 1440 50 L1440 90 Z" fill="#f7f0ff" />
           </svg>
         </div>
       </section>
@@ -700,7 +700,7 @@ export default function Home() {
       <section
         ref={statsSection.ref as React.RefObject<HTMLElement>}
         className="py-20 relative overflow-hidden"
-        style={{ backgroundColor: '#F7F7FB' }}
+        style={{ backgroundColor: '#f7f0ff' }}
       >
         {/* Background photo with navy tint */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -720,9 +720,9 @@ export default function Home() {
           </div>
           {/* Decorative divider */}
           <div className="mt-16 flex items-center gap-4">
-            <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, transparent, #EDE8FF)' }} />
-            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#E8A020' }} />
-            <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, #EDE8FF, transparent)' }} />
+            <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, transparent, #CFE0FF)' }} />
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#EBC302' }} />
+            <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, #CFE0FF, transparent)' }} />
           </div>
         </div>
       </section>
@@ -732,7 +732,7 @@ export default function Home() {
         id="nosotros"
         ref={aboutSection.ref as React.RefObject<HTMLElement>}
         className="py-24 relative overflow-hidden"
-        style={{ backgroundColor: '#F7F7FB' }}
+        style={{ backgroundColor: '#f7f0ff' }}
       >
         {/* Background photo */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -754,7 +754,7 @@ export default function Home() {
           {/* Image */}
           <AnimIn dir="left">
             <div className="relative">
-              <div className="rounded-3xl overflow-hidden aspect-[4/3] shadow-xl" style={{ backgroundColor: '#EDE8FF' }}>
+              <div className="rounded-3xl overflow-hidden aspect-[4/3] shadow-xl" style={{ backgroundColor: '#CFE0FF' }}>
                 <img
                   src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop&auto=format"
                   alt="Equipo COOVITEL"
@@ -767,17 +767,17 @@ export default function Home() {
                 </div>
               </div>
               {/* Decorative blocks */}
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 rounded-2xl -z-10" style={{ backgroundColor: '#E8A020' }} />
-              <div className="absolute -top-6 -left-6 w-20 h-20 rounded-full -z-10 opacity-50" style={{ backgroundColor: '#C8B8FF' }} />
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 rounded-2xl -z-10" style={{ backgroundColor: '#EBC302' }} />
+              <div className="absolute -top-6 -left-6 w-20 h-20 rounded-full -z-10 opacity-50" style={{ backgroundColor: '#C9DCFF' }} />
             </div>
           </AnimIn>
 
           {/* Text */}
           <AnimIn dir="right" delay={120}>
-            <p className="text-xs font-bold tracking-[0.2em] uppercase mb-3" style={{ color: '#E8A020' }}>
+            <p className="text-xs font-bold tracking-[0.2em] uppercase mb-3" style={{ color: '#EBC302' }}>
               Quiénes Somos
             </p>
-            <h2 className="text-4xl font-black mb-6 leading-tight" style={{ color: '#0A1554' }}>
+            <h2 className="text-4xl font-black mb-6 leading-tight" style={{ color: '#131739' }}>
               Una cooperativa construida sobre confianza
             </h2>
             <p className="text-gray-500 leading-relaxed mb-5 text-sm">
@@ -789,21 +789,21 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-3 mb-8">
               {affiliations.map(a => (
                 <div key={a} className="flex items-center gap-3 p-3 rounded-xl bg-white"
-                  style={{ border: '1px solid #EDE8FF', boxShadow: '0 2px 8px rgba(27,42,143,0.04)' }}>
-                  <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#E8A020' }} />
-                  <span className="text-sm font-semibold" style={{ color: '#1B2A8F' }}>{a}</span>
+                  style={{ border: '1px solid #CFE0FF', boxShadow: '0 2px 8px rgba(27,42,143,0.04)' }}>
+                  <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#EBC302' }} />
+                  <span className="text-sm font-semibold" style={{ color: '#173C6E' }}>{a}</span>
                 </div>
               ))}
             </div>
             <div className="flex gap-3">
-              <a href="#contacto"
+              <a href="/asociate"
                 className="px-6 py-3 rounded-full text-sm font-bold text-white transition-all duration-200 hover:scale-105 hover:shadow-lg"
-                style={{ backgroundColor: '#1B2A8F' }}>
+                style={{ backgroundColor: '#173C6E' }}>
                 Afíliate ahora
               </a>
-              <a href="#confianza"
+              <a href="/quienes-somos"
                 className="px-6 py-3 rounded-full text-sm font-bold transition-all duration-200 hover:bg-white"
-                style={{ color: '#1B2A8F', border: '2px solid #EDE8FF' }}>
+                style={{ color: '#173C6E', border: '2px solid #CFE0FF' }}>
                 Conoce más de nosotros →
               </a>
             </div>
@@ -816,7 +816,7 @@ export default function Home() {
         id="confianza"
         ref={trustSection.ref as React.RefObject<HTMLElement>}
         className="py-24 relative overflow-hidden"
-        style={{ backgroundColor: '#0A1554' }}
+        style={{ backgroundColor: '#131739' }}
       >
         {/* Background photo with deep navy overlay */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -832,9 +832,9 @@ export default function Home() {
         {/* Blobs + dots */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full opacity-[0.08]"
-            style={{ background: 'radial-gradient(circle, #C8B8FF 0%, transparent 70%)' }} />
+            style={{ background: 'radial-gradient(circle, #C9DCFF 0%, transparent 70%)' }} />
           <div className="absolute bottom-0 -left-20 w-80 h-80 rounded-full opacity-[0.06]"
-            style={{ background: 'radial-gradient(circle, #E8A020 0%, transparent 70%)' }} />
+            style={{ background: 'radial-gradient(circle, #EBC302 0%, transparent 70%)' }} />
           <div className="absolute inset-0"
             style={{
               backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)',
@@ -844,7 +844,7 @@ export default function Home() {
 
         <div className="relative max-w-7xl mx-auto px-6">
           <AnimIn className="text-center mb-16">
-            <p className="text-xs font-bold tracking-[0.2em] uppercase mb-3" style={{ color: '#E8A020' }}>
+            <p className="text-xs font-bold tracking-[0.2em] uppercase mb-3" style={{ color: '#EBC302' }}>
               Evaluación y Compromiso
             </p>
             <h2 className="text-4xl font-black text-white mb-4">
@@ -862,7 +862,7 @@ export default function Home() {
                 style={{ backgroundColor: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)' }}>
                 <div className="relative w-28 h-28 mb-6">
                   <div className="w-28 h-28 rounded-full flex items-center justify-center shadow-xl"
-                    style={{ background: 'linear-gradient(135deg, #0D1A6B, #1B2A8F)', border: '3px solid rgba(200,184,255,0.3)' }}>
+                    style={{ background: 'linear-gradient(135deg, #131739, #173C6E)', border: '3px solid rgba(200,184,255,0.3)' }}>
                     <div className="text-center">
                       <p className="text-white font-black text-3xl leading-none">A+</p>
                       <p className="text-white/50 text-[9px] font-bold tracking-wider mt-1">VALUE & RISK</p>
@@ -870,13 +870,13 @@ export default function Home() {
                   </div>
                   {/* Ribbon */}
                   <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 flex gap-1">
-                    <div style={{ width: 14, height: 28, backgroundColor: '#1B2A8F', clipPath: 'polygon(0 0,100% 0,75% 100%,25% 100%)' }} />
-                    <div style={{ width: 14, height: 28, backgroundColor: '#0A1554', clipPath: 'polygon(0 0,100% 0,75% 100%,25% 100%)' }} />
+                    <div style={{ width: 14, height: 28, backgroundColor: '#173C6E', clipPath: 'polygon(0 0,100% 0,75% 100%,25% 100%)' }} />
+                    <div style={{ width: 14, height: 28, backgroundColor: '#131739', clipPath: 'polygon(0 0,100% 0,75% 100%,25% 100%)' }} />
                   </div>
                 </div>
                 <p className="font-black text-white text-base mt-2">Fortaleza Institucional</p>
                 <p className="text-sm text-white/45 mt-2 leading-relaxed flex-1">Calificación otorgada por Value &amp; Risk Rating que acredita la solidez de COOVITEL.</p>
-                <div className="mt-5 px-4 py-1.5 rounded-full text-xs font-bold" style={{ backgroundColor: 'rgba(232,160,32,0.15)', color: '#E8A020', border: '1px solid rgba(232,160,32,0.25)' }}>
+                <div className="mt-5 px-4 py-1.5 rounded-full text-xs font-bold" style={{ backgroundColor: 'rgba(232,160,32,0.15)', color: '#EBC302', border: '1px solid rgba(232,160,32,0.25)' }}>
                   Calificación 2026
                 </div>
               </div>
@@ -888,7 +888,7 @@ export default function Home() {
                 style={{ backgroundColor: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', backdropFilter: 'blur(10px)' }}>
                 <div className="relative w-28 h-28 mb-6">
                   <div className="w-28 h-28 rounded-full flex items-center justify-center shadow-xl"
-                    style={{ background: 'linear-gradient(135deg, #1B2A8F, #243CB8)', border: '3px solid rgba(200,184,255,0.3)' }}>
+                    style={{ background: 'linear-gradient(135deg, #173C6E, #27548F)', border: '3px solid rgba(200,184,255,0.3)' }}>
                     <div className="text-center">
                       <p className="text-white font-black text-2xl leading-none">A</p>
                       <p className="text-white/90 font-black text-sm leading-none">VrR 2</p>
@@ -896,13 +896,13 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 flex gap-1">
-                    <div style={{ width: 14, height: 28, backgroundColor: '#243CB8', clipPath: 'polygon(0 0,100% 0,75% 100%,25% 100%)' }} />
-                    <div style={{ width: 14, height: 28, backgroundColor: '#1B2A8F', clipPath: 'polygon(0 0,100% 0,75% 100%,25% 100%)' }} />
+                    <div style={{ width: 14, height: 28, backgroundColor: '#27548F', clipPath: 'polygon(0 0,100% 0,75% 100%,25% 100%)' }} />
+                    <div style={{ width: 14, height: 28, backgroundColor: '#173C6E', clipPath: 'polygon(0 0,100% 0,75% 100%,25% 100%)' }} />
                   </div>
                 </div>
                 <p className="font-black text-white text-base mt-2">Deuda de Largo y Corto Plazo</p>
                 <p className="text-sm text-white/45 mt-2 leading-relaxed flex-1">Calificación de solidez en gestión de deuda emitida por Value &amp; Risk Rating.</p>
-                <div className="mt-5 px-4 py-1.5 rounded-full text-xs font-bold" style={{ backgroundColor: 'rgba(232,160,32,0.15)', color: '#E8A020', border: '1px solid rgba(232,160,32,0.25)' }}>
+                <div className="mt-5 px-4 py-1.5 rounded-full text-xs font-bold" style={{ backgroundColor: 'rgba(232,160,32,0.15)', color: '#EBC302', border: '1px solid rgba(232,160,32,0.25)' }}>
                   Calificación 2026
                 </div>
               </div>
@@ -916,14 +916,14 @@ export default function Home() {
                   style={{ backgroundColor: 'white', border: '3px solid rgba(200,184,255,0.3)' }}>
                   <div className="text-center px-1">
                     <p className="text-[9px] font-bold tracking-widest text-gray-400 uppercase">Certificado</p>
-                    <p className="font-black text-lg leading-tight" style={{ color: '#1B2A8F' }}>ISO</p>
-                    <p className="font-black text-xl leading-none" style={{ color: '#1B2A8F' }}>9001</p>
+                    <p className="font-black text-lg leading-tight" style={{ color: '#173C6E' }}>ISO</p>
+                    <p className="font-black text-xl leading-none" style={{ color: '#173C6E' }}>9001</p>
                     <p className="text-gray-400 text-xs font-semibold">:2015</p>
                   </div>
                 </div>
                 <p className="font-black text-white text-base">Bureau Veritas</p>
                 <p className="text-sm text-white/45 mt-2 leading-relaxed flex-1">Sistema de Gestión de Calidad certificado bajo norma internacional ISO 9001:2015.</p>
-                <div className="mt-5 px-4 py-1.5 rounded-full text-xs font-bold" style={{ backgroundColor: 'rgba(232,160,32,0.15)', color: '#E8A020', border: '1px solid rgba(232,160,32,0.25)' }}>
+                <div className="mt-5 px-4 py-1.5 rounded-full text-xs font-bold" style={{ backgroundColor: 'rgba(232,160,32,0.15)', color: '#EBC302', border: '1px solid rgba(232,160,32,0.25)' }}>
                   Certificación 2026
                 </div>
               </div>
@@ -933,9 +933,7 @@ export default function Home() {
           {/* Ver certificaciones CTA */}
           <AnimIn delay={350} className="flex justify-center mt-4">
             <a
-              href="https://coovitel.coop"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/confianza?section=solicitudes"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-sm transition-all duration-200 hover:scale-105 hover:shadow-2xl"
               style={{
                 backgroundColor: 'rgba(255,255,255,0.08)',
@@ -943,7 +941,7 @@ export default function Home() {
                 border: '1.5px solid rgba(255,255,255,0.2)',
                 backdropFilter: 'blur(8px)',
               }}
-              onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'rgba(232,160,32,0.15)'; e.currentTarget.style.borderColor = '#E8A020'; e.currentTarget.style.color = '#E8A020' }}
+              onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'rgba(232,160,32,0.15)'; e.currentTarget.style.borderColor = '#EBC302'; e.currentTarget.style.color = '#EBC302' }}
               onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)'; e.currentTarget.style.color = 'white' }}
             >
               <span>📄</span>
@@ -959,7 +957,7 @@ export default function Home() {
         id="beneficios"
         ref={benefitsSection.ref as React.RefObject<HTMLElement>}
         className="py-24 relative overflow-hidden"
-        style={{ backgroundColor: '#0D1A6B' }}
+        style={{ backgroundColor: '#131739' }}
       >
         {/* Background photo */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -974,16 +972,16 @@ export default function Home() {
         </div>
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -right-48 top-0 w-[600px] h-[600px] rounded-full opacity-[0.07]"
-            style={{ background: 'radial-gradient(circle, #C8B8FF 0%, transparent 70%)' }} />
+            style={{ background: 'radial-gradient(circle, #C9DCFF 0%, transparent 70%)' }} />
           <div className="absolute -left-32 bottom-0 w-80 h-80 rounded-full opacity-[0.06]"
-            style={{ background: 'radial-gradient(circle, #E8A020 0%, transparent 70%)' }} />
+            style={{ background: 'radial-gradient(circle, #EBC302 0%, transparent 70%)' }} />
           <div className="absolute inset-0"
             style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6">
           <AnimIn className="text-center mb-16">
-            <p className="text-xs font-bold tracking-[0.2em] uppercase mb-3" style={{ color: '#E8A020' }}>
+            <p className="text-xs font-bold tracking-[0.2em] uppercase mb-3" style={{ color: '#EBC302' }}>
               Plan de Beneficios
             </p>
             <h2 className="text-4xl font-black text-white mb-4">
@@ -1025,7 +1023,7 @@ export default function Home() {
           <AnimIn delay={550} className="text-center mt-14">
             <a href="#contacto"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-sm transition-all duration-200 hover:scale-105 hover:shadow-2xl"
-              style={{ backgroundColor: '#E8A020', color: '#0A1554' }}>
+              style={{ backgroundColor: '#EBC302', color: '#131739' }}>
               Conoce todos los beneficios →
             </a>
           </AnimIn>
@@ -1053,10 +1051,10 @@ export default function Home() {
 
         <div className="relative max-w-7xl mx-auto px-6">
           <AnimIn className="text-center mb-16">
-            <p className="text-xs font-bold tracking-[0.2em] uppercase mb-3" style={{ color: '#E8A020' }}>
+            <p className="text-xs font-bold tracking-[0.2em] uppercase mb-3" style={{ color: '#EBC302' }}>
               Contacto
             </p>
-            <h2 className="text-4xl font-black mb-4" style={{ color: '#0A1554' }}>
+            <h2 className="text-4xl font-black mb-4" style={{ color: '#131739' }}>
               Estamos aquí para ayudarte
             </h2>
             <p className="text-gray-400 max-w-lg mx-auto text-sm">
@@ -1069,33 +1067,33 @@ export default function Home() {
             <AnimIn dir="left" delay={80}>
               <div className="space-y-4">
                 {[
-                  { label: 'Teléfono Bogotá', value: '+57 (1) 566 6601', icon: '📞', accent: '#EDE8FF' },
-                  { label: 'Línea gratuita nacional', value: '018000 967 474', icon: '☎️', accent: '#EDE8FF' },
-                  { label: 'WhatsApp', value: 'Chatea con un asesor ahora', icon: '💬', accent: '#FFF3DC' },
-                  { label: 'Sucursal Virtual PSE', value: 'Transacciones seguras en línea', icon: '🌐', accent: '#EDE8FF' },
+                  { label: 'Teléfono Bogotá', value: '+57 (1) 566 6601', icon: '📞', accent: '#CFE0FF' },
+                  { label: 'Línea gratuita nacional', value: '018000 967 474', icon: '☎️', accent: '#CFE0FF' },
+                  { label: 'WhatsApp', value: 'Chatea con un asesor ahora', icon: '💬', accent: '#F7F0FF' },
+                  { label: 'Sucursal Virtual PSE', value: 'Transacciones seguras en línea', icon: '🌐', accent: '#CFE0FF' },
                 ].map(item => (
                   <div key={item.label}
                     className="flex items-center gap-4 p-5 rounded-2xl cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
-                    style={{ backgroundColor: '#F7F7FB', border: '1px solid #EDE8FF' }}>
+                    style={{ backgroundColor: '#f7f0ff', border: '1px solid #CFE0FF' }}>
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
                       style={{ backgroundColor: item.accent }}>{item.icon}</div>
                     <div>
                       <p className="text-xs text-gray-400 font-medium">{item.label}</p>
-                      <p className="font-bold text-sm" style={{ color: '#1B2A8F' }}>{item.value}</p>
+                      <p className="font-bold text-sm" style={{ color: '#173C6E' }}>{item.value}</p>
                     </div>
                     <span className="ml-auto text-gray-300 text-lg">→</span>
                   </div>
                 ))}
                 <div className="flex gap-3 pt-2">
                   {[
-                    { label: 'Facebook', href: 'https://www.facebook.com/coovitelcol/?locale=es_LA', color: '#1877F2', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> },
-                    { label: 'Instagram', href: 'https://www.instagram.com/coovitel_oficial/?hl=es', color: '#E1306C', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> },
-                    { label: 'LinkedIn', href: 'https://co.linkedin.com/company/cooviteloficial', color: '#0A66C2', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> },
-                    { label: 'WhatsApp', href: 'https://wa.me/573160189853?text=', color: '#25D366', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> },
+                    { label: 'Facebook', href: 'https://www.facebook.com/coovitelcol/?locale=es_LA', color: '#1B65A6', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> },
+                    { label: 'Instagram', href: 'https://www.instagram.com/coovitel_oficial/?hl=es', color: '#A90072', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg> },
+                    { label: 'LinkedIn', href: 'https://co.linkedin.com/company/cooviteloficial', color: '#1B65A6', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> },
+                    { label: 'WhatsApp', href: 'https://wa.me/573160189853?text=', color: '#1B65A6', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> },
                   ].map(n => (
                     <a key={n.label} href={n.href} target="_blank" rel="noopener noreferrer"
                       className="flex-1 py-3 rounded-xl flex flex-col items-center gap-1 transition-all duration-200 hover:scale-105 hover:shadow-md"
-                      style={{ backgroundColor: '#F7F7FB', border: '1px solid #EDE8FF', color: n.color, textDecoration: 'none' }}>
+                      style={{ backgroundColor: '#f7f0ff', border: '1px solid #CFE0FF', color: n.color, textDecoration: 'none' }}>
                       {n.icon}
                       <span className="text-[9px] font-semibold text-gray-400">{n.label}</span>
                     </a>
@@ -1103,9 +1101,9 @@ export default function Home() {
                 </div>
 
                 <a
-                  href="#contacto"
+                  href="/contacto"
                   className="mt-4 flex items-center justify-center gap-3 w-full py-4 rounded-full font-bold text-sm text-white transition-all duration-200 hover:scale-105 hover:shadow-2xl"
-                  style={{ background: 'linear-gradient(135deg, #1B2A8F, #243CB8)', boxShadow: '0 4px 24px rgba(27,42,143,0.3)' }}
+                  style={{ background: 'linear-gradient(135deg, #173C6E, #27548F)', boxShadow: '0 4px 24px rgba(27,42,143,0.3)' }}
                 >
                   <span>💬</span>
                   <span>Contáctanos y asegura tus sueños</span>
@@ -1116,8 +1114,8 @@ export default function Home() {
 
             {/* Form */}
             <AnimIn dir="right" delay={160}>
-              <div className="rounded-3xl p-8" style={{ backgroundColor: '#F7F7FB', border: '1px solid #EDE8FF', boxShadow: '0 4px 24px rgba(27,42,143,0.06)' }}>
-                <h3 className="font-black text-lg mb-1" style={{ color: '#0A1554' }}>Envíanos un mensaje</h3>
+              <div className="rounded-3xl p-8" style={{ backgroundColor: '#f7f0ff', border: '1px solid #CFE0FF', boxShadow: '0 4px 24px rgba(27,42,143,0.06)' }}>
+                <h3 className="font-black text-lg mb-1" style={{ color: '#131739' }}>Envíanos un mensaje</h3>
                 <p className="text-xs text-gray-400 mb-6">Te responderemos en menos de 24 horas hábiles</p>
                 <div className="space-y-4">
                   {[
@@ -1129,9 +1127,9 @@ export default function Home() {
                       <label className="text-xs font-semibold text-gray-500 mb-1.5 block">{f.label}</label>
                       <input type={f.type} placeholder={f.ph}
                         className="w-full px-4 py-3 rounded-xl text-sm bg-white outline-none transition-all duration-200"
-                        style={{ border: '1.5px solid #EDE8FF' }}
-                        onFocus={e => { e.target.style.borderColor = '#1B2A8F'; e.target.style.boxShadow = '0 0 0 3px rgba(27,42,143,0.08)' }}
-                        onBlur={e => { e.target.style.borderColor = '#EDE8FF'; e.target.style.boxShadow = 'none' }}
+                        style={{ border: '1.5px solid #CFE0FF' }}
+                        onFocus={e => { e.target.style.borderColor = '#173C6E'; e.target.style.boxShadow = '0 0 0 3px rgba(27,42,143,0.08)' }}
+                        onBlur={e => { e.target.style.borderColor = '#CFE0FF'; e.target.style.boxShadow = 'none' }}
                       />
                     </div>
                   ))}
@@ -1139,14 +1137,14 @@ export default function Home() {
                     <label className="text-xs font-semibold text-gray-500 mb-1.5 block">Mensaje</label>
                     <textarea rows={4} placeholder="¿En qué podemos ayudarte?"
                       className="w-full px-4 py-3 rounded-xl text-sm bg-white outline-none resize-none transition-all duration-200"
-                      style={{ border: '1.5px solid #EDE8FF' }}
-                      onFocus={e => { e.target.style.borderColor = '#1B2A8F'; e.target.style.boxShadow = '0 0 0 3px rgba(27,42,143,0.08)' }}
-                      onBlur={e => { e.target.style.borderColor = '#EDE8FF'; e.target.style.boxShadow = 'none' }}
+                      style={{ border: '1.5px solid #CFE0FF' }}
+                      onFocus={e => { e.target.style.borderColor = '#173C6E'; e.target.style.boxShadow = '0 0 0 3px rgba(27,42,143,0.08)' }}
+                      onBlur={e => { e.target.style.borderColor = '#CFE0FF'; e.target.style.boxShadow = 'none' }}
                     />
                   </div>
                   <button
                     className="w-full py-3.5 rounded-xl font-bold text-sm text-white transition-all duration-200 hover:opacity-90 hover:shadow-lg active:scale-[0.99]"
-                    style={{ backgroundColor: '#1B2A8F' }}>
+                    style={{ backgroundColor: '#173C6E' }}>
                     Enviar mensaje
                   </button>
                 </div>
@@ -1157,13 +1155,13 @@ export default function Home() {
       </section>
 
       {/* ── Footer ─────────────────────────────────────────────── */}
-      <footer style={{ backgroundColor: '#080F40' }} className="pt-16 pb-8">
+      <footer style={{ backgroundColor: '#131739' }} className="pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b" style={{ borderColor: 'rgba(255,255,255,0.07)' }}>
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-5">
-                <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#E8A020' }}>
-                  <span className="font-black text-xs tracking-wider" style={{ color: '#0A1554' }}>CV</span>
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#EBC302' }}>
+                  <span className="font-black text-xs tracking-wider" style={{ color: '#131739' }}>CV</span>
                 </div>
                 <span className="font-black text-xl text-white tracking-tight">COOVITEL</span>
               </div>
@@ -1207,11 +1205,6 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* ── Scroll-to-top button with circular progress ── */}
-      <ScrollToTop scrollPct={scrollPct} />
-
-      {/* ── Social dock ── */}
-      <SocialDock />
     </div>
   )
 }
@@ -1270,7 +1263,7 @@ function ScrollToTop({ scrollPct }: { scrollPct: number }) {
         <circle
           cx={SIZE / 2} cy={SIZE / 2} r={R}
           fill="none"
-          stroke="#E8A020"
+          stroke="#EBC302"
           strokeWidth={STROKE}
           strokeLinecap="round"
           strokeDasharray={`${dash} ${CIRC - dash}`}

@@ -17,18 +17,18 @@ body,
 }
 
 :root {
-  --coo-blue: #1B14B8;
-  --coo-blue-deep: #120E8A;
-  --coo-navy: #0D0A2E;
-  --coo-yellow: #F5A623;
-  --coo-yellow-dark: #E09510;
-  --coo-light: #F5F6FA;
-  --coo-gray: #6B7280;
+  --coo-blue: #173C6E;
+  --coo-blue-deep: #131739;
+  --coo-navy: #131739;
+  --coo-yellow: #EBC302;
+  --coo-yellow-dark: #EBC302;
+  --coo-light: #F7F0FF;
+  --coo-gray: #1A2842;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-track { background: #F7F0FF; }
 ::-webkit-scrollbar-thumb { background: var(--coo-blue); border-radius: 3px; }
 
 /* Wave divider */

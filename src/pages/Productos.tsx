@@ -12,8 +12,8 @@ const CREDITO_PRODUCTS = [
     desc: "Pregrado, postgrado, técnico y educación continua.",
     detail: "Financia tus estudios o los de tu familia con tasas preferenciales. Cubre matrícula, libros, transporte y gastos de sostenimiento en instituciones nacionales e internacionales.",
     features: ["Hasta 48 meses plazo", "Tasa desde 1.2% M.V.", "Sin codeudor hasta $30M", "Desembolso en 24 horas"],
-    color: "#6c63ff",
-    bg: "#f0effe",
+    color: "#27548F",
+    bg: "#CFE0FF",
   },
   {
     id: "recreacion",
@@ -23,8 +23,8 @@ const CREDITO_PRODUCTS = [
     desc: "Viajes y gastos totales de tus destinos favoritos.",
     detail: "Viaja nacional o internacionalmente con financiación total de tiquetes, hospedaje, tours y gastos de viaje. Ideal para vacaciones en familia o escapadas de descanso.",
     features: ["Hasta 36 meses plazo", "Tasa desde 1.3% M.V.", "Cubre tiquetes y hospedaje", "Aprobación en línea"],
-    color: "#0ea5e9",
-    bg: "#e0f5fe",
+    color: "#1B65A6",
+    bg: "#CFE0FF",
   },
   {
     id: "fidelizacion",
@@ -34,8 +34,8 @@ const CREDITO_PRODUCTS = [
     desc: "Tasas y plazos que mejoran con tu antigüedad.",
     detail: "Cuanto más tiempo llevas con nosotros, mejores condiciones obtienes. Tu lealtad se convierte en beneficios reales: menos tasa, más plazo y mayor monto aprobado.",
     features: ["Tasa mejora cada año", "Hasta 60 meses plazo", "Monto hasta $80M", "Sin trámites adicionales"],
-    color: "#f59e0b",
-    bg: "#fef9e7",
+    color: "#EBC302",
+    bg: "#F7F0FF",
   },
   {
     id: "vehiculo",
@@ -45,8 +45,8 @@ const CREDITO_PRODUCTS = [
     desc: "Nuevo, usado o bicicleta eléctrica a tu medida.",
     detail: "Adquiere el vehículo que necesitas: automóvil nuevo o usado, moto, bicicleta eléctrica o patineta. Financiamos hasta el 80% del valor comercial.",
     features: ["Hasta 72 meses plazo", "Tasa desde 1.1% M.V.", "Financia hasta 80%", "Incluye bici eléctrica"],
-    color: "#10b981",
-    bg: "#e6faf4",
+    color: "#1B65A6",
+    bg: "#CFE0FF",
   },
   {
     id: "libre-inversion",
@@ -56,8 +56,8 @@ const CREDITO_PRODUCTS = [
     desc: "Financia cualquier proyecto sin restricciones.",
     detail: "El crédito más flexible de COOVITEL. Usa el dinero para lo que necesites: remodelación, negocio, emergencias o cualquier gasto personal sin justificar el destino.",
     features: ["Hasta 48 meses plazo", "Tasa desde 1.4% M.V.", "Monto hasta $50M", "Sin destino específico"],
-    color: "#8b5cf6",
-    bg: "#f3f0ff",
+    color: "#800080",
+    bg: "#F7F0FF",
   },
   {
     id: "credisalud",
@@ -67,8 +67,8 @@ const CREDITO_PRODUCTS = [
     desc: "Médico, dental, óptico y cirugías estéticas.",
     detail: "Atiende tus necesidades de salud sin preocuparte por el costo. Cubre procedimientos médicos, odontológicos, ópticos y estéticos en clínicas y consultorios aliados.",
     features: ["Hasta 36 meses plazo", "Tasa desde 1.2% M.V.", "Clínicas aliadas", "Aprobación express"],
-    color: "#ef4444",
-    bg: "#fff0f0",
+    color: "#A90072",
+    bg: "#F7F0FF",
   },
   {
     id: "vivienda",
@@ -78,8 +78,8 @@ const CREDITO_PRODUCTS = [
     desc: "Adquiere, construye o mejora tu hogar.",
     detail: "Cumple el sueño de tener casa propia o mejora tu vivienda actual. Financia compra, construcción, remodelación o ampliación con las mejores condiciones del mercado cooperativo.",
     features: ["Hasta 120 meses plazo", "Tasa desde 0.9% M.V.", "Monto hasta $200M", "Compra y remodelación"],
-    color: "#f97316",
-    bg: "#fff4ed",
+    color: "#EBC302",
+    bg: "#F7F0FF",
   },
   {
     id: "crediseguros",
@@ -89,8 +89,8 @@ const CREDITO_PRODUCTS = [
     desc: "Pólizas para proteger a tu familia y bienes.",
     detail: "Financia la prima de seguros de vida, hogar, vehículo o salud en cómodas cuotas mensuales. Accede a pólizas de nuestras aseguradoras aliadas con tarifas preferenciales.",
     features: ["Sin intereses hasta 12 cuotas", "Seguros vida, hogar y auto", "Aseguradoras aliadas", "Gestión en línea"],
-    color: "#3b82f6",
-    bg: "#eff6ff",
+    color: "#1B65A6",
+    bg: "#CFE0FF",
   },
   {
     id: "cupo-rotativo",
@@ -100,8 +100,8 @@ const CREDITO_PRODUCTS = [
     desc: "Cupo personal reutilizable siempre disponible.",
     detail: "Un cupo de crédito preaprobado que se renueva a medida que pagas. Disponible 24/7 desde tu app o sucursal virtual, sin trámites adicionales cada vez que lo usas.",
     features: ["Cupo desde $2M", "Reutilizable automático", "Disponible 24/7", "Sin trámite adicional"],
-    color: "#06b6d4",
-    bg: "#ecfeff",
+    color: "#1B65A6",
+    bg: "#CFE0FF",
   },
   {
     id: "compra-cartera",
@@ -111,8 +111,8 @@ const CREDITO_PRODUCTS = [
     desc: "Unifica tus deudas con mejor tasa y plazo.",
     detail: "Consolida todas tus deudas en un solo crédito con menor tasa y una sola cuota mensual. Reduce tu carga financiera y simplifica tu vida.",
     features: ["Tasa siempre menor", "Una sola cuota", "Todas las entidades", "Ahorro garantizado"],
-    color: "#84cc16",
-    bg: "#f4ffe6",
+    color: "#1B65A6",
+    bg: "#CFE0FF",
   },
 ];
 
@@ -125,8 +125,8 @@ const AHORRO_PRODUCTS = [
     desc: "Tu dinero disponible cuando lo necesites.",
     detail: "Cuenta de ahorro cooperativo con rentabilidad superior al promedio bancario. Depósitos y retiros libres, sin saldo mínimo y con abono mensual de rendimientos.",
     features: ["Tasa E.A. hasta 4.2%", "Depósitos libres", "Sin saldo mínimo", "Abono mensual"],
-    color: "#10b981",
-    bg: "#e6faf4",
+    color: "#1B65A6",
+    bg: "#CFE0FF",
   },
   {
     id: "cdat",
@@ -136,8 +136,8 @@ const AHORRO_PRODUCTS = [
     desc: "Certificado de Ahorro a Término con la mejor tasa.",
     detail: "Invierte a plazos fijos de 90, 180 o 360 días y obtén la mejor rentabilidad del mercado cooperativo. Ideal para quienes quieren hacer crecer sus ahorros de forma segura.",
     features: ["Tasa E.A. hasta 11.5%", "Plazos 90, 180 y 360 días", "Monto desde $1M", "Renovación automática"],
-    color: "#f59e0b",
-    bg: "#fef9e7",
+    color: "#EBC302",
+    bg: "#F7F0FF",
   },
   {
     id: "coovinomina",
@@ -147,8 +147,8 @@ const AHORRO_PRODUCTS = [
     desc: "Descuento automático de nómina para ahorrar sin esfuerzo.",
     detail: "Programa de ahorro por descuento directo de nómina. Cada mes se descuenta automáticamente el monto que elijas, sin que tengas que recordarlo. Tu empresa aliada hace el resto.",
     features: ["Descuento nómina", "Monto desde $50.000", "Sin comisiones", "Retiro con aviso previo"],
-    color: "#6c63ff",
-    bg: "#f0effe",
+    color: "#27548F",
+    bg: "#CFE0FF",
   },
   {
     id: "ahorro-proposito",
@@ -158,8 +158,8 @@ const AHORRO_PRODUCTS = [
     desc: "Programa de ahorro orientado a un objetivo específico.",
     detail: "Define tu meta (vacaciones, educación, vivienda) y crea un plan de ahorro mensual. COOVITEL te ayuda a mantener el rumbo con recordatorios y seguimiento de tu progreso.",
     features: ["Meta personalizada", "Rentabilidad progresiva", "Seguro de vida incluido", "App de seguimiento"],
-    color: "#ef4444",
-    bg: "#fff0f0",
+    color: "#A90072",
+    bg: "#F7F0FF",
   },
 ];
 
@@ -253,6 +253,12 @@ const CREDITO_CONDITIONS: Record<string, { label: string; value: string; note: s
   ],
 };
 
+/* Tasas de respaldo para productos cuya tarjeta describe la tasa sin un valor numérico. */
+const QUICK_SIMULATOR_RATES: Record<string, number> = {
+  fidelizacion: 0.011,
+  "compra-cartera": 0.012,
+};
+
 /* Configuración del simulador por producto de ahorro */
 const AHORRO_SIMULATOR_CONFIG: Record<string, {
   plazos: { label: string; dias: number; tasa: number }[];
@@ -320,12 +326,12 @@ function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-9 h-9 rounded-lg flex items-center justify-center font-black text-sm" style={{ background: "linear-gradient(135deg, #12187a 0%, #1e25a8 100%)" }}>
-              <span style={{ color: "#f5a200" }}>CV</span>
+            <div className="w-9 h-9 rounded-lg flex items-center justify-center font-black text-sm" style={{ background: "linear-gradient(135deg, #173C6E 0%, #27548F 100%)" }}>
+              <span style={{ color: "#EBC302" }}>CV</span>
             </div>
             <div>
-              <p className="font-black text-lg leading-none" style={{ color: "#12187a" }}>COOVITEL</p>
-              <p className="text-[9px] leading-none" style={{ color: "#6b7280" }}>Cooperativa Empresarial de Ahorro y Crédito</p>
+              <p className="font-black text-lg leading-none" style={{ color: "#173C6E" }}>COOVITEL</p>
+              <p className="text-[9px] leading-none" style={{ color: "#1A2842" }}>Cooperativa Empresarial de Ahorro y Crédito</p>
             </div>
           </div>
 
@@ -335,7 +341,7 @@ function Header() {
                 key={link}
                 href="#"
                 className="px-3 py-2 text-sm rounded-md transition-colors hover:text-amber-500"
-                style={{ color: link === "Productos" ? "#12187a" : "#374151", fontWeight: link === "Productos" ? "600" : "500" }}
+                style={{ color: link === "Productos" ? "#173C6E" : "#1A2842", fontWeight: link === "Productos" ? "600" : "500" }}
               >
                 {link}
               </a>
@@ -343,15 +349,15 @@ function Header() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-2">
-            <button className="px-4 py-2 text-sm font-semibold rounded-full border-2 transition-colors hover:bg-navy/5" style={{ borderColor: "#12187a", color: "#12187a" }}>
+            <button className="px-4 py-2 text-sm font-semibold rounded-full border-2 transition-colors hover:bg-navy/5" style={{ borderColor: "#173C6E", color: "#173C6E" }}>
               Oficina Virtual
             </button>
-            <button className="px-4 py-2 text-sm font-bold rounded-full transition-colors hover:opacity-90" style={{ background: "#f5a200", color: "#0d1260" }}>
+            <button className="px-4 py-2 text-sm font-bold rounded-full transition-colors hover:opacity-90" style={{ background: "#EBC302", color: "#131739" }}>
               Asóciate
             </button>
           </div>
 
-          <button className="lg:hidden p-2" onClick={() => setMenuOpen(!menuOpen)} style={{ color: "#12187a" }}>
+          <button className="lg:hidden p-2" onClick={() => setMenuOpen(!menuOpen)} style={{ color: "#173C6E" }}>
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {menuOpen
                 ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -364,11 +370,11 @@ function Header() {
       {menuOpen && (
         <div className="lg:hidden bg-white border-t px-4 py-4 flex flex-col gap-2">
           {NAV_LINKS.map((link) => (
-            <a key={link} href="#" className="py-2 text-sm font-medium" style={{ color: "#374151" }}>{link}</a>
+            <a key={link} href="#" className="py-2 text-sm font-medium" style={{ color: "#1A2842" }}>{link}</a>
           ))}
           <div className="flex gap-2 pt-2">
-            <button className="flex-1 py-2 text-sm font-semibold rounded-full border-2" style={{ borderColor: "#12187a", color: "#12187a" }}>Oficina Virtual</button>
-            <button className="flex-1 py-2 text-sm font-bold rounded-full" style={{ background: "#f5a200", color: "#0d1260" }}>Asóciate</button>
+            <button className="flex-1 py-2 text-sm font-semibold rounded-full border-2" style={{ borderColor: "#173C6E", color: "#173C6E" }}>Oficina Virtual</button>
+            <button className="flex-1 py-2 text-sm font-bold rounded-full" style={{ background: "#EBC302", color: "#131739" }}>Asóciate</button>
           </div>
         </div>
       )}
@@ -379,35 +385,21 @@ function Header() {
 /* ─── Page Hero ─────────────────────────────────────────────── */
 function PageHero({ activeTab }: { activeTab: "credito" | "ahorro" }) {
   return (
-    <section className="relative overflow-hidden py-14 lg:py-20" style={{ background: "linear-gradient(135deg, #0d1260 0%, #12187a 50%, #1a22a0 100%)" }}>
-      <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full opacity-10" style={{ background: "#f5a200" }} />
-      <div className="absolute -bottom-16 -left-8 w-48 h-48 rounded-full opacity-10" style={{ background: "#f5a200" }} />
-      <div className="absolute top-10 right-1/4 w-2 h-2 rounded-full opacity-40" style={{ background: "#f5a200" }} />
+    <section className="relative overflow-hidden py-14 lg:py-20" style={{ background: "linear-gradient(135deg, #131739 0%, #173C6E 50%, #27548F 100%)" }}>
+      <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full opacity-10" style={{ background: "#EBC302" }} />
+      <div className="absolute -bottom-16 -left-8 w-48 h-48 rounded-full opacity-10" style={{ background: "#EBC302" }} />
+      <div className="absolute top-10 right-1/4 w-2 h-2 rounded-full opacity-40" style={{ background: "#EBC302" }} />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <nav className="flex items-center gap-2 text-sm mb-6 opacity-70">
-          <a href="#" className="text-white hover:text-amber-300 transition-colors">Inicio</a>
-          <svg className="w-4 h-4 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-          <span className="text-white font-medium">Productos</span>
-          <svg className="w-4 h-4 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-          <span style={{ color: "#f5a200" }} className="font-medium">
-            {activeTab === "credito" ? "Crédito Propósito" : "Ahorro Propósito"}
-          </span>
-        </nav>
-
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
           <div>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold mb-4" style={{ background: "rgba(245,162,0,0.18)", color: "#f5c842", border: "1px solid rgba(245,162,0,0.3)" }}>
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#f5a200" }} />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold mb-4" style={{ background: "rgba(245,162,0,0.18)", color: "#EBC302", border: "1px solid rgba(245,162,0,0.3)" }}>
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#EBC302" }} />
               PRODUCTOS CON PROPÓSITO
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
               Apoyando tus{" "}
-              <span style={{ color: "#f5a200" }}>sueños y proyectos</span>
+              <span style={{ color: "#EBC302" }}>sueños y proyectos</span>
             </h1>
             <p className="mt-4 text-white opacity-70 text-sm max-w-lg">
               Cada producto está diseñado para acompañar una etapa de tu vida, con condiciones preferenciales exclusivas para asociados de COOVITEL.
@@ -435,8 +427,8 @@ function ProductCard({ product, selected, onSelect }: { product: Product; select
       onClick={onSelect}
       className="text-left rounded-2xl p-5 transition-all duration-200 w-full group"
       style={{
-        background: selected ? product.bg : "#ffffff",
-        border: `2px solid ${selected ? product.color : "#e5e7f0"}`,
+        background: selected ? product.bg : "#F7F0FF",
+        border: `2px solid ${selected ? product.color : "#C9DCFF"}`,
         boxShadow: selected ? `0 4px 20px ${product.color}22` : "0 1px 4px rgba(0,0,0,0.06)",
         transform: selected ? "translateY(-2px)" : "none",
       }}
@@ -446,10 +438,10 @@ function ProductCard({ product, selected, onSelect }: { product: Product; select
         {product.icon}
       </div>
 
-      <h3 className="font-bold text-sm mb-1 group-hover:opacity-80 transition-opacity" style={{ color: "#12187a" }}>
+      <h3 className="font-bold text-sm mb-1 group-hover:opacity-80 transition-opacity" style={{ color: "#173C6E" }}>
         {product.title}
       </h3>
-      <p className="text-xs leading-relaxed" style={{ color: "#6b7280" }}>{product.desc}</p>
+      <p className="text-xs leading-relaxed" style={{ color: "#1A2842" }}>{product.desc}</p>
 
       <div className="flex items-center gap-1 mt-3">
         <span className="text-xs font-semibold" style={{ color: product.color }}>{product.tagline}</span>
@@ -467,7 +459,8 @@ function ProductDetail({ product }: { product: Product }) {
   const [plazo, setPlazo] = useState("24");
   const [monto, setMonto] = useState(10000000);
 
-  const tasaNum = parseFloat((product.features.find(f => f.includes("Tasa")) || "1.3% M.V.").replace(/[^0-9.]/g, "")) / 100;
+  const parsedRate = parseFloat((product.features.find(f => f.includes("Tasa")) || "1.3% M.V.").replace(/[^0-9.]/g, ""));
+  const tasaNum = QUICK_SIMULATOR_RATES[product.id] ?? (Number.isFinite(parsedRate) ? parsedRate / 100 : 0.013);
   const plazoNum = parseInt(plazo);
   const cuota = monto * (tasaNum * Math.pow(1 + tasaNum, plazoNum)) / (Math.pow(1 + tasaNum, plazoNum) - 1);
 
@@ -484,7 +477,7 @@ function ProductDetail({ product }: { product: Product }) {
         </div>
         <div className="flex-1">
           <span className="text-xs font-bold uppercase tracking-widest" style={{ color: product.color }}>{product.tagline}</span>
-          <h2 className="text-xl font-black" style={{ color: "#12187a" }}>Crédito {product.title}</h2>
+          <h2 className="text-xl font-black" style={{ color: "#173C6E" }}>Crédito {product.title}</h2>
         </div>
         <button className="self-start sm:self-center px-5 py-2.5 rounded-xl text-sm font-bold transition-opacity hover:opacity-90 flex-shrink-0" style={{ background: product.color, color: "white" }}>
           Solicitar ahora →
@@ -494,15 +487,15 @@ function ProductDetail({ product }: { product: Product }) {
       {/* Body */}
       <div className="p-6 grid lg:grid-cols-2 gap-6">
         <div>
-          <h3 className="font-bold text-sm mb-2" style={{ color: "#12187a" }}>¿Para qué sirve?</h3>
-          <p className="text-sm leading-relaxed" style={{ color: "#4b5563" }}>{product.detail}</p>
-          <div className="mt-5 p-4 rounded-xl" style={{ background: "#f8f9ff", border: "1px solid #e5e7f0" }}>
-            <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "#9ca3af" }}>Condiciones destacadas</p>
+          <h3 className="font-bold text-sm mb-2" style={{ color: "#173C6E" }}>¿Para qué sirve?</h3>
+          <p className="text-sm leading-relaxed" style={{ color: "#1A2842" }}>{product.detail}</p>
+          <div className="mt-5 p-4 rounded-xl" style={{ background: "#F7F0FF", border: "1px solid #C9DCFF" }}>
+            <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "#81A1DB" }}>Condiciones destacadas</p>
             <ul className="space-y-2">
               {product.features.map((f) => (
                 <li key={f} className="flex items-center gap-2 text-sm">
                   <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold text-white" style={{ background: product.color }}>✓</span>
-                  <span style={{ color: "#374151" }}>{f}</span>
+                  <span style={{ color: "#1A2842" }}>{f}</span>
                 </li>
               ))}
             </ul>
@@ -510,52 +503,52 @@ function ProductDetail({ product }: { product: Product }) {
         </div>
 
         {/* Simulador */}
-        <div className="rounded-xl p-5" style={{ background: "#f8f9ff", border: "1px solid #e5e7f0" }}>
-          <p className="text-xs font-bold uppercase tracking-wider mb-4" style={{ color: "#9ca3af" }}>Simulador rápido</p>
+        <div className="rounded-xl p-5" style={{ background: "#F7F0FF", border: "1px solid #C9DCFF" }}>
+          <p className="text-xs font-bold uppercase tracking-wider mb-4" style={{ color: "#81A1DB" }}>Simulador rápido</p>
           <div className="space-y-4">
             <div>
               <div className="flex justify-between mb-1">
-                <label className="text-xs font-semibold" style={{ color: "#374151" }}>Monto a solicitar</label>
-                <span className="text-xs font-black" style={{ color: "#12187a" }}>${monto.toLocaleString("es-CO")}</span>
+                <label className="text-xs font-semibold" style={{ color: "#1A2842" }}>Monto a solicitar</label>
+                <span className="text-xs font-black" style={{ color: "#173C6E" }}>${monto.toLocaleString("es-CO")}</span>
               </div>
               <input type="range" min={1000000} max={80000000} step={500000} value={monto}
                 onChange={(e) => setMonto(Number(e.target.value))}
                 className="w-full h-1.5 rounded-full appearance-none cursor-pointer"
                 style={{ accentColor: product.color }}
               />
-              <div className="flex justify-between text-xs mt-1" style={{ color: "#9ca3af" }}>
+              <div className="flex justify-between text-xs mt-1" style={{ color: "#81A1DB" }}>
                 <span>$1M</span><span>$80M</span>
               </div>
             </div>
             <div>
-              <label className="text-xs font-semibold mb-2 block" style={{ color: "#374151" }}>Plazo</label>
+              <label className="text-xs font-semibold mb-2 block" style={{ color: "#1A2842" }}>Plazo</label>
               <div className="grid grid-cols-4 gap-1.5">
                 {plazos.map((m) => (
                   <button key={m} onClick={() => setPlazo(String(m))}
                     className="py-2 rounded-lg text-xs font-bold transition-all"
                     style={plazo === String(m)
                       ? { background: product.color, color: "white" }
-                      : { background: "white", color: "#6b7280", border: "1px solid #e5e7f0" }
+                      : { background: "white", color: "#1A2842", border: "1px solid #C9DCFF" }
                     }
                   >{m}m</button>
                 ))}
               </div>
             </div>
-            <div className="bg-white rounded-xl p-4 border" style={{ borderColor: "#e5e7f0" }}>
+            <div className="bg-white rounded-xl p-4 border" style={{ borderColor: "#C9DCFF" }}>
               <div className="flex justify-between items-center mb-1">
-                <span className="text-xs" style={{ color: "#6b7280" }}>Cuota estimada</span>
-                <span className="text-xs" style={{ color: "#9ca3af" }}>{plazo} meses</span>
+                <span className="text-xs" style={{ color: "#1A2842" }}>Cuota estimada</span>
+                <span className="text-xs" style={{ color: "#81A1DB" }}>{plazo} meses</span>
               </div>
-              <p className="text-2xl font-black" style={{ color: "#12187a" }}>
+              <p className="text-2xl font-black" style={{ color: "#173C6E" }}>
                 ${Math.round(cuota).toLocaleString("es-CO")}
-                <span className="text-sm font-normal" style={{ color: "#6b7280" }}>/mes</span>
+                <span className="text-sm font-normal" style={{ color: "#1A2842" }}>/mes</span>
               </p>
-              <p className="text-xs mt-1" style={{ color: "#9ca3af" }}>*Simulación referencial. Sujeta a estudio de crédito.</p>
+              <p className="text-xs mt-1" style={{ color: "#81A1DB" }}>*Simulación referencial. Sujeta a estudio de crédito.</p>
             </div>
             <button
               onClick={() => setShowConditions(!showConditions)}
               className="w-full py-3 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2"
-              style={{ background: "#12187a", color: "white" }}
+              style={{ background: "#173C6E", color: "white" }}
             >
               {showConditions ? "Ocultar condiciones" : "Ver condiciones completas"}
               <svg className="w-4 h-4 transition-transform" style={{ transform: showConditions ? "rotate(180deg)" : "rotate(0deg)" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -576,15 +569,15 @@ function ProductDetail({ product }: { product: Product }) {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
               {conditions.map((c) => (
                 <div key={c.label} className="rounded-xl p-4" style={{ background: product.bg, border: `1px solid ${product.color}22` }}>
-                  <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "#9ca3af" }}>{c.label}</p>
-                  <p className="font-black text-sm" style={{ color: "#12187a" }}>{c.value}</p>
-                  <p className="text-xs mt-0.5" style={{ color: "#6b7280" }}>{c.note}</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "#81A1DB" }}>{c.label}</p>
+                  <p className="font-black text-sm" style={{ color: "#173C6E" }}>{c.value}</p>
+                  <p className="text-xs mt-0.5" style={{ color: "#1A2842" }}>{c.note}</p>
                 </div>
               ))}
             </div>
-            <div className="rounded-xl p-4 flex items-start gap-3" style={{ background: "#fef9e7", border: "1px solid #fde68a" }}>
+            <div className="rounded-xl p-4 flex items-start gap-3" style={{ background: "#F7F0FF", border: "1px solid #EBC302" }}>
               <span className="text-lg flex-shrink-0">💡</span>
-              <p className="text-xs leading-relaxed" style={{ color: "#92400e" }}>
+              <p className="text-xs leading-relaxed" style={{ color: "#140E0C" }}>
                 Las condiciones mostradas son referenciales. La tasa final y el monto aprobado dependen del estudio de crédito individual. Consulta con un asesor para obtener las condiciones exactas según tu perfil.
               </p>
             </div>
@@ -602,8 +595,8 @@ function AhorroCard({ product, selected, onSelect }: { product: typeof AHORRO_PR
       onClick={onSelect}
       className="text-left rounded-2xl p-5 transition-all duration-200 w-full group"
       style={{
-        background: selected ? product.bg : "#ffffff",
-        border: `2px solid ${selected ? product.color : "#e5e7f0"}`,
+        background: selected ? product.bg : "#F7F0FF",
+        border: `2px solid ${selected ? product.color : "#C9DCFF"}`,
         boxShadow: selected ? `0 4px 20px ${product.color}22` : "0 1px 4px rgba(0,0,0,0.06)",
         transform: selected ? "translateY(-2px)" : "none",
       }}
@@ -611,8 +604,8 @@ function AhorroCard({ product, selected, onSelect }: { product: typeof AHORRO_PR
       <div className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4" style={{ background: product.bg }}>
         {product.icon}
       </div>
-      <h3 className="font-bold text-sm mb-1" style={{ color: "#12187a" }}>{product.title}</h3>
-      <p className="text-xs leading-relaxed" style={{ color: "#6b7280" }}>{product.desc}</p>
+      <h3 className="font-bold text-sm mb-1" style={{ color: "#173C6E" }}>{product.title}</h3>
+      <p className="text-xs leading-relaxed" style={{ color: "#1A2842" }}>{product.desc}</p>
       <div className="flex items-center gap-1 mt-3">
         <span className="text-xs font-semibold" style={{ color: product.color }}>{product.tagline}</span>
         <svg className="w-3 h-3 transition-transform group-hover:translate-x-0.5" style={{ color: product.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -654,7 +647,7 @@ function AhorroDetail({ product }: { product: AhorroProduct }) {
         </div>
         <div className="flex-1">
           <span className="text-xs font-bold uppercase tracking-widest" style={{ color: product.color }}>{product.tagline}</span>
-          <h2 className="text-xl font-black" style={{ color: "#12187a" }}>{product.title}</h2>
+          <h2 className="text-xl font-black" style={{ color: "#173C6E" }}>{product.title}</h2>
         </div>
         <button className="self-start sm:self-center px-5 py-2.5 rounded-xl text-sm font-bold transition-opacity hover:opacity-90 flex-shrink-0" style={{ background: product.color, color: "white" }}>
           Abrir cuenta →
@@ -663,15 +656,15 @@ function AhorroDetail({ product }: { product: AhorroProduct }) {
 
       <div className="p-6 grid lg:grid-cols-2 gap-6">
         <div>
-          <h3 className="font-bold text-sm mb-2" style={{ color: "#12187a" }}>¿Qué es?</h3>
-          <p className="text-sm leading-relaxed" style={{ color: "#4b5563" }}>{product.detail}</p>
-          <div className="mt-5 p-4 rounded-xl" style={{ background: "#f8f9ff", border: "1px solid #e5e7f0" }}>
-            <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "#9ca3af" }}>Características</p>
+          <h3 className="font-bold text-sm mb-2" style={{ color: "#173C6E" }}>¿Qué es?</h3>
+          <p className="text-sm leading-relaxed" style={{ color: "#1A2842" }}>{product.detail}</p>
+          <div className="mt-5 p-4 rounded-xl" style={{ background: "#F7F0FF", border: "1px solid #C9DCFF" }}>
+            <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "#81A1DB" }}>Características</p>
             <ul className="space-y-2">
               {product.features.map((f) => (
                 <li key={f} className="flex items-center gap-2 text-sm">
                   <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 text-xs font-bold text-white" style={{ background: product.color }}>✓</span>
-                  <span style={{ color: "#374151" }}>{f}</span>
+                  <span style={{ color: "#1A2842" }}>{f}</span>
                 </li>
               ))}
             </ul>
@@ -679,26 +672,26 @@ function AhorroDetail({ product }: { product: AhorroProduct }) {
         </div>
 
         {/* Proyección de rentabilidad */}
-        <div className="rounded-xl p-5" style={{ background: "#f8f9ff", border: "1px solid #e5e7f0" }}>
-          <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "#9ca3af" }}>
+        <div className="rounded-xl p-5" style={{ background: "#F7F0FF", border: "1px solid #C9DCFF" }}>
+          <p className="text-xs font-bold uppercase tracking-wider mb-3" style={{ color: "#81A1DB" }}>
             Proyección de rentabilidad
           </p>
           <div className="space-y-2 mb-3">
             {proyeccion.map((row) => (
-              <div key={row.label} className="flex items-center justify-between bg-white rounded-xl px-4 py-2.5 border" style={{ borderColor: "#e5e7f0" }}>
-                <span className="text-xs font-semibold" style={{ color: "#374151" }}>{row.label}</span>
+              <div key={row.label} className="flex items-center justify-between bg-white rounded-xl px-4 py-2.5 border" style={{ borderColor: "#C9DCFF" }}>
+                <span className="text-xs font-semibold" style={{ color: "#1A2842" }}>{row.label}</span>
                 <span className="text-xs font-bold" style={{ color: product.color }}>{row.tasa}</span>
-                <span className="text-xs font-black" style={{ color: "#12187a" }}>{row.total}</span>
+                <span className="text-xs font-black" style={{ color: "#173C6E" }}>{row.total}</span>
               </div>
             ))}
           </div>
-          <p className="text-xs mb-4" style={{ color: "#9ca3af" }}>
+          <p className="text-xs mb-4" style={{ color: "#81A1DB" }}>
             *Sobre ${monto.toLocaleString("es-CO")} {cfg?.tipo === "nomina" ? "mensuales" : "invertidos"}. Tasas referenciales.
           </p>
           <button
             onClick={() => setShowSimulator(!showSimulator)}
             className="w-full py-3 rounded-xl text-sm font-bold transition-all flex items-center justify-center gap-2"
-            style={{ background: "#12187a", color: "white" }}
+            style={{ background: "#173C6E", color: "white" }}
           >
             {showSimulator ? "Ocultar simulador" : "Simular mi inversión"}
             <svg className="w-4 h-4 transition-transform" style={{ transform: showSimulator ? "rotate(180deg)" : "rotate(0deg)" }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -720,28 +713,28 @@ function AhorroDetail({ product }: { product: AhorroProduct }) {
               <div className="space-y-5">
                 <div>
                   <div className="flex justify-between mb-2">
-                    <label className="text-sm font-semibold" style={{ color: "#374151" }}>{montoLabel}</label>
-                    <span className="text-sm font-black" style={{ color: "#12187a" }}>${monto.toLocaleString("es-CO")}</span>
+                    <label className="text-sm font-semibold" style={{ color: "#1A2842" }}>{montoLabel}</label>
+                    <span className="text-sm font-black" style={{ color: "#173C6E" }}>${monto.toLocaleString("es-CO")}</span>
                   </div>
                   <input type="range" min={cfg.montoMin} max={cfg.montoMax} step={cfg.montoMin} value={monto}
                     onChange={(e) => setMonto(Number(e.target.value))}
                     className="w-full h-2 rounded-full appearance-none cursor-pointer"
                     style={{ accentColor: product.color }}
                   />
-                  <div className="flex justify-between text-xs mt-1" style={{ color: "#9ca3af" }}>
+                  <div className="flex justify-between text-xs mt-1" style={{ color: "#81A1DB" }}>
                     <span>${cfg.montoMin.toLocaleString("es-CO")}</span>
                     <span>${cfg.montoMax.toLocaleString("es-CO")}</span>
                   </div>
                 </div>
                 <div>
-                  <label className="text-sm font-semibold mb-2 block" style={{ color: "#374151" }}>Plazo</label>
+                  <label className="text-sm font-semibold mb-2 block" style={{ color: "#1A2842" }}>Plazo</label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                     {cfg.plazos.map((p, i) => (
                       <button key={p.label} onClick={() => setPlazoIdx(i)}
                         className="py-2.5 rounded-xl text-xs font-bold transition-all"
                         style={plazoIdx === i
                           ? { background: product.color, color: "white", boxShadow: `0 4px 10px ${product.color}44` }
-                          : { background: "#f8f9ff", color: "#6b7280", border: "1px solid #e5e7f0" }
+                          : { background: "#F7F0FF", color: "#1A2842", border: "1px solid #C9DCFF" }
                         }
                       >{p.label}</button>
                     ))}
@@ -753,8 +746,8 @@ function AhorroDetail({ product }: { product: AhorroProduct }) {
               <div className="rounded-2xl p-5" style={{ background: product.bg, border: `1px solid ${product.color}33` }}>
                 <p className="text-xs font-bold uppercase tracking-wider mb-4" style={{ color: product.color }}>Tu proyección</p>
                 <div className="text-center mb-5">
-                  <p className="text-xs" style={{ color: "#6b7280" }}>Total al final del período</p>
-                  <p className="text-4xl font-black mt-1" style={{ color: "#12187a" }}>
+                  <p className="text-xs" style={{ color: "#1A2842" }}>Total al final del período</p>
+                  <p className="text-4xl font-black mt-1" style={{ color: "#173C6E" }}>
                     ${Math.round(total).toLocaleString("es-CO")}
                   </p>
                   <p className="text-xs mt-1 font-semibold" style={{ color: product.color }}>
@@ -769,12 +762,12 @@ function AhorroDetail({ product }: { product: AhorroProduct }) {
                     { label: "Rendimientos", val: `$${Math.round(rendimiento).toLocaleString("es-CO")}` },
                   ].map((r) => (
                     <div key={r.label} className="flex justify-between py-1.5 border-b" style={{ borderColor: `${product.color}22` }}>
-                      <span className="text-xs" style={{ color: "#6b7280" }}>{r.label}</span>
-                      <span className="text-xs font-bold" style={{ color: "#12187a" }}>{r.val}</span>
+                      <span className="text-xs" style={{ color: "#1A2842" }}>{r.label}</span>
+                      <span className="text-xs font-bold" style={{ color: "#173C6E" }}>{r.val}</span>
                     </div>
                   ))}
                 </div>
-                <p className="text-xs text-center mb-3" style={{ color: "#9ca3af" }}>*Simulación referencial. Tasas sujetas a cambio.</p>
+                <p className="text-xs text-center mb-3" style={{ color: "#81A1DB" }}>*Simulación referencial. Tasas sujetas a cambio.</p>
                 <button className="w-full py-2.5 rounded-xl text-xs font-bold hover:opacity-90 transition-opacity" style={{ background: product.color, color: "white" }}>
                   Abrir mi {product.title} ahora →
                 </button>
@@ -790,20 +783,20 @@ function AhorroDetail({ product }: { product: AhorroProduct }) {
 /* ─── Footer ─────────────────────────────────────────────────── */
 function Footer() {
   return (
-    <footer style={{ background: "#0b0e3d" }}>
+    <footer style={{ background: "#131739" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-lg flex items-center justify-center font-black text-sm" style={{ background: "#f5a200", color: "#0b0e3d" }}>CV</div>
+              <div className="w-9 h-9 rounded-lg flex items-center justify-center font-black text-sm" style={{ background: "#EBC302", color: "#131739" }}>CV</div>
               <span className="text-white font-black text-lg">COOVITEL</span>
             </div>
-            <p className="text-sm leading-relaxed mb-6 max-w-xs" style={{ color: "#8892b0" }}>
+            <p className="text-sm leading-relaxed mb-6 max-w-xs" style={{ color: "#81A1DB" }}>
               Cooperativa Empresarial de Ahorro y Crédito. 64 años construyendo bienestar financiero con solidaridad y transparencia en Colombia.
             </p>
             <div className="flex gap-2">
               {["FB", "IG", "YT", "TW"].map((s) => (
-                <button key={s} className="w-9 h-9 rounded-lg text-xs font-bold" style={{ background: "rgba(255,255,255,0.08)", color: "#8892b0" }}>{s}</button>
+                <button key={s} className="w-9 h-9 rounded-lg text-xs font-bold" style={{ background: "rgba(255,255,255,0.08)", color: "#81A1DB" }}>{s}</button>
               ))}
             </div>
           </div>
@@ -812,7 +805,7 @@ function Footer() {
             <h4 className="text-white font-bold mb-4 text-sm">Productos</h4>
             <ul className="space-y-2.5">
               {FOOTER_PRODUCTS.map((item) => (
-                <li key={item}><a href="#" className="text-sm hover:text-white transition-colors" style={{ color: "#8892b0" }}>{item}</a></li>
+                <li key={item}><a href="#" className="text-sm hover:text-white transition-colors" style={{ color: "#81A1DB" }}>{item}</a></li>
               ))}
             </ul>
           </div>
@@ -821,7 +814,7 @@ function Footer() {
             <h4 className="text-white font-bold mb-4 text-sm">Institucional</h4>
             <ul className="space-y-2.5">
               {FOOTER_INSTITUCIONAL.map((item) => (
-                <li key={item}><a href="#" className="text-sm hover:text-white transition-colors" style={{ color: "#8892b0" }}>{item}</a></li>
+                <li key={item}><a href="#" className="text-sm hover:text-white transition-colors" style={{ color: "#81A1DB" }}>{item}</a></li>
               ))}
             </ul>
           </div>
@@ -830,12 +823,12 @@ function Footer() {
         <div className="border-t mb-6" style={{ borderColor: "rgba(255,255,255,0.08)" }} />
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs" style={{ color: "#4a5568" }}>
+          <p className="text-xs" style={{ color: "#1A2842" }}>
             © 2026 COOVITEL — Cooperativa Empresarial de Ahorro y Crédito · Vigilada por Supersolidaria
           </p>
           <div className="flex gap-4">
             {["Confecoop", "Ascoop", "Fogacoop", "Supersolidaria"].map((org) => (
-              <a key={org} href="#" className="text-xs hover:text-white transition-colors" style={{ color: "#4a5568" }}>{org}</a>
+              <a key={org} href="#" className="text-xs hover:text-white transition-colors" style={{ color: "#1A2842" }}>{org}</a>
             ))}
           </div>
         </div>
@@ -856,7 +849,7 @@ export default function Productos() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-50" style={{ fontFamily: "'Poppins', sans-serif" }}>
       {/* Accent bar */}
-      <div className="h-1 w-full" style={{ background: "linear-gradient(90deg, #f5a200 0%, #12187a 100%)" }} />
+      <div className="h-1 w-full" style={{ background: "linear-gradient(90deg, #EBC302 0%, #173C6E 100%)" }} />
 
       <Header />
       <PageHero activeTab={activeTab} />
@@ -865,13 +858,13 @@ export default function Productos() {
 
         {/* Main tab switcher */}
         <div className="flex justify-center mb-10">
-          <div className="inline-flex rounded-2xl p-1.5" style={{ background: "#edf0fb" }}>
+          <div className="inline-flex rounded-2xl p-1.5" style={{ background: "#CFE0FF" }}>
             <button
               onClick={() => setActiveTab("credito")}
               className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all"
               style={activeTab === "credito"
-                ? { background: "#12187a", color: "white", boxShadow: "0 4px 12px rgba(18,24,122,0.3)" }
-                : { background: "transparent", color: "#6b7280" }
+                ? { background: "#173C6E", color: "white", boxShadow: "0 4px 12px rgba(18,24,122,0.3)" }
+                : { background: "transparent", color: "#1A2842" }
               }
             >
               🎯 Crédito Propósito
@@ -880,8 +873,8 @@ export default function Productos() {
               onClick={() => setActiveTab("ahorro")}
               className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all"
               style={activeTab === "ahorro"
-                ? { background: "#12187a", color: "white", boxShadow: "0 4px 12px rgba(18,24,122,0.3)" }
-                : { background: "transparent", color: "#6b7280" }
+                ? { background: "#173C6E", color: "white", boxShadow: "0 4px 12px rgba(18,24,122,0.3)" }
+                : { background: "transparent", color: "#1A2842" }
               }
             >
               💰 Ahorro Propósito
@@ -893,9 +886,9 @@ export default function Productos() {
         {activeTab === "credito" && (
           <>
             <div className="text-center mb-8">
-              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#f5a200" }}>APOYANDO SUEÑOS Y PROYECTOS</p>
-              <h2 className="text-2xl lg:text-3xl font-black" style={{ color: "#12187a" }}>Créditos para cada etapa de tu vida</h2>
-              <p className="text-sm mt-2 max-w-lg mx-auto" style={{ color: "#6b7280" }}>
+              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#EBC302" }}>APOYANDO SUEÑOS Y PROYECTOS</p>
+              <h2 className="text-2xl lg:text-3xl font-black" style={{ color: "#173C6E" }}>Créditos para cada etapa de tu vida</h2>
+              <p className="text-sm mt-2 max-w-lg mx-auto" style={{ color: "#1A2842" }}>
                 Selecciona el producto que mejor se adapta a tu necesidad y conoce todas sus condiciones.
               </p>
             </div>
@@ -918,7 +911,7 @@ export default function Productos() {
             </div>
 
             {selectedCredito === null && (
-              <p className="text-center text-xs mt-6" style={{ color: "#9ca3af" }}>
+              <p className="text-center text-xs mt-6" style={{ color: "#81A1DB" }}>
                 Haz clic en cualquier producto para ver sus condiciones y simular tu cuota
               </p>
             )}
@@ -929,9 +922,9 @@ export default function Productos() {
         {activeTab === "ahorro" && (
           <>
             <div className="text-center mb-8">
-              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#f5a200" }}>TU DINERO TRABAJA PARA TI</p>
-              <h2 className="text-2xl lg:text-3xl font-black" style={{ color: "#12187a" }}>Productos de ahorro e inversión</h2>
-              <p className="text-sm mt-2 max-w-lg mx-auto" style={{ color: "#6b7280" }}>
+              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#EBC302" }}>TU DINERO TRABAJA PARA TI</p>
+              <h2 className="text-2xl lg:text-3xl font-black" style={{ color: "#173C6E" }}>Productos de ahorro e inversión</h2>
+              <p className="text-sm mt-2 max-w-lg mx-auto" style={{ color: "#1A2842" }}>
                 Ahorra con propósito y obtén la mejor rentabilidad del mercado cooperativo colombiano.
               </p>
             </div>
@@ -952,28 +945,28 @@ export default function Productos() {
             </div>
 
             {selectedAhorro === null && (
-              <p className="text-center text-xs mt-6" style={{ color: "#9ca3af" }}>
+              <p className="text-center text-xs mt-6" style={{ color: "#81A1DB" }}>
                 Haz clic en un producto para ver tasas y simular tu rentabilidad
               </p>
             )}
 
             {/* Comparador */}
-            <div className="mt-12 rounded-2xl p-6 lg:p-8" style={{ background: "#f8f9ff", border: "1px solid #e5e7f0" }}>
+            <div className="mt-12 rounded-2xl p-6 lg:p-8" style={{ background: "#F7F0FF", border: "1px solid #C9DCFF" }}>
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                 <div>
-                  <h3 className="font-black text-lg" style={{ color: "#12187a" }}>Comparador de tasas</h3>
-                  <p className="text-sm" style={{ color: "#6b7280" }}>COOVITEL vs. el mercado bancario colombiano</p>
+                  <h3 className="font-black text-lg" style={{ color: "#173C6E" }}>Comparador de tasas</h3>
+                  <p className="text-sm" style={{ color: "#1A2842" }}>COOVITEL vs. el mercado bancario colombiano</p>
                 </div>
-                <span className="text-xs font-bold px-3 py-1.5 rounded-full" style={{ background: "#f0f2fb", color: "#12187a" }}>Actualizado agosto 2026</span>
+                <span className="text-xs font-bold px-3 py-1.5 rounded-full" style={{ background: "#F7F0FF", color: "#173C6E" }}>Actualizado agosto 2026</span>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr style={{ borderBottom: "2px solid #e5e7f0" }}>
-                      <th className="text-left pb-3 font-bold" style={{ color: "#374151" }}>Producto</th>
-                      <th className="text-center pb-3 font-bold" style={{ color: "#12187a" }}>COOVITEL</th>
-                      <th className="text-center pb-3 font-bold" style={{ color: "#6b7280" }}>Promedio bancario</th>
-                      <th className="text-center pb-3 font-bold" style={{ color: "#10b981" }}>Tu ganancia extra</th>
+                    <tr style={{ borderBottom: "2px solid #C9DCFF" }}>
+                      <th className="text-left pb-3 font-bold" style={{ color: "#1A2842" }}>Producto</th>
+                      <th className="text-center pb-3 font-bold" style={{ color: "#173C6E" }}>COOVITEL</th>
+                      <th className="text-center pb-3 font-bold" style={{ color: "#1A2842" }}>Promedio bancario</th>
+                      <th className="text-center pb-3 font-bold" style={{ color: "#1B65A6" }}>Tu ganancia extra</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -983,12 +976,12 @@ export default function Productos() {
                       { name: "CDAT 180 días", coovitel: "10.2% E.A.", banco: "7.1% E.A.", extra: "+3.1 pp" },
                       { name: "CDAT 360 días", coovitel: "11.5% E.A.", banco: "8.4% E.A.", extra: "+3.1 pp" },
                     ].map((row, i) => (
-                      <tr key={row.name} style={{ borderBottom: "1px solid #f0f1f8", background: i % 2 === 0 ? "white" : "transparent" }}>
-                        <td className="py-3 px-2 font-medium" style={{ color: "#374151" }}>{row.name}</td>
-                        <td className="py-3 px-2 text-center font-black" style={{ color: "#12187a" }}>{row.coovitel}</td>
-                        <td className="py-3 px-2 text-center" style={{ color: "#9ca3af" }}>{row.banco}</td>
+                      <tr key={row.name} style={{ borderBottom: "1px solid #CFE0FF", background: i % 2 === 0 ? "white" : "transparent" }}>
+                        <td className="py-3 px-2 font-medium" style={{ color: "#1A2842" }}>{row.name}</td>
+                        <td className="py-3 px-2 text-center font-black" style={{ color: "#173C6E" }}>{row.coovitel}</td>
+                        <td className="py-3 px-2 text-center" style={{ color: "#81A1DB" }}>{row.banco}</td>
                         <td className="py-3 px-2 text-center">
-                          <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "#e6faf4", color: "#10b981" }}>{row.extra}</span>
+                          <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "#CFE0FF", color: "#1B65A6" }}>{row.extra}</span>
                         </td>
                       </tr>
                     ))}
@@ -1000,19 +993,19 @@ export default function Productos() {
         )}
 
         {/* Bottom CTA */}
-        <div className="mt-12 rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #0d1260 0%, #12187a 60%, #1a22a0 100%)" }}>
+        <div className="mt-12 rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #131739 0%, #173C6E 60%, #27548F 100%)" }}>
           <div className="p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
               <p className="text-white font-black text-xl lg:text-2xl">¿Necesitas asesoría personalizada?</p>
               <p className="text-white opacity-70 text-sm mt-1">Nuestros asesores financieros te ayudan a elegir el producto ideal para ti.</p>
             </div>
             <div className="flex gap-3 flex-shrink-0">
-              <button className="px-5 py-3 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity" style={{ background: "#f5a200", color: "#0d1260" }}>
+              <a href="/contacto" className="px-5 py-3 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity" style={{ background: "#EBC302", color: "#131739" }}>
                 Hablar con un asesor
-              </button>
-              <button className="px-5 py-3 rounded-xl text-sm font-semibold border text-white hover:bg-white/10 transition-colors" style={{ borderColor: "rgba(255,255,255,0.3)" }}>
+              </a>
+              <a href="https://odin.selsacloud.com/linix/v7/8e273b00-cfc0-48eb-bcff-10ba62e64fe5/servicio/identidad/autenticar/gui/autenticacion-gui/ingresousuario" target="_blank" rel="noreferrer" className="px-5 py-3 rounded-xl text-sm font-semibold border text-white hover:bg-white/10 transition-colors" style={{ borderColor: "rgba(255,255,255,0.3)" }}>
                 Oficina Virtual →
-              </button>
+              </a>
             </div>
           </div>
         </div>

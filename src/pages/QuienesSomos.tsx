@@ -48,7 +48,7 @@ const menu: MenuGroup[] = [
 function NavBar() {
   const navLinks = ["Inicio", "Productos", "Quiénes Somos", "Confianza", "Beneficios", "Contacto"];
   return (
-    <header style={{ background: "#fff", borderBottom: "1px solid #e5e7eb" }}>
+    <header style={{ background: "#F7F0FF", borderBottom: "1px solid #C9DCFF" }}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
         <div className="flex items-center gap-2">
           <div
@@ -61,7 +61,7 @@ function NavBar() {
             <div className="font-bold text-lg leading-tight" style={{ color: "var(--coovitel-navy)", fontFamily: "Poppins, sans-serif" }}>
               COOVITEL
             </div>
-            <div className="text-[9px] leading-tight" style={{ color: "#6b7280" }}>
+            <div className="text-[9px] leading-tight" style={{ color: "#1A2842" }}>
               Cooperativa Empresarial de Ahorro y Crédito
             </div>
           </div>
@@ -73,7 +73,7 @@ function NavBar() {
               href="#"
               className="text-sm font-medium transition-colors"
               style={{
-                color: link === "Quiénes Somos" ? "var(--coovitel-blue)" : "#374151",
+                color: link === "Quiénes Somos" ? "var(--coovitel-blue)" : "#1A2842",
                 fontFamily: "Poppins, sans-serif",
                 borderBottom: link === "Quiénes Somos" ? "2px solid var(--coovitel-gold)" : "none",
                 paddingBottom: link === "Quiénes Somos" ? "2px" : "0",
@@ -94,7 +94,7 @@ function NavBar() {
           <a
             href="#"
             className="hidden md:inline-flex items-center px-5 py-2 rounded-full text-sm font-bold text-white transition-colors"
-            style={{ background: "var(--coovitel-gold)", color: "#0e0e5f", fontFamily: "Poppins, sans-serif" }}
+            style={{ background: "var(--coovitel-gold)", color: "#131739", fontFamily: "Poppins, sans-serif" }}
           >
             Asóciate
           </a>
@@ -109,7 +109,7 @@ function HeroSection() {
     <div
       className="relative overflow-hidden"
       style={{
-        background: "linear-gradient(135deg, var(--coovitel-dark) 0%, var(--coovitel-blue) 60%, #3b3bbf 100%)",
+        background: "linear-gradient(135deg, var(--coovitel-dark) 0%, var(--coovitel-blue) 60%, #27548F 100%)",
         minHeight: "260px",
       }}
     >
@@ -120,17 +120,10 @@ function HeroSection() {
       />
       <div
         className="absolute bottom-10 left-1/3 w-48 h-48 rounded-full opacity-5"
-        style={{ background: "#fff" }}
+        style={{ background: "#F7F0FF" }}
       />
 
       <div className="relative max-w-7xl mx-auto px-6 pt-10 pb-20">
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-sm mb-6 opacity-80">
-          <a href="#" className="text-white hover:text-yellow-300 transition-colors">Inicio</a>
-          <span className="text-white/50">›</span>
-          <span style={{ color: "var(--coovitel-gold)" }} className="font-medium">Quiénes Somos</span>
-        </div>
-
         {/* Badge */}
         <div
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4"
@@ -216,8 +209,8 @@ function HistoriaContent() {
               <div
                 className="rounded-xl p-5 border"
                 style={{
-                  background: i === milestones.length - 1 ? "rgba(245,166,35,0.05)" : "#fff",
-                  borderColor: i === milestones.length - 1 ? "rgba(245,166,35,0.3)" : "#e5e7eb",
+                  background: i === milestones.length - 1 ? "rgba(245,166,35,0.05)" : "#F7F0FF",
+                  borderColor: i === milestones.length - 1 ? "rgba(245,166,35,0.3)" : "#C9DCFF",
                 }}
               >
                 <span
@@ -263,7 +256,7 @@ function MisionVisionContent() {
         </div>
         <div
           className="rounded-2xl p-8"
-          style={{ background: "linear-gradient(135deg, #f5a623, #e09510)" }}
+          style={{ background: "linear-gradient(135deg, #EBC302, #EBC302)" }}
         >
           <div
             className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 text-2xl"
@@ -372,7 +365,7 @@ function PrincipiosContent() {
           <div
             key={i}
             className="rounded-xl p-5 border flex gap-5 items-start transition-all hover:shadow-md"
-            style={{ borderColor: "#e5e7eb", background: "#fff" }}
+            style={{ borderColor: "#C9DCFF", background: "#F7F0FF" }}
           >
             <div
               className="text-2xl font-black shrink-0 w-10 text-center leading-none mt-1"
@@ -397,12 +390,12 @@ function PrincipiosContent() {
 
 function ValoresContent() {
   const valores = [
-    { icon: "🤝", color: "#1a1aaf", title: "Solidaridad", desc: "Actuamos con vocación de servicio y apoyo mutuo entre asociados, colaboradores y comunidades." },
-    { icon: "🔍", color: "#f5a623", title: "Transparencia", desc: "Comunicamos con honestidad y claridad toda información relevante para nuestros grupos de interés." },
-    { icon: "⚖️", color: "#10b981", title: "Equidad", desc: "Garantizamos un trato justo e igualitario para todos nuestros asociados sin ningún tipo de discriminación." },
-    { icon: "🌱", color: "#8b5cf6", title: "Responsabilidad", desc: "Asumimos con compromiso las consecuencias de nuestras decisiones hacia los asociados y la sociedad." },
-    { icon: "💡", color: "#ef4444", title: "Innovación", desc: "Buscamos continuamente nuevas y mejores formas de servir a nuestros asociados con soluciones digitales." },
-    { icon: "🏆", color: "#f59e0b", title: "Excelencia", desc: "Nos esforzamos por la mejora continua en la calidad de nuestros productos, servicios y procesos." },
+    { icon: "🤝", color: "#173C6E", title: "Solidaridad", desc: "Actuamos con vocación de servicio y apoyo mutuo entre asociados, colaboradores y comunidades." },
+    { icon: "🔍", color: "#EBC302", title: "Transparencia", desc: "Comunicamos con honestidad y claridad toda información relevante para nuestros grupos de interés." },
+    { icon: "⚖️", color: "#1B65A6", title: "Equidad", desc: "Garantizamos un trato justo e igualitario para todos nuestros asociados sin ningún tipo de discriminación." },
+    { icon: "🌱", color: "#800080", title: "Responsabilidad", desc: "Asumimos con compromiso las consecuencias de nuestras decisiones hacia los asociados y la sociedad." },
+    { icon: "💡", color: "#A90072", title: "Innovación", desc: "Buscamos continuamente nuevas y mejores formas de servir a nuestros asociados con soluciones digitales." },
+    { icon: "🏆", color: "#EBC302", title: "Excelencia", desc: "Nos esforzamos por la mejora continua en la calidad de nuestros productos, servicios y procesos." },
   ];
   return (
     <div>
@@ -683,7 +676,7 @@ function TrabajaContent() {
             <label className={labelClass}>Adjuntar hoja de vida</label>
             <div
               className="border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-colors"
-              style={{ borderColor: "#d1d5db" }}
+              style={{ borderColor: "#C9DCFF" }}
             >
               <div className="text-2xl mb-2">📎</div>
               <p className="text-xs text-gray-500">Arrastra tu archivo aquí o <span style={{ color: "var(--coovitel-blue)" }} className="font-semibold">haz clic para subir</span></p>
@@ -743,7 +736,7 @@ function Sidebar({ active, setActive }: { active: Section; setActive: (s: Sectio
               <button
                 className="w-full text-left flex items-center justify-between px-3 py-2.5 rounded-lg transition-colors text-sm font-semibold"
                 style={{
-                  color: active === group.id || (group.children?.some((c) => c.id === active)) ? "var(--coovitel-blue)" : "#374151",
+                  color: active === group.id || (group.children?.some((c) => c.id === active)) ? "var(--coovitel-blue)" : "#1A2842",
                   background: active === group.id ? "rgba(26,26,175,0.07)" : "transparent",
                   fontFamily: "Poppins, sans-serif",
                 }}
@@ -756,7 +749,7 @@ function Sidebar({ active, setActive }: { active: Section; setActive: (s: Sectio
                 {group.children && (
                   <span
                     className="text-xs transition-transform"
-                    style={{ transform: open.includes(group.id) ? "rotate(180deg)" : "none", color: "#9ca3af" }}
+                    style={{ transform: open.includes(group.id) ? "rotate(180deg)" : "none", color: "#81A1DB" }}
                   >
                     ▾
                   </span>
@@ -769,7 +762,7 @@ function Sidebar({ active, setActive }: { active: Section; setActive: (s: Sectio
                       key={child.id}
                       className="w-full text-left px-3 py-2 rounded-lg text-xs transition-colors"
                       style={{
-                        color: active === child.id ? "var(--coovitel-blue)" : "#6b7280",
+                        color: active === child.id ? "var(--coovitel-blue)" : "#1A2842",
                         background: active === child.id ? "rgba(26,26,175,0.07)" : "transparent",
                         fontWeight: active === child.id ? 600 : 400,
                         fontFamily: "Poppins, sans-serif",
@@ -785,12 +778,12 @@ function Sidebar({ active, setActive }: { active: Section; setActive: (s: Sectio
           ))}
         </nav>
 
-        <div className="p-4 m-3 rounded-xl" style={{ background: "linear-gradient(135deg, var(--coovitel-gold), #e09510)" }}>
+        <div className="p-4 m-3 rounded-xl" style={{ background: "linear-gradient(135deg, var(--coovitel-gold), #EBC302)" }}>
           <p className="text-xs font-bold mb-1" style={{ color: "var(--coovitel-dark)", fontFamily: "Poppins, sans-serif" }}>¿Quieres ser asociado?</p>
           <p className="text-xs mb-3" style={{ color: "rgba(9,9,80,0.7)" }}>Accede a todos los beneficios de COOVITEL.</p>
           <button
-            className="w-full py-2 rounded-lg text-xs font-bold"
-            style={{ background: "var(--coovitel-dark)", color: "#fff", fontFamily: "Poppins, sans-serif" }}
+            onClick={() => { window.location.href = "/asociate" }} className="w-full py-2 rounded-lg text-xs font-bold"
+            style={{ background: "var(--coovitel-dark)", color: "#F7F0FF", fontFamily: "Poppins, sans-serif" }}
           >
             Asóciate →
           </button>
@@ -802,7 +795,7 @@ function Sidebar({ active, setActive }: { active: Section; setActive: (s: Sectio
 
 function Footer() {
   return (
-    <footer style={{ background: "var(--coovitel-dark)", color: "#fff" }} className="mt-20">
+    <footer style={{ background: "var(--coovitel-dark)", color: "#F7F0FF" }} className="mt-20">
       <div className="max-w-7xl mx-auto px-6 py-14">
         <div className="grid md:grid-cols-4 gap-10">
           <div>
@@ -868,7 +861,8 @@ function Footer() {
 }
 
 export default function QuienesSomos() {
-  const [active, setActive] = useState<Section>("historia");
+  const routeSection = new URLSearchParams(window.location.search).get("section");
+  const [active, setActive] = useState<Section>(routeSection === "estatutos" ? "estatutos" : "historia");
 
   return (
     <div className="min-h-full flex flex-col" style={{ background: "var(--coovitel-light)" }}>
