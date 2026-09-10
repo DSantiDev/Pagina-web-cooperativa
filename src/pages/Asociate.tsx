@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import { getCoovitelYears } from '../lib/brand'
+import { WhatsAppIcon } from '../components/GlobalWidgets'
 
 /* ─── Brand colours ─────────────────────────────────────── */
 const BLUE = '#173C6E'
 const NAVY = '#131739'
 const YELLOW = '#EBC302'
+const COOVITEL_YEARS = getCoovitelYears()
 
 /* ─── Types ──────────────────────────────────────────────── */
 type Tab = 'quienes' | 'pasos' | 'faq' | 'formulario'
@@ -134,7 +137,7 @@ function WaveDivider({ flip = false }: { flip?: boolean }) {
 }
 
 /* ─── Navbar ──────────────────────────────────────────────── */
-function HeroSection() {
+function HeroSection({ onJoin }: { onJoin: () => void }) {
   return (
     <section className="relative pt-24 pb-0 overflow-hidden" style={{ background: `linear-gradient(135deg, #131739 0%, ${BLUE} 60%, #27548F 100%)` }}>
       {/* Decorative circles */}
@@ -158,6 +161,7 @@ function HeroSection() {
             <div className="flex flex-wrap gap-3 mt-8">
               <a
                 href="#formulario"
+                onClick={(event) => { event.preventDefault(); onJoin(); }}
                 className="font-bold px-7 py-3 rounded-full text-sm transition-opacity hover:opacity-90"
                 style={{ background: YELLOW, color: NAVY }}
               >
@@ -176,7 +180,7 @@ function HeroSection() {
           <div className="grid grid-cols-2 gap-4">
             {[
               { val: '17.000+', label: 'Asociados activos' },
-              { val: '64+', label: 'Años de trayectoria' },
+              { val: `${COOVITEL_YEARS}+`, label: 'Años de trayectoria' },
               { val: '9', label: 'Ciudades con presencia' },
               { val: 'A+', label: 'Calificación Value & Risk' },
             ].map(({ val, label }) => (
@@ -474,7 +478,7 @@ function FAQSection() {
             Preguntas <span style={{ color: BLUE }}>frecuentes</span>
           </h2>
           <p className="text-gray-500 mt-3 max-w-lg mx-auto text-sm">
-            Todo lo que necesitas saber antes de dar el paso. Si tienes más preguntas, nuestros asesores están disponibles para ayudarte.
+            Todo lo que necesitas saber antes de dar el paso. Si tienes más preguntas, atención al cliente está disponible para ayudarte.
           </p>
         </div>
 
@@ -521,14 +525,14 @@ function FAQSection() {
           <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full opacity-10" style={{ background: YELLOW }} />
           <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full opacity-10" style={{ background: '#81A1DB' }} />
           <p className="text-white/60 text-sm mb-1">¿Tienes más preguntas?</p>
-          <h3 className="text-2xl font-extrabold text-white mb-2">Habla con un asesor COOVITEL</h3>
-          <p className="text-white/60 text-sm mb-6">Atención personalizada de lunes a viernes de 8am a 6pm</p>
+          <h3 className="text-2xl font-extrabold text-white mb-2">Atención al cliente COOVITEL</h3>
+          <p className="text-white/60 text-sm mb-6">Resolvemos tus inquietudes sobre afiliación y productos.</p>
           <div className="flex flex-wrap justify-center gap-3">
-            <a href="tel:+576015666601" className="font-bold px-7 py-3 rounded-full text-sm" style={{ background: YELLOW, color: NAVY }}>
+            <a href="tel:018000967474" className="font-bold px-7 py-3 rounded-full text-sm" style={{ background: YELLOW, color: NAVY }}>
               📞 Llamar ahora
             </a>
-            <a href="https://api.whatsapp.com/send/?phone=573160189853&text&type=phone_number&app_absent=0" target="_blank" rel="noreferrer" className="font-semibold px-7 py-3 rounded-full text-sm text-white border border-white/30 hover:border-white transition-colors">
-              💬 WhatsApp
+            <a href="https://api.whatsapp.com/send/?phone=573160189853&text&type=phone_number&app_absent=0" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-semibold px-7 py-3 rounded-full text-sm text-white border border-white/30 hover:border-white transition-colors">
+              <WhatsAppIcon /> WhatsApp
             </a>
           </div>
         </div>
@@ -565,7 +569,7 @@ function FormularioSection() {
           </div>
           <h2 className="text-2xl font-extrabold mb-3" style={{ color: NAVY }}>¡Solicitud enviada!</h2>
           <p className="text-gray-500 text-sm leading-relaxed mb-8">
-            Gracias por tu interés en COOVITEL. Un asesor se pondrá en contacto contigo en las próximas <strong>24 horas hábiles</strong> para continuar con tu proceso de afiliación.
+            Gracias por tu interés en COOVITEL. Atención al cliente se pondrá en contacto contigo en las próximas <strong>24 horas hábiles</strong> para continuar con tu proceso de afiliación.
           </p>
           <button
             onClick={() => setSent(false)}
@@ -593,7 +597,7 @@ function FormularioSection() {
             Formulario de <span style={{ color: YELLOW }}>afiliación</span>
           </h2>
           <p className="text-white/60 text-sm max-w-md mx-auto">
-            Completa este formulario y un asesor te contactará en menos de 24 horas para finalizar tu proceso.
+            Completa este formulario y atención al cliente te contactará en menos de 24 horas para finalizar tu proceso.
           </p>
         </div>
       </section>
@@ -800,7 +804,7 @@ export default function Asociate() {
     <div className="min-h-full flex flex-col" style={{ fontFamily: 'Poppins, sans-serif' }}>
       
       <main className="flex-1 pt-[72px]">
-        <HeroSection />
+        <HeroSection onJoin={() => handleTabChange('formulario')} />
         <TabNav active={activeTab} setActive={handleTabChange} />
         {activeTab === 'quienes' && <QuienesPuedenSection />}
         {activeTab === 'pasos' && <PasoAPasoSection />}

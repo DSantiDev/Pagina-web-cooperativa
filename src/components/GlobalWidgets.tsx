@@ -31,14 +31,14 @@ export function ScrollTop() {
     return () => window.removeEventListener('scroll', handler)
   }, [])
   const circumference = 138.2
-  return <button className={`scroll-top ${visible ? 'is-visible' : ''}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Volver al inicio"><svg viewBox="0 0 52 52" aria-hidden="true"><circle className="scroll-top__track" cx="26" cy="26" r="22" /><circle className="scroll-top__progress" cx="26" cy="26" r="22" style={{ strokeDasharray: `${progress * circumference} ${circumference}` }} /></svg><span>↑</span></button>
+  return <button className={`scroll-top ${visible ? 'is-visible' : ''}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Volver arriba"><svg viewBox="0 0 52 52" aria-hidden="true"><circle className="scroll-top__track" cx="26" cy="26" r="22" /><circle className="scroll-top__progress" cx="26" cy="26" r="22" style={{ strokeDasharray: `${progress * circumference} ${circumference}` }} /></svg><span>↑</span><i>Volver arriba</i></button>
 }
 
 export function CoviPayButton() {
-  return <a className="covipay-button" href="https://coovitel.zolev.co/CentralPagos/Index" target="_blank" rel="noreferrer" aria-label="Ir a CoviPay"><img src="/images/coovipay-lateralderecho.png" alt="CoviPay" /></a>
+  return <a className="covipay-button" href="https://coovitel.zolev.co/CentralPagos/Index" target="_blank" rel="noreferrer" aria-label="Conoce nuestros pagos con CoviPay"><img src="/images/coovipay-lateralderecho.png" alt="CoviPay" /><span>Conoce nuestros pagos</span></a>
 }
 
-const names: Record<string, string> = { productos: 'Productos', 'quienes-somos': 'Quiénes Somos', confianza: 'Confianza', beneficios: 'Beneficios', asociate: 'Asóciate', contacto: 'Contacto', 'estamentos-directivos': 'Estamentos Directivos', normatividad: 'Normatividad', 'informacion-estrategica': 'Información Estratégica', '404': 'Página no encontrada' }
+const names: Record<string, string> = { productos: 'Productos', 'quienes-somos': 'Quiénes Somos', confianza: 'Confianza', bienestar: 'Bienestar', asociate: 'Asóciate', contacto: 'Contacto', 'estamentos-directivos': 'Estamentos Directivos', normatividad: 'Normatividad', 'informacion-estrategica': 'Información Estratégica', '404': 'Página no encontrada' }
 export function Breadcrumb({ page }: { page: string }) {
   if (page === 'home') return null
   return <nav className="site-breadcrumb" aria-label="Ruta de navegación"><a href="/">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">{names[page] ?? page}</span></nav>

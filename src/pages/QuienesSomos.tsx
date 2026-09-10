@@ -1,14 +1,13 @@
 import { useState } from "react";
+import { getCoovitelYears } from "../lib/brand";
+
+const COOVITEL_YEARS = getCoovitelYears();
 
 type Section =
   | "historia"
   | "mision-vision"
-  | "modelo-cooperativo"
-  | "principios"
-  | "valores"
   | "normativa"
   | "gobierno"
-  | "estatutos"
   | "trabaja";
 
 type MenuGroup = {
@@ -24,19 +23,10 @@ const menu: MenuGroup[] = [
     children: [{ id: "mision-vision", label: "Misión y Visión" }],
   },
   {
-    id: "modelo-cooperativo",
-    label: "Modelo Cooperativo",
-    children: [
-      { id: "principios", label: "Principios Cooperativos" },
-      { id: "valores", label: "Valores Institucionales" },
-    ],
-  },
-  {
     id: "normativa",
     label: "Normativa",
     children: [
       { id: "gobierno", label: "Gobierno Corporativo" },
-      { id: "estatutos", label: "Estatutos" },
     ],
   },
   {
@@ -70,25 +60,25 @@ function HeroSection() {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-4"
           style={{ background: "rgba(245,166,35,0.15)", border: "1px solid rgba(245,166,35,0.4)", color: "var(--coovitel-gold)", fontFamily: "Poppins, sans-serif" }}
         >
-          + COOPERATIVA · 64 AÑOS DE CONFIANZA
+          + COOPERATIVA · {COOVITEL_YEARS} AÑOS DE CONFIANZA
         </div>
 
         <h1
           className="text-4xl md:text-5xl font-bold text-white leading-tight mb-4"
           style={{ fontFamily: "Poppins, sans-serif" }}
         >
-          Conócenos: más que una
+          Una historia de solidaridad
           <br />
-          <span style={{ color: "var(--coovitel-gold)" }}>cooperativa financiera</span>
+          <span style={{ color: "var(--coovitel-gold)" }}>que transforma vidas</span>
         </h1>
         <p className="text-white/70 text-base max-w-xl">
-          Somos una organización solidaria que lleva 64 años construyendo bienestar financiero con transparencia, responsabilidad y vocación de servicio.
+          Somos una organización solidaria que lleva {COOVITEL_YEARS} años construyendo bienestar financiero con transparencia, responsabilidad y vocación de servicio.
         </p>
 
         {/* Stats */}
         <div className="flex flex-wrap gap-8 mt-8">
           {[
-            { value: "64+", label: "Años" },
+            { value: `${COOVITEL_YEARS}+`, label: "Años" },
             { value: "17K+", label: "Asociados" },
             { value: "9", label: "Ciudades" },
             { value: "200+", label: "Empresas" },
@@ -219,14 +209,16 @@ function MisionVisionContent() {
       </div>
 
       <h3 className="text-xl font-bold mb-5" style={{ color: "var(--coovitel-navy)", fontFamily: "Poppins, sans-serif" }}>
-        Nuestros objetivos estratégicos
+        Valores institucionales
       </h3>
       <div className="grid sm:grid-cols-2 gap-4">
         {[
-          { icon: "💼", title: "Solidez financiera", desc: "Mantener indicadores de solvencia y liquidez superiores a los exigidos por la normativa vigente." },
-          { icon: "🤝", title: "Servicio asociado", desc: "Brindar atención de alta calidad con tiempos de respuesta ágiles y soluciones personalizadas." },
-          { icon: "🌱", title: "Responsabilidad social", desc: "Desarrollar programas de educación financiera y bienestar para nuestros asociados y comunidades." },
-          { icon: "💡", title: "Transformación digital", desc: "Implementar tecnología de vanguardia para mejorar la experiencia del asociado." },
+          { icon: "🤝", title: "Solidaridad", desc: "Actuamos con vocación de servicio y apoyo mutuo entre asociados, colaboradores y comunidades." },
+          { icon: "🔍", title: "Transparencia", desc: "Comunicamos con honestidad y claridad toda información relevante." },
+          { icon: "⚖️", title: "Equidad", desc: "Promovemos un trato justo e igualitario para todos nuestros asociados." },
+          { icon: "🌱", title: "Responsabilidad", desc: "Asumimos con compromiso nuestras decisiones hacia los asociados y la sociedad." },
+          { icon: "💡", title: "Innovación", desc: "Buscamos nuevas y mejores formas de servir a nuestros asociados." },
+          { icon: "🏆", title: "Excelencia", desc: "Trabajamos por la mejora continua de nuestros servicios y procesos." },
         ].map((item, i) => (
           <div key={i} className="rounded-xl p-5 border border-gray-100 flex gap-4 bg-white">
             <span className="text-2xl">{item.icon}</span>
@@ -241,142 +233,8 @@ function MisionVisionContent() {
   );
 }
 
-function ModeloCooperativoContent() {
-  return (
-    <div>
-      <div className="flex items-center gap-3 mb-2">
-        <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "var(--coovitel-gold)" }}>MODELO COOPERATIVO</span>
-      </div>
-      <h2 className="text-3xl font-bold mb-4" style={{ color: "var(--coovitel-navy)", fontFamily: "Poppins, sans-serif" }}>
-        El modelo que nos une
-      </h2>
-      <p className="text-gray-600 mb-8 leading-relaxed max-w-2xl">
-        El cooperativismo es una forma de organización económica y social basada en la colaboración mutua. En COOVITEL aplicamos el modelo cooperativo internacional adoptado por la Alianza Cooperativa Internacional.
-      </p>
-      <div
-        className="rounded-2xl p-8 mb-8"
-        style={{ background: "linear-gradient(135deg, var(--coovitel-dark) 0%, var(--coovitel-blue) 100%)" }}
-      >
-        <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: "Poppins, sans-serif" }}>
-          ¿Qué es una cooperativa?
-        </h3>
-        <p className="text-white/70 text-sm leading-relaxed">
-          Una cooperativa es una asociación autónoma de personas que se han unido voluntariamente para satisfacer sus necesidades y aspiraciones económicas, sociales y culturales en común, mediante una empresa de propiedad conjunta y de gestión democrática.
-        </p>
-      </div>
-      <div className="grid sm:grid-cols-3 gap-5">
-        {[
-          { icon: "👥", title: "Propiedad conjunta", desc: "Los asociados son dueños de la cooperativa y participan en sus beneficios." },
-          { icon: "🗳️", title: "Gestión democrática", desc: "Cada asociado tiene voz y voto en las decisiones de la organización." },
-          { icon: "🌐", title: "Interés comunitario", desc: "Trabajamos para el bienestar de los asociados y sus comunidades." },
-        ].map((item, i) => (
-          <div key={i} className="rounded-xl p-6 text-center border border-gray-100 bg-white">
-            <div
-              className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4"
-              style={{ background: "rgba(26,26,175,0.07)" }}
-            >
-              {item.icon}
-            </div>
-            <h4 className="font-semibold mb-2 text-sm" style={{ color: "var(--coovitel-navy)", fontFamily: "Poppins, sans-serif" }}>{item.title}</h4>
-            <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
-function PrincipiosContent() {
-  const principios = [
-    { num: "01", title: "Membresía abierta y voluntaria", desc: "Las cooperativas son organizaciones voluntarias abiertas para todas aquellas personas dispuestas a utilizar sus servicios y aceptar las responsabilidades que conlleva la membresía." },
-    { num: "02", title: "Control democrático de los miembros", desc: "Las cooperativas son organizaciones democráticas controladas por sus miembros quienes participan activamente en la definición de las políticas y en la toma de decisiones." },
-    { num: "03", title: "Participación económica de los miembros", desc: "Los miembros contribuyen de manera equitativa y controlan de manera democrática el capital de la cooperativa." },
-    { num: "04", title: "Autonomía e independencia", desc: "Las cooperativas son organizaciones autónomas de ayuda mutua, controladas por sus miembros." },
-    { num: "05", title: "Educación, formación e información", desc: "Las cooperativas brindan educación y formación a sus miembros, representantes, directivos y empleados." },
-    { num: "06", title: "Cooperación entre cooperativas", desc: "Las cooperativas sirven a sus miembros más eficazmente y fortalecen el movimiento cooperativo trabajando de manera conjunta." },
-    { num: "07", title: "Compromiso con la comunidad", desc: "La cooperativa trabaja para el desarrollo sostenible de su comunidad por medio de políticas aceptadas por sus miembros." },
-  ];
-  return (
-    <div>
-      <div className="flex items-center gap-3 mb-2">
-        <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "var(--coovitel-gold)" }}>ALIANZA COOPERATIVA INTERNACIONAL</span>
-      </div>
-      <h2 className="text-3xl font-bold mb-4" style={{ color: "var(--coovitel-navy)", fontFamily: "Poppins, sans-serif" }}>
-        7 Principios Cooperativos
-      </h2>
-      <p className="text-gray-600 mb-8 leading-relaxed max-w-2xl">
-        Los principios cooperativos son las pautas mediante las cuales las cooperativas ponen en práctica sus valores. COOVITEL aplica estos principios en cada decisión y actividad.
-      </p>
-      <div className="space-y-4">
-        {principios.map((p, i) => (
-          <div
-            key={i}
-            className="rounded-xl p-5 border flex gap-5 items-start transition-all hover:shadow-md"
-            style={{ borderColor: "#C9DCFF", background: "#F7F0FF" }}
-          >
-            <div
-              className="text-2xl font-black shrink-0 w-10 text-center leading-none mt-1"
-              style={{ color: "rgba(26,26,175,0.12)", fontFamily: "Poppins, sans-serif" }}
-            >
-              {p.num}
-            </div>
-            <div>
-              <h3 className="font-bold text-sm mb-1" style={{ color: "var(--coovitel-navy)", fontFamily: "Poppins, sans-serif" }}>{p.title}</h3>
-              <p className="text-gray-500 text-xs leading-relaxed">{p.desc}</p>
-            </div>
-            <div
-              className="shrink-0 w-1.5 self-stretch rounded-full"
-              style={{ background: i === 0 ? "var(--coovitel-gold)" : "var(--coovitel-blue)", opacity: 0.5 }}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
-function ValoresContent() {
-  const valores = [
-    { icon: "🤝", color: "#173C6E", title: "Solidaridad", desc: "Actuamos con vocación de servicio y apoyo mutuo entre asociados, colaboradores y comunidades." },
-    { icon: "🔍", color: "#EBC302", title: "Transparencia", desc: "Comunicamos con honestidad y claridad toda información relevante para nuestros grupos de interés." },
-    { icon: "⚖️", color: "#1B65A6", title: "Equidad", desc: "Garantizamos un trato justo e igualitario para todos nuestros asociados sin ningún tipo de discriminación." },
-    { icon: "🌱", color: "#800080", title: "Responsabilidad", desc: "Asumimos con compromiso las consecuencias de nuestras decisiones hacia los asociados y la sociedad." },
-    { icon: "💡", color: "#A90072", title: "Innovación", desc: "Buscamos continuamente nuevas y mejores formas de servir a nuestros asociados con soluciones digitales." },
-    { icon: "🏆", color: "#EBC302", title: "Excelencia", desc: "Nos esforzamos por la mejora continua en la calidad de nuestros productos, servicios y procesos." },
-  ];
-  return (
-    <div>
-      <div className="flex items-center gap-3 mb-2">
-        <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "var(--coovitel-gold)" }}>CULTURA ORGANIZACIONAL</span>
-      </div>
-      <h2 className="text-3xl font-bold mb-4" style={{ color: "var(--coovitel-navy)", fontFamily: "Poppins, sans-serif" }}>
-        Valores Institucionales
-      </h2>
-      <p className="text-gray-600 mb-8 leading-relaxed max-w-2xl">
-        Nuestros valores son el alma de COOVITEL. Guían el comportamiento de cada uno de nuestros colaboradores y orientan la manera en que nos relacionamos con nuestros asociados, aliados y la sociedad.
-      </p>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {valores.map((v, i) => (
-          <div
-            key={i}
-            className="rounded-2xl p-6 border border-gray-100 bg-white transition-all hover:shadow-lg hover:-translate-y-0.5"
-            style={{ transition: "all 0.2s" }}
-          >
-            <div
-              className="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4"
-              style={{ background: v.color + "15" }}
-            >
-              {v.icon}
-            </div>
-            <h3 className="font-bold mb-2" style={{ color: "var(--coovitel-navy)", fontFamily: "Poppins, sans-serif" }}>{v.title}</h3>
-            <p className="text-gray-500 text-xs leading-relaxed">{v.desc}</p>
-            <div className="mt-4 h-1 rounded-full" style={{ background: v.color, opacity: 0.3 }} />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 function GobiernoContent() {
   return (
@@ -420,68 +278,18 @@ function GobiernoContent() {
           <p className="text-gray-500 text-xs leading-relaxed mb-3">
             Consulta los informes anuales de gestión, estados financieros auditados y actas de Asamblea General disponibles para nuestros asociados.
           </p>
-          <button
+          <a href="/confianza?section=informes"
             className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold text-white"
             style={{ background: "var(--coovitel-blue)", fontFamily: "Poppins, sans-serif" }}
           >
             Descargar informes →
-          </button>
+          </a>
         </div>
       </div>
     </div>
   );
 }
 
-function EstatutosContent() {
-  const docs = [
-    { title: "Estatutos de COOVITEL", date: "Actualización 2023", size: "2.4 MB", type: "PDF" },
-    { title: "Reglamento de Crédito", date: "Actualización 2024", size: "1.8 MB", type: "PDF" },
-    { title: "Reglamento de Ahorro", date: "Actualización 2024", size: "1.2 MB", type: "PDF" },
-    { title: "Código de Buen Gobierno", date: "Actualización 2022", size: "3.1 MB", type: "PDF" },
-    { title: "Política de Tratamiento de Datos", date: "Actualización 2023", size: "0.8 MB", type: "PDF" },
-    { title: "Política SAGRILAFT", date: "Actualización 2024", size: "1.5 MB", type: "PDF" },
-  ];
-  return (
-    <div>
-      <div className="flex items-center gap-3 mb-2">
-        <span className="text-xs font-bold tracking-widest uppercase" style={{ color: "var(--coovitel-gold)" }}>DOCUMENTOS NORMATIVOS</span>
-      </div>
-      <h2 className="text-3xl font-bold mb-4" style={{ color: "var(--coovitel-navy)", fontFamily: "Poppins, sans-serif" }}>
-        Estatutos y Reglamentos
-      </h2>
-      <p className="text-gray-600 mb-8 leading-relaxed max-w-2xl">
-        COOVITEL opera bajo un marco normativo claro y transparente. Aquí encontrarás todos los documentos reglamentarios disponibles para consulta de nuestros asociados.
-      </p>
-      <div className="space-y-3">
-        {docs.map((doc, i) => (
-          <div
-            key={i}
-            className="rounded-xl p-5 border border-gray-100 bg-white flex items-center justify-between group hover:border-blue-200 transition-colors"
-          >
-            <div className="flex items-center gap-4">
-              <div
-                className="w-10 h-10 rounded-lg flex items-center justify-center text-xs font-bold text-white"
-                style={{ background: "var(--coovitel-blue)" }}
-              >
-                {doc.type}
-              </div>
-              <div>
-                <h3 className="font-semibold text-sm" style={{ color: "var(--coovitel-navy)", fontFamily: "Poppins, sans-serif" }}>{doc.title}</h3>
-                <p className="text-gray-400 text-xs">{doc.date} · {doc.size}</p>
-              </div>
-            </div>
-            <button
-              className="text-xs font-semibold px-4 py-1.5 rounded-full transition-colors"
-              style={{ color: "var(--coovitel-blue)", background: "rgba(26,26,175,0.07)", fontFamily: "Poppins, sans-serif" }}
-            >
-              Descargar
-            </button>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 function TrabajaContent() {
   const [form, setForm] = useState({
@@ -652,17 +460,13 @@ function TrabajaContent() {
 const contentMap: Record<Section, React.ReactNode> = {
   historia: <HistoriaContent />,
   "mision-vision": <MisionVisionContent />,
-  "modelo-cooperativo": <ModeloCooperativoContent />,
-  principios: <PrincipiosContent />,
-  valores: <ValoresContent />,
   normativa: <GobiernoContent />,
   gobierno: <GobiernoContent />,
-  estatutos: <EstatutosContent />,
   trabaja: <TrabajaContent />,
 };
 
 function Sidebar({ active, setActive }: { active: Section; setActive: (s: Section) => void }) {
-  const [open, setOpen] = useState<Section[]>(["historia", "modelo-cooperativo", "normativa"]);
+  const [open, setOpen] = useState<Section[]>(["historia", "normativa"]);
 
   const toggle = (id: Section) => {
     setOpen((prev) => prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]);
@@ -742,7 +546,7 @@ function Sidebar({ active, setActive }: { active: Section; setActive: (s: Sectio
 
 export default function QuienesSomos() {
   const routeSection = new URLSearchParams(window.location.search).get("section");
-  const [active, setActive] = useState<Section>(routeSection === "estatutos" ? "estatutos" : "historia");
+  const [active, setActive] = useState<Section>(routeSection === "trabaja" ? "trabaja" : "historia");
 
   return (
     <div className="min-h-full flex flex-col" style={{ background: "var(--coovitel-light)" }}>

@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
+import { getCoovitelYears } from "../lib/brand";
+import BOGOTA_IMAGES from "../lib/media";
+
+const COOVITEL_YEARS = getCoovitelYears();
 
 type Section = "porque" | "transparencia" | "seguridad" | "faq";
-type TransSub = "informes" | "solicitudes" | "obituarios";
+type TransSub = "informes" | "solicitudes" | "obituarios" | "institucional";
 type SegSub = "fraude" | "recomendaciones" | "datos" | "suplantacion";
 
 const NAV_ITEMS = [
@@ -24,6 +28,7 @@ const TRANS_TABS: { id: TransSub; label: string }[] = [
   { id: "informes", label: "Informes de Gestión" },
   { id: "solicitudes", label: "Solicitudes y Certificaciones" },
   { id: "obituarios", label: "Obituarios" },
+  { id: "institucional", label: "Gobierno y estatutos" },
 ];
 
 const SEG_TABS: { id: SegSub; label: string }[] = [
@@ -86,8 +91,9 @@ const OBITUARIOS = [
 
 export default function Confianza() {
   const directSection = new URLSearchParams(window.location.search).get("section");
-  const [activeSection, setActiveSection] = useState<Section>(directSection === "solicitudes" || directSection === "certificaciones" ? "transparencia" : "porque");
-  const [transSub, setTransSub] = useState<TransSub>(directSection === "solicitudes" ? "solicitudes" : "informes");
+  const isTransparencyTarget = ["solicitudes", "certificaciones", "informes", "institucional"].includes(directSection ?? "");
+  const [activeSection, setActiveSection] = useState<Section>(isTransparencyTarget ? "transparencia" : "porque");
+  const [transSub, setTransSub] = useState<TransSub>(directSection === "solicitudes" ? "solicitudes" : directSection === "institucional" ? "institucional" : "informes");
   const [segSub, setSegSub] = useState<SegSub>("fraude");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -201,7 +207,7 @@ export default function Confianza() {
             </div>
             <div className="hidden lg:flex items-end gap-6 pb-2">
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 text-center border border-white/10">
-                <div className="font-[Montserrat,sans-serif] font-black text-3xl text-[#EBC302]">64+</div>
+                <div className="font-[Montserrat,sans-serif] font-black text-3xl text-[#EBC302]">{COOVITEL_YEARS}+</div>
                 <div className="text-white/60 text-xs mt-1">Años de confianza</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 text-center border border-white/10">
@@ -270,7 +276,7 @@ export default function Confianza() {
               <div>
                 <p className="text-[#EBC302] font-bold text-sm uppercase tracking-widest mb-3">¿POR QUÉ CONFIAR EN COOVITEL?</p>
                 <h2 className="font-[Montserrat,sans-serif] font-black text-3xl md:text-4xl text-[#173C6E] leading-tight mb-5">
-                  64 años construyendo confianza cooperativa
+                  {COOVITEL_YEARS} años construyendo confianza cooperativa
                 </h2>
                 <p className="text-gray-600 leading-relaxed mb-4">
                   COOVITEL es una Cooperativa Empresarial de Ahorro y Crédito vigilada por la Superintendencia de la Economía Solidaria de Colombia.
@@ -283,8 +289,8 @@ export default function Confianza() {
               </div>
               <div className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=420&fit=crop&auto=format"
-                  alt="Equipo COOVITEL atendiendo a asociados"
+                  src={`${BOGOTA_IMAGES.confianzaImagenPrincipal}&w=600&h=420`}
+                  alt="Plaza de Bolívar en Bogotá, Colombia"
                   className="rounded-2xl w-full object-cover h-72 shadow-xl"
                 />
                 <div className="absolute -bottom-4 -left-4 bg-[#EBC302] rounded-2xl px-6 py-4 shadow-lg">
@@ -383,27 +389,6 @@ export default function Confianza() {
               {selectedRating === "iso" && <article className="rounded-2xl bg-[#F7F0FF] border border-[#C9DCFF] p-5"><span className="text-[#EBC302] text-xs font-bold">BUREAU VERITAS</span><h4 className="text-[#173C6E] font-bold text-lg mt-2">Certificación ISO 9001:2015</h4><dl className="mt-4 grid sm:grid-cols-3 gap-4 text-sm"><div><dt className="text-[#81A1DB]">Norma</dt><dd className="text-[#1A2842] font-semibold">ISO 9001:2015</dd></div><div><dt className="text-[#81A1DB]">Certificadora</dt><dd className="text-[#1A2842] font-semibold">Bureau Veritas</dd></div><div><dt className="text-[#81A1DB]">Vigencia publicada</dt><dd className="text-[#1A2842] font-semibold">2026</dd></div></dl></article>}
             </section>}
 
-            <div className="grid md:grid-cols-3 gap-4">
-              <a href="/estamentos-directivos" className="bg-white rounded-2xl p-5 border border-gray-100 hover:border-[#173C6E]/40 hover:shadow-md transition-all group">
-                <span className="text-xs font-bold tracking-widest text-[#EBC302]">INSTITUCIONAL</span>
-                <h3 className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] mt-2">Estamentos Directivos</h3>
-                <p className="text-gray-500 text-sm mt-2">Conoce a los representantes y órganos de gobierno de la Cooperativa.</p>
-                <span className="inline-block mt-4 text-[#173C6E] text-sm font-semibold group-hover:text-[#EBC302]">Consultar →</span>
-              </a>
-              <a href="/normatividad" className="bg-white rounded-2xl p-5 border border-gray-100 hover:border-[#173C6E]/40 hover:shadow-md transition-all group">
-                <span className="text-xs font-bold tracking-widest text-[#EBC302]">TRANSPARENCIA</span>
-                <h3 className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] mt-2">Normatividad</h3>
-                <p className="text-gray-500 text-sm mt-2">Estatutos, políticas, acuerdos, informes y calificaciones institucionales.</p>
-                <span className="inline-block mt-4 text-[#173C6E] text-sm font-semibold group-hover:text-[#EBC302]">Consultar →</span>
-              </a>
-              <a href="/informacion-estrategica" className="bg-white rounded-2xl p-5 border border-gray-100 hover:border-[#173C6E]/40 hover:shadow-md transition-all group">
-                <span className="text-xs font-bold tracking-widest text-[#EBC302]">GESTIÓN</span>
-                <h3 className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] mt-2">Información Estratégica</h3>
-                <p className="text-gray-500 text-sm mt-2">Información y resultados para conocer la gestión de COOVITEL.</p>
-                <span className="inline-block mt-4 text-[#173C6E] text-sm font-semibold group-hover:text-[#EBC302]">Consultar →</span>
-              </a>
-            </div>
-
             {/* Sub tabs */}
             <div className="flex flex-wrap gap-2">
               {TRANS_TABS.map((tab) => (
@@ -472,9 +457,9 @@ export default function Confianza() {
                         {cert.title}
                       </h4>
                       <p className="text-gray-500 text-sm leading-relaxed mb-4">{cert.desc}</p>
-                      <button className="text-[#173C6E] text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">
+                      <a href={`https://api.whatsapp.com/send?phone=573160189853&text=${encodeURIComponent(`Hola, quisiera solicitar el ${cert.title} de COOVITEL.`)}`} target="_blank" rel="noreferrer" className="certificate-request text-[#1B65A6] text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">
                         Solicitar <span>→</span>
-                      </button>
+                      </a>
                     </div>
                   ))}
                 </div>
@@ -516,6 +501,23 @@ export default function Confianza() {
                 </div>
               </div>
             )}
+
+            {transSub === "institucional" && (
+              <div className="space-y-6">
+                <div className="max-w-2xl">
+                  <h3 className="font-[Montserrat,sans-serif] font-bold text-xl text-[#173C6E]">Gobierno y estatutos</h3>
+                  <p className="mt-2 text-sm text-gray-500">Consulta la información institucional, los órganos de gobierno y los documentos que rigen a la cooperativa.</p>
+                </div>
+                <div className="grid md:grid-cols-3 gap-5">
+                  <a href="/estamentos-directivos" className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#173C6E]/40 hover:shadow-md transition-all"><h3 className="font-bold text-[#173C6E]">Estamentos Directivos</h3><p className="text-gray-500 text-sm mt-2">Conoce los órganos de dirección y representación de COOVITEL.</p><span className="inline-block mt-4 text-sm font-bold text-[#1B65A6]">Ver estamentos →</span></a>
+                  <article id="estatuto-cooperativo" className="scroll-mt-28 bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#173C6E]/40 transition-all">
+                    <h3 className="font-bold text-[#173C6E]">Estatuto Cooperativo</h3><p className="text-gray-500 text-sm mt-2">Consulta los documentos institucionales y reglamentos vigentes.</p>
+                    <a href="/normatividad" className="mt-4 inline-flex text-sm font-bold text-[#1B65A6] hover:text-[#173C6E]">Consultar documentos →</a>
+                  </article>
+                  <a href="/informacion-estrategica" className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#173C6E]/40 hover:shadow-md transition-all"><h3 className="font-bold text-[#173C6E]">Información Estratégica</h3><p className="text-gray-500 text-sm mt-2">Accede a la información estratégica institucional de COOVITEL.</p><span className="inline-block mt-4 text-sm font-bold text-[#1B65A6]">Consultar información →</span></a>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -552,12 +554,12 @@ export default function Confianza() {
             {/* Prevención de fraude */}
             {segSub === "fraude" && (
               <div className="space-y-6">
-                <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
+                <div className="bg-red-50 border border-red-200 rounded-2xl p-6">
                   <div className="flex items-start gap-4">
                     <div className="text-3xl">⚠️</div>
                     <div>
-                      <h4 className="font-[Montserrat,sans-serif] font-bold text-amber-800 text-lg mb-1">Alerta de Seguridad</h4>
-                      <p className="text-amber-700 text-sm">
+                      <h4 className="font-[Montserrat,sans-serif] font-bold text-red-700 text-lg mb-1">Alerta de Seguridad</h4>
+                      <p className="text-red-600 text-sm">
                         COOVITEL NUNCA te solicitará claves, contraseñas ni datos sensibles por teléfono, correo electrónico o
                         mensajes de texto. Si recibes este tipo de solicitudes, no las atiendas y repórtalo inmediatamente.
                       </p>
@@ -583,7 +585,7 @@ export default function Confianza() {
                   <div className="text-5xl">🚨</div>
                   <div className="flex-1 text-center sm:text-left">
                     <h4 className="font-[Montserrat,sans-serif] font-bold text-white text-xl mb-2">¿Fuiste víctima de fraude?</h4>
-                    <p className="text-white/70 text-sm">Repórtalo inmediatamente. Entre más rápido actúes, más posibilidades tenemos de recuperar tus recursos.</p>
+                    <p className="text-white/70 text-sm">Repórtalo inmediatamente. Entre más rápido actúes, más podremos ayudarte.</p>
                   </div>
                   <button onClick={() => { window.location.href = "/contacto" }} className="bg-[#EBC302] text-white font-bold px-6 py-3 rounded-full hover:bg-[#EBC302] transition-colors flex-shrink-0">
                     Reportar ahora
@@ -612,7 +614,7 @@ export default function Confianza() {
                     { n: "10", title: "Mantén datos actualizados", desc: "Teléfono y correo actualizados garantizan que recibas alertas oportunas." },
                   ].map((item) => (
                     <div key={item.n} className="bg-white rounded-2xl p-5 border border-gray-100 flex gap-4 items-start hover:shadow-md transition-shadow">
-                      <div className="font-[Montserrat,sans-serif] font-black text-2xl text-[#EBC302]/30 leading-none flex-shrink-0 w-10">{item.n}</div>
+                      <div className="grid place-items-center w-10 h-10 rounded-full bg-[#173C6E] font-[Montserrat,sans-serif] font-black text-sm text-white leading-none flex-shrink-0">{item.n}</div>
                       <div>
                         <div className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] mb-1">{item.title}</div>
                         <p className="text-gray-500 text-sm">{item.desc}</p>
@@ -659,11 +661,9 @@ export default function Confianza() {
                   <div className="grid sm:grid-cols-3 gap-4">
                     {[
                       { icon: "🔒", label: "Cifrado SSL/TLS en todos los canales digitales" },
-                      { icon: "🗄️", label: "Servidores con acceso restringido y monitoreados 24/7" },
-                      { icon: "🔑", label: "Autenticación de doble factor para accesos críticos" },
+                      { icon: "🗄️", label: "Servidores con acceso restringido y monitoreo continuo" },
                       { icon: "🧹", label: "Política de retención y eliminación segura de datos" },
                       { icon: "📋", label: "Auditorías periódicas de seguridad informática" },
-                      { icon: "👤", label: "Perfiles de acceso diferenciados por rol" },
                     ].map((m) => (
                       <div key={m.label} className="flex items-start gap-3">
                         <span className="text-xl">{m.icon}</span>
@@ -739,13 +739,12 @@ export default function Confianza() {
                     ¿Sospechas de suplantación?
                   </h4>
                   <p className="text-white/70 text-sm mb-6 max-w-md mx-auto">
-                    Actúa de inmediato. Bloquea tu cuenta y contáctanos. Nuestro equipo de seguridad está disponible
-                    las 24 horas para atender tu caso.
+                    Actúa de inmediato. Bloquea tu cuenta y contáctanos. Nuestro equipo está disponible para atender tu caso.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                    <button className="bg-[#EBC302] text-white font-bold px-8 py-3 rounded-full hover:bg-[#EBC302] transition-colors">
+                    <a href={`https://api.whatsapp.com/send?phone=573160189853&text=${encodeURIComponent("Hola, sospecho que están suplantando mi identidad y necesito bloquear mi cuenta. Solicito atención inmediata.")}`} target="_blank" rel="noreferrer" className="bg-[#EBC302] text-white font-bold px-8 py-3 rounded-full hover:bg-[#EBC302] transition-colors">
                       Bloquear cuenta
-                    </button>
+                    </a>
                     <button className="border-2 border-white text-white font-semibold px-8 py-3 rounded-full hover:bg-white hover:text-[#173C6E] transition-colors">
                       601 741 5000
                     </button>
@@ -772,9 +771,9 @@ export default function Confianza() {
                 <div className="bg-[#173C6E] rounded-2xl p-6 text-white">
                   <div className="text-3xl mb-3">💬</div>
                   <h4 className="font-[Montserrat,sans-serif] font-bold text-lg mb-2">¿No encuentras tu respuesta?</h4>
-                  <p className="text-white/70 text-sm mb-4">Nuestros asesores están listos para ayudarte en cualquier momento.</p>
-                  <a href="https://api.whatsapp.com/send/?phone=573160189853&text&type=phone_number&app_absent=0" target="_blank" rel="noreferrer" className="block text-center bg-[#EBC302] text-white font-bold px-5 py-2.5 rounded-full text-sm hover:bg-[#EBC302] transition-colors w-full">
-                    Hablar con un asesor
+                  <p className="text-white/70 text-sm mb-4">Atención al cliente está lista para ayudarte.</p>
+                  <a href="https://api.whatsapp.com/send/?phone=573160189853&text&type=phone_number&app_absent=0" target="_blank" rel="noreferrer" className="faq-contact-button flex items-center justify-center gap-2 text-center font-bold px-5 py-2.5 rounded-full text-sm transition-colors w-full">
+                    Atención al cliente →
                   </a>
                 </div>
               </div>
@@ -829,13 +828,13 @@ export default function Confianza() {
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
-                <button className="bg-[#EBC302] text-white font-bold px-7 py-3 rounded-full hover:bg-[#EBC302] transition-colors flex items-center gap-2">
+                <a href="/normatividad" className="bg-[#EBC302] text-white font-bold px-7 py-3 rounded-full hover:bg-[#EBC302] transition-colors flex items-center gap-2">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
                   Descargar Estatuto
-                </button>
-                <a href="/quienes-somos?section=estatutos" className="border-2 border-white text-white font-semibold px-7 py-3 rounded-full hover:bg-white hover:text-[#173C6E] transition-colors">
+                </a>
+                <a href="/normatividad" className="border-2 border-white text-white font-semibold px-7 py-3 rounded-full hover:bg-white hover:text-[#173C6E] transition-colors">
                   Ver Reglamentos
                 </a>
               </div>

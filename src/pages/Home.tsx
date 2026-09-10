@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef, type ReactNode, type CSSProperties } from 'react'
+import { getCoovitelYears } from '../lib/brand'
+import BOGOTA_IMAGES, { HOME_SLIDER_VIDEO } from '../lib/media'
 
 // ─── Hooks ───────────────────────────────────────────────────────────────────
 
@@ -72,22 +74,22 @@ function AnimIn({
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const stats = [
-  { value: 64, suffix: '+', label: 'Años de trayectoria' },
+  { value: getCoovitelYears(), suffix: '+', label: 'Años de trayectoria' },
   { value: 17000, suffix: '+', label: 'Asociados activos' },
   { value: 9, suffix: '', label: 'Ciudades con presencia' },
   { value: 200, suffix: '+', label: 'Empresas aliadas' },
 ]
 
 const benefits = [
-  { icon: '🏥', title: 'Asistencias Gratis 24/7', desc: 'Salud, hogar, mascotas, orientación vial y legal sin costo, 365 días.' },
+  { icon: '🏥', title: 'Asistencias', desc: 'Salud preventiva con optometría, odontología, bienestar y orientación emocional; además de asistencia para hogar, mascotas, orientación vial y legal para nuestros asociados.' },
   { icon: '🕊️', title: 'Auxilio Funerario', desc: 'Acompañamiento y apoyo económico para el asociado y su familia.' },
   { icon: '🎓', title: 'Subsidio Educativo', desc: 'Becas y auxilios para la educación superior de tus hijos.' },
-  { icon: '🏖️', title: 'Recreación', desc: 'Convenios y descuentos en parques, hoteles y destinos nacionales.' },
-  { icon: '💪', title: 'Salud Preventiva', desc: 'Optometría, odontología, bienestar y orientación emocional para ti y tu familia.' },
+  { icon: '🏖️', title: 'Recreación', desc: 'Disfruta beneficios en boletería de cine y confitería.' },
   { icon: '📖', title: 'Formación Continua', desc: 'Talleres, cursos y capacitaciones gratuitas para asociados.' },
 ]
 
 const affiliations = ['Confecoop', 'Ascoop', 'Fogacoop', 'Supersolidaria']
+const coovitelYears = getCoovitelYears()
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
@@ -114,22 +116,29 @@ function StatCard({ value, suffix, label, active, delay }: {
 
 // ─── HeroBannerCarousel ───────────────────────────────────────────────────────
 
-const heroBannerSlides = [
-  { img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=700&h=875&fit=crop&auto=format', alt: 'Asesor financiero COOVITEL con asociado', caption: 'Asamblea septiembre 2026', sub: 'Información para nuestros asociados', topLeft: { label: 'Asociados activos', value: '17,000+', dark: true }, bottomRight: { label: 'Años de confianza', value: '64+', gold: true }, midRight: { top: '✓ ISO 9001:2015', bottom: 'Bureau Veritas' }, topRight: 'A+ Value & Risk' },
-  { img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=700&h=875&fit=crop&auto=format', alt: 'Equipo COOVITEL', caption: 'Crédito de vehículo COOVITEL y OLX', sub: 'Conoce nuestros canales de financiación', topLeft: { label: 'Empresas aliadas', value: '200+', dark: true }, bottomRight: { label: 'Ciudades', value: '9', gold: true }, midRight: { top: '✓ ISO 9001:2015', bottom: 'Bureau Veritas' }, topRight: 'A+ Value & Risk' },
-  { img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&h=875&fit=crop&auto=format', alt: 'Familia COOVITEL', caption: 'Unidos por la reconstrucción', sub: 'Información de contingencia para nuestros asociados', topLeft: { label: 'Años de trayectoria', value: '64+', dark: true }, bottomRight: { label: 'Asociados activos', value: '17K+', gold: true }, midRight: { top: '✓ ISO 9001:2015', bottom: 'Bureau Veritas' }, topRight: 'A+ Value & Risk' },
-];
-
-function HeroBannerCarousel() {
-  const [current, setCurrent] = useState(0);
-  const [fading, setFading] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const goTo = (idx: number) => { if (idx === current) return; setFading(true); window.setTimeout(() => { setCurrent(idx); setFading(false); }, 320); };
-  useEffect(() => { timerRef.current = setTimeout(() => goTo((current + 1) % heroBannerSlides.length), 4500); return () => { if (timerRef.current) clearTimeout(timerRef.current); }; }, [current]);
-  const s = heroBannerSlides[current];
-  return <div className="hidden md:flex justify-center items-center"><div className="relative animate-float w-full max-w-[400px]"><div className="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-2xl" style={{ border: '1px solid rgba(255,255,255,0.1)' }}><img src={s.img} alt={s.alt} className="w-full h-full object-cover" style={{ filter: 'brightness(0.75) saturate(0.85)', opacity: fading ? 0 : 1, transition: 'opacity 0.32s ease' }} /><div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(10,21,84,0.7) 0%, transparent 50%)' }} /><div className="absolute bottom-6 left-6 right-6" style={{ opacity: fading ? 0 : 1, transition: 'opacity 0.32s ease' }}><p className="text-white font-bold">{s.caption}</p><p className="text-white/60 text-sm">{s.sub}</p></div><div className="absolute bottom-4 right-5 flex gap-1.5">{heroBannerSlides.map((_, i) => <button key={i} aria-label={`Mostrar banner ${i + 1}`} onClick={() => goTo(i)} style={{ width: i === current ? 18 : 6, height: 6, borderRadius: 3, backgroundColor: i === current ? '#EBC302' : 'rgba(255,255,255,0.4)', border: 'none', cursor: 'pointer', padding: 0, transition: 'width 0.3s ease, background-color 0.3s ease' }} />)}</div></div><div className="absolute -top-6 -left-8 bg-white rounded-2xl px-5 py-3.5 shadow-2xl" style={{ border: '1px solid #CFE0FF', opacity: fading ? 0 : 1 }}><p className="text-xs text-gray-400 font-medium">{s.topLeft.label}</p><p className="font-black text-2xl" style={{ color: '#173C6E' }}>{s.topLeft.value}</p></div><div className="absolute -bottom-6 -right-8 rounded-2xl px-5 py-3.5 shadow-2xl" style={{ backgroundColor: '#EBC302', opacity: fading ? 0 : 1 }}><p className="text-xs font-semibold text-white/70">{s.bottomRight.label}</p><p className="font-black text-2xl text-white">{s.bottomRight.value}</p></div><div className="absolute top-1/2 -right-12 -translate-y-1/2 bg-white rounded-xl px-4 py-2.5 shadow-xl" style={{ border: '1px solid #CFE0FF' }}><p className="text-xs font-bold" style={{ color: '#173C6E' }}>{s.midRight.top}</p><p className="text-[10px] text-gray-400">{s.midRight.bottom}</p></div><div className="absolute top-8 -right-14 rounded-xl px-3 py-1.5 shadow-lg" style={{ backgroundColor: '#131739' }}><p className="text-xs font-bold text-white">{s.topRight}</p></div></div></div>;
+type HeroSlide = {
+  mediaType: 'image' | 'video'; src: string; alt: string; caption: string; sub: string;
+  topLeft: { label: string; value: string }; bottomRight: { label: string; value: string };
+  midRight: { top: string; bottom: string }; topRight: string;
 }
 
+const heroBannerSlides: HeroSlide[] = [
+  { mediaType: 'image', src: `${BOGOTA_IMAGES.homeSlider1}&w=1080&h=1350`, alt: 'Mercado y vida cotidiana en Bogotá, Colombia', caption: 'Asamblea septiembre 2026', sub: 'Información para nuestros asociados', topLeft: { label: 'Asociados activos', value: '17,000+' }, bottomRight: { label: 'Años de confianza', value: `${coovitelYears}+` }, midRight: { top: '✓ ISO 9001:2015', bottom: 'Bureau Veritas' }, topRight: 'A+ Value & Risk' },
+  { mediaType: 'image', src: `${BOGOTA_IMAGES.homeSlider2}&w=1080&h=1350`, alt: 'Transporte urbano en Bogotá, Colombia', caption: 'Crédito de vehículo COOVITEL y OLX', sub: 'Conoce nuestros canales de financiación', topLeft: { label: 'Empresas aliadas', value: '200+' }, bottomRight: { label: 'Ciudades', value: '9' }, midRight: { top: '✓ ISO 9001:2015', bottom: 'Bureau Veritas' }, topRight: 'A+ Value & Risk' },
+  { mediaType: 'image', src: `${BOGOTA_IMAGES.homeSlider3}&w=1080&h=1350`, alt: 'Panorámica urbana de Bogotá, Colombia', caption: 'Unidos por la reconstrucción', sub: 'Información de contingencia para nuestros asociados', topLeft: { label: 'Años de trayectoria', value: `${coovitelYears}+` }, bottomRight: { label: 'Asociados activos', value: '17K+' }, midRight: { top: '✓ ISO 9001:2015', bottom: 'Bureau Veritas' }, topRight: 'A+ Value & Risk' },
+  ...(HOME_SLIDER_VIDEO.enabled ? [{ ...HOME_SLIDER_VIDEO, mediaType: 'video' as const }] : []),
+]
+
+function HeroBannerCarousel() {
+  const [current, setCurrent] = useState(0)
+  const [fading, setFading] = useState(false)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const goTo = (index: number) => { if (index === current) return; setFading(true); window.setTimeout(() => { setCurrent(index); setFading(false) }, 320) }
+  useEffect(() => { timerRef.current = setTimeout(() => goTo((current + 1) % heroBannerSlides.length), 4500); return () => { if (timerRef.current) clearTimeout(timerRef.current) } }, [current])
+  const slide = heroBannerSlides[current]
+  const mediaStyle = { filter: 'brightness(0.75) saturate(0.85)', opacity: fading ? 0 : 1, transition: 'opacity .32s ease' }
+  return <div className="hidden md:flex justify-center items-center"><div className="relative animate-float w-full max-w-[400px]"><div className={`hero-slider-media relative rounded-3xl overflow-hidden shadow-2xl ${slide.mediaType === 'video' ? 'hero-slider-media--video' : ''}`} style={{ border: '1px solid rgba(255,255,255,.1)' }}>{slide.mediaType === 'video' ? <video src={slide.src} className="w-full h-full object-cover" style={mediaStyle} autoPlay muted loop playsInline preload="metadata" aria-label={slide.alt} /> : <img src={slide.src} alt={slide.alt} width="1080" height="1350" loading="eager" fetchPriority="high" className="w-full h-full object-cover" style={mediaStyle} />}<div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(10,21,84,.7), transparent 50%)' }} /><div className="absolute bottom-6 left-6 right-6"><p className="text-white font-bold">{slide.caption}</p><p className="text-white/60 text-sm">{slide.sub}</p></div><div className="absolute bottom-4 right-5 flex gap-1.5">{heroBannerSlides.map((_, index) => <button key={index} aria-label={`Mostrar banner ${index + 1}`} onClick={() => goTo(index)} style={{ width: index === current ? 18 : 6, height: 6, borderRadius: 3, backgroundColor: index === current ? '#EBC302' : 'rgba(255,255,255,.4)', border: 0, padding: 0 }} />)}</div></div><div className="absolute -top-6 -left-8 bg-white rounded-2xl px-5 py-3.5 shadow-2xl"><p className="text-xs text-gray-400 font-medium">{slide.topLeft.label}</p><p className="font-black text-2xl" style={{ color: '#173C6E' }}>{slide.topLeft.value}</p></div><div className="absolute -bottom-6 -right-8 rounded-2xl px-5 py-3.5 shadow-2xl" style={{ backgroundColor: '#EBC302' }}><p className="text-xs font-semibold text-white/70">{slide.bottomRight.label}</p><p className="font-black text-2xl text-white">{slide.bottomRight.value}</p></div></div></div>
+}
 // ─── Main App ─────────────────────────────────────────────────────────────────
 
 export default function Home() {
@@ -179,7 +188,7 @@ export default function Home() {
         {/* Background photo — sits behind gradient */}
         <div className="absolute inset-0 pointer-events-none">
           <img
-            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1800&h=1200&fit=crop&auto=format"
+            src={`${BOGOTA_IMAGES.homeFondoHero}&w=1800&h=1200`}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -229,7 +238,7 @@ export default function Home() {
           <div>
             <div className="hero-enter hero-enter-1 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8"
               style={{ backgroundColor: 'rgba(232,160,32,0.15)', color: '#EBC302', border: '1px solid rgba(232,160,32,0.3)' }}>
-              ✦ Cooperativa · 64 años de confianza
+              ✦ Cooperativa · {coovitelYears} años de confianza
             </div>
 
             <h1 className="hero-enter hero-enter-2 font-black text-white leading-[1.08] mb-6"
@@ -265,7 +274,7 @@ export default function Home() {
             <div className="hero-enter hero-enter-5 grid grid-cols-4 gap-6 pt-8"
               style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
               {[
-                { n: '64+', l: 'Años' },
+                { n: `${coovitelYears}+`, l: 'Años' },
                 { n: '17K+', l: 'Asociados' },
                 { n: '9', l: 'Ciudades' },
                 { n: '200+', l: 'Empresas' },
@@ -282,10 +291,10 @@ export default function Home() {
           <HeroBannerCarousel />
         </div>
 
-        {/* Section transition wave */}
-        <div className="absolute bottom-0 inset-x-0 leading-none">
-          <svg viewBox="0 0 1440 90" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0 90 L0 45 Q180 0 360 35 Q540 70 720 40 Q900 10 1080 45 Q1260 80 1440 50 L1440 90 Z" fill="#f7f0ff" />
+        {/* Ola integrada: conserva el movimiento visual sin crear un corte blanco. */}
+        <div className="absolute bottom-0 inset-x-0 leading-none pointer-events-none">
+          <svg viewBox="0 0 1440 90" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-[90px]">
+            <path d="M0 90 L0 45 Q180 0 360 35 Q540 70 720 40 Q900 10 1080 45 Q1260 80 1440 50 L1440 90 Z" fill="#173C6E" />
           </svg>
         </div>
       </section>
@@ -293,13 +302,13 @@ export default function Home() {
       {/* ── Stats ──────────────────────────────────────────────── */}
       <section
         ref={statsSection.ref as React.RefObject<HTMLElement>}
-        className="py-20 relative overflow-hidden"
+        className="pt-10 pb-20 relative overflow-hidden"
         style={{ backgroundColor: '#f7f0ff' }}
       >
         {/* Background photo with navy tint */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&h=600&fit=crop&auto=format"
+            src={`${BOGOTA_IMAGES.homeFondoEstadisticas}&w=1800&h=600`}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -331,7 +340,7 @@ export default function Home() {
         {/* Background photo */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1800&h=1000&fit=crop&auto=format"
+            src={`${BOGOTA_IMAGES.homeFondoNosotros}&w=1800&h=1000`}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -350,13 +359,13 @@ export default function Home() {
             <div className="relative">
               <div className="rounded-3xl overflow-hidden aspect-[4/3] shadow-xl" style={{ backgroundColor: '#CFE0FF' }}>
                 <img
-                  src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop&auto=format"
-                  alt="Equipo COOVITEL"
+                  src={`${BOGOTA_IMAGES.homeImagenNosotros}&w=800&h=600`}
+                  alt="Comunidad reunida en Bogotá, Colombia"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(10,21,84,0.5) 0%, transparent 55%)' }} />
                 <div className="absolute bottom-6 left-6 right-6">
-                  <p className="text-white font-bold text-lg">64 años de trayectoria</p>
+                  <p className="text-white font-bold text-lg">{coovitelYears} años de trayectoria</p>
                   <p className="text-white/65 text-sm">construyendo bienestar cooperativo</p>
                 </div>
               </div>
@@ -375,7 +384,7 @@ export default function Home() {
               Una cooperativa construida sobre confianza
             </h2>
             <p className="text-gray-500 leading-relaxed mb-5 text-sm">
-              COOVITEL es una Cooperativa Empresarial de Ahorro y Crédito con más de 64 años de historia, dedicada a mejorar la calidad de vida de más de 17.000 asociados en 9 ciudades de Colombia.
+              COOVITEL es una Cooperativa Empresarial de Ahorro y Crédito con más de {coovitelYears} años de historia, dedicada a mejorar la calidad de vida de más de 17.000 asociados en 9 ciudades de Colombia.
             </p>
             <p className="text-gray-500 leading-relaxed mb-8 text-sm">
               Más de 200 empresas confían en nosotros para llevarle bienestar financiero a sus empleados. Operamos bajo los más altos estándares de seguridad, ética y responsabilidad social cooperativa.
@@ -415,7 +424,7 @@ export default function Home() {
         {/* Background photo with deep navy overlay */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1800&h=1000&fit=crop&auto=format"
+            src={`${BOGOTA_IMAGES.homeFondoConfianza}&w=1800&h=1000`}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -555,7 +564,7 @@ export default function Home() {
         {/* Background photo */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1800&h=1000&fit=crop&auto=format"
+            src={`${BOGOTA_IMAGES.homeFondoBeneficios}&w=1800&h=1000`}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -581,7 +590,7 @@ export default function Home() {
               Ser asociado tiene muchas ventajas
             </h2>
             <p className="text-white/50 max-w-xl mx-auto text-sm">
-              Tu membresía en COOVITEL va mucho más allá de los productos financieros.
+              Tu membresía en COOVITEL va mucho más allá de los productos financieros.<br /><strong className="text-[#EBC302]">Aplican términos y condiciones.</strong>
             </p>
           </AnimIn>
 
@@ -614,7 +623,7 @@ export default function Home() {
           </div>
 
           <AnimIn delay={550} className="text-center mt-14">
-            <a href="#contacto"
+            <a href="/beneficios"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-sm transition-all duration-200 hover:scale-105 hover:shadow-2xl"
               style={{ backgroundColor: '#EBC302', color: '#131739' }}>
               Conoce todos los beneficios →
@@ -632,7 +641,7 @@ export default function Home() {
         {/* Background photo */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&h=1000&fit=crop&auto=format"
+            src={`${BOGOTA_IMAGES.homeFondoContacto}&w=1800&h=1000`}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -651,7 +660,7 @@ export default function Home() {
               Estamos aquí para ayudarte
             </h2>
             <p className="text-gray-400 max-w-lg mx-auto text-sm">
-              Comunícate con nosotros por el canal que prefieras. Nuestros asesores te atenderán con gusto.
+              Comunícate con nosotros por el canal que prefieras. Atención al cliente te atenderá con gusto.
             </p>
           </AnimIn>
 
@@ -660,14 +669,12 @@ export default function Home() {
             <AnimIn dir="left" delay={80}>
               <div className="space-y-4">
                 {[
-                  { label: 'Teléfono Bogotá', value: '+57 (1) 566 6601', icon: '📞', accent: '#CFE0FF' },
-                  { label: 'Línea gratuita nacional', value: '018000 967 474', icon: '☎️', accent: '#CFE0FF' },
-                  { label: 'WhatsApp', value: 'Chatea con un asesor ahora', icon: '💬', accent: '#F7F0FF' },
-                  { label: 'Sucursal Virtual PSE', value: 'Transacciones seguras en línea', icon: '🌐', accent: '#CFE0FF' },
+                  { label: 'Línea gratuita nacional', value: '018000 967 474', icon: '☎️', accent: '#CFE0FF', href: 'tel:018000967474' },
+                  { label: 'Sucursal Virtual', value: 'Ingresa a la sucursal virtual', icon: '🌐', accent: '#CFE0FF', href: 'https://odin.selsacloud.com/linix/v7/8e273b00-cfc0-48eb-bcff-10ba62e64fe5/servicio/identidad/autenticar/gui/autenticacion-gui/ingresousuario' },
                 ].map(item => (
-                  <div key={item.label}
+                  <a key={item.label} href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noreferrer' : undefined}
                     className="flex items-center gap-4 p-5 rounded-2xl cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
-                    style={{ backgroundColor: '#f7f0ff', border: '1px solid #CFE0FF' }}>
+                    style={{ backgroundColor: '#f7f0ff', border: '1px solid #CFE0FF', textDecoration: 'none' }}>
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
                       style={{ backgroundColor: item.accent }}>{item.icon}</div>
                     <div>
@@ -675,8 +682,9 @@ export default function Home() {
                       <p className="font-bold text-sm" style={{ color: '#173C6E' }}>{item.value}</p>
                     </div>
                     <span className="ml-auto text-gray-300 text-lg">→</span>
-                  </div>
+                  </a>
                 ))}
+                <a href="/contacto?tab=oficinas" className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold" style={{ color: '#173C6E', border: '1px solid #173C6E' }}>📍 Conoce nuestras sedes →</a>
                 <div className="flex gap-3 pt-2">
                   {[
                     { label: 'Facebook', href: 'https://www.facebook.com/coovitelcol/?locale=es_LA', color: '#1B65A6', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> },
@@ -685,7 +693,7 @@ export default function Home() {
                     { label: 'WhatsApp', href: 'https://wa.me/573160189853?text=', color: '#1B65A6', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> },
                   ].map(n => (
                     <a key={n.label} href={n.href} target="_blank" rel="noopener noreferrer"
-                      className="flex-1 py-3 rounded-xl flex flex-col items-center gap-1 transition-all duration-200 hover:scale-105 hover:shadow-md"
+                      className={`flex-1 py-3 rounded-xl flex flex-col items-center gap-1 transition-all duration-200 hover:scale-105 hover:shadow-md ${n.label === 'WhatsApp' ? 'home-social-whatsapp' : ''}`}
                       style={{ backgroundColor: '#f7f0ff', border: '1px solid #CFE0FF', color: n.color, textDecoration: 'none' }}>
                       {n.icon}
                       <span className="text-[9px] font-semibold text-gray-400">{n.label}</span>

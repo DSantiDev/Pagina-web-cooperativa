@@ -116,12 +116,12 @@ const CREDITO_PRODUCTS = [
 
 const AHORRO_PRODUCTS = [
   {
-    id: "ahorro-vista",
+    id: "coovirenta",
     icon: "💰",
-    title: "Ahorro a la Vista",
-    tagline: "Oportunidad y confianza en tiempo real",
-    desc: "Dispón de tu dinero nacional e internacionalmente, las 24 horas.",
-    detail: "Dispones de tu dinero a nivel nacional e internacional las 24 horas del día, los siete días de la semana, utilizando como medio transaccional tu tarjeta débito Visa.",
+    title: "Coovirenta",
+    tagline: "Ahorro que acompaña tus metas",
+    desc: "Una alternativa de ahorro pensada para tu bienestar financiero.",
+    detail: "Coovirenta es una alternativa de ahorro COOVITEL. Consulta las condiciones y requisitos vigentes con atención al cliente.",
     features: ["Tarjeta débito Visa", "Red Servibanca", "Seguro de depósitos FOGACOOP", "Consulta por Sucursal Virtual"],
     color: "#1B65A6",
     bg: "#CFE0FF",
@@ -138,26 +138,37 @@ const AHORRO_PRODUCTS = [
     bg: "#F7F0FF",
   },
   {
-    id: "coviahorro",
+    id: "coovikids",
     icon: "🏦",
-    title: "Cooviahorro",
-    tagline: "Ahorra para hacer tus sueños realidad",
-    desc: "Ahorro programado con apertura desde $1.000 y plazo desde 6 meses.",
-    detail: "Te permite ahorrar el monto que necesites para cumplir objetivos como viajes, compras o pago de impuestos, con plazos flexibles desde 6 meses en adelante.",
+    title: "Coovikids",
+    tagline: "Construye el futuro de los más pequeños",
+    desc: "Un ahorro pensado para acompañar sus metas y proyectos.",
+    detail: "Coovikids ayuda a crear hábitos de ahorro para los niños. Consulta con atención al cliente las condiciones vigentes.",
     features: ["Apertura desde $1.000", "Plazo desde 6 meses", "Seguro de depósitos FOGACOOP", "Pago por nómina u oficina"],
     color: "#27548F",
     bg: "#CFE0FF",
   },
   {
-    id: "coovitemp",
+    id: "coovicasa",
     icon: "🎯",
-    title: "Coovitemp",
-    tagline: "Ahorro COOVITEL",
-    desc: "Producto de ahorro disponible en el portafolio vigente de COOVITEL.",
-    detail: "Consulta con COOVITEL las condiciones, características y requisitos vigentes de Coovitemp antes de abrir tu producto de ahorro.",
-    features: ["Producto de ahorro", "Consulta condiciones vigentes", "Atención COOVITEL", "Sucursal Virtual"],
+    title: "Coovicasa",
+    tagline: "Ahorra para tu hogar",
+    desc: "Una opción de ahorro enfocada en tus proyectos de vivienda.",
+    detail: "Coovicasa te acompaña a planear tus metas de vivienda. Consulta condiciones y requisitos vigentes con atención al cliente.",
+    features: ["Ahorro para vivienda", "Consulta condiciones vigentes", "Atención COOVITEL", "Sucursal Virtual"],
     color: "#A90072",
     bg: "#F7F0FF",
+  },
+  {
+    id: "coovieducacion",
+    icon: "🎓",
+    title: "Coovieducación",
+    tagline: "Ahorra para aprender y crecer",
+    desc: "Una alternativa de ahorro para tus metas educativas.",
+    detail: "Coovieducación está diseñado para ayudarte a planear objetivos de formación. Consulta las condiciones vigentes con atención al cliente.",
+    features: ["Metas educativas", "Consulta condiciones vigentes", "Atención COOVITEL", "Sucursal Virtual"],
+    color: "#27548F",
+    bg: "#CFE0FF",
   },
 ];
 
@@ -233,7 +244,7 @@ const CREDITO_CONDITIONS: Record<string, { label: string; value: string; note: s
   "cupo-rotativo": [
     { label: "Cupo mínimo", value: "$2.000.000", note: "Preaprobado" },
     { label: "Cupo máximo", value: "$20.000.000", note: "Según perfil crediticio" },
-    { label: "Disponibilidad", value: "24/7", note: "App y sucursal virtual" },
+    { label: "Disponibilidad", value: "En línea", note: "App y sucursal virtual" },
     { label: "Renovación", value: "Automática al pagar", note: "Sin trámites adicionales" },
     { label: "Tasa de interés", value: "1.5% M.V.", note: "Solo sobre saldo usado" },
     { label: "Cuota mínima", value: "10% del saldo utilizado", note: "O $50.000" },
@@ -338,12 +349,17 @@ function PageHero() {
 
           {/* Quick benefit pills */}
           <div className="flex flex-wrap gap-2 lg:flex-col lg:items-end">
-            {["✓ Sin cobros ocultos", "✓ Aprobación en 24 horas", "✓ 100% digital", "✓ Atención personalizada"].map((b) => (
+            {["✓ Portafolio financiero para cada etapa", "✓ Tasas de interés competitivas", "✓ Respaldo cooperativo", "✓ Atención al cliente"].map((b) => (
               <span key={b} className="px-3 py-1.5 rounded-full text-xs font-semibold text-white" style={{ background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.2)" }}>
                 {b}
               </span>
             ))}
           </div>
+        </div>
+        <div className="mt-6 flex flex-wrap items-center gap-2 text-xs text-white/75" aria-label="Certificaciones institucionales">
+          <span className="font-bold text-[#EBC302]">Entidad confiable</span>
+          <span className="rounded-full border border-white/25 px-3 py-1">ISO 9001:2015 · Bureau Veritas</span>
+          <span className="rounded-full border border-white/25 px-3 py-1">A+ · Value &amp; Risk</span>
         </div>
       </div>
     </section>
@@ -384,7 +400,7 @@ function ProductCard({ product, selected, onSelect }: { product: Product; select
 }
 
 /* ─── Product Detail Panel ──────────────────────────────────── */
-function ProductDetail({ product, showConditionsInitially = false }: { product: Product; showConditionsInitially?: boolean }) {
+function ProductDetail({ product, showConditionsInitially = false, onClose }: { product: Product; showConditionsInitially?: boolean; onClose: () => void }) {
   const [showConditions, setShowConditions] = useState(showConditionsInitially);
   const [plazo, setPlazo] = useState("24");
   const [monto, setMonto] = useState(10000000);
@@ -409,9 +425,7 @@ function ProductDetail({ product, showConditionsInitially = false }: { product: 
           <span className="text-xs font-bold uppercase tracking-widest" style={{ color: product.color }}>{product.tagline}</span>
           <h2 className="text-xl font-black" style={{ color: "#173C6E" }}>Crédito {product.title}</h2>
         </div>
-        <button className="self-start sm:self-center px-5 py-2.5 rounded-xl text-sm font-bold transition-opacity hover:opacity-90 flex-shrink-0" style={{ background: product.color, color: "white" }}>
-          Solicitar ahora →
-        </button>
+        <div className="flex gap-2 self-start sm:self-center"><a href="/contacto" className="px-5 py-2.5 rounded-xl text-sm font-bold transition-opacity hover:opacity-90 flex-shrink-0" style={{ background: product.color, color: "white" }}>Atención al cliente →</a><button onClick={onClose} className="w-10 h-10 rounded-xl bg-white font-bold" aria-label="Volver a productos" style={{ color: "#173C6E" }}>←</button></div>
       </div>
 
       {/* Body */}
@@ -547,7 +561,7 @@ function AhorroCard({ product, selected, onSelect }: { product: typeof AHORRO_PR
 }
 
 /* ─── Ahorro Detail Panel ───────────────────────────────────── */
-function AhorroDetail({ product, showSimulatorInitially = false }: { product: AhorroProduct; showSimulatorInitially?: boolean }) {
+function AhorroDetail({ product, showSimulatorInitially = false, onClose }: { product: AhorroProduct; showSimulatorInitially?: boolean; onClose: () => void }) {
   const [showSimulator, setShowSimulator] = useState(showSimulatorInitially);
   const cfg = AHORRO_SIMULATOR_CONFIG[product.id];
   const [monto, setMonto] = useState(cfg?.montoDefault ?? 1000000);
@@ -579,9 +593,7 @@ function AhorroDetail({ product, showSimulatorInitially = false }: { product: Ah
           <span className="text-xs font-bold uppercase tracking-widest" style={{ color: product.color }}>{product.tagline}</span>
           <h2 className="text-xl font-black" style={{ color: "#173C6E" }}>{product.title}</h2>
         </div>
-        <button className="self-start sm:self-center px-5 py-2.5 rounded-xl text-sm font-bold transition-opacity hover:opacity-90 flex-shrink-0" style={{ background: product.color, color: "white" }}>
-          Abrir cuenta →
-        </button>
+        <div className="flex gap-2 self-start sm:self-center"><a href="/contacto" className="px-5 py-2.5 rounded-xl text-sm font-bold transition-opacity hover:opacity-90 flex-shrink-0" style={{ background: product.color, color: "white" }}>Atención al cliente →</a><button onClick={onClose} className="w-10 h-10 rounded-xl bg-white font-bold" aria-label="Volver a productos" style={{ color: "#173C6E" }}>←</button></div>
       </div>
 
       <div className="p-6 grid lg:grid-cols-2 gap-6">
@@ -715,12 +727,22 @@ export default function Productos() {
   const requestedProduct = new URLSearchParams(window.location.search).get("producto");
   const initialCredit = CREDITO_PRODUCTS.some((product) => product.id === requestedProduct) ? requestedProduct : null;
   const initialAhorro = AHORRO_PRODUCTS.some((product) => product.id === requestedProduct) ? requestedProduct : null;
-  const [activeTab, setActiveTab] = useState<"credito" | "ahorro">(initialAhorro ? "ahorro" : "credito");
+  const [activeTab, setActiveTab] = useState<"credito" | "ahorro" | "cdat">(requestedProduct === "cdat" ? "cdat" : initialAhorro ? "ahorro" : "credito");
   const [selectedCredito, setSelectedCredito] = useState<string | null>(initialCredit);
   const [selectedAhorro, setSelectedAhorro] = useState<string | null>(initialAhorro);
 
   const selectedCreditoProduct = CREDITO_PRODUCTS.find((p) => p.id === selectedCredito);
   const selectedAhorroProduct = AHORRO_PRODUCTS.find((p) => p.id === selectedAhorro);
+  const visibleAhorroProducts = activeTab === "cdat" ? AHORRO_PRODUCTS.filter((product) => product.id === "cdat") : AHORRO_PRODUCTS.filter((product) => product.id !== "cdat");
+  const selectTab = (tab: "credito" | "ahorro" | "cdat") => {
+    setActiveTab(tab);
+    setSelectedCredito(null);
+    setSelectedAhorro(tab === "cdat" ? "cdat" : null);
+    if (tab === "cdat") window.setTimeout(() => document.getElementById("producto-seleccionado")?.scrollIntoView({ behavior: "smooth", block: "start" }), 70);
+  };
+  const scrollToDetail = () => window.setTimeout(() => document.getElementById("producto-seleccionado")?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
+  const selectCredito = (id: string) => { const next = selectedCredito === id ? null : id; setSelectedCredito(next); if (next) scrollToDetail(); };
+  const selectAhorro = (id: string) => { const next = selectedAhorro === id ? null : id; setSelectedAhorro(next); if (next) scrollToDetail(); };
 
   useEffect(() => {
     if (!requestedProduct) return;
@@ -742,7 +764,7 @@ export default function Productos() {
         <div className="flex justify-center mb-10">
           <div className="inline-flex rounded-2xl p-1.5" style={{ background: "#CFE0FF" }}>
             <button
-              onClick={() => setActiveTab("credito")}
+              onClick={() => selectTab("credito")}
               className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all"
               style={activeTab === "credito"
                 ? { background: "#173C6E", color: "white", boxShadow: "0 4px 12px rgba(18,24,122,0.3)" }
@@ -752,7 +774,7 @@ export default function Productos() {
               🎯 Crédito Propósito
             </button>
             <button
-              onClick={() => setActiveTab("ahorro")}
+              onClick={() => selectTab("ahorro")}
               className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all"
               style={activeTab === "ahorro"
                 ? { background: "#173C6E", color: "white", boxShadow: "0 4px 12px rgba(18,24,122,0.3)" }
@@ -761,10 +783,21 @@ export default function Productos() {
             >
               💰 Ahorro Propósito
             </button>
+            <button
+              onClick={() => selectTab("cdat")}
+              className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all"
+              style={activeTab === "cdat"
+                ? { background: "#173C6E", color: "white", boxShadow: "0 4px 12px rgba(18,24,122,0.3)" }
+                : { background: "transparent", color: "#1A2842" }
+              }
+            >
+              📈 CDAT
+            </button>
           </div>
         </div>
 
         {/* CRÉDITO TAB */}
+        <div key={activeTab} className="product-tab-panel">
         {activeTab === "credito" && (
           <>
             <div className="text-center mb-8">
@@ -777,7 +810,7 @@ export default function Productos() {
 
             {/* Detail panel (shown when a card is selected) */}
             {selectedCreditoProduct && (
-              <div id="producto-seleccionado"><ProductDetail product={selectedCreditoProduct} showConditionsInitially={requestedProduct === selectedCreditoProduct.id} /></div>
+              <div id="producto-seleccionado"><ProductDetail product={selectedCreditoProduct} showConditionsInitially={requestedProduct === selectedCreditoProduct.id} onClose={() => setSelectedCredito(null)} /></div>
             )}
 
             {/* Cards grid */}
@@ -787,7 +820,7 @@ export default function Productos() {
                   key={product.id}
                   product={product}
                   selected={selectedCredito === product.id}
-                  onSelect={() => setSelectedCredito(selectedCredito === product.id ? null : product.id)}
+                  onSelect={() => selectCredito(product.id)}
                 />
               ))}
             </div>
@@ -801,30 +834,30 @@ export default function Productos() {
         )}
 
         {/* AHORRO TAB */}
-        {activeTab === "ahorro" && (
+        {(activeTab === "ahorro" || activeTab === "cdat") && (
           <>
             <div className="text-center mb-8">
-              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#EBC302" }}>TU DINERO TRABAJA PARA TI</p>
-              <h2 className="text-2xl lg:text-3xl font-black" style={{ color: "#173C6E" }}>Productos de ahorro e inversión</h2>
+              <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: "#EBC302" }}>{activeTab === "cdat" ? "AHORRO A TÉRMINO" : "TU DINERO TRABAJA PARA TI"}</p>
+              <h2 className="text-2xl lg:text-3xl font-black" style={{ color: "#173C6E" }}>{activeTab === "cdat" ? "Certificado de Depósito a Término" : "Productos de ahorro e inversión"}</h2>
               <p className="text-sm mt-2 max-w-lg mx-auto" style={{ color: "#1A2842" }}>
                 Ahorra con propósito y obtén la mejor rentabilidad del mercado cooperativo colombiano.
               </p>
             </div>
 
             {selectedAhorroProduct && (
-              <div id="producto-seleccionado"><AhorroDetail product={selectedAhorroProduct} showSimulatorInitially={requestedProduct === selectedAhorroProduct.id} /></div>
+              <div id="producto-seleccionado"><AhorroDetail product={selectedAhorroProduct} showSimulatorInitially={requestedProduct === selectedAhorroProduct.id || activeTab === "cdat"} onClose={() => { setSelectedAhorro(null); setActiveTab("ahorro"); }} /></div>
             )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {AHORRO_PRODUCTS.map((product) => (
+            {activeTab !== "cdat" && <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {visibleAhorroProducts.map((product) => (
                 <AhorroCard
                   key={product.id}
                   product={product}
                   selected={selectedAhorro === product.id}
-                  onSelect={() => setSelectedAhorro(selectedAhorro === product.id ? null : product.id)}
+                  onSelect={() => selectAhorro(product.id)}
                 />
               ))}
-            </div>
+            </div>}
 
             {selectedAhorro === null && (
               <p className="text-center text-xs mt-6" style={{ color: "#81A1DB" }}>
@@ -832,58 +865,21 @@ export default function Productos() {
               </p>
             )}
 
-            {/* Comparador */}
-            <div className="mt-12 rounded-2xl p-6 lg:p-8" style={{ background: "#F7F0FF", border: "1px solid #C9DCFF" }}>
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-                <div>
-                  <h3 className="font-black text-lg" style={{ color: "#173C6E" }}>Comparador de tasas</h3>
-                  <p className="text-sm" style={{ color: "#1A2842" }}>COOVITEL vs. el mercado bancario colombiano</p>
-                </div>
-                <span className="text-xs font-bold px-3 py-1.5 rounded-full" style={{ background: "#F7F0FF", color: "#173C6E" }}>Actualizado agosto 2026</span>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr style={{ borderBottom: "2px solid #C9DCFF" }}>
-                      <th className="text-left pb-3 font-bold" style={{ color: "#1A2842" }}>Producto</th>
-                      <th className="text-center pb-3 font-bold" style={{ color: "#173C6E" }}>COOVITEL</th>
-                      <th className="text-center pb-3 font-bold" style={{ color: "#1A2842" }}>Promedio bancario</th>
-                      <th className="text-center pb-3 font-bold" style={{ color: "#1B65A6" }}>Tu ganancia extra</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      { name: "Ahorro a la Vista", coovitel: "4.2% E.A.", banco: "2.1% E.A.", extra: "+2.1 pp" },
-                      { name: "CDAT 90 días", coovitel: "8.5% E.A.", banco: "5.8% E.A.", extra: "+2.7 pp" },
-                      { name: "CDAT 180 días", coovitel: "10.2% E.A.", banco: "7.1% E.A.", extra: "+3.1 pp" },
-                      { name: "CDAT 360 días", coovitel: "11.5% E.A.", banco: "8.4% E.A.", extra: "+3.1 pp" },
-                    ].map((row, i) => (
-                      <tr key={row.name} style={{ borderBottom: "1px solid #CFE0FF", background: i % 2 === 0 ? "white" : "transparent" }}>
-                        <td className="py-3 px-2 font-medium" style={{ color: "#1A2842" }}>{row.name}</td>
-                        <td className="py-3 px-2 text-center font-black" style={{ color: "#173C6E" }}>{row.coovitel}</td>
-                        <td className="py-3 px-2 text-center" style={{ color: "#81A1DB" }}>{row.banco}</td>
-                        <td className="py-3 px-2 text-center">
-                          <span className="px-2 py-0.5 rounded-full text-xs font-bold" style={{ background: "#CFE0FF", color: "#1B65A6" }}>{row.extra}</span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
           </>
         )}
+
+        </div>
 
         {/* Bottom CTA */}
         <div className="mt-12 rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #131739 0%, #173C6E 60%, #27548F 100%)" }}>
           <div className="p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
             <div>
-              <p className="text-white font-black text-xl lg:text-2xl">¿Necesitas asesoría personalizada?</p>
-              <p className="text-white opacity-70 text-sm mt-1">Nuestros asesores financieros te ayudan a elegir el producto ideal para ti.</p>
+              <p className="text-white font-black text-xl lg:text-2xl">¿Necesitas atención para elegir tu producto ideal?</p>
+              <p className="text-white opacity-70 text-sm mt-1">Nuestro equipo de atención al cliente te orienta según tus necesidades financieras.</p>
             </div>
             <div className="flex gap-3 flex-shrink-0">
               <a href="/contacto" className="px-5 py-3 rounded-xl text-sm font-bold hover:opacity-90 transition-opacity" style={{ background: "#EBC302", color: "#131739" }}>
-                Hablar con un asesor
+                Atención al cliente
               </a>
               <a href="https://odin.selsacloud.com/linix/v7/8e273b00-cfc0-48eb-bcff-10ba62e64fe5/servicio/identidad/autenticar/gui/autenticacion-gui/ingresousuario" target="_blank" rel="noreferrer" className="px-5 py-3 rounded-xl text-sm font-semibold border text-white hover:bg-white/10 transition-colors" style={{ borderColor: "rgba(255,255,255,0.3)" }}>
                 Oficina Virtual →

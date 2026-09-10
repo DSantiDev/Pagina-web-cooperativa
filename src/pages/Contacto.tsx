@@ -92,7 +92,7 @@ const faqs = [
   },
   {
     q: "¿Qué tasas de interés maneja COOVITEL?",
-    a: "Nuestras tasas son preferenciales para asociados y están por debajo de la tasa promedio del mercado. Las tasas varían según el tipo de crédito, monto y plazo. Consulta las tasas vigentes en nuestra Oficina Virtual o comunicándote con un asesor.",
+    a: "Nuestras tasas son preferenciales para asociados y están por debajo de la tasa promedio del mercado. Las tasas varían según el tipo de crédito, monto y plazo. Consulta las tasas vigentes en nuestra Oficina Virtual o comunícate con atención al cliente.",
   },
   {
     q: "¿Cómo puedo consultar el saldo de mis ahorros?",
@@ -135,12 +135,17 @@ function HeroSection() {
         <div className="flex flex-wrap gap-6 mt-8">
           {[
             { value: "9", label: "Ciudades con presencia" },
-            { value: "24/7", label: "Atención digital" },
+            { value: "digital", label: "Atención digital" },
             { value: "<24h", label: "Tiempo de respuesta" },
           ].map((stat) => (
             <div key={stat.value} className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-amber-400/20 flex items-center justify-center">
-                <span className="text-amber-400 font-black text-xs">{stat.value}</span>
+                {stat.value === "digital" ? (
+                  <svg className="w-5 h-5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-label="Atención digital">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a6.75 6.75 0 01-3.69-12.4A7.5 7.5 0 0118 10.5c0 1.2-.28 2.34-.78 3.35l1.03 3.4-3.57-.76a6.72 6.72 0 01-6.43 2.26z" />
+                    <path strokeLinecap="round" d="M8.5 11.5h7M8.5 14.5h4" />
+                  </svg>
+                ) : <span className="text-amber-400 font-black text-xs">{stat.value}</span>}
               </div>
               <span className="text-white/70 text-sm">{stat.label}</span>
             </div>
@@ -159,9 +164,9 @@ function HeroSection() {
 
 function SubMenuTabs({ activeTab, setActiveTab }: { activeTab: Tab; setActiveTab: (t: Tab) => void }) {
   const tabs: { id: Tab; label: string; shortLabel: string; icon: string }[] = [
+    { id: "canales", label: "Canales de atención", shortLabel: "Canales", icon: "📞" },
     { id: "oficinas", label: "Oficinas y puntos de atención", shortLabel: "Oficinas", icon: "📍" },
     { id: "formulario", label: "Formulario de contacto", shortLabel: "Formulario", icon: "✉️" },
-    { id: "canales", label: "Canales de atención", shortLabel: "Canales", icon: "📞" },
     { id: "faq", label: "Preguntas frecuentes", shortLabel: "FAQ", icon: "❓" },
   ];
   return (
@@ -311,13 +316,13 @@ function FormularioSection() {
     return (
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-14">
         <div className="max-w-xl mx-auto bg-white rounded-3xl p-10 text-center shadow-lg border border-slate-100">
-          <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-5">
-            <svg className="w-10 h-10 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <div className="w-20 h-20 rounded-full bg-[#CFE0FF] flex items-center justify-center mx-auto mb-5">
+            <svg className="w-10 h-10 text-[#1B65A6]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           </div>
           <h3 className="text-2xl font-black text-[#173C6E] mb-2">¡Mensaje enviado!</h3>
-          <p className="text-slate-500 mb-6">Gracias <strong>{form.nombre}</strong>, hemos recibido tu mensaje. Un asesor te contactará en menos de 24 horas hábiles al correo <strong>{form.email}</strong>.</p>
+          <p className="text-slate-500 mb-6">Gracias <strong>{form.nombre}</strong>, hemos recibido tu mensaje. Atención al cliente te contactará en menos de 24 horas hábiles al correo <strong>{form.email}</strong>.</p>
           <button onClick={() => { setSubmitted(false); setForm({ nombre: "", email: "", telefono: "", ciudad: "", asunto: "", mensaje: "", tipo: "Asociado" }); }}
             className="px-8 py-3 rounded-full bg-[#173C6E] text-white font-black hover:bg-[#1B3669] transition-colors">
             Enviar otro mensaje
@@ -335,13 +340,13 @@ function FormularioSection() {
           <div>
             <span className="text-amber-500 text-xs font-black tracking-widest uppercase">Escríbenos</span>
             <h2 className="text-3xl sm:text-4xl font-black text-[#173C6E] mt-1 mb-3">Formulario de contacto</h2>
-            <p className="text-slate-500 leading-relaxed">Completa el formulario y uno de nuestros asesores se pondrá en contacto contigo en menos de 24 horas hábiles.</p>
+            <p className="text-slate-500 leading-relaxed">Completa el formulario y atención al cliente se pondrá en contacto contigo en menos de 24 horas hábiles.</p>
           </div>
           <div className="space-y-4">
             {[
               { icon: "⏱", title: "Respuesta rápida", desc: "Te respondemos en menos de 24 horas hábiles." },
               { icon: "🔒", title: "Datos seguros", desc: "Tu información está protegida bajo nuestra política de privacidad." },
-              { icon: "👤", title: "Atención personalizada", desc: "Un asesor especializado atenderá tu caso." },
+              { icon: "👤", title: "Atención personalizada", desc: "Nuestro equipo atenderá tu caso." },
             ].map((item) => (
               <div key={item.title} className="flex gap-3 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm">
                 <span className="text-2xl">{item.icon}</span>
@@ -354,9 +359,9 @@ function FormularioSection() {
           </div>
           <div className="bg-[#173C6E] rounded-2xl p-5 text-white">
             <div className="font-black text-sm mb-1">¿Necesitas ayuda inmediata?</div>
-            <div className="text-white/70 text-xs mb-3">Escríbenos por WhatsApp y un asesor te atiende ahora.</div>
+            <div className="text-white/70 text-xs mb-3">Escríbenos por WhatsApp y atención al cliente te atiende.</div>
             <a href="https://api.whatsapp.com/send/?phone=573160189853&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-400 text-white font-black text-sm px-4 py-2.5 rounded-xl transition-colors">
+              className="inline-flex items-center gap-2 bg-[#173C6E] hover:bg-[#27548F] text-white font-black text-sm px-4 py-2.5 rounded-xl transition-colors">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
               Abrir WhatsApp
             </a>
@@ -461,15 +466,15 @@ function CanalesSection() {
       icon: (
         <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       ),
-      color: "bg-green-500",
-      lightColor: "bg-green-50",
-      textColor: "text-green-600",
+      color: "bg-[#173C6E]",
+      lightColor: "bg-[#F7F0FF]",
+      textColor: "text-[#173C6E]",
       title: "WhatsApp",
       subtitle: "Atención inmediata",
       value: "+57 316 018 9853",
-      desc: "Escríbenos por WhatsApp y un asesor te responderá en minutos.",
+      desc: "Escríbenos por WhatsApp y atención al cliente responderá tu solicitud.",
       badge: "Disponible ahora",
-      badgeColor: "bg-green-100 text-green-700",
+      badgeColor: "bg-[#CFE0FF] text-[#173C6E]",
       action: "Escribir por WhatsApp",
       href: "https://api.whatsapp.com/send/?phone=573160189853&text&type=phone_number&app_absent=0",
     },
@@ -515,10 +520,10 @@ function CanalesSection() {
       title: "Oficina Virtual",
       subtitle: "100% en línea",
       value: "coovitel.coop",
-      desc: "Gestiona tus productos, consulta saldos, solicita créditos y mucho más desde cualquier dispositivo las 24 horas.",
-      badge: "24/7 disponible",
+      desc: "Gestiona tus productos, consulta saldos, solicita créditos y mucho más desde cualquier dispositivo.",
+      badge: "Servicio en línea",
       badgeColor: "bg-purple-100 text-purple-700",
-      action: "Ir a Oficina Virtual",
+      action: "Ingresa a la sucursal virtual",
       href: "https://odin.selsacloud.com/linix/v7/8e273b00-cfc0-48eb-bcff-10ba62e64fe5/servicio/identidad/autenticar/gui/autenticacion-gui/ingresousuario",
     },
     {
@@ -535,7 +540,7 @@ function CanalesSection() {
       badge: "Lun-Vie 8am–5pm",
       badgeColor: "bg-rose-100 text-rose-700",
       action: "Ver oficinas",
-      href: "#oficinas",
+      href: "/contacto?tab=oficinas",
     },
   ];
 
@@ -560,7 +565,7 @@ function CanalesSection() {
             <p className="text-slate-400 text-xs font-semibold mb-2">{ch.subtitle}</p>
             <p className={`font-black text-sm ${ch.textColor} mb-3`}>{ch.value}</p>
             <p className="text-slate-500 text-sm leading-relaxed mb-5">{ch.desc}</p>
-            <a href={ch.href} target={ch.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
+            <a href={ch.href} target={ch.href.startsWith("http") ? "_blank" : undefined} rel={ch.href.startsWith("http") ? "noopener noreferrer" : undefined}
               className={`flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-white font-black text-sm transition-all ${ch.color} hover:opacity-90`}>
               {ch.action} →
             </a>
@@ -618,10 +623,10 @@ function FAQSection() {
 
           <div className="bg-[#173C6E] border border-[#27548F] rounded-2xl p-5 shadow-md">
             <div className="text-[#EBC302] font-black text-sm mb-1">¿No encontraste tu respuesta?</div>
-            <p className="text-[#F7F0FF] text-xs leading-relaxed mb-4">Escríbenos por WhatsApp y un asesor resolverá tu duda personalmente.</p>
+            <p className="text-[#F7F0FF] text-xs leading-relaxed mb-4">Escríbenos por WhatsApp y atención al cliente resolverá tu duda.</p>
             <a href="https://api.whatsapp.com/send/?phone=573160189853&text&type=phone_number&app_absent=0" target="_blank" rel="noreferrer" className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#EBC302] px-4 py-2.5 text-sm font-black text-[#131739] transition-transform hover:-translate-y-0.5">
               <svg className="h-4 w-4" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.06 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26C2.16 6.44 6.6 2.01 12.05 2.01c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.89-9.88 9.89" /></svg>
-              Contactar asesor
+              Atención al cliente
             </a>
           </div>
         </div>
@@ -664,7 +669,8 @@ function FAQSection() {
 }
 
 export default function Contacto() {
-  const [activeTab, setActiveTab] = useState<Tab>("oficinas");
+  const requestedTab = new URLSearchParams(window.location.search).get("tab");
+  const [activeTab, setActiveTab] = useState<Tab>(requestedTab === "oficinas" ? "oficinas" : "canales");
 
   return (
     <div className="min-h-full bg-slate-50">
@@ -672,9 +678,9 @@ export default function Contacto() {
       <HeroSection />
       <SubMenuTabs activeTab={activeTab} setActiveTab={setActiveTab} />
       <main>
+        {activeTab === "canales" && <CanalesSection />}
         {activeTab === "oficinas" && <OficinasSection />}
         {activeTab === "formulario" && <FormularioSection />}
-        {activeTab === "canales" && <CanalesSection />}
         {activeTab === "faq" && <FAQSection />}
       </main>
 

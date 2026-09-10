@@ -1,5 +1,5 @@
 import Asociate from './pages/Asociate'
-import Beneficios from './pages/Beneficios'
+import Bienestar from './pages/Bienestar'
 import Confianza from './pages/Confianza'
 import Contacto from './pages/Contacto'
 import Home from './pages/Home'
@@ -12,7 +12,7 @@ import SiteLayout from './components/SiteLayout'
 const pages = {
   '/': { component: Home, name: 'home' },
   '/asociate': { component: Asociate, name: 'asociate' },
-  '/beneficios': { component: Beneficios, name: 'beneficios' },
+  '/beneficios': { component: Bienestar, name: 'bienestar' },
   '/confianza': { component: Confianza, name: 'confianza' },
   '/contacto': { component: Contacto, name: 'contacto' },
   '/productos': { component: Productos, name: 'productos' },
