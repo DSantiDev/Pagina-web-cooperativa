@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NAME_PATTERN, PHONE_PATTERN, clearFieldError, sanitizeName, sanitizePhone, showFieldError } from "../lib/formValidation";
 
 type Tab = "oficinas" | "formulario" | "canales" | "faq";
 
@@ -9,7 +10,7 @@ const offices = [
     address: "Calle 67 # 9 - 34, Chapinero",
     phone: "(601) 566 6601",
     hours: "Lun–Vie 8:30 a. m. – 4:30 p. m. · Jornada continua",
-    email: "mercadeoypublicidad@coovitel.coop",
+    email: "servicioasociados@coovitel.coop",
   },
   {
     city: "Tunja",
@@ -17,7 +18,7 @@ const offices = [
     address: "Carrera 10 # 17-57, Centro Histórico",
     phone: "01 8000 967474",
     hours: "Lun–Vie 8:30 a. m. – 4:30 p. m. · Jornada continua",
-    email: "mercadeoypublicidad@coovitel.coop",
+    email: "servicioasociados@coovitel.coop",
   },
   {
     city: "Cali",
@@ -25,7 +26,7 @@ const offices = [
     address: "Avenida 5A Norte # 25N - 44, barrio San Vicente",
     phone: "01 8000 967474",
     hours: "Lun–Vie 8:30 a. m. – 12:00 m. y 1:00 p. m. – 4:30 p. m.",
-    email: "mercadeoypublicidad@coovitel.coop",
+    email: "servicioasociados@coovitel.coop",
   },
   {
     city: "Barranquilla",
@@ -33,7 +34,7 @@ const offices = [
     address: "Carrera 52 # 72-152, local 2A, C.C. El Prado",
     phone: "01 8000 967474",
     hours: "Lun–Vie 8:30 a. m. – 12:00 m. y 1:00 p. m. – 4:30 p. m.",
-    email: "mercadeoypublicidad@coovitel.coop",
+    email: "servicioasociados@coovitel.coop",
   },
   {
     city: "Cúcuta",
@@ -41,7 +42,7 @@ const offices = [
     address: "Caobos Mall, Avenida Segunda Este # 13A-09, local 2",
     phone: "01 8000 967474",
     hours: "Lun–Vie 8:30 a. m. – 12:00 m. y 1:00 p. m. – 4:30 p. m. · Sáb 9:00 a. m. – 11:00 a. m.",
-    email: "mercadeoypublicidad@coovitel.coop",
+    email: "servicioasociados@coovitel.coop",
   },
   {
     city: "Bucaramanga",
@@ -49,7 +50,7 @@ const offices = [
     address: "Carrera 29 # 42-12, local 01, Edificio Parque 42, barrio Sotomayor",
     phone: "01 8000 967474",
     hours: "Lun–Vie 8:30 a. m. – 12:00 m. y 1:00 p. m. – 4:30 p. m.",
-    email: "mercadeoypublicidad@coovitel.coop",
+    email: "servicioasociados@coovitel.coop",
   },
   {
     city: "Medellín",
@@ -57,7 +58,7 @@ const offices = [
     address: "Carrera 49 # 49-73, oficina 1310",
     phone: "01 8000 967474",
     hours: "Lun–Vie 8:30 a. m. – 12:00 m. y 1:00 p. m. – 4:30 p. m.",
-    email: "mercadeoypublicidad@coovitel.coop",
+    email: "servicioasociados@coovitel.coop",
   },
   {
     city: "Ibagué",
@@ -65,7 +66,7 @@ const offices = [
     address: "Carrera 5 # 37 bis - 19, Edificio Fontainebleu, local 105",
     phone: "01 8000 967474",
     hours: "Lun–Vie 8:30 a. m. – 12:00 m. y 1:00 p. m. – 4:30 p. m.",
-    email: "mercadeoypublicidad@coovitel.coop",
+    email: "servicioasociados@coovitel.coop",
   },
   {
     city: "Manizales",
@@ -73,7 +74,7 @@ const offices = [
     address: "Carrera 24 # 22 - 02, Edificio Plaza Centro, oficina 907",
     phone: "01 8000 967474",
     hours: "Lun–Vie 8:30 a. m. – 12:00 m. y 1:00 p. m. – 4:30 p. m.",
-    email: "mercadeoypublicidad@coovitel.coop",
+    email: "servicioasociados@coovitel.coop",
   },
 ];
 
@@ -369,7 +370,7 @@ function FormularioSection() {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="lg:col-span-3 bg-white rounded-3xl p-8 shadow-lg border border-slate-100 space-y-5">
+        <form onSubmit={handleSubmit} onInvalid={showFieldError} onInput={clearFieldError} className="form-validation lg:col-span-3 bg-white rounded-3xl p-8 shadow-lg border border-slate-100 space-y-5">
           {/* Tipo de usuario */}
           <div>
             <label className="block text-xs font-black text-slate-500 uppercase tracking-wider mb-2">Soy</label>
@@ -391,13 +392,13 @@ function FormularioSection() {
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-black text-slate-500 uppercase tracking-wider mb-1.5">Nombre completo *</label>
-              <input required value={form.nombre} onChange={(e) => setForm({ ...form, nombre: e.target.value })}
+              <input required pattern={NAME_PATTERN} minLength={2} autoComplete="name" value={form.nombre} onChange={(e) => setForm({ ...form, nombre: sanitizeName(e.target.value) })}
                 placeholder="Ej. María González"
                 className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 text-slate-800 text-sm font-semibold outline-none focus:border-[#173C6E] transition-colors placeholder:font-normal placeholder:text-slate-400" />
             </div>
             <div>
               <label className="block text-xs font-black text-slate-500 uppercase tracking-wider mb-1.5">Correo electrónico *</label>
-              <input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })}
+              <input required type="email" autoComplete="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value.trimStart() })}
                 placeholder="correo@ejemplo.com"
                 className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 text-slate-800 text-sm font-semibold outline-none focus:border-[#173C6E] transition-colors placeholder:font-normal placeholder:text-slate-400" />
             </div>
@@ -406,13 +407,13 @@ function FormularioSection() {
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-black text-slate-500 uppercase tracking-wider mb-1.5">Teléfono / Celular *</label>
-              <input required type="tel" value={form.telefono} onChange={(e) => setForm({ ...form, telefono: e.target.value })}
+              <input required type="tel" inputMode="numeric" pattern={PHONE_PATTERN} minLength={10} maxLength={10} value={form.telefono} onChange={(e) => setForm({ ...form, telefono: sanitizePhone(e.target.value) })}
                 placeholder="300 000 0000"
                 className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 text-slate-800 text-sm font-semibold outline-none focus:border-[#173C6E] transition-colors placeholder:font-normal placeholder:text-slate-400" />
             </div>
             <div>
               <label className="block text-xs font-black text-slate-500 uppercase tracking-wider mb-1.5">Ciudad</label>
-              <select value={form.ciudad} onChange={(e) => setForm({ ...form, ciudad: e.target.value })}
+              <select required value={form.ciudad} onChange={(e) => setForm({ ...form, ciudad: e.target.value })}
                 className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 text-slate-800 text-sm font-semibold outline-none focus:border-[#173C6E] transition-colors bg-white">
                 <option value="">Selecciona tu ciudad</option>
                 {offices.map((o) => <option key={o.city} value={o.city}>{o.city}</option>)}
@@ -437,14 +438,15 @@ function FormularioSection() {
 
           <div>
             <label className="block text-xs font-black text-slate-500 uppercase tracking-wider mb-1.5">Mensaje *</label>
-            <textarea required value={form.mensaje} onChange={(e) => setForm({ ...form, mensaje: e.target.value })}
+            <textarea required minLength={10} maxLength={1000} value={form.mensaje} onChange={(e) => setForm({ ...form, mensaje: e.target.value })}
               rows={4} placeholder="Cuéntanos en qué podemos ayudarte..."
               className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 text-slate-800 text-sm font-semibold outline-none focus:border-[#173C6E] transition-colors placeholder:font-normal placeholder:text-slate-400 resize-none" />
           </div>
 
-          <p className="text-xs text-slate-400 leading-relaxed">
-            Al enviar este formulario aceptas nuestra <a href="https://coovitel.coop/wp-content/uploads/2025/07/COV-TEC-DOC-005-Politica-para-tratamiento-de-datos-personales-V2.pdf" target="_blank" rel="noreferrer" className="text-[#173C6E] underline">política de privacidad</a>. Tus datos serán tratados con confidencialidad.
-          </p>
+          <label className="flex items-start gap-2 text-xs text-slate-500 leading-relaxed cursor-pointer">
+            <input required type="checkbox" className="mt-0.5 h-4 w-4 accent-[#173C6E]" />
+            <span>Acepto la <a href="https://coovitel.coop/wp-content/uploads/2025/07/COV-TEC-DOC-005-Politica-para-tratamiento-de-datos-personales-V2.pdf" target="_blank" rel="noreferrer" className="text-[#173C6E] underline">política de privacidad</a> y el tratamiento de mis datos personales.</span>
+          </label>
 
           <button type="submit" disabled={loading}
             className="w-full py-4 rounded-xl bg-[#173C6E] text-white font-black text-base hover:bg-[#1B3669] transition-all disabled:opacity-70 flex items-center justify-center gap-2 shadow-lg shadow-blue-800/30">
@@ -496,6 +498,22 @@ function CanalesSection() {
     },
     {
       icon: (
+        <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 6.75z" /></svg>
+      ),
+      color: "bg-[#1B65A6]",
+      lightColor: "bg-[#CFE0FF]",
+      textColor: "text-[#173C6E]",
+      title: "Línea Bogotá",
+      subtitle: "Atención telefónica",
+      value: "566 661 · Opción 1",
+      desc: "Comunícate con nuestra línea de Bogotá para recibir orientación y atención personalizada.",
+      badge: "Bogotá",
+      badgeColor: "bg-[#CFE0FF] text-[#173C6E]",
+      action: "Llamar a Bogotá",
+      href: "tel:566661",
+    },
+    {
+      icon: (
         <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
       ),
       color: "bg-amber-500",
@@ -503,12 +521,12 @@ function CanalesSection() {
       textColor: "text-amber-600",
       title: "Correo electrónico",
       subtitle: "Escríbenos",
-      value: "mercadeoypublicidad@coovitel.coop",
+      value: "servicioasociados@coovitel.coop",
       desc: "Envíanos tu solicitud de información o el formulario de afiliación cuando no tengas una sede cercana.",
       badge: "Canal de información",
       badgeColor: "bg-amber-100 text-amber-700",
       action: "Enviar correo",
-      href: "mailto:mercadeoypublicidad@coovitel.coop",
+      href: "mailto:servicioasociados@coovitel.coop",
     },
     {
       icon: (

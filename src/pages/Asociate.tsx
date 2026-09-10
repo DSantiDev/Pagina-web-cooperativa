@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { getCoovitelYears } from '../lib/brand'
 import { WhatsAppIcon } from '../components/GlobalWidgets'
+import { NAME_PATTERN, PHONE_PATTERN, clearFieldError, sanitizeDocument, sanitizeName, sanitizePhone, showFieldError } from '../lib/formValidation'
 
 /* ─── Brand colours ─────────────────────────────────────── */
 const BLUE = '#173C6E'
@@ -605,7 +606,7 @@ function FormularioSection() {
       {/* Form */}
       <section className="py-16" style={{ background: '#F7F0FF' }}>
         <div className="max-w-2xl mx-auto px-6">
-          <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-8 md:p-10 shadow-sm" style={{ border: '1.5px solid #CFE0FF' }}>
+          <form onSubmit={handleSubmit} onInvalid={showFieldError} onInput={clearFieldError} className="form-validation bg-white rounded-3xl p-8 md:p-10 shadow-sm" style={{ border: '1.5px solid #CFE0FF' }}>
             <h3 className="font-extrabold text-lg mb-6" style={{ color: NAVY }}>Datos personales</h3>
 
             {/* Tipo y número doc */}
@@ -630,10 +631,13 @@ function FormularioSection() {
                 <input
                   type="text"
                   required
+                  inputMode="numeric"
+                  pattern="[0-9]{5,15}"
+                  maxLength={15}
                   placeholder="Ej. 1020304050"
                   className={inputCls}
                   value={form.numDoc}
-                  onChange={e => setForm({ ...form, numDoc: e.target.value })}
+                  onChange={e => setForm({ ...form, numDoc: sanitizeDocument(e.target.value) })}
                 />
               </div>
             </div>
@@ -645,10 +649,12 @@ function FormularioSection() {
                 <input
                   type="text"
                   required
+                  pattern={NAME_PATTERN}
+                  minLength={2}
                   placeholder="Ej. María Camila"
                   className={inputCls}
                   value={form.nombres}
-                  onChange={e => setForm({ ...form, nombres: e.target.value })}
+                  onChange={e => setForm({ ...form, nombres: sanitizeName(e.target.value) })}
                 />
               </div>
               <div>
@@ -656,10 +662,12 @@ function FormularioSection() {
                 <input
                   type="text"
                   required
+                  pattern={NAME_PATTERN}
+                  minLength={2}
                   placeholder="Ej. López Rodríguez"
                   className={inputCls}
                   value={form.apellidos}
-                  onChange={e => setForm({ ...form, apellidos: e.target.value })}
+                  onChange={e => setForm({ ...form, apellidos: sanitizeName(e.target.value) })}
                 />
               </div>
             </div>
@@ -671,6 +679,7 @@ function FormularioSection() {
                 <input
                   type="email"
                   required
+                  autoComplete="email"
                   placeholder="correo@ejemplo.com"
                   className={inputCls}
                   value={form.email}
@@ -682,10 +691,14 @@ function FormularioSection() {
                 <input
                   type="tel"
                   required
+                  inputMode="numeric"
+                  pattern={PHONE_PATTERN}
+                  minLength={10}
+                  maxLength={10}
                   placeholder="Ej. 3001234567"
                   className={inputCls}
                   value={form.telefono}
-                  onChange={e => setForm({ ...form, telefono: e.target.value })}
+                  onChange={e => setForm({ ...form, telefono: sanitizePhone(e.target.value) })}
                 />
               </div>
             </div>

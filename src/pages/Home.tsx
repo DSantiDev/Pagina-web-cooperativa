@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, type ReactNode, type CSSProperties } from 'react'
 import { getCoovitelYears } from '../lib/brand'
-import BOGOTA_IMAGES, { HOME_SLIDER_VIDEO } from '../lib/media'
+import MEDIA, { getHomeSliderSlides } from '../lib/media'
+import { NAME_PATTERN, PHONE_PATTERN, clearFieldError, sanitizeName, sanitizePhone, showFieldError } from '../lib/formValidation'
 
 // ─── Hooks ───────────────────────────────────────────────────────────────────
 
@@ -86,6 +87,7 @@ const benefits = [
   { icon: '🎓', title: 'Subsidio Educativo', desc: 'Becas y auxilios para la educación superior de tus hijos.' },
   { icon: '🏖️', title: 'Recreación', desc: 'Disfruta beneficios en boletería de cine y confitería.' },
   { icon: '📖', title: 'Formación Continua', desc: 'Talleres, cursos y capacitaciones gratuitas para asociados.' },
+  { icon: '🤝', title: 'Convenios para tu familia', desc: 'Accede a convenios en salud, educación, viajes, restaurantes y comercios aliados.' },
 ]
 
 const affiliations = ['Confecoop', 'Ascoop', 'Fogacoop', 'Supersolidaria']
@@ -116,33 +118,57 @@ function StatCard({ value, suffix, label, active, delay }: {
 
 // ─── HeroBannerCarousel ───────────────────────────────────────────────────────
 
+type SliderCorner = { label: string; value: string; detail?: string }
+
 type HeroSlide = {
-  mediaType: 'image' | 'video'; src: string; alt: string; caption: string; sub: string;
-  topLeft: { label: string; value: string }; bottomRight: { label: string; value: string };
-  midRight: { top: string; bottom: string }; topRight: string;
+  mediaType: 'image' | 'video'; src: string; alt: string; caption: string; sub: string; href?: string;
+  topLeft?: SliderCorner; topRight?: SliderCorner; bottomLeft?: SliderCorner; bottomRight?: SliderCorner;
 }
 
-const heroBannerSlides: HeroSlide[] = [
-  { mediaType: 'image', src: `${BOGOTA_IMAGES.homeSlider1}&w=1080&h=1350`, alt: 'Mercado y vida cotidiana en Bogotá, Colombia', caption: 'Asamblea septiembre 2026', sub: 'Información para nuestros asociados', topLeft: { label: 'Asociados activos', value: '17,000+' }, bottomRight: { label: 'Años de confianza', value: `${coovitelYears}+` }, midRight: { top: '✓ ISO 9001:2015', bottom: 'Bureau Veritas' }, topRight: 'A+ Value & Risk' },
-  { mediaType: 'image', src: `${BOGOTA_IMAGES.homeSlider2}&w=1080&h=1350`, alt: 'Transporte urbano en Bogotá, Colombia', caption: 'Crédito de vehículo COOVITEL y OLX', sub: 'Conoce nuestros canales de financiación', topLeft: { label: 'Empresas aliadas', value: '200+' }, bottomRight: { label: 'Ciudades', value: '9' }, midRight: { top: '✓ ISO 9001:2015', bottom: 'Bureau Veritas' }, topRight: 'A+ Value & Risk' },
-  { mediaType: 'image', src: `${BOGOTA_IMAGES.homeSlider3}&w=1080&h=1350`, alt: 'Panorámica urbana de Bogotá, Colombia', caption: 'Unidos por la reconstrucción', sub: 'Información de contingencia para nuestros asociados', topLeft: { label: 'Años de trayectoria', value: `${coovitelYears}+` }, bottomRight: { label: 'Asociados activos', value: '17K+' }, midRight: { top: '✓ ISO 9001:2015', bottom: 'Bureau Veritas' }, topRight: 'A+ Value & Risk' },
-  ...(HOME_SLIDER_VIDEO.enabled ? [{ ...HOME_SLIDER_VIDEO, mediaType: 'video' as const }] : []),
-]
+function SliderCornerBadge({ corner, position }: { corner?: SliderCorner; position: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' }) {
+  if (!corner) return null
+  const positions = { topLeft: '-top-3 -left-5', topRight: '-top-3 -right-5', bottomLeft: '-bottom-3 -left-5', bottomRight: '-bottom-3 -right-5' }
+  const tones = {
+    topLeft: 'bg-white text-[#173C6E]',
+    topRight: 'bg-white text-[#173C6E]',
+    bottomLeft: 'bg-[#131739] text-white',
+    bottomRight: 'bg-[#EBC302] text-white',
+  }
+  const labelTone = position === 'bottomLeft' || position === 'bottomRight' ? 'text-white/70' : 'text-[#1B65A6]/70'
+  return <div className={`absolute z-10 w-fit max-w-[150px] rounded-xl px-3 py-2 shadow-lg ${positions[position]} ${tones[position]}`}><p className={`text-[10px] font-semibold leading-tight ${labelTone}`}>{corner.label}</p><p className="mt-0.5 text-lg font-black leading-tight">{corner.value}</p>{corner.detail && <p className={`mt-1 text-[9px] font-medium leading-tight ${position === 'bottomLeft' || position === 'bottomRight' ? 'text-white/70' : 'text-gray-500'}`}>{corner.detail}</p>}</div>
+}
+
+const heroBannerSlides: HeroSlide[] = getHomeSliderSlides(coovitelYears)
 
 function HeroBannerCarousel() {
   const [current, setCurrent] = useState(0)
   const [fading, setFading] = useState(false)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const goTo = (index: number) => { if (index === current) return; setFading(true); window.setTimeout(() => { setCurrent(index); setFading(false) }, 320) }
-  useEffect(() => { timerRef.current = setTimeout(() => goTo((current + 1) % heroBannerSlides.length), 4500); return () => { if (timerRef.current) clearTimeout(timerRef.current) } }, [current])
   const slide = heroBannerSlides[current]
+  const goTo = (index: number) => { if (index === current) return; setFading(true); window.setTimeout(() => { setCurrent(index); setFading(false) }, 320) }
+  const goPrevious = () => goTo((current - 1 + heroBannerSlides.length) % heroBannerSlides.length)
+  const goNext = () => goTo((current + 1) % heroBannerSlides.length)
+  useEffect(() => {
+    if (slide.mediaType === 'video') return
+    timerRef.current = setTimeout(() => goTo((current + 1) % heroBannerSlides.length), 4500)
+    return () => { if (timerRef.current) clearTimeout(timerRef.current) }
+  }, [current, slide.mediaType])
   const mediaStyle = { filter: 'brightness(0.75) saturate(0.85)', opacity: fading ? 0 : 1, transition: 'opacity .32s ease' }
-  return <div className="hidden md:flex justify-center items-center"><div className="relative animate-float w-full max-w-[400px]"><div className={`hero-slider-media relative rounded-3xl overflow-hidden shadow-2xl ${slide.mediaType === 'video' ? 'hero-slider-media--video' : ''}`} style={{ border: '1px solid rgba(255,255,255,.1)' }}>{slide.mediaType === 'video' ? <video src={slide.src} className="w-full h-full object-cover" style={mediaStyle} autoPlay muted loop playsInline preload="metadata" aria-label={slide.alt} /> : <img src={slide.src} alt={slide.alt} width="1080" height="1350" loading="eager" fetchPriority="high" className="w-full h-full object-cover" style={mediaStyle} />}<div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(10,21,84,.7), transparent 50%)' }} /><div className="absolute bottom-6 left-6 right-6"><p className="text-white font-bold">{slide.caption}</p><p className="text-white/60 text-sm">{slide.sub}</p></div><div className="absolute bottom-4 right-5 flex gap-1.5">{heroBannerSlides.map((_, index) => <button key={index} aria-label={`Mostrar banner ${index + 1}`} onClick={() => goTo(index)} style={{ width: index === current ? 18 : 6, height: 6, borderRadius: 3, backgroundColor: index === current ? '#EBC302' : 'rgba(255,255,255,.4)', border: 0, padding: 0 }} />)}</div></div><div className="absolute -top-6 -left-8 bg-white rounded-2xl px-5 py-3.5 shadow-2xl"><p className="text-xs text-gray-400 font-medium">{slide.topLeft.label}</p><p className="font-black text-2xl" style={{ color: '#173C6E' }}>{slide.topLeft.value}</p></div><div className="absolute -bottom-6 -right-8 rounded-2xl px-5 py-3.5 shadow-2xl" style={{ backgroundColor: '#EBC302' }}><p className="text-xs font-semibold text-white/70">{slide.bottomRight.label}</p><p className="font-black text-2xl text-white">{slide.bottomRight.value}</p></div></div></div>
+  const isExternalLink = Boolean(slide.href?.startsWith('http'))
+  return <div className="hidden md:flex justify-center items-center"><div className="relative animate-float w-full max-w-[400px]"><div className={`hero-slider-media relative rounded-3xl overflow-hidden shadow-2xl ${slide.mediaType === 'video' ? 'hero-slider-media--video' : ''}`} style={{ border: '1px solid rgba(255,255,255,.1)' }}>{slide.mediaType === 'video' ? <video src={slide.src} className="w-full h-full object-cover" style={mediaStyle} autoPlay muted playsInline preload="metadata" aria-label={slide.alt} onEnded={goNext} onError={goNext} /> : <img src={slide.src} alt={slide.alt} width="1080" height="1350" loading="eager" fetchPriority="high" className="w-full h-full object-cover" style={mediaStyle} />}{slide.href && <a href={slide.href} target={isExternalLink ? '_blank' : undefined} rel={isExternalLink ? 'noreferrer' : undefined} aria-label={`Ver más sobre: ${slide.caption}`} className="absolute inset-0 z-[1] cursor-pointer" />}<div className="pointer-events-none absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(10,21,84,.7), transparent 50%)' }} /><div className="absolute z-10 bottom-6 left-6 right-6"><p className="text-white font-bold">{slide.caption}</p><p className="text-white/60 text-sm">{slide.sub}</p>{slide.href && <span className="mt-2 inline-flex text-xs font-bold text-[#EBC302]">Conocer más →</span>}</div><div className="absolute z-10 bottom-4 right-5 flex gap-1.5">{heroBannerSlides.map((_, index) => <button key={index} aria-label={`Mostrar banner ${index + 1}`} onClick={() => goTo(index)} style={{ width: index === current ? 18 : 6, height: 6, borderRadius: 3, backgroundColor: index === current ? '#EBC302' : 'rgba(255,255,255,.4)', border: 0, padding: 0 }} />)}</div></div>{heroBannerSlides.length > 1 && <><button type="button" aria-label="Ver slide anterior" onClick={goPrevious} className="absolute z-20 top-1/2 -left-4 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-[#173C6E]/90 text-xl font-bold text-white shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-[#EBC302] hover:text-[#173C6E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#EBC302]">‹</button><button type="button" aria-label="Ver siguiente slide" onClick={goNext} className="absolute z-20 top-1/2 -right-4 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-[#173C6E]/90 text-xl font-bold text-white shadow-lg backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-[#EBC302] hover:text-[#173C6E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#EBC302]">›</button></>}<SliderCornerBadge corner={slide.topLeft} position="topLeft" /><SliderCornerBadge corner={slide.topRight} position="topRight" /><SliderCornerBadge corner={slide.bottomLeft} position="bottomLeft" /><SliderCornerBadge corner={slide.bottomRight} position="bottomRight" /></div></div>
 }
 // ─── Main App ─────────────────────────────────────────────────────────────────
 
 export default function Home() {
   const [scrollPct, setScrollPct] = useState(0)
+  const [contactForm, setContactForm] = useState({ nombre: '', email: '', telefono: '', mensaje: '' })
+  const [contactSent, setContactSent] = useState(false)
+
+  const submitContactForm = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setContactSent(true)
+    setContactForm({ nombre: '', email: '', telefono: '', mensaje: '' })
+  }
 
   // Parallax refs — direct DOM manipulation, no re-renders
   const pBlob1 = useRef<HTMLDivElement>(null)
@@ -188,7 +214,7 @@ export default function Home() {
         {/* Background photo — sits behind gradient */}
         <div className="absolute inset-0 pointer-events-none">
           <img
-            src={`${BOGOTA_IMAGES.homeFondoHero}&w=1800&h=1200`}
+            src={`${MEDIA.homeFondoHero}&w=1800&h=1200`}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -270,21 +296,6 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Quick stats strip */}
-            <div className="hero-enter hero-enter-5 grid grid-cols-4 gap-6 pt-8"
-              style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
-              {[
-                { n: `${coovitelYears}+`, l: 'Años' },
-                { n: '17K+', l: 'Asociados' },
-                { n: '9', l: 'Ciudades' },
-                { n: '200+', l: 'Empresas' },
-              ].map(s => (
-                <div key={s.l}>
-                  <p className="font-black text-white text-xl">{s.n}</p>
-                  <p className="text-xs text-white/40 font-medium mt-0.5">{s.l}</p>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Right: Hero carousel */}
@@ -308,7 +319,7 @@ export default function Home() {
         {/* Background photo with navy tint */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <img
-            src={`${BOGOTA_IMAGES.homeFondoEstadisticas}&w=1800&h=600`}
+            src={`${MEDIA.homeFondoEstadisticas}&w=1800&h=600`}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -340,7 +351,7 @@ export default function Home() {
         {/* Background photo */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <img
-            src={`${BOGOTA_IMAGES.homeFondoNosotros}&w=1800&h=1000`}
+            src={`${MEDIA.homeFondoNosotros}&w=1800&h=1000`}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -359,7 +370,7 @@ export default function Home() {
             <div className="relative">
               <div className="rounded-3xl overflow-hidden aspect-[4/3] shadow-xl" style={{ backgroundColor: '#CFE0FF' }}>
                 <img
-                  src={`${BOGOTA_IMAGES.homeImagenNosotros}&w=800&h=600`}
+                  src={`${MEDIA.homeImagenNosotros}&w=800&h=600`}
                   alt="Comunidad reunida en Bogotá, Colombia"
                   className="w-full h-full object-cover"
                 />
@@ -424,7 +435,7 @@ export default function Home() {
         {/* Background photo with deep navy overlay */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <img
-            src={`${BOGOTA_IMAGES.homeFondoConfianza}&w=1800&h=1000`}
+            src={`${MEDIA.homeFondoConfianza}&w=1800&h=1000`}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -564,7 +575,7 @@ export default function Home() {
         {/* Background photo */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <img
-            src={`${BOGOTA_IMAGES.homeFondoBeneficios}&w=1800&h=1000`}
+            src={`${MEDIA.homeFondoBeneficios}&w=1800&h=1000`}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -641,7 +652,7 @@ export default function Home() {
         {/* Background photo */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <img
-            src={`${BOGOTA_IMAGES.homeFondoContacto}&w=1800&h=1000`}
+            src={`${MEDIA.homeFondoContacto}&w=1800&h=1000`}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -718,37 +729,38 @@ export default function Home() {
               <div className="rounded-3xl p-8" style={{ backgroundColor: '#f7f0ff', border: '1px solid #CFE0FF', boxShadow: '0 4px 24px rgba(27,42,143,0.06)' }}>
                 <h3 className="font-black text-lg mb-1" style={{ color: '#131739' }}>Envíanos un mensaje</h3>
                 <p className="text-xs text-gray-400 mb-6">Te responderemos en menos de 24 horas hábiles</p>
-                <div className="space-y-4">
-                  {[
-                    { label: 'Nombre completo', type: 'text', ph: 'Tu nombre completo' },
-                    { label: 'Correo electrónico', type: 'email', ph: 'tucorreo@dominio.com' },
-                    { label: 'Teléfono', type: 'tel', ph: '+57 300 000 0000' },
-                  ].map(f => (
-                    <div key={f.label}>
-                      <label className="text-xs font-semibold text-gray-500 mb-1.5 block">{f.label}</label>
-                      <input type={f.type} placeholder={f.ph}
-                        className="w-full px-4 py-3 rounded-xl text-sm bg-white outline-none transition-all duration-200"
-                        style={{ border: '1.5px solid #CFE0FF' }}
-                        onFocus={e => { e.target.style.borderColor = '#173C6E'; e.target.style.boxShadow = '0 0 0 3px rgba(27,42,143,0.08)' }}
-                        onBlur={e => { e.target.style.borderColor = '#CFE0FF'; e.target.style.boxShadow = 'none' }}
-                      />
-                    </div>
-                  ))}
+                <form className="form-validation space-y-4" onSubmit={submitContactForm} onInvalid={showFieldError} onInput={clearFieldError}>
+                  <div>
+                    <label className="text-xs font-semibold text-gray-500 mb-1.5 block">Nombre completo *</label>
+                    <input required pattern={NAME_PATTERN} minLength={2} autoComplete="name" value={contactForm.nombre} onChange={e => setContactForm({ ...contactForm, nombre: sanitizeName(e.target.value) })} placeholder="Tu nombre completo" className="w-full px-4 py-3 rounded-xl text-sm bg-white outline-none transition-all duration-200" style={{ border: '1.5px solid #CFE0FF' }} />
+                  </div>
+                  <div>
+                    <label className="text-xs font-semibold text-gray-500 mb-1.5 block">Correo electrónico *</label>
+                    <input required type="email" autoComplete="email" value={contactForm.email} onChange={e => setContactForm({ ...contactForm, email: e.target.value.trimStart() })} placeholder="tucorreo@dominio.com" className="w-full px-4 py-3 rounded-xl text-sm bg-white outline-none transition-all duration-200" style={{ border: '1.5px solid #CFE0FF' }} />
+                  </div>
+                  <div>
+                    <label className="text-xs font-semibold text-gray-500 mb-1.5 block">Teléfono *</label>
+                    <input required type="tel" inputMode="numeric" pattern={PHONE_PATTERN} minLength={10} maxLength={10} value={contactForm.telefono} onChange={e => setContactForm({ ...contactForm, telefono: sanitizePhone(e.target.value) })} placeholder="3000000000" className="w-full px-4 py-3 rounded-xl text-sm bg-white outline-none transition-all duration-200" style={{ border: '1.5px solid #CFE0FF' }} />
+                  </div>
                   <div>
                     <label className="text-xs font-semibold text-gray-500 mb-1.5 block">Mensaje</label>
-                    <textarea rows={4} placeholder="¿En qué podemos ayudarte?"
+                    <textarea required minLength={10} maxLength={1000} value={contactForm.mensaje} onChange={e => setContactForm({ ...contactForm, mensaje: e.target.value })} rows={4} placeholder="¿En qué podemos ayudarte?"
                       className="w-full px-4 py-3 rounded-xl text-sm bg-white outline-none resize-none transition-all duration-200"
                       style={{ border: '1.5px solid #CFE0FF' }}
                       onFocus={e => { e.target.style.borderColor = '#173C6E'; e.target.style.boxShadow = '0 0 0 3px rgba(27,42,143,0.08)' }}
                       onBlur={e => { e.target.style.borderColor = '#CFE0FF'; e.target.style.boxShadow = 'none' }}
                     />
                   </div>
-                  <button
+                  <label className="flex items-start gap-2 text-[11px] leading-relaxed text-gray-500 cursor-pointer">
+                    <input required type="checkbox" className="mt-0.5 h-3.5 w-3.5 accent-[#173C6E]" />
+                    <span>Acepto el tratamiento de mis datos personales conforme a la política de privacidad.</span>
+                  </label>
+                  <button type="submit"
                     className="w-full py-3.5 rounded-xl font-bold text-sm text-white transition-all duration-200 hover:opacity-90 hover:shadow-lg active:scale-[0.99]"
                     style={{ backgroundColor: '#173C6E' }}>
-                    Enviar mensaje
+                    {contactSent ? 'Mensaje enviado ✓' : 'Enviar mensaje'}
                   </button>
-                </div>
+                </form>
               </div>
             </AnimIn>
           </div>

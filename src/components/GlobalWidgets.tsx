@@ -14,7 +14,7 @@ export function WhatsAppIcon() {
 
 export function SocialDock() {
   const [open, setOpen] = useState(false)
-  return <aside className={`social-dock ${open ? 'is-open' : ''}`} aria-label="Redes sociales"><div className="social-dock__links"><a className="social--facebook" href="https://www.facebook.com/coovitelcol/" target="_blank" rel="noreferrer" aria-label="Facebook">f</a><a className="social--instagram" href="https://www.instagram.com/coovitel_oficial/" target="_blank" rel="noreferrer" aria-label="Instagram"><InstagramIcon /></a><a className="social--linkedin" href="https://co.linkedin.com/company/cooviteloficial" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a><a className="social--whatsapp" href="https://api.whatsapp.com/send/?phone=573160189853&text&type=phone_number&app_absent=0" target="_blank" rel="noreferrer" aria-label="WhatsApp"><WhatsAppIcon /></a></div><button className="social-dock__trigger" type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Mostrar redes sociales"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.9 7.5-4.4M8.2 13.1l7.5 4.4"/></svg></button></aside>
+  return <aside className={`social-dock ${open ? 'is-open' : ''}`} aria-label="Redes sociales"><div className="social-dock__links"><a className="social--facebook" href="https://www.facebook.com/coovitelcol/" target="_blank" rel="noreferrer" aria-label="Facebook">f</a><a className="social--instagram" href="https://www.instagram.com/coovitel_oficial/" target="_blank" rel="noreferrer" aria-label="Instagram"><InstagramIcon /></a><a className="social--linkedin" href="https://co.linkedin.com/company/cooviteloficial" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a><a className="social--whatsapp" href="https://api.whatsapp.com/send/?phone=573160189853&text&type=phone_number&app_absent=0" target="_blank" rel="noreferrer" aria-label="WhatsApp"><WhatsAppIcon /></a></div><button className="social-dock__trigger" type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label={open ? "Ocultar redes sociales" : "Mostrar redes sociales"}><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.9 7.5-4.4M8.2 13.1l7.5 4.4"/></svg></button></aside>
 }
 
 export function ScrollTop() {
@@ -35,7 +35,7 @@ export function ScrollTop() {
 }
 
 export function CoviPayButton() {
-  return <a className="covipay-button" href="https://coovitel.zolev.co/CentralPagos/Index" target="_blank" rel="noreferrer" aria-label="Conoce nuestros pagos con CoviPay"><img src="/images/coovipay-lateralderecho.png" alt="CoviPay" /><span>Conoce nuestros pagos</span></a>
+  return <a className="covipay-button" href="https://coovitel.zolev.co/CentralPagos/Index" target="_blank" rel="noreferrer" aria-label="Conoce nuestros pagos con CoviPay"><img src="/images/coovipay-lateralderecho.png" alt="CoviPay" width="221" height="305" /><span>Conoce nuestros pagos</span></a>
 }
 
 const names: Record<string, string> = { productos: 'Productos', 'quienes-somos': 'Quiénes Somos', confianza: 'Confianza', bienestar: 'Bienestar', asociate: 'Asóciate', contacto: 'Contacto', 'estamentos-directivos': 'Estamentos Directivos', normatividad: 'Normatividad', 'informacion-estrategica': 'Información Estratégica', '404': 'Página no encontrada' }

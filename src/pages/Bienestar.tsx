@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getCoovitelYears } from "../lib/brand";
 import redVitalLogo from "../assets/redvital/redvital-total-logo.png";
 import appDescuentos from "../assets/redvital/app-descuentos.jpeg";
 import appCategorias from "../assets/redvital/app-categorias.jpeg";
 import appConvenios from "../assets/redvital/app-convenios.jpeg";
 import appPlan from "../assets/redvital/app-plan.jpeg";
-import BOGOTA_IMAGES from "../lib/media";
+import MEDIA from "../lib/media";
 
 const COOVITEL_YEARS = getCoovitelYears();
 
@@ -28,13 +28,49 @@ const TABS: { id: Tab; label: string; shortLabel: string; group: string }[] = [
   { id: "exequial", label: "Auxilios Cooperativos", shortLabel: "Auxilios", group: "Auxilios" },
 ];
 
-const REDVITAL_ASSISTANCES = [
+type AssistanceConditions = {
+  schedule?: string;
+  eventLimit?: string;
+  coverage?: string;
+};
+
+type RedVitalService = {
+  name: string;
+  detail: string;
+  conditions?: AssistanceConditions;
+};
+
+type RedVitalAssistance = {
+  title: string;
+  icon: string;
+  services: RedVitalService[];
+};
+
+const REDVITAL_ASSISTANCES: RedVitalAssistance[] = [
   { title: "Asistencia Médica", icon: "⚕️", services: [
-    { name: "Orientación médica telefónica.", detail: "Un profesional brinda recomendaciones generales sobre síntomas o situaciones de salud; no reemplaza una consulta médica, diagnóstico ni tratamiento." },
-    { name: "Médico a domicilio por accidente o enfermedad.", detail: "Tras orientación médica previa y autorización, se coordina una visita para situaciones que pueden ser atendidas en casa y no requieren traslado hospitalario." },
+    {
+      name: "Orientación médica telefónica.",
+      detail: "Esta asistencia te permite acceder a orientación médica telefónica para resolver dudas relacionadas con tu salud y bienestar. A través de este servicio, podrás recibir recomendaciones generales y acompañamiento frente a síntomas, enfermedades o situaciones de salud que requieran una orientación inicial.\n\nLa atención brindada tiene un carácter informativo y preventivo, por lo que no reemplaza una consulta médica presencial. Durante la llamada no se emiten diagnósticos médicos, incapacidades ni se realizan cambios en tratamientos previamente formulados. Asimismo, los gastos que puedan generarse por consultas, medicamentos o estudios complementarios requeridos posteriormente no están incluidos dentro de esta asistencia. Cada orientación telefónica tiene una duración máxima de 30 minutos.",
+      conditions: {
+        schedule: "De 7:00 a. m. a 5:00 p. m.",
+        eventLimit: "Sin límite de eventos.",
+        coverage: "Cobertura máxima: $200.000 por evento.",
+      },
+    },
+    { name: "Médico a domicilio y/o tele-orientación", detail: "Esta asistencia te permite recibir orientación y atención médica cuando presentes una enfermedad o lesión que pueda ser tratada sin necesidad de acudir a un centro hospitalario. Según la valoración realizada por el equipo médico de RED VITAL TOTAL, podrás recibir teleorientación médica o la visita de un médico en tu domicilio para evaluar la situación reportada y brindarte la atención correspondiente. \n\n Para acceder al servicio, se requiere una Orientación Médica Telefónica previa y la autorización del equipo médico. Los medicamentos, estudios complementarios e incapacidades médicas no están incluidos dentro de esta asistencia.",
+      conditions: {
+        eventLimit: "Limite: 5 eventos al año.",
+      }
+     },
     { name: "Traslado médico por accidente o enfermedad.", detail: "Se coordina el traslado terrestre de emergencia al centro médico más cercano, sujeto a valoración telefónica e infraestructura disponible." },
-    { name: "Consulta de optometría.", detail: "Atención primaria de salud visual en consultorios autorizados; no incluye lentes, monturas ni tratamientos ópticos." },
-    { name: "Acompañamiento y traslado a citas médicas.", detail: "Para citas o terapias programadas, ofrece acompañamiento o vehículo dentro de la ciudad. La solicitud debe hacerse con anticipación." },
+    { name: "Consulta de optometría.", detail: "Esta asistencia te permite acceder a una consulta de optometría enfocada en el cuidado primario de tu salud visual. Durante la atención podrás recibir una valoración visual orientada a identificar alteraciones o problemas oculares, así como recomendaciones para su prevención y cuidado. \n\n El servicio se presta en las principales ciudades del país y se realiza exclusivamente en consultorios autorizados por RED VITAL TOTAL. Los tratamientos, procedimientos especializados y productos ópticos derivados de la consulta no hacen parte de esta asistencia.", 
+      conditions: 
+      { schedule: "Lunes a viernes, de 9:00 a. m. a 5:00 p. m.", 
+        eventLimit: "Límite: 1 evento por año.", 
+        coverage: "Cobertura máxima: $100.000 por evento." } },
+    { name: "Acompañamiento y traslado a citas médicas.", detail: "Esta asistencia te permite contar con acompañamiento personal o servicio de transporte para asistir a citas médicas programadas y sesiones de terapia. Según tus necesidades, podrás elegir entre recibir acompañamiento desde tu domicilio hasta el lugar de la atención y de regreso, o acceder únicamente al servicio de traslado dentro de la misma ciudad. \n\n La solicitud debe realizarse con al menos 48 horas de anticipación y presentar el soporte de la cita o terapia programada. El servicio se presta exclusivamente dentro del perímetro urbano y cuenta con una duración máxima de 3 horas, incluyendo traslados y tiempo de espera. Cuando tu condición requiera apoyo adicional, deberás contar con un acompañante responsable durante el servicio.",
+      conditions: 
+      { eventLimit: "Límite: 3 evento por año."}  },
   ] },
   { title: "Asistencia Vehicular", icon: "🚗", services: [
     { name: "Servicio de grúa.", detail: "Remolque para vehículo liviano o moto del asociado hasta el destino indicado dentro de la misma ciudad, según cobertura." },
@@ -43,20 +79,35 @@ const REDVITAL_ASSISTANCES = [
     { name: "Cambio de llanta.", detail: "Se coordina un técnico para instalar la llanta de repuesto que debe aportar el asociado; no incluye reparación de la llanta afectada." },
     { name: "Conductor elegido.", detail: "Con solicitud previa, un conductor traslada el vehículo y sus ocupantes al domicilio cuando el asociado no puede conducir por ingesta de alcohol." },
   ] },
-  { title: "Asistencia para el Hogar", icon: "⌂", services: [
-    { name: "Servicio de handyman.", detail: "Apoyo en reparaciones y tareas sencillas como instalar cortinas, cuadros, accesorios, espejos o televisores en la residencia habitual." },
-    { name: "Cerrajería.", detail: "Atención de urgencia cuando no es posible entrar o salir de la vivienda por pérdida de llaves, robo o daño de la cerradura." },
-    { name: "Electricidad.", detail: "Se envía un técnico ante fallas súbitas en la instalación eléctrica que causen falta total o parcial de energía; los materiales los asume el asociado." },
-    { name: "Plomería.", detail: "Atención de urgencias en tuberías visibles de agua limpia o sanitaria para controlar el daño y restablecer el funcionamiento básico." },
+  { title: "Asistencia para el Hogar", icon: "🏠", services: [
+    { name: "Servicio de handyman.", detail: "Esta asistencia te permite contar con apoyo para realizar reparaciones menores y tareas sencillas en tu hogar, como instalación de cortinas, cuadros, tendederos, accesorios de baño, televisores, espejos, percheros, barras de armario y otros trabajos similares en tu residencia habitual. \n\n El servicio incluye mano de obra, desplazamiento y materiales no accesorios, sin costo para ti, por un período máximo de 3 horas continuas o hasta el límite de cobertura establecido. Si el tiempo o el valor de la cobertura son excedidos, el costo adicional deberás asumirlo. Los accesorios no están incluidos, sin embargo, si requieres que sean suministrados por el proveedor, el valor deberá ser cubierto directamente.",
+      conditions: 
+      { eventLimit: "Límite: 3 evento por año.", 
+        coverage: "Cobertura máxima: $200.000 por evento." }  },
+    { name: "Cerrajería.", detail: "Esta asistencia te permite contar con atención de cerrajería de emergencia cuando no puedas ingresar o salir de tu residencia habitual debido a la pérdida, extravío, olvido o robo de llaves, o por daños en la cerradura que impidan el acceso a la vivienda. El servicio también contempla la apertura de puertas interiores, terrazas, balcones y, en el caso de residencias unifamiliares, el acceso al aparcamiento. \n\n La asistencia cubre la mano de obra necesaria para la apertura de la puerta, extracción de llaves o cambio de cerradura, según sea requerido. Los materiales o elementos que deban reemplazarse como parte de la reparación deberás asumirlos.", 
+      conditions: 
+      { eventLimit: "Límite: 1 evento por año.", 
+        coverage: "Cobertura máxima: $200.000 por evento." }  },
+    { name: "Electricidad.", detail: "sta asistencia te permite contar con atención técnica especializada cuando una avería súbita e imprevista en las instalaciones eléctricas de tu residencia ocasione una interrupción total o parcial del suministro de energía. En estos casos, se coordinará el envío de un técnico para realizar la reparación necesaria y restablecer el servicio, siempre que las condiciones de la red eléctrica lo permitan. \n\n La asistencia cubre la mano de obra y el desplazamiento del técnico. Los materiales o repuestos que se requieran para la reparación deberás asumirlos directamente.",
+      conditions:
+      { eventLimit: "Límite: 1 evento por año.", 
+        coverage: "Cobertura máxima: $200.000 por evento." } },
+    { name: "Plomería.", detail: "Esta asistencia te permite contar con atención especializada cuando una avería súbita e imprevista en las instalaciones de agua potable o sanitarias de tu residencia afecte el suministro o la evacuación de agua a través de tuberías visibles. En estos casos, se coordinará el envío de un técnico para atender la emergencia y realizar una reparación definitiva, provisional o de contención, según las características del daño y el alcance de la cobertura, siempre que el estado de las redes lo permita. \n\n La asistencia cubre la mano de obra y el desplazamiento del técnico. Los materiales o repuestos que se requieran para la reparación deberás asumirlos directamente. Este servicio no incluye reparaciones en tanques elevados, canaletas, bajantes, techos, tejas, tuberías galvanizadas ni trabajos de exploración, excavación o detección de fugas no visibles.",
+      conditions:
+      { eventLimit: "Límite: 1 evento por año.", 
+        coverage: "Cobertura máxima: $200.000 por evento." } },
   ] },
   { title: "Asistencia para Mascotas", icon: "🐾", services: [
-    { name: "Orientación veterinaria telefónica.", detail: "Un profesional orienta sobre molestias, lesiones o enfermedades de perros y gatos, con acciones provisionales o preventivas." },
+    { name: "Orientación veterinaria telefónica.", detail: "Esta asistencia te permite acceder a orientación veterinaria telefónica las 24 horas del día, los 365 días del año, para resolver dudas relacionadas con molestias, signos clínicos, lesiones o enfermedades de tu mascota. Un profesional veterinario te brindará recomendaciones sobre cuidados, medidas preventivas y acciones que puedes realizar en casa como apoyo inicial ante la situación reportada. \n\n Esta asistencia aplica exclusivamente para perros y gatos.", conditions: { eventLimit: "Sin límite de eventos." } },
     { name: "Refuerzo de vacunación para perro o gato.", detail: "Se coordina el refuerzo anual para una mascota mayor de seis meses, a domicilio o en clínica aliada, previa revisión del carné." },
-    { name: "Veterinario a domicilio por accidente o enfermedad.", detail: "Para accidentes o enfermedades graves que comprometan la vida de perros o gatos, se coordina un veterinario de la red de proveedores." },
+    { name: "Veterinario a domicilio por accidente o enfermedad.", detail: "Esta asistencia te permite acceder a atención veterinaria para tu mascota cuando, a causa de un accidente o enfermedad, presente una situación que comprometa su estado vital. Según la disponibilidad y las condiciones del caso, se coordinará la atención a domicilio o una atención inicial en clínica con profesionales pertenecientes a la red de proveedores autorizada. \n\n El servicio aplica exclusivamente para perros y gatos y está orientado a la atención de situaciones urgentes, por lo que no incluye consultas de rutina o preventivas. Los gastos asociados a hospitalización, cirugía, cuidados intensivos, exámenes, medicamentos, prótesis, rehabilitación, cuidados especiales u honorarios de especialistas deberás asumirlos directamente. La asistencia tampoco cubre servicios prestados por veterinarios que no pertenezcan a la red autorizada.", 
+      conditions:
+      { eventLimit: "Límite: 3 eventos combinados al año.", 
+        coverage: "Cobertura máxima: $250.000 por evento." } },
   ] },
   { title: "Asistencia Emocional y Legal", icon: "💬", services: [
-    { name: "Orientación psicológica telefónica.", detail: "Un psicólogo brinda apoyo y orientación telefónica en temas como familia, pareja, ansiedad, bullying o trastornos alimenticios; no prescribe medicamentos." },
-    { name: "Orientación legal telefónica.", detail: "Orientación en distintas ramas del derecho. Es un servicio de consulta telefónica y no representa acompañamiento legal presencial o procesal." },
+    { name: "Orientación psicológica telefónica.", detail: "Esta asistencia te permite acceder a orientación emocional telefónica las 24 horas del día, los 7 días de la semana, para recibir apoyo profesional en situaciones relacionadas con la familia, las relaciones de pareja, la sexualidad juvenil, los trastornos alimenticios, el bullying, la ansiedad y otros temas asociados al bienestar personal. \n\n Durante la atención, un profesional en psicología te brindará acompañamiento y orientación, y cuando lo considere pertinente, podrá recomendar la continuidad del proceso terapéutico o la valoración por otra especialidad. Este servicio no incluye la formulación de medicamentos ni la emisión de incapacidades médicas, ni garantiza resultados.", conditions: { eventLimit: "Sin límite de eventos." } },
+    { name: "Orientación legal telefónica.", detail: "Esta asistencia te permite acceder a orientación legal telefónica en cualquier rama del derecho para resolver inquietudes y recibir recomendaciones de carácter general. La atención en temas de derecho penal está disponible las 24 horas del día, mientras que para las demás áreas del derecho el servicio se presta de lunes a viernes, de 9:00 a. m. a 6:00 p. m. \n\n Cada consulta tiene una duración máxima de 30 minutos. Cuando la situación requiera la intervención presencial de un abogado, los honorarios correspondientes deberás asumirlos directamente. Este servicio brinda orientación jurídica y no incluye acompañamiento o representación en procesos legales.", conditions: { eventLimit: "Sin límite de eventos." } },
   ] },
 ];
 
@@ -69,19 +120,19 @@ const REDVITAL_APP_SCREENS = [
 
 const SOCIAL_BENEFITS = [
   {
-    icon: "🎬", title: "Cine y confitería", description: "Boletería y confitería de cine con precios especiales en Cine Colombia y Royal Films.",
+    icon: "🎬", motion: "cinema", title: "Cine y confitería", description: "Boletería y confitería de cine con precios especiales en Cine Colombia y Royal Films.",
   },
   {
-    icon: "🎁", title: "Obsequio de fidelización", description: "Premiamos tu lealtad y antigüedad con tu cooperativa mediante un detalle de fidelización.",
+    icon: "🎁", motion: "gift", title: "Obsequio de fidelización", description: "Premiamos tu lealtad y antigüedad con tu cooperativa mediante un detalle de fidelización.",
   },
   {
-    icon: "🎉", title: "Eventos", description: "Accede a celebraciones y eventos culturales masivos a lo largo del año, como la Terapia de la Felicidad.",
+    icon: "🎉", motion: "events", title: "Eventos", description: "Accede a celebraciones y eventos culturales masivos a lo largo del año, como la Terapia de la Felicidad.",
   },
   {
-    icon: "📈", title: "Beneficios financieros", description: "Desde la afiliación: créditos sociales con tasas preferenciales para vivienda, educación, vehículo, compra de cartera y Crediseguro.",
+    icon: "📈", motion: "finance", title: "Beneficios financieros", description: "Desde la afiliación: créditos sociales con tasas preferenciales para vivienda, educación, vehículo, compra de cartera y Crediseguro.",
   },
   {
-    icon: "🤝", title: "Convenios para tu familia", description: "Convenios en salud —medicina complementaria y prepagada con Colsanitas y Medisanitas—, educación, planes exequiales, viajes, restaurantes y comercios.",
+    icon: "🤝", motion: "family", title: "Convenios para tu familia", description: "Convenios en salud —medicina complementaria y prepagada con Colsanitas y Medisanitas—, educación, planes exequiales, viajes, restaurantes y comercios.",
   },
 ];
 
@@ -142,21 +193,21 @@ const EXEQUIAL_FEATURES = [
 
 function HeroBanner({ activeTab: _activeTab }: { activeTab: Tab }) {
   return (
-    <div className="relative bg-[#173C6E] overflow-hidden">
+    <div className="bienestar-hero relative bg-[#173C6E] overflow-hidden">
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-45"
         style={{
           backgroundImage:
-            `url('${BOGOTA_IMAGES.bienestarHero}&w=1400&h=400')`,
+            `url('${MEDIA.bienestarHero}&w=1400&h=400')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
-      <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #131739 0%, #173C6E 60%, #27548F 100%)" }} />
+      <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(19, 23, 57, 0.84) 0%, rgba(23, 60, 110, 0.78) 60%, rgba(39, 84, 143, 0.72) 100%)" }} />
       {/* decorative circles */}
-      <div className="absolute -top-20 -right-20 w-80 h-80 bg-white/5 rounded-full" />
-      <div className="absolute -bottom-10 left-1/3 w-48 h-48 bg-[#EBC302]/10 rounded-full" />
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div className="bienestar-hero__orb bienestar-hero__orb--one absolute -top-20 -right-20 w-80 h-80 bg-white/5 rounded-full" />
+      <div className="bienestar-hero__orb bienestar-hero__orb--two absolute -bottom-10 left-1/3 w-48 h-48 bg-[#EBC302]/10 rounded-full" />
+      <div className="bienestar-hero__content relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-4">
           <div className="w-2 h-2 rounded-full bg-[#EBC302]" />
           <span className="text-white/90 text-xs font-semibold uppercase tracking-widest">Bienestar COOVITEL</span>
@@ -219,6 +270,15 @@ function TabNav({ activeTab, setActiveTab }: { activeTab: Tab; setActiveTab: (t:
 }
 
 function BeneficiosSociales() {
+  const [selectedBenefit, setSelectedBenefit] = useState<(typeof SOCIAL_BENEFITS)[number] | null>(null);
+  const benefitDetailRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!selectedBenefit) return;
+    const frame = window.requestAnimationFrame(() => benefitDetailRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }));
+    return () => window.cancelAnimationFrame(frame);
+  }, [selectedBenefit]);
+
   return (
     <div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -234,7 +294,7 @@ function BeneficiosSociales() {
             <div className="flex gap-3 flex-wrap">
               <div className="bg-[#173C6E]/5 rounded-xl px-4 py-2 text-center">
                 <div className="font-bold text-[#173C6E] text-xl">17.000+</div>
-                <div className="text-xs text-gray-500">Asociados beneficiados</div>
+                <div className="text-xs text-gray-500">Asociados</div>
               </div>
               <div className="bg-[#EBC302]/10 rounded-xl px-4 py-2 text-center">
                 <div className="font-bold text-[#173C6E] text-xl">{COOVITEL_YEARS}+</div>
@@ -246,9 +306,9 @@ function BeneficiosSociales() {
               </div>
             </div>
           </div>
-          <div className="relative">
+          <div className="bienestar-image-card relative">
             <img
-              src={`${BOGOTA_IMAGES.bienestarImagenBeneficios}&w=600&h=420`}
+              src={`${MEDIA.bienestarImagenBeneficios}&w=600&h=420`}
               alt="Personas de la comunidad en Bogotá, Colombia"
               className="w-full h-72 object-cover rounded-2xl shadow-xl"
             />
@@ -259,26 +319,37 @@ function BeneficiosSociales() {
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SOCIAL_BENEFITS.map((benefit) => (
-            <div
-              key={benefit.title}
-              className="group bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-lg hover:border-[#173C6E]/20 transition-all duration-300"
-            >
-              <div className="w-12 h-12 bg-[#173C6E]/8 rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:bg-[#173C6E]/15 transition-colors">
-                {benefit.icon}
-              </div>
-              <h3 className="font-bold text-[#173C6E] text-base mb-2">{benefit.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{benefit.description}</p>
-              <p className="mt-4 border-t border-[#C9DCFF] pt-3 text-xs font-semibold text-[#1B65A6]">Sujeto a términos y condiciones.</p>
-            </div>
-          ))}
-          <div className="group bg-[#173C6E] rounded-2xl p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-            <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-2xl mb-4">ℹ️</div>
-            <h3 className="font-bold text-white text-base mb-2">Términos y condiciones</h3>
-            <p className="text-white/75 text-sm leading-relaxed">Consulta las condiciones de acceso, vigencias y disponibilidad de cada beneficio antes de solicitarlo.</p>
-          </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5" role="list" aria-label="Beneficios disponibles">
+          {SOCIAL_BENEFITS.map((benefit, index) => {
+            const isSelected = selectedBenefit?.title === benefit.title;
+            return (
+              <button
+                key={benefit.title}
+                type="button"
+                role="listitem"
+                aria-pressed={isSelected}
+                onClick={() => setSelectedBenefit(isSelected ? null : benefit)}
+                className={`bienestar-benefit-card group relative min-h-[176px] overflow-hidden rounded-3xl border p-5 text-center transition-all duration-300 ease-out focus:outline-none focus-visible:ring-4 focus-visible:ring-[#EBC302]/40 ${isSelected ? "-translate-y-1 border-[#173C6E] bg-[#173C6E] shadow-xl" : "border-[#DDE9C7] bg-[#F3F8E9] hover:-translate-y-2 hover:border-[#98B96C] hover:shadow-xl"}`}
+                style={{ transitionDelay: `${index * 45}ms` }}
+              >
+                <span className={`benefit-menu-icon benefit-menu-icon--${benefit.motion} mx-auto mb-5 grid h-14 w-14 place-items-center rounded-2xl text-3xl transition-all duration-300 ${isSelected ? "bg-white/15" : "bg-white shadow-sm"}`}>{benefit.icon}</span>
+                <span className={`block text-base font-extrabold leading-tight transition-colors ${isSelected ? "text-white" : "text-[#173C6E]"}`}>{benefit.title}</span>
+                <span className={`mt-3 block text-[10px] font-bold uppercase tracking-wider transition-all ${isSelected ? "text-[#EBC302] opacity-100" : "text-[#607B37] opacity-0 group-hover:opacity-100"}`}>{isSelected ? "Seleccionado" : "Ver detalle"}</span>
+              </button>
+            );
+          })}
         </div>
+
+        {selectedBenefit ? <section ref={benefitDetailRef} key={selectedBenefit.title} className="mt-7 scroll-mt-36 overflow-hidden rounded-2xl border border-[#C9DCFF] bg-[#F7F0FF] p-6 shadow-sm animate-[content-reveal_.35s_ease-out]" aria-live="polite">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-4">
+              <span className="grid h-12 w-12 place-items-center rounded-xl bg-[#173C6E] text-2xl">{selectedBenefit.icon}</span>
+              <div><p className="text-xs font-bold uppercase tracking-widest text-[#1B65A6]">Beneficio COOVITEL</p><h3 className="text-xl font-bold text-[#173C6E]">{selectedBenefit.title}</h3></div>
+            </div>
+            <span className="rounded-full bg-[#EBC302]/15 px-3 py-1.5 text-xs font-bold text-[#173C6E]">Sujeto a términos y condiciones.</span>
+          </div>
+          <p className="mt-5 border-t border-[#C9DCFF] pt-5 text-sm leading-relaxed text-[#1A2842]">{selectedBenefit.description}</p>
+        </section> : <section className="mt-7 rounded-2xl border border-dashed border-[#98B96C] bg-[#F3F8E9] p-6 text-center animate-[content-reveal_.35s_ease-out]" aria-live="polite"><span className="mx-auto grid h-11 w-11 place-items-center rounded-xl bg-white text-2xl shadow-sm">✨</span><h3 className="mt-3 text-lg font-bold text-[#173C6E]">Elige un beneficio para conocerlo</h3><p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-[#51643A]">Explora las opciones disponibles para ti y tu familia. Puedes cerrar el detalle pulsando nuevamente la card seleccionada.</p></section>}
 
         <div className="mt-12 bg-gradient-to-r from-[#173C6E] to-[#27548F] rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
@@ -313,7 +384,7 @@ function BeneficiosFinancieros() {
         {FINANCIAL_BENEFITS.map((benefit) => (
           <div
             key={benefit.title}
-            className="group relative bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+            className="bienestar-financial-card group relative bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-20 h-20 bg-[#EBC302]/8 rounded-bl-[48px]" />
             <div className="text-2xl mb-3">{benefit.icon}</div>
@@ -369,7 +440,7 @@ function RedVital() {
           <p className="mt-3 text-gray-600 leading-relaxed">Conoce las asistencias disponibles para ti. Cada servicio está sujeto a cobertura, condiciones y límites establecidos.</p>
         </div>
         <div className="grid lg:grid-cols-[270px_minmax(0,1fr)] gap-6 items-start">
-          <aside className="overflow-hidden rounded-2xl border border-[#C9DCFF] bg-white shadow-sm">
+          <aside className="bienestar-assistance-menu overflow-hidden rounded-2xl border border-[#C9DCFF] bg-white shadow-sm">
             <div className="bg-[#131739] px-5 py-4 text-xs font-black uppercase tracking-widest text-white">Asistencias</div>
             <nav className="p-2" aria-label="Categorías de asistencias">
               {REDVITAL_ASSISTANCES.map((assistance) => {
@@ -380,14 +451,36 @@ function RedVital() {
           </aside>
           {activeAssistance && activeService ? <section key={activeService.name} className="rounded-2xl border border-[#C9DCFF] bg-[#F7F0FF] p-6 md:p-8 animate-[content-reveal_.35s_ease-out]">
             <div className="mb-6 flex items-center gap-4"><span className="grid h-14 w-14 place-items-center rounded-2xl bg-[#173C6E] text-2xl">{activeAssistance.icon}</span><div><p className="text-xs font-bold uppercase tracking-widest text-[#1B65A6]">{activeAssistance.title}</p><h3 className="text-2xl font-bold text-[#173C6E]">{activeService.name}</h3></div></div>
-            <article className="rounded-xl border border-[#C9DCFF] bg-white p-5"><p className="text-base leading-relaxed text-[#1A2842]">{activeService.detail}</p></article>
+            <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_220px] md:items-start">
+              <article className="rounded-xl border border-[#C9DCFF] bg-white p-5">
+                {activeService.detail.split("\n\n").map((paragraph) => <p key={paragraph} className="text-base leading-relaxed text-[#1A2842] [&+&]:mt-4">{paragraph}</p>)}
+              </article>
+              <aside className="relative overflow-hidden rounded-xl border border-[#B6D1FF] bg-gradient-to-br from-white to-[#EAF3FF] p-5 shadow-lg transition-transform duration-300 md:-translate-y-3 hover:md:-translate-y-4" aria-label="Condiciones del servicio">
+                <div className="absolute -right-5 -top-5 h-16 w-16 rounded-full bg-[#EBC302]/20" />
+                <div className="relative">
+                  <span className="grid h-9 w-9 place-items-center rounded-lg bg-[#173C6E] text-white" aria-hidden="true">
+                    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+                      <path d="M14 2v6h6" />
+                      <path d="m8 15 2 2 5-5" />
+                    </svg>
+                  </span>
+                  <p className="mt-3 text-xs font-black uppercase tracking-widest text-[#1B65A6]">Condiciones</p>
+                  <div className="mt-3 space-y-3 text-sm leading-relaxed text-[#1A2842]">
+                    {activeService.conditions?.schedule && <p><span className="block text-[10px] font-bold uppercase tracking-wide text-[#1B65A6]">Horario de atención</span>{activeService.conditions.schedule}</p>}
+                    <p className="font-semibold text-[#173C6E]">{activeService.conditions?.eventLimit ?? "Consulta las condiciones, límites y coberturas vigentes para este servicio."}</p>
+                    {activeService.conditions?.coverage && <p className="font-semibold text-[#173C6E]">{activeService.conditions.coverage}</p>}
+                  </div>
+                </div>
+              </aside>
+            </div>
             <p className="mt-6 border-t border-[#C9DCFF] pt-4 text-xs font-semibold text-[#1B65A6]">Aplican términos y condiciones.</p>
           </section> : <section className="relative overflow-hidden rounded-2xl border border-[#C9DCFF] bg-gradient-to-br from-[#131739] to-[#173C6E] p-8 md:p-12 text-white animate-[content-reveal_.35s_ease-out]"><div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#EBC302]/20" /><div className="absolute -bottom-20 left-1/3 h-40 w-40 rounded-full bg-[#5FA8FF]/20" /><div className="relative max-w-xl"><span className="mb-5 grid h-14 w-14 place-items-center rounded-2xl bg-[#EBC302] text-2xl">✨</span><p className="text-xs font-bold uppercase tracking-[0.2em] text-[#EBC302]">Tu bienestar, a un clic</p><h3 className="mt-2 text-3xl font-bold leading-tight">Elige una asistencia para conocer cómo te acompaña</h3><p className="mt-4 leading-relaxed text-[#F7F0FF]">Explora las opciones del menú y descubre el respaldo disponible para tu salud, hogar, vehículo, mascotas y bienestar emocional.</p><div className="mt-7 flex flex-wrap gap-2">{["Salud", "Hogar", "Vehículo", "Mascotas", "Bienestar"].map((item) => <span key={item} className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold transition-transform hover:-translate-y-1">{item}</span>)}</div></div></section>}
         </div>
       </section>
 
       {/* App highlight banner */}
-      <div className="bg-gradient-to-br from-[#131739] to-[#173C6E] rounded-3xl p-8 md:p-12 mb-14 overflow-hidden relative">
+      <div className="bienestar-app-banner bg-gradient-to-br from-[#131739] to-[#173C6E] rounded-3xl p-8 md:p-12 mb-14 overflow-hidden relative">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3" />
         <div className="absolute bottom-0 left-1/4 w-40 h-40 bg-[#EBC302]/10 rounded-full translate-y-1/2" />
         <div className="relative grid md:grid-cols-2 gap-10 items-center">
@@ -500,7 +593,7 @@ function AuxiliosCooperativos() {
           </div>
           <div className="divide-y divide-gray-50">
             {EXEQUIAL_FEATURES.map((item) => (
-              <div key={item.label} className="flex items-center justify-between px-6 py-4">
+              <div key={item.label} className="bienestar-aux-row flex items-center justify-between px-6 py-4">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-[#EBC302]" />
                   <span className="text-gray-700 text-sm font-medium">{item.label}</span>
@@ -539,7 +632,7 @@ export default function Bienestar() {
   const [activeTab, setActiveTab] = useState<Tab>("redvital");
 
   return (
-    <div className="min-h-full bg-white flex flex-col">
+    <div className="bienestar-page min-h-full bg-white flex flex-col">
       
       <HeroBanner activeTab={activeTab} />
       <TabNav activeTab={activeTab} setActiveTab={setActiveTab} />

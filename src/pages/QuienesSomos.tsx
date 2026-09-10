@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { getCoovitelYears } from "../lib/brand";
+import { NAME_PATTERN, PHONE_PATTERN, clearFieldError, sanitizeName, sanitizePhone, showFieldError } from "../lib/formValidation";
 
 const COOVITEL_YEARS = getCoovitelYears();
 
@@ -297,9 +298,42 @@ function TrabajaContent() {
     ciudad: "", cargo: "", experiencia: "", mensaje: "", archivo: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [fileError, setFileError] = useState("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const setResumeFile = (file?: File) => {
+    const allowedExtensions = ["pdf", "doc", "docx"];
+    const extension = file?.name.split(".").pop()?.toLowerCase();
+    const error = !file
+      ? "Selecciona tu hoja de vida."
+      : !extension || !allowedExtensions.includes(extension)
+        ? "Solo puedes cargar archivos PDF, DOC o DOCX."
+        : file.size > 5 * 1024 * 1024
+          ? "La hoja de vida debe pesar máximo 5 MB."
+          : "";
+
+    setFileError(error);
+    setForm({ ...form, archivo: error ? "" : file?.name ?? "" });
+    if (fileInputRef.current) fileInputRef.current.setCustomValidity(error);
+  };
+
+  const clearResumeFile = () => {
+    setFileError("");
+    setForm({ ...form, archivo: "" });
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+      fileInputRef.current.setCustomValidity("");
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    const sanitizedValue = name === "nombre" || name === "apellido"
+      ? sanitizeName(value)
+      : name === "telefono"
+        ? sanitizePhone(value)
+        : value;
+    setForm({ ...form, [name]: sanitizedValue });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -366,25 +400,25 @@ function TrabajaContent() {
         <h3 className="font-bold text-lg mb-6" style={{ color: "var(--coovitel-navy)", fontFamily: "Poppins, sans-serif" }}>
           Formulario de postulación
         </h3>
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} onInvalid={showFieldError} onInput={clearFieldError} className="form-validation space-y-5">
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
               <label className={labelClass}>Nombre *</label>
-              <input name="nombre" value={form.nombre} onChange={handleChange} required className={inputClass} placeholder="Tu nombre" />
+              <input name="nombre" value={form.nombre} onChange={handleChange} required pattern={NAME_PATTERN} minLength={2} autoComplete="given-name" className={inputClass} placeholder="Tu nombre" />
             </div>
             <div>
               <label className={labelClass}>Apellido *</label>
-              <input name="apellido" value={form.apellido} onChange={handleChange} required className={inputClass} placeholder="Tu apellido" />
+              <input name="apellido" value={form.apellido} onChange={handleChange} required pattern={NAME_PATTERN} minLength={2} autoComplete="family-name" className={inputClass} placeholder="Tu apellido" />
             </div>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
               <label className={labelClass}>Correo electrónico *</label>
-              <input name="email" type="email" value={form.email} onChange={handleChange} required className={inputClass} placeholder="correo@ejemplo.com" />
+              <input name="email" type="email" value={form.email} onChange={handleChange} required autoComplete="email" className={inputClass} placeholder="correo@ejemplo.com" />
             </div>
             <div>
               <label className={labelClass}>Teléfono *</label>
-              <input name="telefono" type="tel" value={form.telefono} onChange={handleChange} required className={inputClass} placeholder="+57 300 000 0000" />
+              <input name="telefono" type="tel" value={form.telefono} onChange={handleChange} required inputMode="numeric" pattern={PHONE_PATTERN} minLength={10} maxLength={10} className={inputClass} placeholder="3000000000" />
             </div>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -428,14 +462,17 @@ function TrabajaContent() {
             />
           </div>
           <div>
-            <label className={labelClass}>Adjuntar hoja de vida</label>
+            <label className={labelClass} htmlFor="hoja-de-vida">Adjuntar hoja de vida *</label>
             <div
-              className="border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-colors"
+              className={`border-2 border-dashed rounded-xl p-6 text-center transition-colors ${form.archivo ? "bg-[#F3F8E9]" : "cursor-pointer"}`}
               style={{ borderColor: "#C9DCFF" }}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={(e) => { e.preventDefault(); setResumeFile(e.dataTransfer.files[0]); }}
             >
               <div className="text-2xl mb-2">📎</div>
-              <p className="text-xs text-gray-500">Arrastra tu archivo aquí o <span style={{ color: "var(--coovitel-blue)" }} className="font-semibold">haz clic para subir</span></p>
-              <p className="text-xs text-gray-400 mt-1">PDF, DOC, DOCX – Máximo 5MB</p>
+              {form.archivo ? <><p className="text-sm font-bold text-[#173C6E] break-all">✓ {form.archivo}</p><button type="button" onClick={clearResumeFile} className="mt-3 text-xs font-bold text-[#B91C1C] underline">Quitar archivo</button></> : <><button type="button" onClick={() => fileInputRef.current?.click()} className="text-xs text-gray-500">Arrastra tu archivo aquí o <span style={{ color: "var(--coovitel-blue)" }} className="font-semibold">haz clic para subir</span></button><p className="text-xs text-gray-400 mt-1">PDF, DOC, DOCX – Máximo 5MB</p></>}
+              {fileError && <p className="mt-2 text-xs font-semibold text-[#B91C1C]">{fileError}</p>}
+              <input ref={fileInputRef} id="hoja-de-vida" name="archivo" type="file" required accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" className="sr-only" onChange={(e) => setResumeFile(e.target.files?.[0])} />
             </div>
           </div>
           <div className="flex items-start gap-3">

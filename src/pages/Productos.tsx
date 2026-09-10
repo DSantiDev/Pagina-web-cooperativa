@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { SIMULADORES_AHORRO, SIMULADORES_CREDITO } from "../lib/simuladores";
 
 /* ─── Data ─────────────────────────────────────────────────── */
 const CREDITO_PRODUCTS = [
@@ -259,70 +260,6 @@ const CREDITO_CONDITIONS: Record<string, { label: string; value: string; note: s
   ],
 };
 
-/* Tasas de respaldo para productos cuya tarjeta describe la tasa sin un valor numérico. */
-const QUICK_SIMULATOR_RATES: Record<string, number> = {
-  fidelizacion: 0.011,
-  "compra-cartera": 0.012,
-};
-
-/* Configuración del simulador por producto de ahorro */
-const AHORRO_SIMULATOR_CONFIG: Record<string, {
-  plazos: { label: string; dias: number; tasa: number }[];
-  montoMin: number;
-  montoMax: number;
-  montoDefault: number;
-  tipo: "termino_fijo" | "libre" | "nomina" | "meta";
-}> = {
-  "ahorro-vista": {
-    tipo: "libre",
-    montoMin: 50000,
-    montoMax: 50000000,
-    montoDefault: 5000000,
-    plazos: [
-      { label: "1 mes", dias: 30, tasa: 0.042 },
-      { label: "3 meses", dias: 90, tasa: 0.042 },
-      { label: "6 meses", dias: 180, tasa: 0.042 },
-      { label: "12 meses", dias: 365, tasa: 0.042 },
-    ],
-  },
-  cdat: {
-    tipo: "termino_fijo",
-    montoMin: 1000000,
-    montoMax: 500000000,
-    montoDefault: 10000000,
-    plazos: [
-      { label: "90 días", dias: 90, tasa: 0.085 },
-      { label: "180 días", dias: 180, tasa: 0.102 },
-      { label: "270 días", dias: 270, tasa: 0.109 },
-      { label: "360 días", dias: 360, tasa: 0.115 },
-    ],
-  },
-  cooviahorro: {
-    tipo: "nomina",
-    montoMin: 1000,
-    montoMax: 5000000,
-    montoDefault: 200000,
-    plazos: [
-      { label: "6 meses", dias: 180, tasa: 0.038 },
-      { label: "12 meses", dias: 365, tasa: 0.040 },
-      { label: "24 meses", dias: 730, tasa: 0.042 },
-      { label: "36 meses", dias: 1095, tasa: 0.045 },
-    ],
-  },
-  coovitemp: {
-    tipo: "meta",
-    montoMin: 100000,
-    montoMax: 20000000,
-    montoDefault: 500000,
-    plazos: [
-      { label: "6 meses", dias: 180, tasa: 0.044 },
-      { label: "12 meses", dias: 365, tasa: 0.050 },
-      { label: "24 meses", dias: 730, tasa: 0.056 },
-      { label: "36 meses", dias: 1095, tasa: 0.062 },
-    ],
-  },
-};
-
 /* ─── Header ────────────────────────────────────────────────── */
 function PageHero() {
   return (
@@ -402,18 +339,17 @@ function ProductCard({ product, selected, onSelect }: { product: Product; select
 /* ─── Product Detail Panel ──────────────────────────────────── */
 function ProductDetail({ product, showConditionsInitially = false, onClose }: { product: Product; showConditionsInitially?: boolean; onClose: () => void }) {
   const [showConditions, setShowConditions] = useState(showConditionsInitially);
-  const [plazo, setPlazo] = useState("24");
-  const [monto, setMonto] = useState(10000000);
-
-  const parsedRate = parseFloat((product.features.find(f => f.includes("Tasa")) || "1.3% M.V.").replace(/[^0-9.]/g, ""));
-  const tasaNum = QUICK_SIMULATOR_RATES[product.id] ?? (Number.isFinite(parsedRate) ? parsedRate / 100 : 0.013);
-  const plazoNum = parseInt(plazo);
-  const cuota = monto * (tasaNum * Math.pow(1 + tasaNum, plazoNum)) / (Math.pow(1 + tasaNum, plazoNum) - 1);
+  const cfg = SIMULADORES_CREDITO[product.id];
+  const [plazoIdx, setPlazoIdx] = useState(0);
+  const [monto, setMonto] = useState(cfg.montoDefault);
+  const plazoSeleccionado = cfg.plazos[plazoIdx];
+  const { meses: plazoNum, tasaMensual } = plazoSeleccionado;
+  const cuota = tasaMensual === 0
+    ? monto / plazoNum
+    : monto * (tasaMensual * Math.pow(1 + tasaMensual, plazoNum)) / (Math.pow(1 + tasaMensual, plazoNum) - 1);
+  const pasoMonto = Math.max(1_000, Math.round(cfg.montoMin / 10_000) * 10_000);
 
   const conditions = CREDITO_CONDITIONS[product.id] || [];
-  const maxPlazo = parseInt((product.features.find(f => f.includes("meses")) || "48 meses").replace(/\D/g, "")) || 48;
-  const plazos = [12, 24, 36, maxPlazo].filter((v, i, a) => a.indexOf(v) === i && v <= maxPlazo).slice(0, 4);
-
   return (
     <div className="rounded-2xl overflow-hidden mb-8" style={{ border: `2px solid ${product.color}33`, background: "white" }}>
       {/* Header strip */}
@@ -455,39 +391,40 @@ function ProductDetail({ product, showConditionsInitially = false, onClose }: { 
                 <label className="text-xs font-semibold" style={{ color: "#1A2842" }}>Monto a solicitar</label>
                 <span className="text-xs font-black" style={{ color: "#173C6E" }}>${monto.toLocaleString("es-CO")}</span>
               </div>
-              <input type="range" min={1000000} max={80000000} step={500000} value={monto}
+              <input type="range" min={cfg.montoMin} max={cfg.montoMax} step={pasoMonto} value={monto}
                 onChange={(e) => setMonto(Number(e.target.value))}
                 className="w-full h-1.5 rounded-full appearance-none cursor-pointer"
                 style={{ accentColor: product.color }}
               />
               <div className="flex justify-between text-xs mt-1" style={{ color: "#81A1DB" }}>
-                <span>$1M</span><span>$80M</span>
+                <span>${cfg.montoMin.toLocaleString("es-CO")}</span><span>${cfg.montoMax.toLocaleString("es-CO")}</span>
               </div>
             </div>
             <div>
               <label className="text-xs font-semibold mb-2 block" style={{ color: "#1A2842" }}>Plazo</label>
               <div className="grid grid-cols-4 gap-1.5">
-                {plazos.map((m) => (
-                  <button key={m} onClick={() => setPlazo(String(m))}
+                {cfg.plazos.map((plazo, index) => (
+                  <button key={plazo.meses} onClick={() => setPlazoIdx(index)}
                     className="py-2 rounded-lg text-xs font-bold transition-all"
-                    style={plazo === String(m)
+                    style={plazoIdx === index
                       ? { background: product.color, color: "white" }
                       : { background: "white", color: "#1A2842", border: "1px solid #C9DCFF" }
                     }
-                  >{m}m</button>
+                  >{plazo.meses}m</button>
                 ))}
               </div>
             </div>
             <div className="bg-white rounded-xl p-4 border" style={{ borderColor: "#C9DCFF" }}>
               <div className="flex justify-between items-center mb-1">
                 <span className="text-xs" style={{ color: "#1A2842" }}>Cuota estimada</span>
-                <span className="text-xs" style={{ color: "#81A1DB" }}>{plazo} meses</span>
+                <span className="text-xs" style={{ color: "#81A1DB" }}>{plazoNum} meses</span>
               </div>
               <p className="text-2xl font-black" style={{ color: "#173C6E" }}>
                 ${Math.round(cuota).toLocaleString("es-CO")}
                 <span className="text-sm font-normal" style={{ color: "#1A2842" }}>/mes</span>
               </p>
               <p className="text-xs mt-1" style={{ color: "#81A1DB" }}>*Simulación referencial. Sujeta a estudio de crédito.</p>
+              <p className="text-xs mt-1 font-semibold" style={{ color: product.color }}>Tasa simulada: {(tasaMensual * 100).toFixed(2)}% M.V.</p>
             </div>
             <button
               onClick={() => setShowConditions(!showConditions)}
@@ -563,23 +500,39 @@ function AhorroCard({ product, selected, onSelect }: { product: typeof AHORRO_PR
 /* ─── Ahorro Detail Panel ───────────────────────────────────── */
 function AhorroDetail({ product, showSimulatorInitially = false, onClose }: { product: AhorroProduct; showSimulatorInitially?: boolean; onClose: () => void }) {
   const [showSimulator, setShowSimulator] = useState(showSimulatorInitially);
-  const cfg = AHORRO_SIMULATOR_CONFIG[product.id];
+  const cfg = SIMULADORES_AHORRO[product.id];
   const [monto, setMonto] = useState(cfg?.montoDefault ?? 1000000);
   const [plazoIdx, setPlazoIdx] = useState(0);
 
   const selectedPlazo = cfg?.plazos[plazoIdx];
-  const rendimiento = selectedPlazo
-    ? monto * (Math.pow(1 + selectedPlazo.tasa, selectedPlazo.dias / 365) - 1)
-    : 0;
-  const total = monto + rendimiento;
+  const calcularProyeccion = (plazoSeleccionado: NonNullable<typeof selectedPlazo>) => {
+    if (cfg?.tipo === "nomina") {
+      const meses = Math.max(1, Math.round(plazoSeleccionado.dias / 30));
+      const tasaMensual = Math.pow(1 + plazoSeleccionado.tasa, 1 / 12) - 1;
+      const capital = monto * meses;
+      const totalProyectado = tasaMensual === 0
+        ? capital
+        : monto * ((Math.pow(1 + tasaMensual, meses) - 1) / tasaMensual);
+
+      return { capital, rendimiento: totalProyectado - capital, total: totalProyectado };
+    }
+
+    const totalProyectado = monto * Math.pow(1 + plazoSeleccionado.tasa, plazoSeleccionado.dias / 365);
+    return { capital: monto, rendimiento: totalProyectado - monto, total: totalProyectado };
+  };
+  const resultadoSeleccionado = selectedPlazo ? calcularProyeccion(selectedPlazo) : { capital: monto, rendimiento: 0, total: monto };
+  const { capital, rendimiento, total } = resultadoSeleccionado;
 
   /* Tabla de proyección rápida (siempre visible) */
-  const proyeccion = cfg?.plazos.map((p) => ({
-    label: p.label,
-    tasa: `${(p.tasa * 100).toFixed(1)}% E.A.`,
-    rendimiento: `$${Math.round(monto * (Math.pow(1 + p.tasa, p.dias / 365) - 1)).toLocaleString("es-CO")}`,
-    total: `$${Math.round(monto * Math.pow(1 + p.tasa, p.dias / 365)).toLocaleString("es-CO")}`,
-  })) ?? [];
+  const proyeccion = cfg?.plazos.map((p) => {
+    const resultado = calcularProyeccion(p);
+    return {
+      label: p.label,
+      tasa: `${(p.tasa * 100).toFixed(1)}% E.A.`,
+      rendimiento: `$${Math.round(resultado.rendimiento).toLocaleString("es-CO")}`,
+      total: `$${Math.round(resultado.total).toLocaleString("es-CO")}`,
+    };
+  }) ?? [];
 
   const montoLabel = cfg?.tipo === "nomina" ? "Ahorro mensual" : "Monto a invertir";
 
@@ -698,7 +651,7 @@ function AhorroDetail({ product, showSimulatorInitially = false, onClose }: { pr
                 </div>
                 <div className="space-y-2 mb-4">
                   {[
-                    { label: cfg.tipo === "nomina" ? "Ahorro mensual" : "Capital invertido", val: `$${monto.toLocaleString("es-CO")}` },
+                    { label: cfg.tipo === "nomina" ? "Ahorro acumulado" : "Capital invertido", val: `$${Math.round(capital).toLocaleString("es-CO")}` },
                     { label: "Plazo seleccionado", val: selectedPlazo?.label ?? "" },
                     { label: "Tasa E.A.", val: selectedPlazo ? `${(selectedPlazo.tasa * 100).toFixed(1)}%` : "" },
                     { label: "Rendimientos", val: `$${Math.round(rendimiento).toLocaleString("es-CO")}` },
@@ -810,7 +763,7 @@ export default function Productos() {
 
             {/* Detail panel (shown when a card is selected) */}
             {selectedCreditoProduct && (
-              <div id="producto-seleccionado"><ProductDetail product={selectedCreditoProduct} showConditionsInitially={requestedProduct === selectedCreditoProduct.id} onClose={() => setSelectedCredito(null)} /></div>
+              <div id="producto-seleccionado"><ProductDetail key={selectedCreditoProduct.id} product={selectedCreditoProduct} showConditionsInitially={requestedProduct === selectedCreditoProduct.id} onClose={() => setSelectedCredito(null)} /></div>
             )}
 
             {/* Cards grid */}
@@ -845,7 +798,7 @@ export default function Productos() {
             </div>
 
             {selectedAhorroProduct && (
-              <div id="producto-seleccionado"><AhorroDetail product={selectedAhorroProduct} showSimulatorInitially={requestedProduct === selectedAhorroProduct.id || activeTab === "cdat"} onClose={() => { setSelectedAhorro(null); setActiveTab("ahorro"); }} /></div>
+              <div id="producto-seleccionado"><AhorroDetail key={selectedAhorroProduct.id} product={selectedAhorroProduct} showSimulatorInitially={requestedProduct === selectedAhorroProduct.id || activeTab === "cdat"} onClose={() => { setSelectedAhorro(null); setActiveTab("ahorro"); }} /></div>
             )}
 
             {activeTab !== "cdat" && <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

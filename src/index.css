@@ -112,3 +112,89 @@ input:focus, select:focus, textarea:focus { outline: none; }
 .contact-page { min-height: calc(100vh - 150px); background: #f7f0ff; }.contact-page__hero { padding: 72px 24px; text-align: center; color: #F7F0FF; background: linear-gradient(135deg,#27548F,#1B3669,#131739); }.contact-page__hero p { margin: 0 0 8px; color: #EBC302; font-size: 12px; font-weight: 800; letter-spacing: .16em; }.contact-page__hero h1 { margin: 0 0 12px; font-size: clamp(32px,5vw,52px); }.contact-page__grid { max-width: 1080px; margin: -25px auto 0; padding: 0 24px 72px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 24px; }.contact-page__details, .contact-page__form { padding: 30px; border-radius: 20px; background: #F7F0FF; box-shadow: 0 10px 30px rgba(23,60,110,.1); }.contact-page__details { display: grid; align-content: start; gap: 14px; }.contact-page__details a { padding: 18px; border-radius: 12px; background: #f7f0ff; color: #173C6E; text-decoration: none; }.contact-page__details span { display: block; margin-top: 4px; color: #1A2842; font-size: 13px; }.contact-page__form { display: grid; gap: 14px; }.contact-page__form h2 { margin: 0; color: #173C6E; }.contact-page__form label { display: grid; gap: 6px; color: #1A2842; font-size: 13px; font-weight: 700; }.contact-page__form input,.contact-page__form textarea { width: 100%; padding: 12px; border: 1px solid #C9DCFF; border-radius: 10px; }.contact-page__form button { padding: 13px; border: 0; border-radius: 10px; background: #173C6E; color: #F7F0FF; font-weight: 800; cursor: pointer; }
 @media (max-width: 1050px) { .site-nav { display: none; }.site-menu-button { display: block; }.site-nav-mobile { display: block; } }
 @media (max-width: 800px) { .site-footer__grid { grid-template-columns:repeat(2,1fr); }.site-footer__about { grid-column:1/-1; max-width:none; }.benefits-tab-nav__container { padding-inline:12px; }.benefits-tab-nav__list { grid-template-columns:repeat(3,minmax(0,1fr)); }.benefits-tab-nav__item { min-height:70px; padding:11px 10px; }.benefits-tab-nav__item span:first-child { font-size:8px; letter-spacing:.08em; }.benefits-tab-nav__item span:last-child { font-size:12px; white-space:normal; line-height:1.2; } }@media (max-width: 640px) { .site-header__inner { min-height: 62px; padding:0 16px; }.site-brand img { width:128px; }.site-content { padding-top:62px; }.site-breadcrumb { top:62px; }.page--productos .site-content, .page--quienes-somos .site-content, .page--confianza .site-content, .page--beneficios .site-content, .page--asociate .site-content, .page--contacto .site-content { padding-top:95px; }.site-footer__inner { flex-direction:column; }.site-footer__grid { display:grid; grid-template-columns:1fr; }.site-footer nav { justify-content:flex-start; }.contact-page__grid { grid-template-columns:1fr; }.covipay-button { right:12px; bottom:78px; }.social-dock { left:12px; bottom:18px; }.scroll-top { right:12px; bottom:18px; }.benefits-tab-nav { top:95px; }.benefits-tab-nav__list { display:none; }.benefits-tab-nav__mobile { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:#C9DCFF; }.benefits-tab-nav__mobile button { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; min-height:61px; padding:8px; border:0; background:#F7F0FF; color:#1A2842; cursor:pointer; text-align:center; }.benefits-tab-nav__mobile button:last-child { grid-column:1 / -1; }.benefits-tab-nav__mobile button.is-active { background:#173C6E; color:#F7F0FF; }.benefits-tab-nav__mobile span { font-size:8px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; opacity:.78; }.benefits-tab-nav__mobile strong { font-size:12px; line-height:1.15; } }
+@media (max-width: 640px) { .benefits-tab-nav__mobile { grid-template-columns:repeat(3,minmax(0,1fr)); }.benefits-tab-nav__mobile button { min-height:56px; padding:7px 4px; }.benefits-tab-nav__mobile button:last-child { grid-column:auto; }.benefits-tab-nav__mobile span { font-size:7px; letter-spacing:.06em; }.benefits-tab-nav__mobile strong { font-size:11px; } }
+@keyframes benefit-clapper { 0%,100% { transform:rotate(0) scale(1); } 35% { transform:rotate(-12deg) scale(1.12); } 65% { transform:rotate(7deg) scale(1.06); } }
+@keyframes benefit-gift-open { 0%,100% { transform:translateY(0) scale(1); } 40% { transform:translateY(-7px) scale(1.16); } 70% { transform:translateY(1px) scale(1.08); } }
+@keyframes benefit-confetti { 0%,100% { transform:rotate(0) scale(1); } 25% { transform:rotate(12deg) translateY(-4px) scale(1.14); } 75% { transform:rotate(-12deg) translateY(-2px) scale(1.1); } }
+@keyframes benefit-rise { 0%,100% { transform:translateY(0) scale(1); } 50% { transform:translateY(-8px) scale(1.14); } }
+@keyframes benefit-handshake { 0%,100% { transform:rotate(0) scale(1); } 30% { transform:rotate(-9deg) scale(1.1); } 60% { transform:rotate(9deg) scale(1.1); } }
+.benefit-menu-icon { position:relative; }.benefit-menu-icon--gift::after { content:'✦'; position:absolute; top:-8px; right:-7px; color:#EBC302; font-size:18px; opacity:0; transform:scale(.3) rotate(-30deg); transition:opacity .2s ease,transform .35s ease; }.group:hover .benefit-menu-icon--gift::after,.group[aria-pressed="true"] .benefit-menu-icon--gift::after { opacity:1; transform:scale(1) rotate(0); }.group:hover .benefit-menu-icon--cinema,.group[aria-pressed="true"] .benefit-menu-icon--cinema { animation:benefit-clapper .65s ease-in-out; }.group:hover .benefit-menu-icon--gift,.group[aria-pressed="true"] .benefit-menu-icon--gift { animation:benefit-gift-open .7s ease-in-out; }.group:hover .benefit-menu-icon--events,.group[aria-pressed="true"] .benefit-menu-icon--events { animation:benefit-confetti .8s ease-in-out; }.group:hover .benefit-menu-icon--finance,.group[aria-pressed="true"] .benefit-menu-icon--finance { animation:benefit-rise .7s ease-in-out; }.group:hover .benefit-menu-icon--family,.group[aria-pressed="true"] .benefit-menu-icon--family { animation:benefit-handshake .75s ease-in-out; }
+
+/* Validación visual: sustituye los globos nativos del navegador. */
+.skip-link { position:fixed; top:10px; left:10px; z-index:200; padding:10px 14px; border-radius:10px; background:#173C6E; color:#fff; font-weight:700; transform:translateY(-150%); transition:transform .2s ease; }
+.skip-link:focus { transform:translateY(0); outline:3px solid #EBC302; outline-offset:2px; }
+.form-validation :is(input, select, textarea)[aria-invalid="true"] {
+  border-color: #DC2626 !important;
+  background-color: #FFF7F7 !important;
+  box-shadow: 0 0 0 4px rgba(220, 38, 38, .13) !important;
+  animation: field-error-shake .26s ease-in-out;
+}
+.form-validation :is(input, select, textarea)[aria-invalid="true"]:focus {
+  outline: none;
+}
+.form-validation :is(input, select, textarea)[aria-invalid="true"]::placeholder { color: #B91C1C; opacity: .58; }
+.form-validation [data-field-error]::after {
+  content: attr(data-field-error);
+  display: block;
+  margin-top: 6px;
+  color: #B91C1C;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+@keyframes field-error-shake { 0%,100% { transform:translateX(0); } 30% { transform:translateX(-3px); } 65% { transform:translateX(3px); } }
+
+/* Microinteracciones exclusivas de Bienestar. */
+@keyframes bienestar-enter { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+@keyframes bienestar-orbit { 0%,100% { transform:translate3d(0,0,0) scale(1); } 50% { transform:translate3d(-18px,16px,0) scale(1.08); } }
+@keyframes bienestar-float { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
+.bienestar-hero__content > * { animation:bienestar-enter .65s cubic-bezier(.16,1,.3,1) both; }
+.bienestar-hero__content > :nth-child(2) { animation-delay:.1s; }
+.bienestar-hero__content > :nth-child(3) { animation-delay:.2s; }
+.bienestar-hero__orb { pointer-events:none; animation:bienestar-orbit 9s ease-in-out infinite; }
+.bienestar-hero__orb--two { animation-delay:-4s; }
+.bienestar-image-card img { transition:transform .65s cubic-bezier(.16,1,.3,1), filter .4s ease; }
+.bienestar-image-card:hover img { transform:scale(1.045); filter:saturate(1.12); }
+.bienestar-image-card > div { animation:bienestar-float 4s ease-in-out infinite; }
+.bienestar-benefit-card::before { content:""; position:absolute; inset:0; opacity:0; background:radial-gradient(circle at 50% 0,rgba(255,255,255,.8),transparent 52%); transition:opacity .35s ease; pointer-events:none; }
+.bienestar-benefit-card:hover::before { opacity:.5; }
+.bienestar-financial-card::after { content:""; position:absolute; inset:auto -25% 0; height:3px; background:linear-gradient(90deg,transparent,#EBC302,transparent); transform:scaleX(0); transition:transform .4s cubic-bezier(.16,1,.3,1); }
+.bienestar-financial-card:hover::after { transform:scaleX(1); }
+.bienestar-financial-card:hover > :not(:first-child) { transform:translateY(-2px); }
+.bienestar-financial-card > :not(:first-child) { transition:transform .3s ease; }
+.bienestar-assistance-menu { transition:box-shadow .3s ease, transform .3s ease; }
+.bienestar-assistance-menu:hover { box-shadow:0 18px 38px rgba(23,60,110,.14); transform:translateY(-2px); }
+.bienestar-app-banner { transition:transform .35s ease, box-shadow .35s ease; }
+.bienestar-app-banner:hover { transform:translateY(-3px); box-shadow:0 24px 44px rgba(19,23,57,.25); }
+.bienestar-app-banner .redvital-screen { transition:transform .6s cubic-bezier(.16,1,.3,1); }
+.bienestar-app-banner:hover .redvital-screen { transform:scale(1.035); }
+.bienestar-aux-row { position:relative; transition:background-color .25s ease, padding-left .25s ease; }
+.bienestar-aux-row::before { content:""; position:absolute; left:0; top:18%; bottom:18%; width:3px; border-radius:0 4px 4px 0; background:#EBC302; transform:scaleY(0); transition:transform .25s ease; }
+.bienestar-aux-row:hover { background:#F7F0FF; padding-left:30px; }
+.bienestar-aux-row:hover::before { transform:scaleY(1); }
+@media (prefers-reduced-motion:reduce) {
+  .bienestar-hero__content > *, .bienestar-hero__orb, .bienestar-image-card > div { animation:none !important; }
+  .bienestar-image-card img, .bienestar-financial-card > :not(:first-child), .bienestar-app-banner .redvital-screen { transition:none; }
+}
+
+/* Movimiento y respuesta reutilizables para cada ruta del sitio. */
+.site-reveal { opacity:0; transform:translateY(26px); transition:opacity .68s cubic-bezier(.16,1,.3,1) var(--reveal-delay,0ms), transform .68s cubic-bezier(.16,1,.3,1) var(--reveal-delay,0ms); }
+.site-reveal.is-revealed { opacity:1; transform:translateY(0); }
+.site-content :is(a, button) { -webkit-tap-highlight-color:transparent; }
+.site-content :is(a, button):focus-visible { outline:3px solid #EBC302; outline-offset:3px; }
+@media (hover:hover) {
+  .site-content :is(a, button)[class*="rounded"] { transition:transform .24s cubic-bezier(.16,1,.3,1), box-shadow .24s ease, filter .24s ease; }
+  .site-content :is(a, button)[class*="rounded"]:hover { filter:brightness(1.03); }
+  .site-content :is(a, button)[class*="rounded"]:active { transform:translateY(0) scale(.98); }
+  .site-content :is(section, article) > [class*="grid"] > [class*="rounded"] { transition:transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease, border-color .3s ease; }
+  .site-content :is(section, article) > [class*="grid"] > [class*="rounded"]:hover { transform:translateY(-4px); box-shadow:0 16px 32px rgba(23,60,110,.14); }
+  .site-content img:not([aria-hidden="true"]) { transition:transform .55s cubic-bezier(.16,1,.3,1), filter .35s ease; }
+  .site-content [class*="overflow-hidden"]:hover > img { transform:scale(1.035); filter:saturate(1.06); }
+  .page--confianza .site-content [class*="border"]:hover { border-color:rgba(27,101,166,.42); }
+  .page--productos .site-content [class*="bg-white"]:hover { box-shadow:0 14px 30px rgba(23,60,110,.12); }
+  .page--asociate .site-content [class*="rounded-xl"]:hover { border-color:#81A1DB; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .site-reveal { opacity:1; transform:none; transition:none; }
+  .site-content :is(a, button)[class*="rounded"], .site-content :is(section, article) > [class*="grid"] > [class*="rounded"], .site-content img { transition:none !important; }
+}

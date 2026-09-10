@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getCoovitelYears } from "../lib/brand";
-import BOGOTA_IMAGES from "../lib/media";
+import MEDIA from "../lib/media";
 
 const COOVITEL_YEARS = getCoovitelYears();
 
@@ -289,7 +289,7 @@ export default function Confianza() {
               </div>
               <div className="relative">
                 <img
-                  src={`${BOGOTA_IMAGES.confianzaImagenPrincipal}&w=600&h=420`}
+                  src={`${MEDIA.confianzaImagenPrincipal}&w=600&h=420`}
                   alt="Plaza de Bolívar en Bogotá, Colombia"
                   className="rounded-2xl w-full object-cover h-72 shadow-xl"
                 />
