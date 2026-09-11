@@ -2,10 +2,28 @@ import { type ReactNode, useEffect, useState } from 'react'
 import { Breadcrumb, CoviPayButton, InstagramIcon, PageLoader, ScrollTop, SocialDock, WhatsAppIcon } from './GlobalWidgets'
 import { getCurrentYear } from '../lib/brand'
 
+/**
+ * ───────────────────── ESTRUCTURA COMPARTIDA DEL SITIO ────────────────────
+ *
+ * SiteLayout envuelve todas las páginas con el encabezado, pie, accesos
+ * flotantes, metadatos SEO y animación de entrada de secciones. Normalmente no
+ * hace falta modificar este componente al editar el contenido de una página.
+ *
+ * Las dos zonas que puedes actualizar son:
+ * - `links`: enlaces del menú principal.
+ * - `pageMetadata`: título y descripción SEO de cada página.
+ * ──────────────────────────────────────────────────────────────────────────
+ */
+
+/** Enlaces del menú de escritorio y móvil. Conserva `href` y `label` juntos. */
 const links = [
-  { href: '/', label: 'Inicio' }, { href: '/productos', label: 'Productos' }, { href: '/quienes-somos', label: 'Quiénes Somos' }, { href: '/confianza', label: 'Confianza' }, { href: '/beneficios', label: 'Bienestar' }, { href: '/contacto', label: 'Contacto' },
+  { href: '/', label: 'Inicio' }, { href: '/productos', label: 'Productos' }, { href: '/quienes-somos', label: 'Quiénes Somos' }, { href: '/confianza', label: 'Confianza' }, { href: '/bienestar', label: 'Bienestar' }, { href: '/contacto', label: 'Contacto' },
 ]
 
+/**
+ * Metadatos SEO por página. Al agregar una nueva ruta, incluye aquí un título
+ * único y una descripción clara para buscadores y pestañas del navegador.
+ */
 const pageMetadata: Record<string, { title: string; description: string }> = {
   home: { title: 'COOVITEL | Cooperativa Empresarial de Ahorro y Crédito', description: 'Productos financieros, bienestar y beneficios para los asociados de COOVITEL.' },
   productos: { title: 'Productos financieros | COOVITEL', description: 'Conoce los productos de crédito, ahorro y CDAT de COOVITEL.' },
@@ -20,6 +38,7 @@ const pageMetadata: Record<string, { title: string; description: string }> = {
   '404': { title: 'Página no encontrada | COOVITEL', description: 'La página solicitada no está disponible.' },
 }
 
+/** Encabezado responsivo. `isHome` permite que el fondo sea transparente solo en Inicio. */
 function SiteHeader({ isHome }: { isHome: boolean }) {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -28,10 +47,15 @@ function SiteHeader({ isHome }: { isHome: boolean }) {
   return <header className={`site-header ${solid ? 'is-solid' : 'is-transparent'}`}><div className="site-header__inner"><a className="site-brand" href="/" aria-label="COOVITEL - Inicio"><img src="/images/logo-coovitel-nuevo.png" alt="COOVITEL" width="1900" height="600" /></a><nav className="site-nav" aria-label="Navegación principal">{links.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}<a className="site-nav__covipay" href="https://coovitel.zolev.co/CentralPagos/Index" target="_blank" rel="noreferrer">CoviPay</a><a className="site-nav__virtual" href="https://odin.selsacloud.com/linix/v7/8e273b00-cfc0-48eb-bcff-10ba62e64fe5/servicio/identidad/autenticar/gui/autenticacion-gui/ingresousuario" target="_blank" rel="noreferrer">Oficina Virtual</a><a className="site-nav__associate" href="/asociate">Asóciate</a></nav><button type="button" className="site-menu-button" aria-expanded={open} aria-label={open ? 'Cerrar menú' : 'Abrir menú'} onClick={() => setOpen(!open)}>☰</button></div>{open && <nav className="site-nav-mobile" aria-label="Navegación móvil">{links.map((link) => <a key={link.href} href={link.href} onClick={() => setOpen(false)}>{link.label}</a>)}<a href="https://coovitel.zolev.co/CentralPagos/Index" target="_blank" rel="noreferrer">CoviPay</a><a href="/asociate">Asóciate</a><a href="https://odin.selsacloud.com/linix/v7/8e273b00-cfc0-48eb-bcff-10ba62e64fe5/servicio/identidad/autenticar/gui/autenticacion-gui/ingresousuario" target="_blank" rel="noreferrer">Oficina Virtual</a></nav>}</header>
 }
 
+/** Pie de página común: enlaces institucionales, productos, redes y atención. */
 function SiteFooter() {
   return <footer className="site-footer"><div className="site-footer__inner site-footer__grid"><div className="site-footer__about"><a className="site-footer__logo-link" href="/" aria-label="Volver al inicio"><img className="site-footer__logo" src="/images/logo-coovitel-nuevo.png" alt="COOVITEL" width="1900" height="600" /></a><p>Cooperativa Empresarial de Ahorro y Crédito. Construimos bienestar financiero con solidaridad y transparencia.</p><div className="site-footer__social"><a className="social--facebook" href="https://www.facebook.com/coovitelcol/" target="_blank" rel="noreferrer" aria-label="Facebook">f</a><a className="social--instagram" href="https://www.instagram.com/coovitel_oficial/" target="_blank" rel="noreferrer" aria-label="Instagram"><InstagramIcon /></a><a className="social--linkedin" href="https://co.linkedin.com/company/cooviteloficial" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a><a className="social--whatsapp" href="https://api.whatsapp.com/send/?phone=573160189853&text&type=phone_number&app_absent=0" target="_blank" rel="noreferrer" aria-label="WhatsApp"><WhatsAppIcon /></a></div></div><div><p className="site-footer__title">Productos</p><nav aria-label="Productos"><a href="/productos?producto=educacion">Educación</a><a href="/productos?producto=fidelizacion">Fidelización</a><a href="/productos?producto=compra-cartera">Compra de Cartera</a><a href="/productos?producto=cdat">CDAT</a></nav></div><div><p className="site-footer__title">Institucional</p><nav aria-label="Institucional"><a href="/quienes-somos">Quiénes Somos</a><a href="/estamentos-directivos">Estamentos Directivos</a><a href="/normatividad">Normatividad</a><a href="/informacion-estrategica">Información Estratégica</a><a href="/quienes-somos?section=trabaja">Trabaja con nosotros</a></nav></div><div><p className="site-footer__title">Atención</p><nav aria-label="Atención"><a href="/asociate">Asóciate</a><a href="https://odin.selsacloud.com/linix/v7/8e273b00-cfc0-48eb-bcff-10ba62e64fe5/servicio/identidad/autenticar/gui/autenticacion-gui/ingresousuario" target="_blank" rel="noreferrer">Oficina Virtual</a><a className="footer-whatsapp" href="https://api.whatsapp.com/send/?phone=573160189853&text&type=phone_number&app_absent=0" target="_blank" rel="noreferrer"><WhatsAppIcon /> WhatsApp</a></nav></div></div><p className="site-footer__copy">© {getCurrentYear()} COOVITEL · Cooperativa Empresarial de Ahorro y Crédito · Vigilada por Supersolidaria</p></footer>
 }
 
+/**
+ * Contenedor final de cada página. Actualiza título, descripción y URL canónica
+ * al navegar, activa animaciones al entrar en pantalla y agrega accesos globales.
+ */
 export default function SiteLayout({ page, children }: { page: string; children: ReactNode }) {
   const [loading, setLoading] = useState(true)
   useEffect(() => {

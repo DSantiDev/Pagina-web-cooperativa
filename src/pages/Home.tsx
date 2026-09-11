@@ -634,7 +634,7 @@ export default function Home() {
           </div>
 
           <AnimIn delay={550} className="text-center mt-14">
-            <a href="/beneficios"
+            <a href="/bienestar"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-sm transition-all duration-200 hover:scale-105 hover:shadow-2xl"
               style={{ backgroundColor: '#EBC302', color: '#131739' }}>
               Conoce todos los beneficios →

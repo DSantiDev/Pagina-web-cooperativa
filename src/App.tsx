@@ -12,7 +12,7 @@ import SiteLayout from './components/SiteLayout'
 const pages = {
   '/': { component: Home, name: 'home' },
   '/asociate': { component: Asociate, name: 'asociate' },
-  '/beneficios': { component: Bienestar, name: 'bienestar' },
+  '/bienestar': { component: Bienestar, name: 'bienestar' },
   '/confianza': { component: Confianza, name: 'confianza' },
   '/contacto': { component: Contacto, name: 'contacto' },
   '/productos': { component: Productos, name: 'productos' },

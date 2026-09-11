@@ -30,10 +30,15 @@ body { margin: 0; background: #f7f0ff; color: #140E0C; }
 .site-nav a, .site-nav-mobile a { padding: 9px 10px; color: #1A2842; font: 600 13px Poppins,sans-serif; text-decoration: none; white-space: nowrap; }
 .site-nav a:hover, .site-nav-mobile a:hover { color: #173C6E; }
 .is-transparent .site-nav a { color: rgba(247,240,255,.88); }.is-transparent .site-nav a:hover { color: #F7F0FF; }
-.site-nav__covipay { position:relative; border-radius:99px; color:#F7F0FF !important; background:linear-gradient(135deg,#131739,#27548F) !important; padding-inline:13px !important; box-shadow:0 3px 10px rgba(23,60,110,.22); overflow:hidden; }.site-nav__covipay::after { content:''; position:absolute; inset:0; background:linear-gradient(110deg,transparent 28%,rgba(247,240,255,.28) 47%,transparent 66%); transform:translateX(-110%); transition:transform .45s ease; }.site-nav__covipay:hover::after { transform:translateX(110%); }
-.site-nav__virtual { border-radius: 99px; background: #173C6E; color: #F7F0FF !important; padding-inline: 14px !important; }
-.is-transparent .site-nav__virtual { background: transparent; border: 1px solid rgba(247,240,255,.55); }.site-nav__associate { border-radius: 99px; background: #EBC302; color: #131739 !important; padding-inline: 16px !important; }
+.site-nav__covipay,.site-nav__virtual,.site-nav__associate { position:relative; display:inline-flex; min-width:118px; min-height:38px; align-items:center; justify-content:center; overflow:hidden; border-radius:99px; box-shadow:0 3px 10px rgba(23,60,110,.22); }
+.site-nav__covipay { color:#F7F0FF !important; background:linear-gradient(135deg,#131739,#27548F) !important; }
+.site-nav__virtual { background:#173C6E; color:#F7F0FF !important; }
+.site-nav__associate { background:#EBC302; color:#131739 !important; }
+.site-nav__covipay::after,.site-nav__virtual::after,.site-nav__associate::after { content:''; position:absolute; inset:0; height:auto; margin:0; border-radius:inherit; background:linear-gradient(110deg,transparent 28%,rgba(247,240,255,.28) 47%,transparent 66%); transform:translateX(-110%); transition:transform .45s ease; }
+.site-nav__covipay:hover::after,.site-nav__virtual:hover::after,.site-nav__associate:hover::after { transform:translateX(110%); }
+.is-transparent .site-nav__virtual { background:transparent; border:1px solid rgba(247,240,255,.55); }
 .site-menu-button { display: none; border: 0; background: transparent; color: #173C6E; font-size: 25px; cursor: pointer; }
+.site-header.is-transparent .site-menu-button { color:#F7F0FF; text-shadow:0 2px 8px rgba(19,23,57,.45); }
 .site-nav-mobile { display: none; padding: 8px 24px 16px; border-top: 1px solid #CFE0FF; }
 .site-nav-mobile a { display: block; }
 .site-content { padding-top: 70px; }.page--home .site-content { padding-top: 0; }
@@ -50,7 +55,7 @@ body { margin: 0; background: #f7f0ff; color: #140E0C; }
 .accordion-content { max-height: 0; overflow: hidden; transition: max-height .35s ease; }.accordion-content.open { max-height: 600px; }
 input:focus, select:focus, textarea:focus { outline: none; }
 .site-breadcrumb { position: fixed; top: 70px; inset-inline: 0; z-index: 900; padding: 8px max(24px, calc((100vw - 1232px) / 2)); background: rgba(247,240,255,.96); border-bottom: 1px solid #CFE0FF; color: #173C6E; font-size: 12px; }.site-breadcrumb a { color: #173C6E; font-weight: 700; text-decoration: none; }.site-breadcrumb span { margin-left: 8px; }
-.page--productos .site-content, .page--quienes-somos .site-content, .page--confianza .site-content, .page--beneficios .site-content, .page--asociate .site-content, .page--contacto .site-content { padding-top: 105px; }
+.page--productos .site-content, .page--quienes-somos .site-content, .page--confianza .site-content, .page--bienestar .site-content, .page--asociate .site-content, .page--contacto .site-content { padding-top: 105px; }
 .page-loader { position: fixed; inset: 0; z-index: 3000; display: grid; place-items: center; background: #f7f0ff; }.page-loader span { width: 52px; height: 52px; border: 5px solid #C9DCFF; border-top-color: #173C6E; border-radius: 50%; animation: spin .8s linear infinite; }@keyframes spin { to { transform: rotate(360deg); } }
 .social-dock { position: fixed; left: 18px; bottom: 18px; z-index: 950; display: flex; flex-direction: column; align-items: center; gap: 9px; }.social-dock__trigger, .social-dock__links a { display: grid; place-items: center; border-radius: 50%; color: #F7F0FF; text-decoration: none; box-shadow: 0 7px 16px rgba(23,60,110,.24); }.social-dock__trigger { order: 2; width: 52px; height: 52px; padding: 0; border: 3px solid #EBC302; background: #81A1DB; cursor: pointer; }.social-dock__trigger svg { width:23px; height:23px; fill:none; stroke:#F7F0FF; stroke-width:2; }.social-dock__links { display:flex; flex-direction:column; gap:8px; max-height:0; overflow:hidden; opacity:0; transform:translateY(12px); transition:max-height .25s ease,opacity .2s ease,transform .25s ease; }.social-dock.is-open .social-dock__links, .social-dock:hover .social-dock__links, .social-dock:focus-within .social-dock__links { max-height:210px; opacity:1; transform:none; }.social-dock__links a { width:42px; height:42px; font-size:20px; font-weight:900; }.social-dock__links svg { width:24px; height:24px; }.social--facebook { background:#1B65A6; }.social--instagram { background:#A90072; }.social--linkedin { background:#173C6E; font-size:13px !important; }.social--whatsapp { background:#1B65A6; }
 .scroll-top { position: fixed; right: 22px; bottom: 22px; z-index: 950; display:grid; place-items:center; width:52px; height:52px; padding:0; border:0; border-radius:50%; background:#81A1DB; color:#F7F0FF; box-shadow:0 8px 22px rgba(23,60,110,.25); cursor:pointer; opacity:0; transform:translateY(14px); pointer-events:none; transition:.2s ease; }.scroll-top svg { position:absolute; inset:0; width:52px; height:52px; transform:rotate(-90deg); }.scroll-top__track { fill:none; stroke:#C9DCFF; stroke-width:3; }.scroll-top__progress { fill:none; stroke:#EBC302; stroke-width:3; stroke-linecap:round; transition:stroke-dasharray .12s linear; }.scroll-top span { position:relative; z-index:1; font-size:24px; line-height:1; }.scroll-top i { position:absolute; right:62px; width:max-content; padding:8px 10px; border-radius:9px; background:#173C6E; color:#F7F0FF; font:800 11px Poppins,sans-serif; opacity:0; transform:translateX(8px); pointer-events:none; transition:opacity .2s ease,transform .2s ease; }.scroll-top:hover i,.scroll-top:focus-visible i { opacity:1; transform:none; }.scroll-top.is-visible { opacity:1; transform:none; pointer-events:auto; }
@@ -102,16 +107,15 @@ input:focus, select:focus, textarea:focus { outline: none; }
 /* Header, footer y controles persistentes: mismas microinteracciones en cada ruta. */
 .site-brand,.site-nav a,.site-nav-mobile a,.site-footer a,.site-footer__social a,.social-dock__trigger,.social-dock__links a,.scroll-top { transition:transform .22s ease, color .22s ease, background-color .22s ease, box-shadow .22s ease; }
 .site-brand:hover { transform:scale(1.035); }
-.site-nav a:not(.site-nav__covipay)::after { content:""; display:block; height:2px; margin-top:3px; border-radius:999px; background:currentColor; transform:scaleX(0); transform-origin:left; transition:transform .22s ease; }
-.site-nav a:not(.site-nav__covipay):hover::after { transform:scaleX(1); }
+.site-nav a:not(.site-nav__covipay):not(.site-nav__virtual):not(.site-nav__associate)::after { content:""; display:block; height:2px; margin-top:3px; border-radius:999px; background:currentColor; transform:scaleX(0); transform-origin:left; transition:transform .22s ease; }
+.site-nav a:not(.site-nav__covipay):not(.site-nav__virtual):not(.site-nav__associate):hover::after { transform:scaleX(1); }
 .site-footer a:hover { transform:translateX(3px); }
 .site-footer__social a:hover,.social-dock__links a:hover { transform:translateY(-3px) scale(1.08); box-shadow:0 9px 18px rgba(23,60,110,.28); }
 .social-dock__trigger:hover,.scroll-top:hover { transform:translateY(-3px) scale(1.06); }
 @media (max-width:640px) { .site-header.is-solid .site-brand { width:140px; }.site-header.is-solid .site-brand img { width:140px; } }
 .benefits-tab-nav { position:sticky; top:105px; background:#F7F0FF; }.benefits-tab-nav__mobile { display:none; }.benefits-tab-nav__list { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); align-items:stretch; }.benefits-tab-nav__item { min-width:0; min-height:76px; padding:13px 15px 12px; border:0; border-bottom:3px solid transparent; background:transparent; cursor:pointer; text-align:left; }.benefits-tab-nav__item:hover { background:#CFE0FF; }.benefits-tab-nav__item.is-active { border-bottom-color:#EBC302; background:#F7F0FF; }.benefits-tab-nav__item span:last-child { overflow:hidden; max-width:100%; text-overflow:ellipsis; }
-.contact-page { min-height: calc(100vh - 150px); background: #f7f0ff; }.contact-page__hero { padding: 72px 24px; text-align: center; color: #F7F0FF; background: linear-gradient(135deg,#27548F,#1B3669,#131739); }.contact-page__hero p { margin: 0 0 8px; color: #EBC302; font-size: 12px; font-weight: 800; letter-spacing: .16em; }.contact-page__hero h1 { margin: 0 0 12px; font-size: clamp(32px,5vw,52px); }.contact-page__grid { max-width: 1080px; margin: -25px auto 0; padding: 0 24px 72px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 24px; }.contact-page__details, .contact-page__form { padding: 30px; border-radius: 20px; background: #F7F0FF; box-shadow: 0 10px 30px rgba(23,60,110,.1); }.contact-page__details { display: grid; align-content: start; gap: 14px; }.contact-page__details a { padding: 18px; border-radius: 12px; background: #f7f0ff; color: #173C6E; text-decoration: none; }.contact-page__details span { display: block; margin-top: 4px; color: #1A2842; font-size: 13px; }.contact-page__form { display: grid; gap: 14px; }.contact-page__form h2 { margin: 0; color: #173C6E; }.contact-page__form label { display: grid; gap: 6px; color: #1A2842; font-size: 13px; font-weight: 700; }.contact-page__form input,.contact-page__form textarea { width: 100%; padding: 12px; border: 1px solid #C9DCFF; border-radius: 10px; }.contact-page__form button { padding: 13px; border: 0; border-radius: 10px; background: #173C6E; color: #F7F0FF; font-weight: 800; cursor: pointer; }
 @media (max-width: 1050px) { .site-nav { display: none; }.site-menu-button { display: block; }.site-nav-mobile { display: block; } }
-@media (max-width: 800px) { .site-footer__grid { grid-template-columns:repeat(2,1fr); }.site-footer__about { grid-column:1/-1; max-width:none; }.benefits-tab-nav__container { padding-inline:12px; }.benefits-tab-nav__list { grid-template-columns:repeat(3,minmax(0,1fr)); }.benefits-tab-nav__item { min-height:70px; padding:11px 10px; }.benefits-tab-nav__item span:first-child { font-size:8px; letter-spacing:.08em; }.benefits-tab-nav__item span:last-child { font-size:12px; white-space:normal; line-height:1.2; } }@media (max-width: 640px) { .site-header__inner { min-height: 62px; padding:0 16px; }.site-brand img { width:128px; }.site-content { padding-top:62px; }.site-breadcrumb { top:62px; }.page--productos .site-content, .page--quienes-somos .site-content, .page--confianza .site-content, .page--beneficios .site-content, .page--asociate .site-content, .page--contacto .site-content { padding-top:95px; }.site-footer__inner { flex-direction:column; }.site-footer__grid { display:grid; grid-template-columns:1fr; }.site-footer nav { justify-content:flex-start; }.contact-page__grid { grid-template-columns:1fr; }.covipay-button { right:12px; bottom:78px; }.social-dock { left:12px; bottom:18px; }.scroll-top { right:12px; bottom:18px; }.benefits-tab-nav { top:95px; }.benefits-tab-nav__list { display:none; }.benefits-tab-nav__mobile { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:#C9DCFF; }.benefits-tab-nav__mobile button { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; min-height:61px; padding:8px; border:0; background:#F7F0FF; color:#1A2842; cursor:pointer; text-align:center; }.benefits-tab-nav__mobile button:last-child { grid-column:1 / -1; }.benefits-tab-nav__mobile button.is-active { background:#173C6E; color:#F7F0FF; }.benefits-tab-nav__mobile span { font-size:8px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; opacity:.78; }.benefits-tab-nav__mobile strong { font-size:12px; line-height:1.15; } }
+@media (max-width: 800px) { .site-footer__grid { grid-template-columns:repeat(2,1fr); }.site-footer__about { grid-column:1/-1; max-width:none; }.benefits-tab-nav__container { padding-inline:12px; }.benefits-tab-nav__list { grid-template-columns:repeat(3,minmax(0,1fr)); }.benefits-tab-nav__item { min-height:70px; padding:11px 10px; }.benefits-tab-nav__item span:first-child { font-size:8px; letter-spacing:.08em; }.benefits-tab-nav__item span:last-child { font-size:12px; white-space:normal; line-height:1.2; } }@media (max-width: 640px) { .site-header__inner { min-height: 62px; padding:0 16px; }.site-brand img { width:128px; }.site-content { padding-top:62px; }.site-breadcrumb { top:62px; }.page--productos .site-content, .page--quienes-somos .site-content, .page--confianza .site-content, .page--bienestar .site-content, .page--asociate .site-content, .page--contacto .site-content { padding-top:95px; }.site-footer__inner { flex-direction:column; }.site-footer__grid { display:grid; grid-template-columns:1fr; }.site-footer nav { justify-content:flex-start; }.covipay-button { right:12px; bottom:78px; }.social-dock { left:12px; bottom:18px; }.scroll-top { right:12px; bottom:18px; }.benefits-tab-nav { top:95px; }.benefits-tab-nav__list { display:none; }.benefits-tab-nav__mobile { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:#C9DCFF; }.benefits-tab-nav__mobile button { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; min-height:61px; padding:8px; border:0; background:#F7F0FF; color:#1A2842; cursor:pointer; text-align:center; }.benefits-tab-nav__mobile button:last-child { grid-column:1 / -1; }.benefits-tab-nav__mobile button.is-active { background:#173C6E; color:#F7F0FF; }.benefits-tab-nav__mobile span { font-size:8px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; opacity:.78; }.benefits-tab-nav__mobile strong { font-size:12px; line-height:1.15; } }
 @media (max-width: 640px) { .benefits-tab-nav__mobile { grid-template-columns:repeat(3,minmax(0,1fr)); }.benefits-tab-nav__mobile button { min-height:56px; padding:7px 4px; }.benefits-tab-nav__mobile button:last-child { grid-column:auto; }.benefits-tab-nav__mobile span { font-size:7px; letter-spacing:.06em; }.benefits-tab-nav__mobile strong { font-size:11px; } }
 @keyframes benefit-clapper { 0%,100% { transform:rotate(0) scale(1); } 35% { transform:rotate(-12deg) scale(1.12); } 65% { transform:rotate(7deg) scale(1.06); } }
 @keyframes benefit-gift-open { 0%,100% { transform:translateY(0) scale(1); } 40% { transform:translateY(-7px) scale(1.16); } 70% { transform:translateY(1px) scale(1.08); } }
@@ -158,10 +162,6 @@ input:focus, select:focus, textarea:focus { outline: none; }
 .bienestar-image-card > div { animation:bienestar-float 4s ease-in-out infinite; }
 .bienestar-benefit-card::before { content:""; position:absolute; inset:0; opacity:0; background:radial-gradient(circle at 50% 0,rgba(255,255,255,.8),transparent 52%); transition:opacity .35s ease; pointer-events:none; }
 .bienestar-benefit-card:hover::before { opacity:.5; }
-.bienestar-financial-card::after { content:""; position:absolute; inset:auto -25% 0; height:3px; background:linear-gradient(90deg,transparent,#EBC302,transparent); transform:scaleX(0); transition:transform .4s cubic-bezier(.16,1,.3,1); }
-.bienestar-financial-card:hover::after { transform:scaleX(1); }
-.bienestar-financial-card:hover > :not(:first-child) { transform:translateY(-2px); }
-.bienestar-financial-card > :not(:first-child) { transition:transform .3s ease; }
 .bienestar-assistance-menu { transition:box-shadow .3s ease, transform .3s ease; }
 .bienestar-assistance-menu:hover { box-shadow:0 18px 38px rgba(23,60,110,.14); transform:translateY(-2px); }
 .bienestar-app-banner { transition:transform .35s ease, box-shadow .35s ease; }
@@ -172,9 +172,34 @@ input:focus, select:focus, textarea:focus { outline: none; }
 .bienestar-aux-row::before { content:""; position:absolute; left:0; top:18%; bottom:18%; width:3px; border-radius:0 4px 4px 0; background:#EBC302; transform:scaleY(0); transition:transform .25s ease; }
 .bienestar-aux-row:hover { background:#F7F0FF; padding-left:30px; }
 .bienestar-aux-row:hover::before { transform:scaleY(1); }
+/* Ajustes exclusivos de Bienestar para teléfonos y tabletas. */
+@media (max-width: 1023px) {
+  .bienestar-page { overflow-x:clip; }
+  .bienestar-assistance-menu { position:relative; }
+  .bienestar-assistance-menu:hover { transform:none; }
+}
+@media (max-width: 640px) {
+  .bienestar-hero__content .inline-flex { max-width:100%; padding-inline:12px; }
+  .bienestar-hero__content .inline-flex span { font-size:10px; letter-spacing:.1em; }
+  .bienestar-image-card img { height:220px; }
+  .bienestar-image-card > div { left:8px; bottom:-12px; padding:9px 12px; }
+  .bienestar-assistance-menu { border-radius:14px; }
+  .bienestar-assistance-menu > div { padding:12px 16px; }
+  .bienestar-assistance-menu nav { padding:6px; }
+  .bienestar-assistance-menu nav > div > button { padding:11px 12px; }
+  .bienestar-assistance-menu nav > div > div { margin-left:14px; padding-left:10px; }
+  .bienestar-redvital article p { font-size:14px; line-height:1.65; }
+  .bienestar-redvital article section h4 { font-size:14px; }
+  .bienestar-redvital article section button { padding:12px; }
+  .bienestar-redvital article section button span { width:24px; height:24px; }
+  .bienestar-app-banner h3 br { display:none; }
+  .bienestar-app-banner .space-y-2 > div { align-items:flex-start; }
+  .bienestar-aux-row:hover { padding-left:16px; }
+  .bienestar-aux-row::before { top:14%; bottom:14%; }
+}
 @media (prefers-reduced-motion:reduce) {
   .bienestar-hero__content > *, .bienestar-hero__orb, .bienestar-image-card > div { animation:none !important; }
-  .bienestar-image-card img, .bienestar-financial-card > :not(:first-child), .bienestar-app-banner .redvital-screen { transition:none; }
+  .bienestar-image-card img, .bienestar-app-banner .redvital-screen { transition:none; }
 }
 
 /* Movimiento y respuesta reutilizables para cada ruta del sitio. */
