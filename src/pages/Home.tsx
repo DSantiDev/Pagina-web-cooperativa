@@ -371,7 +371,7 @@ export default function Home() {
               <div className="rounded-3xl overflow-hidden aspect-[4/3] shadow-xl" style={{ backgroundColor: '#CFE0FF' }}>
                 <img
                   src={`${MEDIA.homeImagenNosotros}&w=800&h=600`}
-                  alt="Comunidad reunida en Bogotá, Colombia"
+                  alt={MEDIA.homeImagenNosotrosAlt}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(10,21,84,0.5) 0%, transparent 55%)' }} />
@@ -439,9 +439,9 @@ export default function Home() {
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
-            style={{ opacity: 0.15, filter: 'saturate(0.3) hue-rotate(200deg)' }}
+            style={{ opacity: 0.34, filter: 'saturate(0.55) hue-rotate(200deg)' }}
           />
-          <div className="absolute inset-0" style={{ background: 'rgba(10,21,84,0.75)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(120deg, rgba(13,23,57,0.76), rgba(23,60,110,0.58))' }} />
         </div>
         {/* Blobs + dots */}
         <div className="absolute inset-0 pointer-events-none">
@@ -569,8 +569,8 @@ export default function Home() {
       <section
         id="beneficios"
         ref={benefitsSection.ref as React.RefObject<HTMLElement>}
-        className="py-24 relative overflow-hidden"
-        style={{ backgroundColor: '#131739' }}
+        className="home-benefits--light py-24 relative overflow-hidden"
+        style={{ backgroundColor: '#f7f0ff' }}
       >
         {/* Background photo */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -579,9 +579,9 @@ export default function Home() {
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
-            style={{ opacity: 0.18, filter: 'saturate(0.4) hue-rotate(200deg)' }}
+            style={{ opacity: 0.32, filter: 'saturate(0.55) hue-rotate(200deg)' }}
           />
-          <div className="absolute inset-0" style={{ background: 'rgba(13,26,107,0.78)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(125deg, rgba(247,240,255,0.72), rgba(255,255,255,0.66))' }} />
         </div>
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -right-48 top-0 w-[600px] h-[600px] rounded-full opacity-[0.07]"
@@ -601,7 +601,7 @@ export default function Home() {
               Ser asociado tiene muchas ventajas
             </h2>
             <p className="text-white/50 max-w-xl mx-auto text-sm">
-              Tu membresía en COOVITEL va mucho más allá de los productos financieros.<br /><strong className="text-[#EBC302]">Aplican términos y condiciones.</strong>
+              Tu asociación en COOVITEL va mucho más allá de los productos financieros.<br /><strong className="text-[#EBC302]">Aplican términos y condiciones.</strong>
             </p>
           </AnimIn>
 
@@ -609,7 +609,7 @@ export default function Home() {
             {benefits.map((b, i) => (
               <div
                 key={b.title}
-                className="relative overflow-hidden rounded-2xl p-6 cursor-default transition-all duration-500 hover:scale-[1.025]"
+                className="home-benefit-card relative overflow-hidden rounded-2xl p-6 cursor-default transition-all duration-500 hover:scale-[1.025]"
                 style={{
                   backgroundColor: 'rgba(255,255,255,0.05)',
                   border: '1px solid rgba(255,255,255,0.08)',
@@ -647,7 +647,8 @@ export default function Home() {
       <section
         id="contacto"
         ref={contactSection.ref as React.RefObject<HTMLElement>}
-        className="py-24 relative overflow-hidden bg-white"
+        className="home-contact--dark py-24 relative overflow-hidden"
+        style={{ backgroundColor: '#131739' }}
       >
         {/* Background photo */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -695,7 +696,7 @@ export default function Home() {
                     <span className="ml-auto text-gray-300 text-lg">→</span>
                   </a>
                 ))}
-                <a href="/contacto?tab=oficinas" className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold" style={{ color: '#173C6E', border: '1px solid #173C6E' }}>📍 Conoce nuestras sedes →</a>
+                <a href="/contacto?tab=oficinas" className="home-contact__offices flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold">📍 Conoce nuestras sedes <span aria-hidden="true">→</span></a>
                 <div className="flex gap-3 pt-2">
                   {[
                     { label: 'Facebook', href: 'https://www.facebook.com/coovitelcol/?locale=es_LA', color: '#1B65A6', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> },

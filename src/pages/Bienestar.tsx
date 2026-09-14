@@ -12,10 +12,10 @@ const COOVITEL_YEARS = getCoovitelYears();
 function GooglePlayIcon({ className = "w-7 h-7" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M3.2 2.1v19.8L14.1 12 3.2 2.1Z" fill="#12B9E8" />
-      <path d="M3.2 2.1 14.1 12l4.15-3.7L5.45 1.12a1.62 1.62 0 0 0-2.25.98Z" fill="#00E676" />
-      <path d="m14.1 12 4.15-3.7 2.56 1.45c1.58.9 1.58 3.2 0 4.1l-2.56 1.45L14.1 12Z" fill="#FFD21E" />
-      <path d="M3.2 21.9 14.1 12l4.15 3.7-12.8 7.18a1.62 1.62 0 0 1-2.25-.98Z" fill="#FF3D57" />
+      <path d="M3.2 2.1v19.8L14.1 12 3.2 2.1Z" fill="#1B65A6" />
+      <path d="M3.2 2.1 14.1 12l4.15-3.7L5.45 1.12a1.62 1.62 0 0 0-2.25.98Z" fill="#27548F" />
+      <path d="m14.1 12 4.15-3.7 2.56 1.45c1.58.9 1.58 3.2 0 4.1l-2.56 1.45L14.1 12Z" fill="#EBC302" />
+      <path d="M3.2 21.9 14.1 12l4.15 3.7-12.8 7.18a1.62 1.62 0 0 1-2.25-.98Z" fill="#A90072" />
     </svg>
   );
 }
@@ -107,7 +107,7 @@ const REDVITAL_ASSISTANCES: RedVitalAssistance[] = [
       coverage: " Cobertura máxima: $100.000 por evento."
     } },
   ] },
-  { title: "Asistencia para el Hogar", icon: "🏠", services: [
+  { title: "Asistencia Hogar", icon: "🏠", services: [
     { name: "Servicio de handyman.", detail: "Esta asistencia te permite contar con apoyo para realizar reparaciones menores y tareas sencillas en tu hogar, como instalación de cortinas, cuadros, tendederos, accesorios de baño, televisores, espejos, percheros, barras de armario y otros trabajos similares en tu residencia habitual. \n\n El servicio incluye mano de obra, desplazamiento y materiales no accesorios, sin costo para ti, por un período máximo de 3 horas continuas o hasta el límite de cobertura establecido. Si el tiempo o el valor de la cobertura son excedidos, el costo adicional deberás asumirlo. Los accesorios no están incluidos, sin embargo, si requieres que sean suministrados por el proveedor, el valor deberá ser cubierto directamente.",
       conditions: 
       { eventLimit: "Límite: 3 eventos por año.", 
@@ -125,7 +125,7 @@ const REDVITAL_ASSISTANCES: RedVitalAssistance[] = [
       { eventLimit: "Límite: 1 evento por año.", 
         coverage: "Cobertura máxima: $200.000 por evento." } },
   ] },
-  { title: "Asistencia para Mascotas", icon: "🐾", services: [
+  { title: "Asistencia Mascotas", icon: "🐾", services: [
     { name: "Orientación veterinaria telefónica.", detail: "Esta asistencia te permite acceder a orientación veterinaria telefónica las 24 horas del día, los 365 días del año, para resolver dudas relacionadas con molestias, signos clínicos, lesiones o enfermedades de tu mascota. Un profesional veterinario te brindará recomendaciones sobre cuidados, medidas preventivas y acciones que puedes realizar en casa como apoyo inicial ante la situación reportada. \n\n Esta asistencia aplica exclusivamente para perros y gatos.", conditions: { eventLimit: "Sin límite de eventos." } },
     { name: "Refuerzo de vacunación para perro o gato.", detail: "Esta asistencia te permite acceder al refuerzo anual de vacunación para una mascota (perro o gato) mayor de 6 meses, mediante atención a domicilio o en clínicas aliadas de RED VITAL TOTAL. Antes de la aplicación, se verificará el carnet de vacunación y la identificación de la mascota para validar las vacunas correspondientes. \n\n La asistencia incluye las vacunas pentavalente, rabia para caninos y triple Felina y rabia para felinos. Este servicio cubre una única jornada anual de vacunación por mascota y no incluye vacunas diferentes a las mencionadas ni tratamientos adicionales.", 
       conditions:
@@ -136,12 +136,16 @@ const REDVITAL_ASSISTANCES: RedVitalAssistance[] = [
       { eventLimit: "Límite: 3 eventos combinados al año.", 
         coverage: "Cobertura máxima: $250.000 por evento." } },
   ] },
-  { title: "Asistencia Emocional y Legal", icon: "💬", services: [
+  { title: "Asistencia Emocional ", icon: "💬", services: [
     { name: "Orientación psicológica telefónica.", detail: "Esta asistencia te permite acceder a orientación emocional telefónica las 24 horas del día, los 7 días de la semana, para recibir apoyo profesional en situaciones relacionadas con la familia, las relaciones de pareja, la sexualidad juvenil, los trastornos alimenticios, el bullying, la ansiedad y otros temas asociados al bienestar personal. \n\n Durante la atención, un profesional en psicología te brindará acompañamiento y orientación, y cuando lo considere pertinente, podrá recomendar la continuidad del proceso terapéutico o la valoración por otra especialidad. Este servicio no incluye la formulación de medicamentos ni la emisión de incapacidades médicas, ni garantiza resultados.", 
-      conditions: { eventLimit: "Sin límite de eventos." } },
-    { name: "Orientación legal telefónica.", detail: "Esta asistencia te permite acceder a orientación legal telefónica en cualquier rama del derecho para resolver inquietudes y recibir recomendaciones de carácter general. La atención en temas de derecho penal está disponible las 24 horas del día, mientras que para las demás áreas del derecho el servicio se presta de lunes a viernes, de 9:00 a. m. a 6:00 p. m. \n\n Cada consulta tiene una duración máxima de 30 minutos. Cuando la situación requiera la intervención presencial de un abogado, los honorarios correspondientes deberás asumirlos directamente. Este servicio brinda orientación jurídica y no incluye acompañamiento o representación en procesos legales.", 
-      conditions: { eventLimit: "Sin límite de eventos." } },
+      conditions: { eventLimit: "Sin límite de eventos." } }
   ] },
+  { title: "Asistencia Legal", icon: "🧑‍⚖️", services: [
+    { name: "Orientación legal telefónica.", detail: "Esta asistencia te permite acceder a orientación legal telefónica en cualquier rama del derecho para resolver inquietudes y recibir recomendaciones de carácter general. La atención en temas de derecho penal está disponible las 24 horas del día, mientras que para las demás áreas del derecho el servicio se presta de lunes a viernes, de 9:00 a. m. a 6:00 p. m. \n\n Cada consulta tiene una duración máxima de 30 minutos. Cuando la situación requiera la intervención presencial de un abogado, los honorarios correspondientes deberás asumirlos directamente. Este servicio brinda orientación jurídica y no incluye acompañamiento o representación en procesos legales.", 
+      conditions: 
+      { eventLimit: "Sin límite de eventos.",
+        coverage: "30 minutos por llamada." } },
+  ] }
 ];
 
 const REDVITAL_APP_SCREENS = [
@@ -157,13 +161,7 @@ type SocialBenefit = { icon: string; motion: string; title: string; description:
 const SOCIAL_BENEFITS: SocialBenefit[] = [
   {
     icon: "🎬", motion: "cinema", title: "Cine y confitería", description: "Disfruta boletería y combos de confitería con tarifas preferenciales en Cine Colombia y Royal Films.",
-    details: [
-      { title: "Opciones disponibles", items: ["Boleta individual 2D. No aplica para funciones 3D.", "Combo Cine Colombia: boleta 2D, palomitas de sal de 100 g, gaseosa mediana de 640 ml y perro caliente sencillo o sándwich.", "Combo Royal Films: boleta 2D, palomitas de sal pequeñas de 40 g, gaseosa mediana de 22 oz y perro caliente."] },
-      { title: "Tarifas", items: ["Royal Films: $28.500. Disponible únicamente en combo.", "Cine Colombia: boleta individual por $13.000.", "Cine Colombia: combo de boleta por $25.500."] },
-      { title: "Condiciones de compra", text: "Puedes solicitar las boletas que necesites durante el mes, hasta agotar existencias. En una misma compra puedes adquirir la cantidad que requieras; desde la octava boleta se suman $1.000 por cada unidad. Para empresas asociadas, se suman $1.000 desde la primera boleta." },
-      { title: "Pago y solicitud", items: ["Ventanilla de Caja Bogotá: registro inmediato.", "Efecty, cuenta de ahorros Davivienda o Bancolombia: registro de hasta 3 días hábiles.", "No se reciben pagos por PSE ni CoviPay.", "Solicita por correo o teléfono e indica nombre, cédula, correo de entrega, cine, tipo de boleta o combo. Adjunta el comprobante de pago."] },
-      { title: "Compra con anticipación", text: "Te recomendamos realizar la compra con al menos 2 días de anticipación." },
-    ],
+    details: [],
   },
   {
     icon: "🎁", motion: "gift", title: "Obsequio de fidelización", description: "Reconocemos tu lealtad y antigüedad en la cooperativa con un detalle especial.",
@@ -205,6 +203,56 @@ const SOCIAL_BENEFITS: SocialBenefit[] = [
     ],
   },
 ];
+
+function GuideIcon() {
+  return <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+    <path d="M6 10.5 17 7l14 4 11-3.5v29L31 40l-14-4-11 3.5v-29Z" fill="#EBC302" stroke="currentColor" strokeWidth="3" strokeLinejoin="round" />
+    <path d="M17 7v29m14-25v29" stroke="currentColor" strokeWidth="3" strokeLinejoin="round" />
+    <circle cx="27" cy="18" r="8" fill="#CFE0FF" stroke="currentColor" strokeWidth="3" />
+    <path d="m33 24 7 7" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+    <path d="M27 14v8m-4-4h8" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+  </svg>;
+}
+
+function CinemaPurchaseFlow() {
+  return <section className="cinema-flow" aria-labelledby="cinema-flow-title">
+    <div className="cinema-flow__heading">
+      <span><GuideIcon /></span>
+      <div><p>GUÍA DE COMPRA</p><h4 id="cinema-flow-title">Así solicitas tus boletas</h4></div>
+    </div>
+    <ol className="cinema-flow__steps">
+      <li className="cinema-flow__step cinema-flow__step--start"><span className="cinema-flow__number">1</span><div><strong>Elige tu cine preferido</strong><p>Selecciona Cine Colombia o Royal Films.</p></div></li>
+      <li className="cinema-flow__branch" aria-label="Opciones según el cine elegido">
+        <article className="cinema-flow__option cinema-flow__option--colombia"><span>Cine Colombia</span><strong>Elige tu opción</strong><p>Boleta individual 2D o combo con confitería.</p></article>
+        <article className="cinema-flow__option cinema-flow__option--royal"><span>Royal Films</span><strong>Solo combo</strong><p>Incluye boleta 2D y confitería.</p></article>
+      </li>
+      <li className="cinema-flow__step"><span className="cinema-flow__number">2</span><div><strong>Solicita tus boletas</strong><p>Comunícate con COOVITEL por teléfono o correo electrónico.</p></div></li>
+      <li className="cinema-flow__step"><span className="cinema-flow__number">3</span><div><strong>Comparte la información</strong><p>Indica nombre, cédula, correo de entrega, cine y tipo de boleta o combo. Adjunta el comprobante de pago.</p></div></li>
+      <li className="cinema-flow__finish"><span aria-hidden="true">🍿</span><div><strong>¡Disfruta tu función!</strong><p>Realiza tu solicitud con mínimo dos días de anticipación.</p></div></li>
+    </ol>
+  </section>;
+}
+
+function CinemaPriceIntro() {
+  return <section className="cinema-price-intro" aria-labelledby="cinema-price-title">
+    <div className="cinema-price-intro__title"><span aria-hidden="true">🎞️</span><div><p>PLANES DE CINE</p><h4 id="cinema-price-title">Elige tu experiencia favorita</h4></div></div>
+    <div className="cinema-price-intro__options">
+      <article><div className="cinema-price-intro__logo cinema-price-intro__logo--royal"><img src="/images/royal-films.png" alt="Royal Films" /></div><h5>Boleta 2D + combo</h5><strong>$28.500</strong><p>Gaseosa mediana de 22 oz, crispetas pequeñas de 40 g y perro caliente.</p></article>
+      <article><div className="cinema-price-intro__logo cinema-price-intro__logo--cine-colombia"><img src="/images/cine-colombia.png" alt="Cine Colombia" /></div><h5>Boleta individual 2D</h5><strong>$13.000</strong><p>Válida para funciones 2D. No aplica para funciones 3D.</p><hr /><h5>Boleta 2D + combo</h5><strong>$25.500</strong><p>Crispetas de sal 100 g, gaseosa 640 ml y perro caliente sencillo o sándwich.</p></article>
+    </div>
+  </section>;
+}
+
+function CinemaTerms() {
+  return <details className="cinema-terms">
+    <summary><span aria-hidden="true">ⓘ</span><span>Términos y condiciones de compra</span><b aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg></b></summary>
+    <div>
+      <p>Puedes solicitar las boletas que necesites durante el mes, hasta agotar existencias. En una misma compra puedes adquirir la cantidad que requieras; desde la octava boleta se suman $1.000 por cada unidad. Para empresas asociadas, se suman $1.000 desde la primera boleta.</p>
+      <p>Te recomendamos realizar la compra con al menos 2 días de anticipación.</p>
+      <p>Los pagos pueden tardar hasta 3 días hábiles en registrarse.</p>
+    </div>
+  </details>;
+}
 
 const EXEQUIAL_FEATURES = [
   { label: "Por fallecimiento del asociado", value: "$1.5 millones" },
@@ -335,7 +383,7 @@ function BeneficiosSociales() {
           <div className="bienestar-image-card relative">
             <img
               src={`${MEDIA.bienestarImagenBeneficios}&w=600&h=420`}
-              alt="Personas de la comunidad en Bogotá, Colombia"
+              alt={MEDIA.bienestarImagenBeneficiosAlt}
               className="w-full h-72 object-cover rounded-2xl shadow-xl"
             />
             <div className="absolute -bottom-4 -left-4 bg-[#EBC302] text-white rounded-xl px-4 py-3 shadow-lg">
@@ -355,12 +403,12 @@ function BeneficiosSociales() {
                 role="listitem"
                 aria-pressed={isSelected}
                 onClick={() => setSelectedBenefit(isSelected ? null : benefit)}
-              className={`bienestar-benefit-card group relative min-h-[148px] sm:min-h-[176px] overflow-hidden rounded-2xl sm:rounded-3xl border p-3 sm:p-5 text-center transition-all duration-300 ease-out focus:outline-none focus-visible:ring-4 focus-visible:ring-[#EBC302]/40 ${isSelected ? "-translate-y-1 border-[#173C6E] bg-[#173C6E] shadow-xl" : "border-[#DDE9C7] bg-[#F3F8E9] hover:-translate-y-2 hover:border-[#98B96C] hover:shadow-xl"}`}
+              className={`bienestar-benefit-card group relative min-h-[148px] sm:min-h-[176px] overflow-hidden rounded-2xl sm:rounded-3xl border p-3 sm:p-5 text-center transition-all duration-300 ease-out focus:outline-none focus-visible:ring-4 focus-visible:ring-[#EBC302]/40 ${isSelected ? "-translate-y-1 border-[#173C6E] bg-[#173C6E] shadow-xl" : "border-[#C9DCFF] bg-[#F7F0FF] hover:-translate-y-2 hover:border-[#81A1DB] hover:shadow-xl"}`}
                 style={{ transitionDelay: `${index * 45}ms` }}
               >
                 <span className={`benefit-menu-icon benefit-menu-icon--${benefit.motion} mx-auto mb-3 sm:mb-5 grid h-11 w-11 sm:h-14 sm:w-14 place-items-center rounded-xl sm:rounded-2xl text-2xl sm:text-3xl transition-all duration-300 ${isSelected ? "bg-white/15" : "bg-white shadow-sm"}`}>{benefit.icon}</span>
                 <span className={`block text-sm sm:text-base font-extrabold leading-tight transition-colors ${isSelected ? "text-white" : "text-[#173C6E]"}`}>{benefit.title}</span>
-                <span className={`mt-3 block text-[10px] font-bold uppercase tracking-wider transition-all ${isSelected ? "text-[#EBC302] opacity-100" : "text-[#607B37] opacity-0 group-hover:opacity-100"}`}>{isSelected ? "Seleccionado" : "Ver detalle"}</span>
+                <span className={`mt-3 block text-[10px] font-bold uppercase tracking-wider transition-all ${isSelected ? "text-[#EBC302] opacity-100" : "text-[#1B65A6] opacity-0 group-hover:opacity-100"}`}>{isSelected ? "Seleccionado" : "Ver detalle"}</span>
               </button>
             );
           })}
@@ -374,19 +422,22 @@ function BeneficiosSociales() {
             </div>
             <span className="self-start rounded-full bg-[#EBC302]/15 px-3 py-1.5 text-xs font-bold text-[#173C6E] sm:self-auto">Sujeto a términos y condiciones.</span>
           </div>
-          <div className="mt-5 grid gap-3 border-t border-[#C9DCFF] pt-5 md:grid-cols-2">
+          {selectedBenefit.title === "Cine y confitería" && <CinemaPriceIntro />}
+          {selectedBenefit.title === "Cine y confitería" && <CinemaPurchaseFlow />}
+          {selectedBenefit.title === "Cine y confitería" && <CinemaTerms />}
+          {selectedBenefit.title !== "Cine y confitería" && <div className="mt-5 grid gap-3 border-t border-[#C9DCFF] pt-5 md:grid-cols-2">
             {selectedBenefit.details.map((detail, index) => {
               const isLastUnpairedDetail = selectedBenefit.details.length % 2 === 1 && index === selectedBenefit.details.length - 1;
 
-              return <section key={detail.title} className={`relative overflow-hidden rounded-xl border border-[#C9DCFF] bg-white p-4 shadow-[0_3px_10px_rgba(23,60,110,.05)] transition-shadow hover:shadow-[0_6px_18px_rgba(23,60,110,.10)] sm:p-5${isLastUnpairedDetail ? " md:col-span-2 md:mx-auto md:w-[calc(50%-0.375rem)]" : ""}`}>
+              return <section key={detail.title} className={`relative overflow-hidden rounded-xl border border-[#C9DCFF] bg-white p-4 shadow-[0_3px_10px_rgba(23,60,110,.05)] transition-shadow hover:shadow-[0_6px_18px_rgba(23,60,110,.10)] sm:p-5${isLastUnpairedDetail ? " md:col-span-2" : ""}`}>
                 <span className="absolute inset-x-0 top-0 h-1 bg-[#EBC302]" aria-hidden="true" />
-                <h4 className="border-b border-[#E6EFFD] pb-2 text-sm font-bold text-[#173C6E]">{detail.title}</h4>
+                <h4 className="border-b border-[#CFE0FF] pb-2 text-sm font-bold text-[#173C6E]">{detail.title}</h4>
                 {detail.text && <p className="mt-2 text-sm leading-relaxed text-[#1A2842]">{detail.text}</p>}
                 {detail.items && <ul className="mt-3 space-y-2 text-sm leading-relaxed text-[#1A2842]">{detail.items.map((item) => <li key={item} className="flex gap-2"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#EBC302]" /><span className="whitespace-pre-line">{item}</span></li>)}</ul>}
               </section>;
             })}
-          </div>
-        </section> : <section className="mt-7 rounded-2xl border border-dashed border-[#98B96C] bg-[#F3F8E9] p-6 text-center animate-[content-reveal_.35s_ease-out]" aria-live="polite"><span className="mx-auto grid h-11 w-11 place-items-center rounded-xl bg-white text-2xl shadow-sm">✨</span><h3 className="mt-3 text-lg font-bold text-[#173C6E]">Elige un beneficio para conocerlo</h3><p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-[#51643A]">Explora las opciones disponibles para ti y tu familia. Puedes cerrar el detalle pulsando nuevamente la card seleccionada.</p></section>}
+          </div>}
+        </section> : <section className="mt-7 rounded-2xl border border-dashed border-[#81A1DB] bg-[#F7F0FF] p-6 text-center animate-[content-reveal_.35s_ease-out]" aria-live="polite"><span className="mx-auto grid h-11 w-11 place-items-center rounded-xl bg-white text-2xl shadow-sm">✨</span><h3 className="mt-3 text-lg font-bold text-[#173C6E]">Elige un beneficio para conocerlo</h3><p className="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-[#1A2842]">Explora las opciones disponibles para ti y tu familia. Puedes cerrar el detalle pulsando nuevamente la card seleccionada.</p></section>}
 
         <div className="mt-9 sm:mt-12 bg-gradient-to-r from-[#173C6E] to-[#27548F] rounded-2xl p-5 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-6">
           <div>
@@ -450,7 +501,7 @@ function RedVital() {
         <div className="max-w-3xl mb-8">
           <span className="text-[#173C6E] text-xs font-bold uppercase tracking-widest">Asistencias RedVital</span>
           <h2 className="mt-2 text-3xl md:text-4xl font-bold text-[#173C6E]">Acompañamiento para cada momento</h2>
-          <p className="mt-3 text-gray-600 leading-relaxed">Conoce las asistencias disponibles para ti. Cada servicio está sujeto a cobertura, condiciones y límites establecidos.</p>
+          <p className="mt-3 text-gray-600 leading-relaxed">Pensando en tu bienestar, COOVITEL pone a tu disposición un programa de asistencias que te brinda respaldo en salud, hogar, vehículo y mascotas, con atención oportuna y acceso fácil a través de la aplicación Red Vital.</p>
         </div>
         <div className="grid lg:grid-cols-[270px_minmax(0,1fr)] gap-6 items-start">
           <aside className="bienestar-assistance-menu overflow-hidden rounded-2xl border border-[#C9DCFF] bg-white shadow-sm">
@@ -458,7 +509,7 @@ function RedVital() {
             <nav className="p-2" aria-label="Categorías de asistencias">
               {REDVITAL_ASSISTANCES.map((assistance) => {
                 const isSelected = selectedAssistance === assistance.title;
-                return <div key={assistance.title} className={`rounded-xl ${isSelected ? "bg-[#CFE0FF]" : ""}`}><button type="button" onClick={() => openAssistance(assistance)} className={`w-full rounded-xl px-4 py-3 text-left transition-colors ${isSelected ? "text-[#173C6E]" : "text-[#1A2842] hover:bg-[#F7F0FF]"}`} aria-expanded={isSelected}><span className="flex items-center justify-between gap-3 font-bold text-sm"><span>{assistance.icon} {assistance.title}</span><span aria-hidden="true">{isSelected ? "⌃" : "⌄"}</span></span></button>{isSelected && <div className="mb-2 ml-5 border-l-2 border-[#81A1DB] pl-3 pr-2">{assistance.services.map((service) => <button key={service.name} type="button" onClick={() => openService(service)} className={`block w-full rounded-lg px-2 py-2 text-left text-xs transition-all ${selectedService === service.name ? "bg-white font-bold text-[#173C6E] shadow-sm" : "text-[#1A2842] hover:bg-white/70 hover:translate-x-1"}`}>{service.name}</button>)}</div>}</div>;
+                return <div key={assistance.title} className={`assistance-menu__group rounded-xl ${isSelected ? "bg-[#CFE0FF] is-selected" : ""}`}><button type="button" onClick={() => openAssistance(assistance)} className={`assistance-menu__item w-full rounded-xl px-4 py-3 text-left transition-colors ${isSelected ? "text-[#173C6E]" : "text-[#1A2842] hover:bg-[#F7F0FF]"}`} aria-expanded={isSelected}><span className={`flex items-center justify-between gap-3 text-sm ${isSelected ? "font-bold" : "font-medium"}`}><span>{assistance.icon} {assistance.title}</span><span className={`grid h-6 w-6 shrink-0 place-items-center rounded-full border border-[#81A1DB] bg-white text-[#173C6E] shadow-sm transition-transform duration-200 ${isSelected ? "rotate-180" : ""}`} aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m7 10 5 5 5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg></span></span></button>{isSelected && <div className="assistance-services mb-2 ml-5 pl-3 pr-2">{assistance.services.map((service) => <button key={service.name} type="button" onClick={() => openService(service)} className={`assistance-menu__service block w-full rounded-lg px-2 py-2 text-left text-xs transition-all ${selectedService === service.name ? "assistance-service--active bg-white font-bold text-[#173C6E] shadow-sm" : "text-[#1A2842] hover:bg-white/70 hover:translate-x-1"}`}>{service.name}</button>)}</div>}</div>;
               })}
             </nav>
           </aside>
@@ -483,7 +534,7 @@ function RedVital() {
                   </div>
                 ) : activeService.detail?.split("\n\n").map((paragraph) => <p key={paragraph} className="text-base leading-relaxed text-[#1A2842] [&+&]:mt-4">{paragraph}</p>)}
               </article>
-              <aside className="relative overflow-hidden rounded-xl border border-[#B6D1FF] bg-gradient-to-br from-white to-[#EAF3FF] p-5 shadow-lg transition-transform duration-300 md:-translate-y-3 hover:md:-translate-y-4" aria-label="Condiciones del servicio">
+              <aside className="relative overflow-hidden rounded-xl border border-[#C9DCFF] bg-gradient-to-br from-white to-[#CFE0FF] p-5 shadow-lg transition-transform duration-300 md:-translate-y-3 hover:md:-translate-y-4" aria-label="Condiciones del servicio">
                 <div className="absolute -right-5 -top-5 h-16 w-16 rounded-full bg-[#EBC302]/20" />
                 <div className="relative">
                   <span className="grid h-9 w-9 place-items-center rounded-lg bg-[#173C6E] text-white" aria-hidden="true">
@@ -503,7 +554,7 @@ function RedVital() {
               </aside>
             </div>
             <p className="mt-6 border-t border-[#C9DCFF] pt-4 text-xs font-semibold text-[#1B65A6]">Aplican términos y condiciones.</p>
-          </section> : <section className="relative overflow-hidden rounded-2xl border border-[#C9DCFF] bg-gradient-to-br from-[#131739] to-[#173C6E] p-8 md:p-12 text-white animate-[content-reveal_.35s_ease-out]"><div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#EBC302]/20" /><div className="absolute -bottom-20 left-1/3 h-40 w-40 rounded-full bg-[#5FA8FF]/20" /><div className="relative max-w-xl"><span className="mb-5 grid h-14 w-14 place-items-center rounded-2xl bg-[#EBC302] text-2xl">✨</span><p className="text-xs font-bold uppercase tracking-[0.2em] text-[#EBC302]">Tu bienestar, a un clic</p><h3 className="mt-2 text-3xl font-bold leading-tight">Elige una asistencia para conocer cómo te acompaña</h3><p className="mt-4 leading-relaxed text-[#F7F0FF]">Explora las opciones del menú y descubre el respaldo disponible para tu salud, hogar, vehículo, mascotas y bienestar emocional.</p><div className="mt-7 flex flex-wrap gap-2">{["Salud", "Hogar", "Vehículo", "Mascotas", "Bienestar"].map((item) => <span key={item} className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-xs font-semibold transition-transform hover:-translate-y-1">{item}</span>)}</div></div></section>}
+          </section> : <section className="relative overflow-hidden rounded-2xl border border-[#C9DCFF] bg-gradient-to-br from-[#131739] via-[#1B3669] to-[#27548F] p-8 md:p-12 text-white animate-[content-reveal_.35s_ease-out]"><div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[#EBC302]/20" /><div className="absolute -bottom-20 left-1/3 h-40 w-40 rounded-full bg-[#81A1DB]/20" /><div className="relative max-w-xl"><span className="mb-5 grid h-14 w-14 place-items-center rounded-2xl bg-[#EBC302] text-2xl">✨</span><p className="text-xs font-bold uppercase tracking-[0.2em] text-[#EBC302]">Tu bienestar, a un clic</p><h3 className="mt-2 text-3xl font-bold leading-tight">Elige una asistencia para conocer cómo te acompaña</h3><p className="mt-4 leading-relaxed text-[#F7F0FF]">Explora las opciones del menú y descubre el respaldo disponible para tu salud, hogar, vehículo, mascotas y bienestar emocional.</p></div></section>}
         </div>
       </section>
 
@@ -527,9 +578,6 @@ function RedVital() {
               <span className="text-[#EBC302]">Red Vital</span> y gestiona<br />
               todo desde tu celular
             </h3>
-            <p className="text-[#F7F0FF] text-sm leading-relaxed mb-6">
-              Pensando en tu bienestar, COOVITEL pone a tu disposición un programa de asistencias que te brinda respaldo en salud, hogar, vehículo y mascotas, con atención oportuna y acceso fácil a través de la aplicación Red Vital.
-            </p>
 
             <div className="space-y-2 mb-8">
               {[
@@ -657,7 +705,9 @@ function AuxiliosCooperativos() {
 }
 
 export default function Bienestar() {
-  const [activeTab, setActiveTab] = useState<Tab>("redvital");
+  const requestedTab = new URLSearchParams(window.location.search).get("tab");
+  const initialTab: Tab = requestedTab === "sociales" || requestedTab === "redvital" || requestedTab === "exequial" ? requestedTab : "redvital";
+  const [activeTab, setActiveTab] = useState<Tab>(initialTab);
 
   return (
     <div className="bienestar-page min-h-full bg-white flex flex-col">

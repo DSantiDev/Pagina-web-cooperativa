@@ -1,3 +1,5 @@
+import { SITE_DOCUMENTS } from '../lib/siteContent'
+
 type InstitutionPage = 'estamentos' | 'normatividad' | 'estrategica'
 
 const directors = [
@@ -8,11 +10,13 @@ const directors = [
 
 const requirements = ['Ser asociado hábil, mayor de edad y contar con una antigüedad mínima de tres años.', 'Acreditar educación cooperativa con una intensidad no inferior a cien horas.', 'Poseer conocimientos en áreas financieras y administrativas.', 'No haber recibido sanciones disciplinarias en los últimos dos años.', 'Tener sus obligaciones con la Cooperativa al día durante los doce meses anteriores a la postulación.']
 
+/** Las tarjetas de Normatividad se alimentan desde el mismo archivo que el Centro de documentos. */
 const documentGroups = [
-  { title: 'Estatuto y Asamblea', docs: ['Estatuto COOVITEL', 'Decisiones Asamblea General 2026'] },
-  { title: 'Acuerdos y políticas', docs: ['Código de buen gobierno', 'Política de seguridad de la información', 'Tratamiento de datos personales', 'Política de cobranza'] },
-  { title: 'Informes y calificaciones', docs: ['Informes de gestión', 'Balance social', 'Calificaciones de fortaleza institucional'] },
-]
+  { title: 'Estatutos y reglamentos', categories: ['Estatutos', 'Reglamentos'] },
+  { title: 'Formularios y certificados', categories: ['Formularios', 'Certificados'] },
+  { title: 'Tarifas e información', categories: ['Tarifas'] },
+].map((group) => ({ ...group, docs: SITE_DOCUMENTS.filter((document) => group.categories.includes(document.category)).map((document) => document.title) }))
+  .filter((group) => group.docs.length > 0)
 
 function Hero({ eyebrow, title, text }: { eyebrow: string; title: string; text: string }) {
   return <section className="institutional-hero"><div><p>{eyebrow}</p><h1>{title}</h1><span>{text}</span></div></section>

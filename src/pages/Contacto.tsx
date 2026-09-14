@@ -1,117 +1,11 @@
 import { useState } from "react";
 import { NAME_PATTERN, PHONE_PATTERN, clearFieldError, sanitizeName, sanitizePhone, showFieldError } from "../lib/formValidation";
+import { CONTACT_FAQS, CONTACT_OFFICES } from "../lib/siteContent";
 
 type Tab = "oficinas" | "formulario" | "canales" | "faq";
 
-const offices = [
-  {
-    city: "Bogotá",
-    name: "Oficina Principal",
-    address: "Calle 67 # 9 - 34, Chapinero",
-    phone: "(601) 566 6601",
-    hours: "Lun–Vie 8:30 a. m. – 4:30 p. m. · Jornada continua",
-    email: "servicioasociados@coovitel.coop",
-  },
-  {
-    city: "Tunja",
-    name: "Sede Tunja",
-    address: "Carrera 10 # 17-57, Centro Histórico",
-    phone: "01 8000 967474",
-    hours: "Lun–Vie 8:30 a. m. – 4:30 p. m. · Jornada continua",
-    email: "servicioasociados@coovitel.coop",
-  },
-  {
-    city: "Cali",
-    name: "Sede Cali",
-    address: "Avenida 5A Norte # 25N - 44, barrio San Vicente",
-    phone: "01 8000 967474",
-    hours: "Lun–Vie 8:30 a. m. – 12:00 m. y 1:00 p. m. – 4:30 p. m.",
-    email: "servicioasociados@coovitel.coop",
-  },
-  {
-    city: "Barranquilla",
-    name: "Sede Barranquilla",
-    address: "Carrera 52 # 72-152, local 2A, C.C. El Prado",
-    phone: "01 8000 967474",
-    hours: "Lun–Vie 8:30 a. m. – 12:00 m. y 1:00 p. m. – 4:30 p. m.",
-    email: "servicioasociados@coovitel.coop",
-  },
-  {
-    city: "Cúcuta",
-    name: "Sede Cúcuta",
-    address: "Caobos Mall, Avenida Segunda Este # 13A-09, local 2",
-    phone: "01 8000 967474",
-    hours: "Lun–Vie 8:30 a. m. – 12:00 m. y 1:00 p. m. – 4:30 p. m. · Sáb 9:00 a. m. – 11:00 a. m.",
-    email: "servicioasociados@coovitel.coop",
-  },
-  {
-    city: "Bucaramanga",
-    name: "Sede Bucaramanga",
-    address: "Carrera 29 # 42-12, local 01, Edificio Parque 42, barrio Sotomayor",
-    phone: "01 8000 967474",
-    hours: "Lun–Vie 8:30 a. m. – 12:00 m. y 1:00 p. m. – 4:30 p. m.",
-    email: "servicioasociados@coovitel.coop",
-  },
-  {
-    city: "Medellín",
-    name: "Sede Medellín",
-    address: "Carrera 49 # 49-73, oficina 1310",
-    phone: "01 8000 967474",
-    hours: "Lun–Vie 8:30 a. m. – 12:00 m. y 1:00 p. m. – 4:30 p. m.",
-    email: "servicioasociados@coovitel.coop",
-  },
-  {
-    city: "Ibagué",
-    name: "Sede Tolima",
-    address: "Carrera 5 # 37 bis - 19, Edificio Fontainebleu, local 105",
-    phone: "01 8000 967474",
-    hours: "Lun–Vie 8:30 a. m. – 12:00 m. y 1:00 p. m. – 4:30 p. m.",
-    email: "servicioasociados@coovitel.coop",
-  },
-  {
-    city: "Manizales",
-    name: "Sede Manizales",
-    address: "Carrera 24 # 22 - 02, Edificio Plaza Centro, oficina 907",
-    phone: "01 8000 967474",
-    hours: "Lun–Vie 8:30 a. m. – 12:00 m. y 1:00 p. m. – 4:30 p. m.",
-    email: "servicioasociados@coovitel.coop",
-  },
-];
-
-const faqs = [
-  {
-    q: "¿Quién puede asociarse a COOVITEL?",
-    a: "Pueden asociarse personas naturales mayores de edad que trabajen en empresas aliadas a COOVITEL o que cumplan los requisitos establecidos en nuestros estatutos. También pueden vincularse personas jurídicas según las condiciones especiales definidas por el Consejo de Administración.",
-  },
-  {
-    q: "¿Cómo puedo solicitar un crédito?",
-    a: "Puedes solicitar un crédito a través de nuestra Oficina Virtual, visitando cualquiera de nuestras sedes, por WhatsApp o llamando a nuestra línea de atención. Necesitas ser asociado activo con al menos 3 meses de antigüedad y tener tus aportes al día.",
-  },
-  {
-    q: "¿Cuánto tiempo tarda la aprobación de un crédito?",
-    a: "El proceso de aprobación toma entre 24 y 48 horas hábiles una vez se radique la documentación completa. Para créditos digitales el proceso puede ser en menos de 24 horas, 100% en línea.",
-  },
-  {
-    q: "¿Qué tasas de interés maneja COOVITEL?",
-    a: "Nuestras tasas son preferenciales para asociados y están por debajo de la tasa promedio del mercado. Las tasas varían según el tipo de crédito, monto y plazo. Consulta las tasas vigentes en nuestra Oficina Virtual o comunícate con atención al cliente.",
-  },
-  {
-    q: "¿Cómo puedo consultar el saldo de mis ahorros?",
-    a: "Puedes consultar tu saldo en cualquier momento a través de coovitel.coop y la Oficina Virtual, llamando a la línea de atención o visitando cualquiera de nuestras sedes.",
-  },
-  {
-    q: "¿Qué documentos necesito para asociarme?",
-    a: "Para asociarte necesitas: cédula de ciudadanía vigente, certificación laboral o comprobante de ingresos, diligenciar el formulario de vinculación y firmar los estatutos. El proceso puede realizarse de forma presencial o en línea a través de nuestra Oficina Virtual.",
-  },
-  {
-    q: "¿COOVITEL está vigilada por la Superintendencia de la Economía Solidaria?",
-    a: "Sí. COOVITEL está vigilada y controlada por la Superintendencia de la Economía Solidaria (Supersolidaria), lo que garantiza la transparencia y seguridad de los recursos de todos nuestros asociados. También contamos con certificación ISO 9001:2015 y calificación A+ Value & Risk.",
-  },
-  {
-    q: "¿Puedo retirar mis aportes si me desvinculo?",
-    a: "Al momento de la desvinculación, tienes derecho al reembolso de tus aportes sociales según los procedimientos establecidos en los estatutos y la normativa cooperativa vigente. El proceso toma entre 30 y 60 días hábiles después de aprobada la desvinculación.",
-  },
-];
+const offices = CONTACT_OFFICES;
+const faqs = CONTACT_FAQS;
 
 function HeroSection() {
   return (
@@ -214,21 +108,29 @@ function SubMenuTabs({ activeTab, setActiveTab }: { activeTab: Tab; setActiveTab
 
 function OficinasSection() {
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
+  const [featuredOffice, setFeaturedOffice] = useState(offices[0]);
   const cities = [...new Set(offices.map((o) => o.city))];
   const filtered = selectedCity ? offices.filter((o) => o.city === selectedCity) : offices;
+  const officeMapUrl = (office: typeof offices[number]) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${office.address}, ${office.city}, Colombia`)}`;
+  const selectCity = (city: string | null) => {
+    const next = city ? offices.filter((office) => office.city === city) : offices;
+    setSelectedCity(city);
+    setFeaturedOffice(next[0]);
+  };
+  const phoneHref = `tel:${featuredOffice.phone.replace(/\D/g, '')}`;
 
   return (
     <section id="oficinas" className="max-w-7xl mx-auto px-4 sm:px-6 py-14">
       <div className="mb-10">
         <span className="text-amber-500 text-xs font-black tracking-widest uppercase">Presencia nacional</span>
         <h2 className="text-3xl sm:text-4xl font-black text-[#173C6E] mt-1 mb-3">Nuestras oficinas</h2>
-        <p className="text-slate-500 max-w-xl">Encuéntranos en 9 ciudades de Colombia. Selecciona una ciudad para filtrar.</p>
+        <p className="text-slate-500 max-w-xl">Encuéntranos en 9 ciudades de Colombia. Elige una ciudad, revisa el horario y encuentra la ruta más fácil para llegar.</p>
       </div>
 
       {/* City filter pills */}
       <div className="flex flex-wrap gap-2 mb-8">
         <button
-          onClick={() => setSelectedCity(null)}
+          onClick={() => selectCity(null)}
           className={`px-4 py-2 rounded-full text-sm font-bold transition-all ${
             !selectedCity ? "bg-[#173C6E] text-white shadow-md" : "bg-white border border-slate-200 text-slate-500 hover:border-[#173C6E] hover:text-[#173C6E]"
           }`}
@@ -238,7 +140,7 @@ function OficinasSection() {
         {cities.map((city) => (
           <button
             key={city}
-            onClick={() => setSelectedCity(city === selectedCity ? null : city)}
+            onClick={() => selectCity(city === selectedCity ? null : city)}
             className={`px-4 py-2 rounded-full text-sm font-bold transition-all ${
               selectedCity === city ? "bg-[#173C6E] text-white shadow-md" : "bg-white border border-slate-200 text-slate-500 hover:border-[#173C6E] hover:text-[#173C6E]"
             }`}
@@ -292,11 +194,34 @@ function OficinasSection() {
                 <span className="text-[#173C6E] font-semibold">{office.email}</span>
               </div>
             </div>
-            <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${office.address}, ${office.city}, Colombia`)}`} target="_blank" rel="noreferrer" className="mt-5 flex w-full items-center justify-center py-2 rounded-xl border-2 border-[#173C6E]/20 text-[#173C6E] text-sm font-bold hover:bg-[#173C6E] hover:text-white hover:border-[#173C6E] transition-all">
-              Ver en el mapa →
-            </a>
+            <div className="grid grid-cols-2 gap-2 mt-5">
+              <button type="button" onClick={() => { setFeaturedOffice(office); document.getElementById('mapa-sedes')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }} className="min-h-10 rounded-xl border-2 border-[#173C6E]/20 text-[#173C6E] text-xs font-black hover:bg-[#173C6E] hover:text-white hover:border-[#173C6E] transition-all">Ver sede</button>
+              <a href={officeMapUrl(office)} target="_blank" rel="noreferrer" className="min-h-10 flex items-center justify-center rounded-xl bg-[#CFE0FF] text-[#173C6E] text-xs font-black hover:bg-[#173C6E] hover:text-white transition-all">Cómo llegar ↗</a>
+            </div>
           </div>
         ))}
+      </div>
+
+      <div id="mapa-sedes" className="grid lg:grid-cols-[.9fr_1.1fr] rounded-3xl overflow-hidden border border-[#C9DCFF] bg-white shadow-lg shadow-blue-950/5 mt-9">
+        <div className="p-7 sm:p-8 bg-[#173C6E] text-white flex flex-col justify-between">
+          <div>
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-bold"><span className="w-2 h-2 rounded-full bg-amber-400" /> Sede seleccionada</span>
+            <p className="text-amber-400 text-xs font-black tracking-widest uppercase mt-6 mb-2">{featuredOffice.city}</p>
+            <h3 className="text-2xl font-black leading-tight">{featuredOffice.name}</h3>
+            <p className="text-white/75 leading-relaxed mt-4">{featuredOffice.address}</p>
+            <div className="mt-5 grid gap-2 text-sm text-white/85">
+              <span>🕒 {featuredOffice.hours}</span>
+              <span>☎ {featuredOffice.phone}</span>
+            </div>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-3 mt-7">
+            <a href={phoneHref} className="min-h-11 flex items-center justify-center rounded-xl bg-amber-400 text-[#173C6E] font-black text-sm">Llamar a esta sede</a>
+            <a href={officeMapUrl(featuredOffice)} target="_blank" rel="noreferrer" className="min-h-11 flex items-center justify-center rounded-xl border border-white/60 text-white font-black text-sm">Cómo llegar ↗</a>
+          </div>
+        </div>
+        <div className="min-h-[280px] bg-[#CFE0FF]">
+          <iframe title={`Mapa de ${featuredOffice.name} en ${featuredOffice.city}`} src={`https://www.google.com/maps?q=${encodeURIComponent(`${featuredOffice.address}, ${featuredOffice.city}, Colombia`)}&output=embed`} className="w-full h-full min-h-[280px] border-0" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+        </div>
       </div>
     </section>
   );
@@ -490,7 +415,7 @@ function CanalesSection() {
       title: "Línea nacional",
       subtitle: "Llámanos sin costo",
       value: "01 8000 967474",
-      desc: "Línea gratuita nacional de COOVITEL. Para información sobre productos y atención en sedes.",
+      desc: "Línea gratuita nacional. Para información sobre productos y atención en sedes.",
       badge: "Línea nacional",
       badgeColor: "bg-blue-100 text-[#173C6E]",
       action: "Llamar ahora",
@@ -688,7 +613,8 @@ function FAQSection() {
 
 export default function Contacto() {
   const requestedTab = new URLSearchParams(window.location.search).get("tab");
-  const [activeTab, setActiveTab] = useState<Tab>(requestedTab === "oficinas" ? "oficinas" : "canales");
+  const initialTab: Tab = requestedTab === "oficinas" || requestedTab === "formulario" || requestedTab === "faq" ? requestedTab : "canales";
+  const [activeTab, setActiveTab] = useState<Tab>(initialTab);
 
   return (
     <div className="min-h-full bg-slate-50">

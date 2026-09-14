@@ -802,7 +802,9 @@ function FormularioSection() {
 
 /* ─── Footer ─────────────────────────────────────────────── */
 export default function Asociate() {
-  const [activeTab, setActiveTab] = useState<Tab>('quienes')
+  const requestedTab = new URLSearchParams(window.location.search).get('tab')
+  const initialTab: Tab = requestedTab === 'pasos' || requestedTab === 'faq' || requestedTab === 'formulario' ? requestedTab : 'quienes'
+  const [activeTab, setActiveTab] = useState<Tab>(initialTab)
 
   const handleTabChange = (tab: Tab) => {
     setActiveTab(tab)

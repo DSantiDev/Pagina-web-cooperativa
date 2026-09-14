@@ -528,6 +528,7 @@ function Sidebar({ active, setActive }: { active: Section; setActive: (s: Sectio
                   background: active === group.id ? "rgba(26,26,175,0.07)" : "transparent",
                   fontFamily: "Poppins, sans-serif",
                 }}
+                aria-expanded={group.children ? open.includes(group.id) : undefined}
                 onClick={() => {
                   setActive(group.id);
                   if (group.children) toggle(group.id);
@@ -536,10 +537,11 @@ function Sidebar({ active, setActive }: { active: Section; setActive: (s: Sectio
                 <span>{group.label}</span>
                 {group.children && (
                   <span
-                    className="text-xs transition-transform"
-                    style={{ transform: open.includes(group.id) ? "rotate(180deg)" : "none", color: "#81A1DB" }}
+                    className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-[#81A1DB] bg-white text-[#173C6E] shadow-sm transition-all duration-200"
+                    style={{ transform: open.includes(group.id) ? "rotate(180deg)" : "none" }}
+                    aria-hidden="true"
                   >
-                    ▾
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="m7 10 5 5 5-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   </span>
                 )}
               </button>
@@ -583,7 +585,8 @@ function Sidebar({ active, setActive }: { active: Section; setActive: (s: Sectio
 
 export default function QuienesSomos() {
   const routeSection = new URLSearchParams(window.location.search).get("section");
-  const [active, setActive] = useState<Section>(routeSection === "trabaja" ? "trabaja" : "historia");
+  const initialSection: Section = routeSection === "mision-vision" || routeSection === "normativa" || routeSection === "gobierno" || routeSection === "trabaja" ? routeSection : "historia";
+  const [active, setActive] = useState<Section>(initialSection);
 
   return (
     <div className="min-h-full flex flex-col" style={{ background: "var(--coovitel-light)" }}>

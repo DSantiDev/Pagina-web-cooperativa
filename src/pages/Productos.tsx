@@ -678,9 +678,11 @@ function AhorroDetail({ product, showSimulatorInitially = false, onClose }: { pr
 /* ─── Footer ─────────────────────────────────────────────────── */
 export default function Productos() {
   const requestedProduct = new URLSearchParams(window.location.search).get("producto");
+  const requestedTab = new URLSearchParams(window.location.search).get("tab");
   const initialCredit = CREDITO_PRODUCTS.some((product) => product.id === requestedProduct) ? requestedProduct : null;
   const initialAhorro = AHORRO_PRODUCTS.some((product) => product.id === requestedProduct) ? requestedProduct : null;
-  const [activeTab, setActiveTab] = useState<"credito" | "ahorro" | "cdat">(requestedProduct === "cdat" ? "cdat" : initialAhorro ? "ahorro" : "credito");
+  const initialTab: "credito" | "ahorro" | "cdat" = requestedTab === "ahorro" || requestedTab === "cdat" ? requestedTab : requestedProduct === "cdat" ? "cdat" : initialAhorro ? "ahorro" : "credito";
+  const [activeTab, setActiveTab] = useState<"credito" | "ahorro" | "cdat">(initialTab);
   const [selectedCredito, setSelectedCredito] = useState<string | null>(initialCredit);
   const [selectedAhorro, setSelectedAhorro] = useState<string | null>(initialAhorro);
 

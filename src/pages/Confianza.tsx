@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { getCoovitelYears } from "../lib/brand";
+import { formatSpanishDate } from "../lib/date";
 import MEDIA from "../lib/media";
+import { MANAGEMENT_REPORTS, SITE_OBITUARIES } from "../lib/siteContent";
 
 const COOVITEL_YEARS = getCoovitelYears();
 
@@ -65,14 +67,7 @@ const FAQ_ITEMS = [
   },
 ];
 
-const INFORMES = [
-  { year: "2023", title: "Informe de Gestión Anual 2023", size: "3.2 MB", type: "PDF" },
-  { year: "2022", title: "Informe de Gestión Anual 2022", size: "2.8 MB", type: "PDF" },
-  { year: "2021", title: "Informe de Gestión Anual 2021", size: "2.5 MB", type: "PDF" },
-  { year: "2020", title: "Informe de Gestión Anual 2020", size: "2.1 MB", type: "PDF" },
-  { year: "2023", title: "Estados Financieros Dic. 2023", size: "1.4 MB", type: "PDF" },
-  { year: "2023", title: "Acta Asamblea General 2023", size: "0.9 MB", type: "PDF" },
-];
+const INFORMES = MANAGEMENT_REPORTS;
 
 const CERTIFICACIONES = [
   { icon: "📄", title: "Certificado de Asociado Activo", desc: "Válido para trámites bancarios, visas y entidades oficiales." },
@@ -83,17 +78,12 @@ const CERTIFICACIONES = [
   { icon: "🔖", title: "Vinculación Laboral", desc: "Certificado de tu empresa vinculada a COOVITEL." },
 ];
 
-const OBITUARIOS = [
-  { nombre: "Carlos Alberto Pérez Muñoz", empresa: "ETB S.A.", fecha: "15 de agosto de 2024", mensaje: "COOVITEL expresa sus condolencias a la familia y compañeros del asociado." },
-  { nombre: "María del Pilar Rodríguez Gómez", empresa: "Claro Colombia", fecha: "3 de julio de 2024", mensaje: "Compartimos el dolor de sus seres queridos. Que descanse en paz." },
-  { nombre: "José Hernando Torres Ávila", empresa: "Telmex Colombia", fecha: "20 de junio de 2024", mensaje: "COOVITEL acompaña a la familia en este momento de dolor." },
-];
-
 export default function Confianza() {
   const directSection = new URLSearchParams(window.location.search).get("section");
-  const isTransparencyTarget = ["solicitudes", "certificaciones", "informes", "institucional"].includes(directSection ?? "");
-  const [activeSection, setActiveSection] = useState<Section>(isTransparencyTarget ? "transparencia" : "porque");
-  const [transSub, setTransSub] = useState<TransSub>(directSection === "solicitudes" ? "solicitudes" : directSection === "institucional" ? "institucional" : "informes");
+  const isTransparencyTarget = ["solicitudes", "certificaciones", "informes", "obituarios", "institucional"].includes(directSection ?? "");
+  const initialSection: Section = directSection === "seguridad" ? "seguridad" : directSection === "faq" ? "faq" : isTransparencyTarget ? "transparencia" : "porque";
+  const [activeSection, setActiveSection] = useState<Section>(initialSection);
+  const [transSub, setTransSub] = useState<TransSub>(directSection === "solicitudes" ? "solicitudes" : directSection === "obituarios" ? "obituarios" : directSection === "institucional" ? "institucional" : "informes");
   const [segSub, setSegSub] = useState<SegSub>("fraude");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -261,6 +251,7 @@ export default function Confianza() {
                 </button>
               ))}
             </div>
+
           </div>
         </div>
       </section>
@@ -290,7 +281,7 @@ export default function Confianza() {
               <div className="relative">
                 <img
                   src={`${MEDIA.confianzaImagenPrincipal}&w=600&h=420`}
-                  alt="Plaza de Bolívar en Bogotá, Colombia"
+                  alt={MEDIA.confianzaImagenPrincipalAlt}
                   className="rounded-2xl w-full object-cover h-72 shadow-xl"
                 />
                 <div className="absolute -bottom-4 -left-4 bg-[#EBC302] rounded-2xl px-6 py-4 shadow-lg">
@@ -389,7 +380,7 @@ export default function Confianza() {
               {selectedRating === "iso" && <article className="rounded-2xl bg-[#F7F0FF] border border-[#C9DCFF] p-5"><span className="text-[#EBC302] text-xs font-bold">BUREAU VERITAS</span><h4 className="text-[#173C6E] font-bold text-lg mt-2">Certificación ISO 9001:2015</h4><dl className="mt-4 grid sm:grid-cols-3 gap-4 text-sm"><div><dt className="text-[#81A1DB]">Norma</dt><dd className="text-[#1A2842] font-semibold">ISO 9001:2015</dd></div><div><dt className="text-[#81A1DB]">Certificadora</dt><dd className="text-[#1A2842] font-semibold">Bureau Veritas</dd></div><div><dt className="text-[#81A1DB]">Vigencia publicada</dt><dd className="text-[#1A2842] font-semibold">2026</dd></div></dl></article>}
             </section>}
 
-            {/* Sub tabs */}
+            {/* Informes de gestión */}
             <div className="flex flex-wrap gap-2">
               {TRANS_TABS.map((tab) => (
                 <button
@@ -430,12 +421,12 @@ export default function Confianza() {
                           <div className="text-gray-400 text-xs mt-1">{doc.type} · {doc.size}</div>
                         </div>
                       </div>
-                      <button className="mt-4 w-full flex items-center justify-center gap-2 border border-[#173C6E]/20 rounded-lg py-2 text-[#173C6E] text-xs font-semibold hover:bg-[#173C6E] hover:text-white transition-colors">
+                      {doc.fileUrl ? <a href={doc.fileUrl} download={doc.downloadName ?? true} target={doc.fileUrl.startsWith("http") ? "_blank" : undefined} rel={doc.fileUrl.startsWith("http") ? "noreferrer" : undefined} className="mt-4 w-full flex items-center justify-center gap-2 border border-[#173C6E]/20 rounded-lg py-2 text-[#173C6E] text-xs font-semibold hover:bg-[#173C6E] hover:text-white transition-colors">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                         </svg>
                         Descargar
-                      </button>
+                      </a> : <span className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg border border-dashed border-gray-200 py-2 text-xs font-semibold text-gray-400">Archivo pendiente de publicación</span>}
                     </div>
                   ))}
                 </div>
@@ -485,16 +476,16 @@ export default function Confianza() {
                 <h3 className="font-[Montserrat,sans-serif] font-bold text-xl text-[#173C6E] mb-2">Obituarios</h3>
                 <p className="text-gray-500 text-sm mb-6">COOVITEL rinde homenaje a los asociados que han partido. Nuestras condolencias a sus familias.</p>
                 <div className="space-y-4">
-                  {OBITUARIOS.map((obit) => (
-                    <div key={obit.nombre} className="bg-white rounded-2xl p-6 border border-gray-100 flex gap-5 items-start">
+                  {SITE_OBITUARIES.map((obit) => (
+                    <div key={`${obit.date}-${obit.title}`} className="bg-white rounded-2xl p-6 border border-gray-100 flex gap-5 items-start">
                       <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0 text-2xl">
                         🕊️
                       </div>
                       <div>
-                        <h4 className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] text-lg">{obit.nombre}</h4>
-                        <p className="text-[#EBC302] font-semibold text-sm">{obit.empresa}</p>
-                        <p className="text-gray-400 text-xs mt-1 mb-2">Falleció el {obit.fecha}</p>
-                        <p className="text-gray-600 text-sm italic">{obit.mensaje}</p>
+                        <h4 className="font-[Montserrat,sans-serif] font-bold text-[#173C6E] text-lg">{obit.title}</h4>
+                        <p className="text-[#EBC302] font-semibold text-sm">{obit.company}</p>
+                        <p className="text-gray-400 text-xs mt-1 mb-2">Falleció el {formatSpanishDate(obit.date)}</p>
+                        <p className="text-gray-600 text-sm italic">{obit.message}</p>
                       </div>
                     </div>
                   ))}
