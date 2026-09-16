@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, type ReactNode, type CSSProperties } from 'react'
 import { getCoovitelYears } from '../lib/brand'
-import MEDIA, { getHomeSliderSlides } from '../lib/media'
+import MEDIA, { getHomeSliderSlides, imageWithParams } from '../lib/media'
 import { NAME_PATTERN, PHONE_PATTERN, clearFieldError, sanitizeName, sanitizePhone, showFieldError } from '../lib/formValidation'
 
 // ─── Hooks ───────────────────────────────────────────────────────────────────
@@ -214,7 +214,7 @@ export default function Home() {
         {/* Background photo — sits behind gradient */}
         <div className="absolute inset-0 pointer-events-none">
           <img
-            src={`${MEDIA.homeFondoHero}&w=1800&h=1200`}
+            src={imageWithParams(MEDIA.homeFondoHero, 'w=1800&h=1200')}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -319,7 +319,7 @@ export default function Home() {
         {/* Background photo with navy tint */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <img
-            src={`${MEDIA.homeFondoEstadisticas}&w=1800&h=600`}
+            src={imageWithParams(MEDIA.homeFondoEstadisticas, 'w=1800&h=600')}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -351,7 +351,7 @@ export default function Home() {
         {/* Background photo */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <img
-            src={`${MEDIA.homeFondoNosotros}&w=1800&h=1000`}
+            src={imageWithParams(MEDIA.homeFondoNosotros, 'w=1800&h=1000')}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -370,7 +370,7 @@ export default function Home() {
             <div className="relative">
               <div className="rounded-3xl overflow-hidden aspect-[4/3] shadow-xl" style={{ backgroundColor: '#CFE0FF' }}>
                 <img
-                  src={`${MEDIA.homeImagenNosotros}&w=800&h=600`}
+                  src={MEDIA.homeImagenNosotros}
                   alt={MEDIA.homeImagenNosotrosAlt}
                   className="w-full h-full object-cover"
                 />
@@ -435,7 +435,7 @@ export default function Home() {
         {/* Background photo with deep navy overlay */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <img
-            src={`${MEDIA.homeFondoConfianza}&w=1800&h=1000`}
+            src={imageWithParams(MEDIA.homeFondoConfianza, 'w=1800&h=1000')}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -575,7 +575,7 @@ export default function Home() {
         {/* Background photo */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <img
-            src={`${MEDIA.homeFondoBeneficios}&w=1800&h=1000`}
+            src={imageWithParams(MEDIA.homeFondoBeneficios, 'w=1800&h=1000')}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -653,7 +653,7 @@ export default function Home() {
         {/* Background photo */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <img
-            src={`${MEDIA.homeFondoContacto}&w=1800&h=1000`}
+            src={imageWithParams(MEDIA.homeFondoContacto, 'w=1800&h=1000')}
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"

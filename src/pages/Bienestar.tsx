@@ -5,7 +5,7 @@ import appDescuentos from "../assets/redvital/app-descuentos.jpeg";
 import appCategorias from "../assets/redvital/app-categorias.jpeg";
 import appConvenios from "../assets/redvital/app-convenios.jpeg";
 import appPlan from "../assets/redvital/app-plan.jpeg";
-import MEDIA from "../lib/media";
+import MEDIA, { imageWithParams } from "../lib/media";
 
 const COOVITEL_YEARS = getCoovitelYears();
 
@@ -272,7 +272,7 @@ function HeroBanner({ activeTab: _activeTab }: { activeTab: Tab }) {
         className="absolute inset-0 opacity-45"
         style={{
           backgroundImage:
-            `url('${MEDIA.bienestarHero}&w=1400&h=400')`,
+            `url('${imageWithParams(MEDIA.bienestarHero, "w=1400&h=400")}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -382,7 +382,7 @@ function BeneficiosSociales() {
           </div>
           <div className="bienestar-image-card relative">
             <img
-              src={`${MEDIA.bienestarImagenBeneficios}&w=600&h=420`}
+              src={imageWithParams(MEDIA.bienestarImagenBeneficios, "w=600&h=420")}
               alt={MEDIA.bienestarImagenBeneficiosAlt}
               className="w-full h-72 object-cover rounded-2xl shadow-xl"
             />

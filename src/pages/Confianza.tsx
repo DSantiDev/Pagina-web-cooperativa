@@ -280,7 +280,7 @@ export default function Confianza() {
               </div>
               <div className="relative">
                 <img
-                  src={`${MEDIA.confianzaImagenPrincipal}&w=600&h=420`}
+                  src={MEDIA.confianzaImagenPrincipal}
                   alt={MEDIA.confianzaImagenPrincipalAlt}
                   className="rounded-2xl w-full object-cover h-72 shadow-xl"
                 />
